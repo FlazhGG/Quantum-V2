@@ -1561,6 +1561,10 @@ local Boss = {}
         end)
 
         local Set = Window:MakeTab({"Settings", "settings"})
+        PosY = 35
+        Set:AddSlider({"Farm Distance", 0,50,PosY,function(value)
+            PosY = value
+        end})
 
             Set:AddToggle({ Name = "Fast Attack", Description = "Attacks rapidly", Default = true, Callback = function(fas)
                 _G.FastAttack = fas
