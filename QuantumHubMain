@@ -64,6 +64,23 @@ local function UpdateOS()
 
 local Main = Window:MakeTab({"Main", "home"})
 
+local MonsterStatus = Main:AddLabel({""})
+local QuestStatus = Main:AddLabel({""})
+
+spawn(function()
+    while task.wait() do
+    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+    MonsterStatus:SetTitle("[Monster] : ")
+    QuestStatus:SetTitle("[Quest] : ".." | [Level] : ")
+    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+    pcall(function()
+      CheckQuest()
+      MonsterStatus:SetTitle("[Monster] : "..Mon)
+      QuestStatus:SetTitle("[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
+      end)
+    end
+    end
+    end)
 
 local ListF = {"Normal", "Auto Quest", "Nearest"}
 FarmMode = "Normal"
@@ -76,3 +93,10 @@ Main:AddDropdown({
         FarmMode = value
     end
 })
+
+Main:AddToggle({ Title = "Auto Farm", Description = "Auto farm selected method", Default = false, Callback = function(value)
+    _G.AutoFarm = value
+    StopTween(_G.AutoFarm)
+end
+})
+
