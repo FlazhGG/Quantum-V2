@@ -18,7 +18,7 @@ Info:AddDiscordInvite({
     Invite = "https://discord.gg/3he5byjKzQ"
 })
 
-osfunc = Info:AddLabel({""})
+osfunc = Info:AddLabel({"Time Zone"})
 
 local function UpdateOS()
     local date = os.date("*t")
@@ -42,7 +42,7 @@ local function UpdateOS()
      end
      end)
 
-     Time = Info:AddLabel({""})
+     Time = Info:AddLabel({"Server Time"})
 
      function UpdateTime()
         local GameTime = math.floor(workspace.DistributedGameTime+0.5)
@@ -59,3 +59,18 @@ local function UpdateOS()
             end)
         end
     end)
+
+local Main = Window:AddTab({"Main", "home"})
+
+local ListF = {"Normal", "Auto Quest", "Nearest"}
+FarmMode = "Normal"
+
+Main:AddDropdown({
+    Name = "Select Farm Mode",
+    Options = ListF,
+    Default = FarmMode,
+    Callback = function(value)
+        _G.AutoFarm = value
+        StopTween(_G.AutoFarm)
+    end
+})
