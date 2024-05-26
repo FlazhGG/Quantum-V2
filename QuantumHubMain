@@ -1562,7 +1562,7 @@ local Boss = {}
 
         local Set = Window:MakeTab({"Settings", "settings"})
         PosY = 35
-        Set:AddSlider({"Farm Distance", 0,50,PosY,function(value)
+        Set:AddSlider({"Farm Distance",Min = 0,Max =50,Default = PosY,function(value)
             PosY = value
         end})
 
