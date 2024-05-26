@@ -97,5 +97,7 @@ Main:AddDropdown({
 Main:AddToggle({ Title = "Auto Farm", Description = "Auto farm selected method", Default = false, Callback = function(value)
     _G.AutoFarm = value
     StopTween(_G.AutoFarm)
-end})
+end
+
+})
 
