@@ -1465,7 +1465,7 @@ local Boss = {}
         })
 
         Main:AddButton({"Refresh Boss", function()
-            BossName:Clear()
+            BossName:Remove()
             wait(0.1)
             for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
                 if (v.Name == "rip_indra" or v.Name == "Ice Admiral")
