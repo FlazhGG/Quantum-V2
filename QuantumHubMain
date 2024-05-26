@@ -1184,6 +1184,57 @@ Main:AddDropdown({
     end
 })
 
+local WeaponList = {"Melee","Sword","Fruit","Gun"}
+_G.SelectWeapon = "Melee"
+Main:AddDropdown({
+    Name = "Select Weapon",
+    Options = WeaponList,
+    Default = _G.SelectWeapon,
+    Callback = function(tool)
+        _G.SelectWeapon = tool
+    end
+})
+
+task.spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.SelectWeapon == "Melee" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Sword" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Gun" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Gun" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Fruit" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
+    end)
+
 Main:AddToggle({ Title = "Auto Farm", Description = "Auto farm selected method", Default = false, Callback = function(value)
     _G.AutoFarm = value
     StopTween(_G.AutoFarm)
@@ -2000,3 +2051,51 @@ local Boss = {}
             end)
         end
         end)
+
+        local Bring = {"Low", "Normal", "Super Bring"}
+_G.BringMode = "Normal"
+
+Set:AddDropdown({
+    Name = "Select Bring Mode",
+    Options = Bring,
+    Default = _G.BringMode,
+    Callback = function(Mag)
+        _G.BringMode = Mag
+    end
+})
+
+spawn(function()
+    while wait(.1) do
+        if _G.BringMode then
+            pcall(function()
+                if _G.BringMode == "Low" then
+                    _G.BringMode = 250
+                elseif _G.BringMode == "Normal" then
+                    _G.BringMode = 300
+                elseif _G.BringMode == "Super Bring" then
+                    _G.BringMode = 350
+                end
+            end)
+        end
+    end
+end)
+
+Set:AddToggle({ Name = "Auto Haki", Description = "", Default = true , Callback = function(value)
+    _G.AUTOHAKI = value
+end})
+spawn(function()
+    while wait(.1) do
+        if _G.AUTOHAKI then 
+            if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+                local args = {
+                    [1] = "Buso"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
+
+Set:AddToggle({ Name = "Auto Click", Description = "", Default = false, Callback = function(value)
+    _G.AutoClick = value
+end})
