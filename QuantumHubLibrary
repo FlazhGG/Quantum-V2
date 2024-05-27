@@ -53,7 +53,7 @@ local quantumlib = {
     PlaceName = MarketplaceService:GetProductInfo(game.PlaceId).Name
   },
   Save = {
-    UISize = {350, 350},
+    UISize = {500, 320},
     TabSize = 100,
     Theme = "Purple"
   },
