@@ -53,8 +53,8 @@ local quantumlib = {
     PlaceName = MarketplaceService:GetProductInfo(game.PlaceId).Name
   },
   Save = {
-    UISize = {500, 320},
-    TabSize = 100,
+    UISize = {500, 380},
+    TabSize = 160,
     Theme = "Purple"
   },
   Instances = {},
@@ -66,7 +66,7 @@ local quantumlib = {
 }
 
 local ViewportSize = workspace.CurrentCamera.ViewportSize
-local UIScale = ViewportSize.Y / 300
+local UIScale = ViewportSize.Y / 450
 
 local SetProps, SetChildren, InsertTheme, Create do
   InsertTheme = function(Instance, Type)
@@ -425,7 +425,7 @@ function quantumlib:SetTheme(NewTheme)
 end
 
 function quantumlib:SetScale(NewScale)
-  NewScale = ViewportSize.Y / math.clamp(NewScale, 300, 1000)
+  NewScale = ViewportSize.Y / math.clamp(NewScale, 300, 2000)
   UIScale, ScreenGui.Scale.Scale = NewScale, NewScale
 end
 
