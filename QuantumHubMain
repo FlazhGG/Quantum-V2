@@ -1479,8 +1479,7 @@ local Boss = {}
                     end
     
                 elseif
-    
-                if FightStyleL == "Death Step" and GetFightingStyle then
+                     FightStyleL == "Death Step" and GetFightingStyle then
                     if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Black Leg") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Death Step") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Death Step") then
                         if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg") and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 450 then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
@@ -1497,8 +1496,6 @@ local Boss = {}
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
                     end
                 end
-            end
-        end
             end})
 
 
