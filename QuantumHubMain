@@ -831,7 +831,7 @@ end)
 
     local listfastattack = {'0','0.1','0.15','0.155','0.16','0.165','0.17','0.175', '0.18', '0.185', '0.09'}
 
-    local DropdownDelayAttack = Tabs.Main:AddDropdown("DropdownDelayAttack", {
+    local DropdownDelayAttack = Set:AddDropdown("DropdownDelayAttack", {
         Title = "Select Fast Attack",
         Description = "",
         Values = listfastattack,
