@@ -536,7 +536,7 @@ User = Info:AddLabel({"User Info"})
 spawn(function()
     while task.wait()do
         pcall(function()
-    User:SetDesc("Name : "..game.Players.LocalPlayer.DisplayName.." (@"..game.Players.LocalPlayer.Name..")\nLevel : "..game:GetService("Players").LocalPlayer.Data.Level.Value.."\nBeli : "..game:GetService("Players").LocalPlayer.Data.Beli.Value.."\nFragments : "..game:GetService("Players").LocalPlayer.Data.Fragments.Value.."\nBounty : "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value.."\nHealth : "..game.Players.LocalPlayer.Character.Humanoid.Health.."/"..game.Players.LocalPlayer.Character.Humanoid.MaxHealth.."\nStamina : "..game.Players.LocalPlayer.Character.Energy.Value.."/"..game.Players.LocalPlayer.Character.Energy.MaxValue.."\nRace : " ..game:GetService("Players").LocalPlayer.Data.Race.Value.."\nDevil Fruit : "..game:GetService("Players").LocalPlayer.Data.DevilFruit.Value.."")
+    User:SetDesc("Name : "..game.Players.LocalPlayer.DisplayName.." (@"..game.Players.LocalPlayer.Name..") | Level : "..game:GetService("Players").LocalPlayer.Data.Level.Value.."\nBeli : "..game:GetService("Players").LocalPlayer.Data.Beli.Value.."\nFragments : "..game:GetService("Players").LocalPlayer.Data.Fragments.Value.."\nBounty : "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value.."\nHealth : "..game.Players.LocalPlayer.Character.Humanoid.Health.."/"..game.Players.LocalPlayer.Character.Humanoid.MaxHealth.."\nStamina : "..game.Players.LocalPlayer.Character.Energy.Value.."/"..game.Players.LocalPlayer.Character.Energy.MaxValue.."\nRace : " ..game:GetService("Players").LocalPlayer.Data.Race.Value.."\nDevil Fruit : "..game:GetService("Players").LocalPlayer.Data.DevilFruit.Value.."")
     end)
 end
 end)
@@ -563,7 +563,7 @@ spawn(function()
     end
     end)
 
-local ListF = {"Normal", "Auto Quest", "Nearest"}
+local ListF = {"Normal", "Auto Quest"}
 FarmMode = "Normal"
 
 Main:AddDropdown({
@@ -786,41 +786,6 @@ spawn(function()
     end
 end)
 
-  spawn(function()
-        while wait() do
-            if FarmMode == "Nearest" and _G.AutoFarm then
-                pcall(function()
-                    for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
-                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                            if v.Name then
-                                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChild("HumanoidRootPart").Position).Magnitude <= 5000 then
-                                repeat wait(_G.FastAttackDelay)
-                                StartBring = true
-                                AutoHaki()
-                                EquipWeapon(_G.SelectWeapon)
-                                TP1(v.HumanoidRootPart.CFrame * Pos)
-                                v.HumanoidRootPart.Size = Vector3.new(1,1,1)
-                                v.HumanoidRootPart.Transparency = 1
-                                v.Humanoid.JumpPower = 0
-                                v.Humanoid.WalkSpeed = 0
-                                v.HumanoidRootPart.CanCollide = false
-                                PosMon = v.HumanoidRootPart.CFrame
-                                MonFarm = v.Name
-                                game:GetService("VirtualUser"):CaptureController()
-				       	    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672), game.Workspace.CurrentCamera.CFrame)
-				       	    AutoFarmNearestMagnet = true
-                                sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-                                until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or not game.Workspace.Enemies:FindFirstChild(v.Name)
-                                AutoFarmNearestMagnet = false
-                                end
-                            end
-                        end
-                    end
-                end)
-            end
-        end
-    end)
-
 Main:AddSection({"Boss Farm"})
 
 local Boss = {}
@@ -957,12 +922,12 @@ local Boss = {}
 
         Main:AddSection({"Bone Misc"})
         
-        BoneCheck = Main:AddLabel({""})
+        local BoneCheck = Main:AddLabel({""})
 
         spawn(function()
             while wait() do
                 pcall(function()
-                    BoneCheck:SetTitle({"Your Bone: "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check"))})
+                    BoneCheck:SetTitle("Your Bone: "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
                 end)
             end
         end)
