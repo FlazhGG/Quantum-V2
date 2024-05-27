@@ -963,7 +963,7 @@ local Boss = {}
         spawn(function()
             while wait() do
                 pcall(function()
-                    BoneCheck:SetTitle("Your Bone: "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
+                    BoneCheck:SetTitle({"Your Bone: "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check"))})
                 end)
             end
         end)
