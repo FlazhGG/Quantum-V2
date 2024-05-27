@@ -445,6 +445,10 @@ function intiAppleHub()
                 wait()
                 HyperCahaya(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
                 wait()
+                topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+                wait()
+                TP1(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+                wait()
                 if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
                 end
