@@ -1974,8 +1974,7 @@ end})
 
 -- /////////////////////////////////////////////////////////////////////////--
 
-task.spawn(function()
-    
+
     if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
         game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
     end
@@ -1985,4 +1984,3 @@ task.spawn(function()
     
     hookfunction(error, function()end)
     hookfunction(warn, function()end)
-  end)
