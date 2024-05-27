@@ -13,6 +13,9 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.End
 })
 
+local Options = Fluent.Options
+do
+
 function intiQuantumHub() 
     _G.antiscan = true
     getgenv().A = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).wrapAttackAnimationAsync
@@ -483,7 +486,7 @@ end
         end)
 
 
-        Info = Window:AddTab({ Title = "Tab Info", Icon = "circle-alert" })
+       local Info = Window:AddTab({ Title = "Tab Info", Icon = "circle-alert" })
 
         local osfunc = Info:AddParagraph({"[Time Zone]"})
 
@@ -527,7 +530,255 @@ end
             end
         end)
 
-        
+        local Main = Window:AddTab({ Title = "Home", Icon = "home"})
+         Main:AddSection({"Farm Level"})
+         local MonsterStatus = Main:AddParagraph({""})
+local QuestStatus = Main:AddParagraph({""})
+
+spawn(function()
+    while task.wait() do
+    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+    MonsterStatus:SetTitle("[Monster] : ")
+    QuestStatus:SetTitle("[Quest] : ".." | [Level] : ")
+    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+    pcall(function()
+      CheckQuest()
+      MonsterStatus:SetTitle("[Monster] : "..Mon)
+      QuestStatus:SetTitle("[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
+      end)
+    end
+    end
+    end)
+
+
+    local ListF = {"Normal", "Auto Quest"}
+    FarmMode = "Normal"
+         Main:AddDropdown({
+            Name = "Select Farm Mode",
+            Options = ListF,
+            Default = FarmMode,
+            Callback = function(value)
+                FarmMode = value
+            end
+         })
+
+         local WeaponList = {"Melee","Sword","Fruit"}
+_G.SelectWeapon = "Melee"
+Main:AddDropdown({
+    Name = "Select Weapon",
+    Options = WeaponList,
+    Default = _G.SelectWeapon,
+    Callback = function(tool)
+        _G.SelectWeapon = tool
+    end
+})
+
+task.spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.SelectWeapon == "Melee" then
+                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Melee" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            _G.SelectWeapon = v.Name
+                        end
+                    end
+                end
+            elseif _G.SelectWeapon == "Sword" then
+                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Sword" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            _G.SelectWeapon = v.Name
+                        end
+                    end
+                end
+            elseif _G.SelectWeapon == "Blox Fruit" then
+                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Blox Fruit" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            _G.SelectWeapon = v.Name
+                        end
+                    end
+                end
+            else
+                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.ToolTip == "Melee" then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                            _G.SelectWeapon = v.Name
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
+
+
+local ToggleLevel = Main:AddToggle("ToggleLevel", {
+    Title = "Auto Farm",
+    Description = "Farms selected method",
+    Default = false })
+    ToggleLevel:OnChanged(function(value)
+        _G.AutoFarm = value
+    StopTween(_G.AutoFarm)
+    end)
+
+    Options.ToggleLevel:SetValue(false)
+    spawn(function()
+        while wait() do
+            if FarmMode == "Normal" and _G.AutoFarm then
+                pcall(function()
+                    CheckQuest()
+                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                    CheckQuest()
+                    if not string.find(QuestTitle, NameMon) then
+                        StartMagnet = false
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                    end
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                        StartMagnet = false
+                        if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 1500 then
+                        BTP(CFrameQuest)
+                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude < 1500 then
+                        TP1(CFrameQuest)
+                        end
+                    else
+                        TP1(CFrameQuest)
+                    end
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 20 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
+                    end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                        -- Sun-Kissed Warrior Function Farm Level
+                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "kissed") then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if string.find(v.Name,"kissed Warrior") then
+                                    if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                            repeat task.wait()
+                                                EquipWeapon(_G.SelectWeapon)
+                                                AutoHaki()                                            
+                                                PosMon = v.HumanoidRootPart.CFrame
+                                                TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.Head.CanCollide = false
+                                                v.HumanoidRootPart.Size = Vector3.new(70,70,70)
+                                                StartMagnet = true
+                                                game:GetService'VirtualUser':CaptureController()
+                                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                            until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                        else
+                                            StartMagnet = false
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        end
+                                    end
+                                elseif string.find(v.Name,"kissed Warrior") == nil then
+                                    TP1(CFrameMon)
+                                    StartMagnet = false
+                                    if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
+                                        TP1(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+                                    end
+                                end
+                            end
+                        else
+                            -- For Other Farm Level Except Sun Kissed Warrior
+                            if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
+                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                    if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                        if v.Name == Mon then
+                                            if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                                repeat task.wait()
+                                                    EquipWeapon(_G.SelectWeapon)
+                                                    AutoHaki()                                            
+                                                    PosMon = v.HumanoidRootPart.CFrame
+                                                    TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                    v.HumanoidRootPart.CanCollide = false
+                                                    v.Humanoid.WalkSpeed = 0
+                                                    v.Head.CanCollide = false
+                                                    v.HumanoidRootPart.Size = Vector3.new(70,70,70)
+                                                    StartMagnet = true
+                                                    game:GetService'VirtualUser':CaptureController()
+                                                    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                                until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                            else
+                                                StartMagnet = false
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                            end
+                                        end
+                                    end
+                                end
+                            else
+                                TP1(CFrameMon)
+                                StartMagnet = false
+                                if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
+                                    TP1(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+                                end
+                            end
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+    
+    spawn(function()
+        while wait() do
+            if FarmMode == "Auto Quest" and _G.AutoFarm then
+                pcall(function()
+                    CheckQuest()
+                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                    if not string.find(QuestTitle, NameMon) then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                    end
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
+                        if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameMon.Position).Magnitude > 1500 then
+                        BTP(CFrameMon)
+                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameMon.Position).Magnitude < 1500 then
+                        TP1(CFrameMon)
+                        end
+                    else
+                        TP1(CFrameMon)
+                    end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                        if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                    if v.Name == Mon then
+                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                            repeat task.wait(_G.FastAttackDelay)
+                                                EquipWeapon(_G.SelectWeapon)
+                                                AutoHaki()                                            
+                                                PosMon = v.HumanoidRootPart.CFrame
+                                                TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.Head.CanCollide = false
+                                                v.HumanoidRootPart.Size = Vector3.new(70,70,70)
+                                                StartMagnet = true
+                                                MonFarm = v.Name
+                                                game:GetService'VirtualUser':CaptureController()
+                                                        game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                            until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                            StartMagnet = false
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                            TP1(CFrameMon)
+                            UnEquipWeapon(_G.SelectWeapon)
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
+
 
 
 
