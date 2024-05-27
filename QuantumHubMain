@@ -1411,7 +1411,7 @@ local Boss = {}
                 end
             })
 
-            Sub:AddButton({"Buy Selected Fighting Style",function(buy)
+            Sub:AddButton({"Buy Selected Fighting Style",function()
                 if FightStyleL == "Super Human" and GetFightingStyle then
                     if game.Players.LocalPlayer.Backpack:FindFirstChild("Combat") or game.Players.LocalPlayer.Character:FindFirstChild("Combat") and game:GetService("Players")["LocalPlayer"].Data.Beli.Value >= 150000 then
                         UnEquipWeapon("Combat")
