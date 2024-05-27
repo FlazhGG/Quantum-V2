@@ -205,20 +205,20 @@ function intiAppleHub()
     end
     
     local stoppos = {}
-        function topos(Pos)
-            game:GetService("TweenService"):Create(
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-                TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-                {CFrame = Pos}
-            ):Play()
+    function topos(Pos)
+        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+        tween = game:GetService("TweenService"):Create(
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
+            TweenInfo.new(Distance/TweenSpeed, Enum.EasingStyle.Linear),
+            {CFrame = Pos}
+        ):Play()
+
+        function stoppos:Stop()
+            tween:Cancel()
+        end
     
-            function stoppos:Stop()
-                tween:Cancel()
-            end
-        
-            return stoppos
-    
-    end
+        return stoppos
+end
     
         function HyperCahaya(Pos)
             Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -2036,7 +2036,7 @@ end)
 Sea:AddToggle({ Name = "Auto Sail Boat", Description = "", Default = _G.SailBoat, Callback = function(state)
     _G.SailBoat = state
     StopTween(_G.SailBoat)
-        stopboat:Stop()
+    stopboat:Stop()
 end})
 
 function CheckBoat()
