@@ -951,7 +951,7 @@ local Boss = {}
 
         Main:AddSection({"Bone Misc"})
         
-        local BoneCheck = Main:AddLabel({""})
+        BoneCheck = Main:AddLabel({""})
 
         spawn(function()
             while wait() do
@@ -1975,15 +1975,13 @@ end})
 -- /////////////////////////////////////////////////////////////////////////--
 
 task.spawn(function()
-    local EffectContainer = ReplicatedStorage:WaitForChild("Effect"):WaitForChild("Container")
     
-    RunService.RenderStepped:Connect(function()
-      local DeathEffect = EffectContainer:FindFirstChild("Death")
-      
-      if DeathEffect then
-        DeathEffect:Destroy()
-      end
-    end)
+    if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
+        game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+    end
+    if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
+        game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+    end
     
     hookfunction(error, function()end)
     hookfunction(warn, function()end)
