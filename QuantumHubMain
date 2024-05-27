@@ -754,11 +754,10 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
     })
 
 
+   
+    DropdownFastAttackDelay:SetValue("0.18")
     DropdownFastAttackDelay:OnChanged(function(Value)
         _G.FastAttackDelay = Value
-    end)
-    DropdownFastAttackDelay:SetValue("0.18")
-
     spawn(function()
         while wait(.1) do
             if _G.FastAttackDelay then
@@ -876,6 +875,7 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
         end
     end
     end)
+end)
 
         
     local ToggleBringMob = Set:AddToggle("ToggleBringMob", {
