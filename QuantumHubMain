@@ -562,6 +562,9 @@ spawn(function()
         Default = 1,
     })
     DropdownSelectFarmMode:SetValue('Normal')
+    DropdownSelectFarmMode:OnChanged(function(value)
+        FarmMode = value
+    end)
     
 
          local DropdownSelectWeapon = Main:AddDropdown("DropdownSelectWeapon", {
@@ -623,10 +626,11 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
     Default = false })
     ToggleLevel:OnChanged(function(value)
         _G.AutoFarm = value
-    StopTween(_G.AutoFarm)
+        StopTween(_G.AutoFarm)
     end)
 
     Options.ToggleLevel:SetValue(false)
+    
     spawn(function()
         while wait() do
             if FarmMode == "Normal" and _G.AutoFarm then
@@ -730,7 +734,7 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
     local Set = Window:AddTab({ Title = "Settings", Icon = "settings"})
     Set:AddSection("Main Settings")
 
-    local ToggleFastAttack = Main:AddToggle("ToggleFastAttack", {
+    local ToggleFastAttack = Set:AddToggle("ToggleFastAttack", {
         Title = "Fast Attack",
         Description = "",
         Default = true,
@@ -744,7 +748,7 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
     local DropdownFastAttackDelay = Set:AddDropdown("DropdownFastAttackDelay", {
         Title = "Fast Attack Delay",
         Description = "",
-        Values = AttackList,
+        Value = AttackList,
         Multi = false,
         Default = 1
     })
