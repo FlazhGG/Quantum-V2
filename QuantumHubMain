@@ -156,73 +156,102 @@ function intiAppleHub()
             end)
         end
     
+    
     function TelePPlayer(P)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
     end
         
-        function TP(Pos)
+    function TP(Pos)
         Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        if Distance < 25 then
-            Speed = 200
-        elseif Distance < 50 then
-            Speed = 200
-        elseif Distance < 150 then
-            Speed = 200
-        elseif Distance < 250 then
-            Speed = 200
-        elseif Distance < 500 then
-            Speed = 200
-        elseif Distance < 750 then
-            Speed = 200
-        elseif Distance >= 1000 then
-            Speed = 200
-        end
         game:GetService("TweenService"):Create(
             game.Players.LocalPlayer.Character.HumanoidRootPart,
-            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+            TweenInfo.new(Distance/TweenSpeed, Enum.EasingStyle.Linear),
             {CFrame = Pos}
         ):Play()
     end
     
         function TP1(Pos)
             Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-            if Distance < 25 then
-                Speed = 1000
-            elseif Distance < 50 then
-                Speed = 800
-            elseif Distance < 150 then
-                Speed = 500
-            elseif Distance < 250 then
-                Speed = 500
-            elseif Distance < 500 then
-                Speed = 300
-            elseif Distance < 750 then
-                Speed = 250
-            elseif Distance >= 1000 then
-                Speed = 200
+            game:GetService("TweenService"):Create(
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
+                TweenInfo.new(Distance/TweenSpeed, Enum.EasingStyle.Linear),
+                {CFrame = Pos}
+            ):Play()
+    end
+    
+        local stoppos = {}
+        function topos(Pos)
+            Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+            tween = game:GetService("TweenService"):Create(
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
+                TweenInfo.new(Distance/TweenSpeed, Enum.EasingStyle.Linear),
+                {CFrame = Pos}
+            ):Play()
+    
+            function stoppos:Stop()
+                tween:Cancel()
             end
+        
+            return stoppos
+    end
+    
+        function fastpos(Pos)
+            Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+            Speed = 1000
             game:GetService("TweenService"):Create(
                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
                 TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
                 {CFrame = Pos}
             ):Play()
-    end
+        end
     
-    local stoppos = {}
-    function topos(Pos)
-        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        tween = game:GetService("TweenService"):Create(
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-            TweenInfo.new(Distance/TweenSpeed, Enum.EasingStyle.Linear),
-            {CFrame = Pos}
-        ):Play()
-
-        function stoppos:Stop()
+        function slowpos(Pos)
+            Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+            Speed = 150
+            game:GetService("TweenService"):Create(
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
+                TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+                {CFrame = Pos}
+            ):Play()
+        end
+    
+        -- or (game:GetService("Workspace").Enemies:FindFirstChild("Shark") and _G.AutoKillShark) or (game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") and _G.AutoTerrorshark) or (game:GetService("Workspace").Enemies:FindFirstChild("Piranha") and _G.AutoKillPiranha) or (game:GetService("Workspace").Enemies:FindFirstChild("Fish Crew Member") and _G.AutoKillFishCrew)
+        
+        local stopboat = {}
+    function TPB(pos, boat)
+        local tween_s = game:service"TweenService"
+        local info = TweenInfo.new((boat.CFrame.Position - pos.Position).Magnitude/BoatSpeed, Enum.EasingStyle.Linear)
+        tween = tween_s:Create(boat, info, {CFrame = pos})
+    
+        if (boat.CFrame.Position - pos.Position).Magnitude <= 25 then
+            tween:Cancel()
+        else
+            tween:Play()
+        end
+    
+    
+        function stopboat:Stop()
             tween:Cancel()
         end
     
-        return stoppos
-end
+        return stopboat
+    end
+    
+    function TPP(CFgo)
+        if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health <= 0 or not game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") then tween:Cancel() repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") and game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 wait(7) return end
+        local tween_s = game:service"TweenService"
+        local info = TweenInfo.new((game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - CFgo.Position).Magnitude/TweenSpeed, Enum.EasingStyle.Linear)
+        tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = CFgo})
+        tween:Play()
+    
+        local tweenfunc = {}
+    
+        function tweenfunc:Stop()
+            tween:Cancel()
+        end
+    
+        return tweenfunc
+    end
     
         function HyperCahaya(Pos)
             Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -306,62 +335,6 @@ end
         end)
         end
     
-    
-    function fastpos(Pos)
-        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        Speed = 1000
-        game:GetService("TweenService"):Create(
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-            {CFrame = Pos}
-        ):Play()
-    end
-    
-    function slowpos(Pos)
-        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        Speed = 150
-        game:GetService("TweenService"):Create(
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-            {CFrame = Pos}
-        ):Play()
-    end
-    
-    
-    local stopboat = {}
-    function TPB(pos, boat)
-        local tween_s = game:service"TweenService"
-        local info = TweenInfo.new((boat.CFrame.Position - pos.Position).Magnitude/BoatSpeed, Enum.EasingStyle.Linear)
-        tween = tween_s:Create(boat, info, {CFrame = pos})
-    
-        if (boat.CFrame.Position - pos.Position).Magnitude <= 25 then
-            tween:Cancel()
-        else
-            tween:Play()
-        end
-    
-        function stopboat:Stop()
-            tween:Cancel()
-        end
-    
-        return stopboat
-    end
-    
-    function TPP(CFgo)
-        if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health <= 0 or not game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") then tween:Cancel() repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") and game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 wait(7) return end
-        local tween_s = game:service"TweenService"
-        local info = TweenInfo.new((game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - CFgo.Position).Magnitude/TweenSpeed, Enum.EasingStyle.Linear)
-        tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = CFgo})
-        tween:Play()
-    
-        local tweenfunc = {}
-    
-        function tweenfunc:Stop()
-            tween:Cancel()
-        end
-    
-        return tweenfunc
-    end
         
         
         spawn(function()
@@ -540,7 +513,7 @@ User = Info:AddLabel({"User Info"})
 spawn(function()
     while task.wait()do
         pcall(function()
-    User:SetDesc("Name : "..game.Players.LocalPlayer.DisplayName.." (@"..game.Players.LocalPlayer.Name..") | Level : "..game:GetService("Players").LocalPlayer.Data.Level.Value.."\nBeli : "..game:GetService("Players").LocalPlayer.Data.Beli.Value.."\nFragments : "..game:GetService("Players").LocalPlayer.Data.Fragments.Value.."\nBounty : "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value.."\nHealth : "..game.Players.LocalPlayer.Character.Humanoid.Health.."/"..game.Players.LocalPlayer.Character.Humanoid.MaxHealth.."\nStamina : "..game.Players.LocalPlayer.Character.Energy.Value.."/"..game.Players.LocalPlayer.Character.Energy.MaxValue.."\nRace : " ..game:GetService("Players").LocalPlayer.Data.Race.Value.."\nDevil Fruit : "..game:GetService("Players").LocalPlayer.Data.DevilFruit.Value.."")
+    User:SetDesc("Name : "..game.Players.LocalPlayer.DisplayName.." (@"..game.Players.LocalPlayer.Name..") | Level : "..game:GetService("Players").LocalPlayer.Data.Level.Value.."\nBeli : "..game:GetService("Players").LocalPlayer.Data.Beli.Value.."Fragments : "..game:GetService("Players").LocalPlayer.Data.Fragments.Value.."\nBounty : "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value.."Health : "..game.Players.LocalPlayer.Character.Humanoid.Health.."/"..game.Players.LocalPlayer.Character.Humanoid.MaxHealth.."\nStamina : "..game.Players.LocalPlayer.Character.Energy.Value.."/"..game.Players.LocalPlayer.Character.Energy.MaxValue.."Race : " ..game:GetService("Players").LocalPlayer.Data.Race.Value.."\nDevil Fruit : "..game:GetService("Players").LocalPlayer.Data.DevilFruit.Value.."")
     end)
 end
 end)
