@@ -829,17 +829,17 @@ end
 end)
     end)
 
-    local AttackList = {"0", "0.1", "0.15", "0.155", "0.16", "0.165", "0.17", "0.175", "0.18", "0.185"}
-    local DropdownFastAttackDelay = Set:AddDropdown("DropdownFastAttackDelay", {
-        Title = "Fast Attack Delay",
-        Description = "",
-        Value = AttackList,
-        Multi = false,
-        Default = 1
-    })
+    local listfastattack = {'0','0.1','0.15','0.155','0.16','0.165','0.17','0.175', '0.18', '0.185', '0.09'}
 
-    DropdownFastAttackDelay:SetValue("0.18")
-    DropdownFastAttackDelay:OnChanged(function(Value)
+    local DropdownDelayAttack = Tabs.Main:AddDropdown("DropdownDelayAttack", {
+        Title = "Select Fast Attack",
+        Description = "",
+        Values = listfastattack,
+        Multi = false,
+        Default = 1,
+    })
+    DropdownDelayAttack:SetValue("0.05")
+    DropdownDelayAttack:OnChanged(function(Value)
         _G.FastAttackDelay = Value
         if _G.FastAttackDelay == "0" then
             _G.FastAttackDelay = 0
