@@ -1239,7 +1239,23 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
         end
         end)
 
-
+        PosY = 30
+        local SliderPosY = Tabs.Main:AddSlider("SliderPosY", {
+            Title = "PosY",
+            Description = "",
+            Default = 1,
+            Min = 0,
+            Max = 50,
+            Rounding = 1,
+            Callback = function(Value)
+                PosY = Value
+            end
+        })
+        SliderPosY:OnChanged(function(Value)
+            PosY = Value
+        end)
+    
+        SliderPosY:SetValue(45)
 
 
 
