@@ -905,8 +905,6 @@ end)
     })
     ToggleBringMob:OnChanged(function(Value)
         _G.BringMonster = Value
-    end)
-    ToggleBringMob:SetValue(true)
         spawn(function()
             while task.wait() do
                 pcall(function()
@@ -1258,6 +1256,9 @@ end)
             end)
         end
         end)
+    end)
+    ToggleBringMob:SetValue(true)
+        
 
         PosY = 30
         local SliderPosY = Set:AddSlider("SliderPosY", {
