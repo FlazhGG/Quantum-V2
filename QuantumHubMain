@@ -1993,9 +1993,11 @@ task.spawn(function()
       
       if DeathEffect then
         DeathEffect:Destroy()
-      elseif RespawnEffect then
-        RespawnEffect:Destroy()
       end
+
+    if RespawnEffect then
+        RespawnEffect:Destroy()
+    end
     end)
     
     hookfunction(error, function()end)
