@@ -533,7 +533,7 @@ end
         end)
 
         local Main = Window:AddTab({ Title = "Home", Icon = "home"})
-    Main:AddSection("Farm Level")
+   local FarmLevel =  Main:AddSection("Farm Level")
          local MonsterStatus = Main:AddParagraph({ Title = "", Content = ""})
         local QuestStatus = Main:AddParagraph({ Title = "", Content = ""})
 
