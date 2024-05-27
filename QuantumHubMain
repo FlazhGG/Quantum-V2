@@ -477,12 +477,20 @@ function intiAppleHub()
             game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
         end)
 
-        if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
-            game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-        end
-        if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
-            game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
-        end
+        task.spawn(function()
+            local EffectContainer = ReplicatedStorage:WaitForChild("Effect", 9e9):WaitForChild("Container", 9e9)
+            
+            RunService.RenderStepped:Connect(function()
+              local DeathEffect = EffectContainer:FindFirstChild("Death")
+              
+              if DeathEffect then
+                DeathEffect:Destroy()
+              end
+            end)
+            
+            hookfunction(error, function()end)
+            hookfunction(warn, function()end)
+          end)
         
 
 local  Window = QuantuHub:MakeWindow({
