@@ -489,7 +489,7 @@ end
 
         local osfunc = Info:AddParagraph({ 
             Title = "[Time Zone]" ,
-            Content ""
+            Content = ""
             })
 
         local function UpdateOS()
@@ -514,14 +514,14 @@ end
             end
         end)
 
-        local Time = Info:AddParagraph({"[Server Time]"})
+        local Time = Info:AddParagraph({ Title = "[Server Time]", Content = ""})
 
         function UpdateTime()
             local GameTime = math.floor(workspace.DistributedGameTime+0.5)
             local Hour = math.floor(GameTime/(60^2))%24
             local Minute = math.floor(GameTime/(60^1))%60
             local Second = math.floor(GameTime/(60^0))%60
-            Time:Set("Hours : "..Hour.." | Minutes : "..Minute.." | Seconds : "..Second)
+            Time:SetDesc("Hours : "..Hour.." | Minutes : "..Minute.." | Seconds : "..Second)
         end
         
         spawn(function()
@@ -535,7 +535,7 @@ end
         local Main = Window:AddTab({ Title = "Home", Icon = "home"})
          Main:AddSection({"Farm Level"})
          local MonsterStatus = Main:AddParagraph({""})
-local QuestStatus = Main:AddParagraph({""})
+local QuestStatus = Main:AddParagraph({ Title = "", Content = ""})
 
 spawn(function()
     while task.wait() do
