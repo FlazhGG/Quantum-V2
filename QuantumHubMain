@@ -476,21 +476,6 @@ function intiAppleHub()
             wait(1)
             game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
         end)
-
-        task.spawn(function()
-            local EffectContainer = ReplicatedStorage:WaitForChild("Effect", 9e9):WaitForChild("Container", 9e9)
-            
-            RunService.RenderStepped:Connect(function()
-              local DeathEffect = EffectContainer:FindFirstChild("Death")
-              
-              if DeathEffect then
-                DeathEffect:Destroy()
-              end
-            end)
-            
-            hookfunction(error, function()end)
-            hookfunction(warn, function()end)
-          end)
         
 
 local  Window = QuantuHub:MakeWindow({
@@ -1987,3 +1972,19 @@ Set:AddToggle({ Name = "Auto Click", Description = "", Default = false, Callback
     _G.AutoClick = value
 end})
 
+-- /////////////////////////////////////////////////////////////////////////--
+
+task.spawn(function()
+    local EffectContainer = ReplicatedStorage:WaitForChild("Effect"):WaitForChild("Container")
+    
+    RunService.RenderStepped:Connect(function()
+      local DeathEffect = EffectContainer:FindFirstChild("Death")
+      
+      if DeathEffect then
+        DeathEffect:Destroy()
+      end
+    end)
+    
+    hookfunction(error, function()end)
+    hookfunction(warn, function()end)
+  end)
