@@ -486,7 +486,7 @@ end
         end)
 
 
-       local Info = Window:AddTab({ Title = "Info", Icon = "circle-alert" })
+       local Info = Window:AddTab({ Title = "Info", Icon = "cat" })
 
         local osfunc = Info:AddParagraph({ 
             Title = "[Time Zone]" ,
