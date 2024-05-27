@@ -206,22 +206,6 @@ function intiAppleHub()
     
     local stoppos = {}
         function topos(Pos)
-            Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-            if Distance < 25 then
-                Speed = 1000
-            elseif Distance < 50 then
-                Speed = 800
-            elseif Distance < 150 then
-                Speed = 500
-            elseif Distance < 250 then
-                Speed = 500
-            elseif Distance < 500 then
-                Speed = 300
-            elseif Distance < 750 then
-                Speed = 250
-            elseif Distance >= 1000 then
-                Speed = 200
-            end
             game:GetService("TweenService"):Create(
                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
                 TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
@@ -737,39 +721,6 @@ spawn(function()
     end
 end)
 
-    spawn(function()
-        while wait() do
-            if FarmMode == "Nearest" and _G.AutoFarm then
-                pcall(function()
-                    for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
-                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                            if v.Name then
-                                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChild("HumanoidRootPart").Position).Magnitude <= 5000 then
-                                repeat wait(_G.FastAttackDelay)
-                                    StartMagnet = true
-                                AttackNoCD()
-                                AutoHaki()
-                                EquipWeapon(_G.SelectWeapon)
-                                TP1(v.HumanoidRootPart.CFrame * Pos)
-                                v.HumanoidRootPart.Size = Vector3.new(1,1,1)
-                                v.HumanoidRootPart.Transparency = 1
-                                v.Humanoid.JumpPower = 0
-                                v.Humanoid.WalkSpeed = 0
-                                v.HumanoidRootPart.CanCollide = false
-                                PosMon = v.HumanoidRootPart.CFrame
-                                MonFarm = v.Name
-                                sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-                                until not _G.AutoFarm or not v.Parent or v.Humanoid.Health <= 0 or not game.Workspace.Enemies:FindFirstChild(v.Name)
-                                StartMagnet = false
-                                end
-                            end
-                        end
-                    end
-                end)
-            end
-        end
-    end)
-
 spawn(function()
     while wait() do
         if FarmMode == "Auto Quest" and _G.AutoFarm then
@@ -800,14 +751,15 @@ spawn(function()
                                             EquipWeapon(_G.SelectWeapon)
                                             AutoHaki()                                            
                                             PosMon = v.HumanoidRootPart.CFrame
-                                            TP1(v.HumanoidRootPart.CFrame * Pos)
+                                            TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
                                             v.HumanoidRootPart.CanCollide = false
                                             v.Humanoid.WalkSpeed = 0
                                             v.Head.CanCollide = false
                                             v.HumanoidRootPart.Size = Vector3.new(70,70,70)
                                             StartBring = true
                                             MonFarm = v.Name
-                                            AttackNoCD()
+                                            game:GetService'VirtualUser':CaptureController()
+                                                    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
                                         until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                         StartBring = false
                                     end
@@ -823,6 +775,38 @@ spawn(function()
         end
     end
 end)
+
+spawn(function()
+	while wait() do
+		if FarmMode == "Nearest" and _G.AutoFarmNearest then
+			for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                if v.Name and v:FindFirstChild("Humanoid") then
+			        if v.Humanoid.Health > 0 then
+			            repeat wait()
+			              EquipWeapon(_G.SelectWeapon)
+			                if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+			                	local args = {
+				                	[1] = "Buso"
+			                	}
+			                	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+			               	end
+			                HyperCahaya(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+			                v.HumanoidRootPart.CanCollide = false
+			                Fastattack = true
+			                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+						    game:GetService("VirtualUser"):CaptureController()
+				       	    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672), game.Workspace.CurrentCamera.CFrame)
+				       	    AutoFarmNearestMagnet = true
+				       	    PosMon = v.HumanoidRootPart.CFrame
+			            until not _G.AutoFarmNearest or not v.Parent or v.Humanoid.Health <= 0 
+			            AutoFarmNearestMagnet = false
+			            Fastattack = false
+			        end
+			    end
+			end
+		end
+	end
+    end)
 
 Main:AddSection({"Boss Farm"})
 
