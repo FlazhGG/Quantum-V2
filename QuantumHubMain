@@ -1090,6 +1090,14 @@ function intiAppleHub()
             game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
         end)
 
+        if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
+            game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+        end
+        if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
+            game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+        end
+        
+
 local  Window = QuantuHub:MakeWindow({
  
     Title = "Quantum Hub",
@@ -1561,9 +1569,11 @@ local Boss = {}
         end)
 
         local Set = Window:MakeTab({"Settings", "settings"})
-        Set:AddSlider({ Name = "Farm Distance", Min = 0 , Max =50, Default = 35,Callback = function(value)
+        Set:AddSlider({ Name = "Farm Distance", Min = 0 , Max = 50, Default = 35,Callback = function(value)
             PosY = value
         end})
+
+        
 
             Set:AddToggle({ Name = "Fast Attack", Description = "Attacks rapidly", Default = true, Callback = function(fas)
                 _G.FastAttack = fas
