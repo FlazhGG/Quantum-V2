@@ -757,8 +757,8 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
                 end)
             end
         end
-    end) 
-elseif
+    end)
+     
 spawn(function()
         while wait() do
             if FarmMode == "Auto Quest" and _G.AutoFarm then
