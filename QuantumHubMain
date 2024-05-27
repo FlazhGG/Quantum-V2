@@ -8,7 +8,7 @@ local Window = Fluent:CreateWindow({
     SubTitle = "Main Version | By Flazhy",
     TabWidth = 160,
     Size = UDim2.fromOffset(500, 320),
-    Acrylic = true,
+    Acrylic = false,
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.End
 })
@@ -485,9 +485,12 @@ end
         end)
 
 
-       local Info = Window:AddTab({ Title = "Tab Info", Icon = "circle-alert" })
+       local Info = Window:AddTab({ Title = "Info", Icon = "circle-alert" })
 
-        local osfunc = Info:AddParagraph({"[Time Zone]"})
+        local osfunc = Info:AddParagraph({ 
+            Title = "[Time Zone]" ,
+            Content ""
+            })
 
         local function UpdateOS()
             local date = os.date("*t")
