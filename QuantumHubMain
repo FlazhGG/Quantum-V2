@@ -554,67 +554,67 @@ spawn(function()
     end)
 
 
-    local ListF = {"Normal", "Auto Quest"}
-    FarmMode = "Normal"
-         Main:AddDropdown({
-            Title = "Select Farm Mode",
-            Options = ListF,
-            Default = FarmMode,
-            Callback = function(value)
-                FarmMode = value
-            end
-         })
+    local DropdownSelectFarmMode = Main:AddDropdown("DropdownSelectFarmMode", {
+        Title = "Farm Mode",
+        Description = "",
+        Values = {'Normal', 'Auto Quest'},
+        Multi = false,
+        Default = 1,
+    })
+    DropdownSelectFarmMode:SetValue('Normal')
+    
 
-         local WeaponList = {"Melee","Sword","Fruit"}
-_G.SelectWeapon = "Melee"
-Main:AddDropdown({
-    Title = "Select Weapon",
-    Options = WeaponList,
-    Default = _G.SelectWeapon,
-    Callback = function(tool)
-        _G.SelectWeapon = tool
-    end
-})
+         local DropdownSelectWeapon = Main:AddDropdown("DropdownSelectWeapon", {
+            Title = "Weapon",
+            Description = "",
+            Values = {'Melee','Sword','Blox Fruit'},
+            Multi = false,
+            Default = 1,
+        })
+        DropdownSelectWeapon:SetValue('Melee')
+        DropdownSelectWeapon:OnChanged(function(Value)
+        ChooseWeapon = Value
+    end)
 
-task.spawn(function()
-    while wait() do
-        pcall(function()
-            if _G.SelectWeapon == "Melee" then
-                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ToolTip == "Melee" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            _G.SelectWeapon = v.Name
+    task.spawn(function()
+        while wait() do
+            pcall(function()
+                if ChooseWeapon == "Melee" then
+                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                        if v.ToolTip == "Melee" then
+                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                                SelectWeapon = v.Name
+                            end
+                        end
+                    end
+                elseif ChooseWeapon == "Sword" then
+                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                        if v.ToolTip == "Sword" then
+                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                                SelectWeapon = v.Name
+                            end
+                        end
+                    end
+                elseif ChooseWeapon == "Blox Fruit" then
+                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                        if v.ToolTip == "Blox Fruit" then
+                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                                SelectWeapon = v.Name
+                            end
+                        end
+                    end
+                else
+                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                        if v.ToolTip == "Melee" then
+                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+                                SelectWeapon = v.Name
+                            end
                         end
                     end
                 end
-            elseif _G.SelectWeapon == "Sword" then
-                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ToolTip == "Sword" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            _G.SelectWeapon = v.Name
-                        end
-                    end
-                end
-            elseif _G.SelectWeapon == "Blox Fruit" then
-                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ToolTip == "Blox Fruit" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            _G.SelectWeapon = v.Name
-                        end
-                    end
-                end
-            else
-                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ToolTip == "Melee" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            _G.SelectWeapon = v.Name
-                        end
-                    end
-                end
-            end
-        end)
-    end
-end)
+            end)
+        end
+    end)
 
 
 local ToggleLevel = Main:AddToggle("ToggleLevel", {
@@ -728,23 +728,30 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
 
 
     local Set = Window:AddTab({ Title = "Settings", Icon = "settings"})
-    Set:AddSection({"Main Settings"})
+    Set:AddSection("Main Settings")
 
-    Set:AddToggle({ Title = "Fast Attack", Description = "Attacks rapidly", Default = true, Callback = function(fas)
-        _G.FastAttack = fas
-    end})
+    local ToggleFastAttack = Main:AddToggle("ToggleFastAttack", {
+        Title = "Fast Attack",
+        Description = "",
+        Default = true,
+    })
+    Options.ToggleFastAttack:SetValue(true)
+    ToggleFastAttack:OnChanged(function(value)
+        _G.FastAttack = value
+    end)
 
     local AttackList = {"0", "0.1", "0.15", "0.155", "0.16", "0.165", "0.17", "0.175", "0.18", "0.185"}
-        _G.FastAttackDelay = "0.175"
-        Set:AddDropdown({
-            Title = "Select Fast Attack Delay",
-            Options = AttackList,
-            Default = _G.FastAttackDelay,
-            Callback = function(fas)
-                _G.FastAttackDelay = fas
-            end
-        })
+    local DropdownFastAttackDelay = Set:AddDropdown("DropdownFastAttackDelay", {
+        Title = "Fast Attack Delay",
+        Description = "",
+        Values = AttackList,
+        Multi = false,
+        Default = 1
+    })
 
+
+    DropdownFastAttackDelay:SetValue("0.18")
+    DropdownFastAttackDelay:OnChanged(function(Value)
         spawn(function()
             while wait(.1) do
                 if _G.FastAttackDelay then
@@ -862,11 +869,18 @@ local ToggleLevel = Main:AddToggle("ToggleLevel", {
             end
         end
         end)
+    end)
 
-        Set:AddToggle({ Title = "Bring Mob", Description = "Magnets the mobs to you", Default = true, Callback = function(Mag)
-            _G.BringMonster = Mag
-        end})
-
+        
+    local ToggleBringMob = Set:AddToggle("ToggleBringMob", {
+        Title = "Bring Mob",
+        Description = "",
+        Default = true
+    })
+    ToggleBringMob:OnChanged(function(Mag)
+        _G.BringMonster = Mag
+    end)
+    ToggleBringMob:SetValue(true)
         spawn(function()
             while task.wait() do
                 pcall(function()
