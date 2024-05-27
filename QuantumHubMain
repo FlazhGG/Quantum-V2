@@ -1965,7 +1965,7 @@ Set:AddToggle({ Name = "Auto Click", Description = "", Default = false, Callback
     _G.AutoClick = value
 end})
 
-local Sea = Window:MakeTab({"Sea Event", "10709761530"})
+local Sea = Window:MakeTab({"Sea Event", "sailboat"})
 
 Sea:AddSection({"Sea"})
 
