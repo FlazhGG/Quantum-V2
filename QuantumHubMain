@@ -1472,8 +1472,19 @@ local Boss = {}
             end
         })
 
+        function UpdateBossList()
+            local NewOptions = {}
+            for ___,BossName in pairs(bossCheck) do
+              if (BossName) then
+                table.insert(NewOptions, BossName)
+              end
+            end
+            bossCheck:Set(NewOptions, true)
+          end
+          UpdateBossList()
+
         Main:AddButton({"Refresh Boss", function()
-            BossName:Remove(v.Name)
+            pcall(function()UpdateBossList()end)
             wait(0.1)
             for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
                 if (v.Name == "rip_indra" or v.Name == "Ice Admiral")
