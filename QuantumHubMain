@@ -1,5 +1,8 @@
 local QuantuHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 
+local Remotes = ReplicatedStorage:WaitForChild("Remotes", 9e9)
+local CommF = Remotes:WaitForChild("CommF_", 9e9)
+
 function intiAppleHub() 
     _G.antiscan = true
     getgenv().A = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).wrapAttackAnimationAsync
@@ -1975,12 +1978,20 @@ end})
 -- /////////////////////////////////////////////////////////////////////////--
 
 
-    if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
-        game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-    end
-    if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
-        game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
-    end
+task.spawn(function()
+    local EffectContainer = ReplicatedStorage:WaitForChild("Effect", 9e9):WaitForChild("Container", 9e9)
+    
+    RunService.RenderStepped:Connect(function()
+      local DeathEffect = EffectContainer:FindFirstChild("Death")
+      local RespawnEffect = EffectContainer:FindFirstChild("Respawn")
+      
+      if DeathEffect then
+        DeathEffect:Destroy()
+      elseif RespawnEffect then
+        RespawnEffect:Destroy()
+      end
+    end)
     
     hookfunction(error, function()end)
     hookfunction(warn, function()end)
+  end)
