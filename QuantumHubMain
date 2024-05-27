@@ -830,15 +830,15 @@ end)
     end)
 
     local listfastattack = {'0','0.1','0.15','0.155','0.16','0.165','0.17','0.175', '0.18', '0.185', '0.09'}
-
+    _G.FastAttackDelay = "0.175"
     local DropdownDelayAttack = Set:AddDropdown("DropdownDelayAttack", {
         Title = "Select Fast Attack",
         Description = "",
         Values = listfastattack,
         Multi = false,
-        Default = 1,
+        Default = _G.FastAttackDelay,
     })
-    DropdownDelayAttack:SetValue("0.05")
+    DropdownDelayAttack:SetValue("0.185")
     DropdownDelayAttack:OnChanged(function(Value)
         _G.FastAttackDelay = Value
         if _G.FastAttackDelay == "0" then
@@ -1231,7 +1231,7 @@ end)
         end)
 
         PosY = 30
-        local SliderPosY = Tabs.Main:AddSlider("SliderPosY", {
+        local SliderPosY = Set:AddSlider("SliderPosY", {
             Title = "PosY",
             Description = "",
             Default = 1,
