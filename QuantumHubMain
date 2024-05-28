@@ -514,6 +514,10 @@ end
             game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
         end)
 
+        if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
+            game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+        end
+
 
        local Info = Window:AddTab({ Title = "Info", Icon = "cat" })
 
