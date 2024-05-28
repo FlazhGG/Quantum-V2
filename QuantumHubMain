@@ -876,9 +876,9 @@ spawn(function()
 		while wait() do
 			pcall(function()
 				if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) or game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
-					BoSs:SetTitle("Status : Spawn!")	
+					BosS:SetTitle("Status : Spawn!")	
 				else
-					BoSs:SetTitle("Status : Boss Not Spawn")	
+					BosS:SetTitle("Status : Boss Not Spawn")	
 				end
 			end)
 		end
