@@ -1125,7 +1125,7 @@ end)
         local SliderPosZ = Set:AddSlider("SliderPosZ", {
             Title = "PosZ",
             Description = "",
-            Default = 40,
+            Default = 10,
             Min = 0,
             Max = 50,
             Rounding = 1,
@@ -1137,4 +1137,4 @@ end)
             PosZ = Value
         end)
     
-        SliderPosZ:SetValue(40)
+        SliderPosZ:SetValue(10)
