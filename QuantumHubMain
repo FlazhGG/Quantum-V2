@@ -1382,7 +1382,7 @@ end)
         local SliderPosY = Set:AddSlider("SliderPosY", {
             Title = "PosY",
             Description = "",
-            Default = 1,
+            Default = 45,
             Min = 0,
             Max = 50,
             Rounding = 1,
@@ -1397,5 +1397,39 @@ end)
         SliderPosY:SetValue(45)
 
 
+        PosX = 1
+        local SliderPosX = Set:AddSlider("SliderPosX", {
+            Title = "PosX",
+            Description = "",
+            Default = 1,
+            Min = 0,
+            Max = 50,
+            Rounding = 1,
+            Callback = function(Value)
+                PosX = Value
+            end
+        })
+        SliderPosX:OnChanged(function(Value)
+            PosX = Value
+        end)
+    
+        SliderPosX:SetValue(1)
 
 
+        PosZ = 10
+        local SliderPosZ = Set:AddSlider("SliderPosZ", {
+            Title = "PosZ",
+            Description = "",
+            Default = 40,
+            Min = 0,
+            Max = 50,
+            Rounding = 1,
+            Callback = function(Value)
+                PosZ = Value
+            end
+        })
+        SliderPosZ:OnChanged(function(Value)
+            PosZ = Value
+        end)
+    
+        SliderPosZ:SetValue(40)
