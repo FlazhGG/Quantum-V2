@@ -908,7 +908,7 @@ spawn(function()
     local ToggleSelectBoss = Main:AddToggle("ToggleSelectBoss", {
         Title = "Auto Farm Boss",
         Description = "Farms selected boss",
-        Default = _G.AutoFarmBoss
+        Default = false
     })
     Options.ToggleSelectBoss:SetValue(false)
     ToggleSelectBoss:OnChanged(function(value)
