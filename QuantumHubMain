@@ -514,9 +514,13 @@ end
             game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
         end)
 
-        if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
-            game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-        end
+        spawn(function()
+     for i, v in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
+         if v.Name == "Death" or v.Name == "Spawn" then
+             v:Destroy()
+         end
+     end
+ end)
 
 
        local Info = Window:AddTab({ Title = "Info", Icon = "cat" })
