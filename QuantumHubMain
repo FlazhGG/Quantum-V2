@@ -1389,15 +1389,39 @@ spawn(function()
         Default = false,
     })
 
+    Options.ToggleSurpriseBone:SetValue(false)
     ToggleSurpriseBone:OnChanged(function(value)
         _G.Auto_Random_Bone = value
     end)
-    Options.ToggleSurpriseBone:SetValue(false)
     spawn(function()
         pcall(function()
             while wait(.1) do
                 if _G.Auto_Random_Bone then    
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,1)
+                end
+            end
+        end)
+    end)
+    
+
+    local ToggleAutoPray = Main:AddToggle("ToggleAutoPray", {
+        Title = "Auto Pray",
+        Description = "",
+        Default = false,
+    })
+
+    Options.ToggleAutoPray:SetValue(false)
+    ToggleAutoPray:OnChanged(function(value)
+        _G.Pray = value
+    end)
+
+    spawn(function()
+        pcall(function()
+            while wait(.1) do
+                if _G.Pray then    
+                    TP1(CFrame.new(-8652.99707, 143.450119, 6170.50879, -0.983064115, -2.48005533e-10, 0.18326205, -1.78910387e-09, 1, -8.24392288e-09, -0.18326205, -8.43218029e-09, -0.983064115))
+                    wait()
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("gravestoneEvent",1)
                 end
             end
         end)
