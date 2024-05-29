@@ -1249,7 +1249,7 @@ spawn(function()
             _G.Auto_Random_Bone = value
         end)
 
-        Options.ToggleRandomSurprise(false)
+        Options.ToggleRandomSurprise:SetValue(false)
         spawn(function()
             pcall(function()
                 while wait(.1) do
