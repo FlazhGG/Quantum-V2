@@ -870,7 +870,11 @@ spawn(function()
     end)
 
     Main:AddSection("Farm Boss")
-    local BosS = Main:AddParagraph({ Title = "Status : Select Boss", Content = ""})
+    
+    local BosS = Main:AddParagraph({ 
+        Title = "Status : Select Boss",
+        Content = ""
+        })
 
     spawn(function()
 		while wait() do
@@ -892,17 +896,17 @@ spawn(function()
         tableBoss = {"Stone","Island Empress","Kilo Admiral","Captain Elephant","Beautiful Pirate","rip_indra True Form","Longma","Soul Reaper","Cake Queen"}
     end
 
-    local DropdownBossSelect = Main:AddDropdown("DropdownBossSelect", {
-        Title = "Select Boss",
+    local DropdownBoss = Main:AddDropdown("DropdownBoss", {
+        Title = "Choose boss",
         Description = "",
         Values = tableBoss,
-        Multi = , false,
-        Default = 1
+        Multi = false,
+        Default = 1,
     })
 
-    DropdownBossSelect:SetValue("")
-    DropdownBossSelect:OnChanged(function(Value)
-        _G.SelectBoss = Value
+    DropdownBoss:SetValue("")
+    DropdownBoss:OnChanged(function(Value)
+		_G.SelectBoss = Value
     end)
 
     local Set = Window:AddTab({ Title = "Settings", Icon = "settings"})
