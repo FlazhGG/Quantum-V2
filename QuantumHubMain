@@ -1207,7 +1207,28 @@ spawn(function()
             end
         end)
 
-    
+
+        local ToggleRandomSurprise = Main:AddToggle("ToggleRandomSurprise", {
+            Title = "Auto Random Surprise",
+            Description = "",
+            Default = false
+        })
+
+        ToggleRandomSurprise:OnChanged(function(value)
+            _G.Auto_Random_Bone = value
+        end)
+
+        Options.ToggleRandomSurprise(false)
+        spawn(function()
+            pcall(function()
+                while wait(.1) do
+                    if _G.Auto_Random_Bone then
+                        wait(1)    
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,1)
+                    end
+                end
+            end)
+        end)
 
     --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\--
                                     --SETTINGS--
