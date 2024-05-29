@@ -124,18 +124,6 @@ function Update:Window(text,logo,keybind)
 
     Main:TweenSize(UDim2.new(0, 540, 0, 340),"Out","Quad",0.4,true)
 
-    local BtnStroke = Instance.new("UIStroke")
-
-    BtnStroke.Name = "BtnStroke"
-    BtnStroke.Parent = Main
-    BtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    BtnStroke.Color = Color3.fromRGB(38, 125, 239)
-    BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
-    BtnStroke.Thickness = 1
-    BtnStroke.Transparency = 0
-    BtnStroke.Enabled = true
-    BtnStroke.Archivable = true
-
     local MCNR = Instance.new("UICorner")
     MCNR.Name = "MCNR"
     MCNR.Parent = Main
@@ -231,7 +219,7 @@ function Update:Window(text,logo,keybind)
     Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Logo.BackgroundTransparency = 1.000
     Logo.Position = UDim2.new(0, 5, 0, 20)
-    Logo.Size = UDim2.new(0, 125, 0, 125)
+    Logo.Size = UDim2.new(0, 115, 0, 115)
     Logo.Image = pfp
     local Tab = Instance.new("Frame")
     Tab.Name = "Tab"
@@ -2415,6 +2403,27 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
     game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
     wait(1)
     game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+spawn(function()
+    for i, v in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
+        if v.Name == "Death" or v.Name == "Spawn" then
+            v:Destroy()
+        end
+    end
+end)
+
+spawn(function()
+   for i, v in pairs(game:GetDescendants()) do
+       if v:IsA("ParticleEmitter") or v:IsA("Trail") then
+           v.Lifetime = NumberRange.new(0)
+       elseif v:IsA("Explosion") then
+           v.BlastPressure = 1
+           v.BlastRadius = 1
+       elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+           v.Enabled = false
+       end
+   end
 end)
 
 
