@@ -882,7 +882,7 @@ spawn(function()
 				if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) or game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
 					BosS:SetTitle("Status : Spawn!")	
 				else
-					BosS:SetTitle("Status : Boss Not Spawn")	
+					BosS:SetTitle("Status : Not Spawn")	
 				end
 			end)
 		end
@@ -907,6 +907,95 @@ spawn(function()
     DropdownBoss:SetValue("")
     DropdownBoss:OnChanged(function(Value)
 		_G.SelectBoss = Value
+    end)
+
+    local ToggleAutoFarmBoss = Main:AddToggle("ToggleAutoFarmBoss", {
+        Title = "Auto Kill Boss",
+        Description = "", 
+        Default = false })
+
+    ToggleAutoFarmBoss:OnChanged(function(value)
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+        _G.AutoFarmBoss = value
+        StopTween(_G.AutoFarmBoss)
+    end)
+
+    Options.ToggleAutoFarmBoss:SetValue(false)
+    spawn(function()
+        while wait() do
+            if _G.AutoFarmBoss then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == _G.SelectBoss then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        HyperCahaya(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    else
+                        if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
+                            HyperCahaya(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
+    local ToggleAutoAllFarmBoss = Main:AddToggle("ToggleAutoAllFarmBoss", {
+        Title = "Auto Kill All Boss",
+        Description = "", 
+        Default = false })
+
+    ToggleAutoAllFarmBoss:OnChanged(function(value)
+		_G.AutoFarmAllBoss = value
+        StopTween(_G.AutoFarmAllBoss)
+    end)
+
+    Options.ToggleAutoAllFarmBoss:SetValue(false)
+    spawn(function()
+        while wait() do
+            if _G.AutoFarmAllBoss then
+                pcall(function()
+                    for i,boss in pairs(tableBoss) do
+                    if game:GetService("Workspace").Enemies:FindFirstChild(boss) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == boss then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait(_G.FastAttackDelay)
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        HyperCahaya(v.HumanoidRootPart.CFrame*CFrame.new(PosX, PosY, PosZ))
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoFarmAllBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    else
+                        if game:GetService("ReplicatedStorage"):FindFirstChild(boss) then
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild(boss).HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                        end
+                    end
+                    end
+                end)
+            end
+        end
     end)
 
     local Set = Window:AddTab({ Title = "Settings", Icon = "settings"})
