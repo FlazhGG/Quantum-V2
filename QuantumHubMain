@@ -1008,7 +1008,7 @@ spawn(function()
     spawn(function()
         while wait() do
             pcall(function()
-                BoneCheck:Set("Total Bones : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
+                BoneCheck:SetTitle("Total Bones : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
             end)
         end
     end)
@@ -1104,7 +1104,6 @@ spawn(function()
             end
         end) 
         
-        local BoneQuestPos = CFrame.new(-9516.99316, 172.017181, 6078.46533, 0, 0, -1, 0, 1, 0, 1, 0, 0)
     
         spawn(function()
             while wait() do
