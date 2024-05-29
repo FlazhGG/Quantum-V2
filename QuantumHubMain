@@ -5934,7 +5934,7 @@ Misc:AddSlider("Slider", {Title = "Tween Speed",Min = 50,Max = 300,Default = 170
   getgenv().TweenSpeed = Value
 end})
 Misc:AddSlider("Slider", {Title = "Bring Mobs Distance",Min = 50,Max = 500,Default = 250,Rounding = 10,Callback = function(Value)
-  getgenv().BringMobsDistance = Value or 250
+  getgenv().BringMobsDistance = Value
 end})
 Misc:AddSlider("Slider", {Title = "Auto Click Delay",Min = 0.01,Max = 1,Default = 0.18,Rounding = 0.01,Callback = function(Value)
   getgenv().AutoClickDelay = Value
@@ -5945,20 +5945,20 @@ Misc:AddToggle("Toggle", {Title = "Fast Attack", true, Callback = function(Value
   task.spawn(FastAttack)
 end})
 
-Misc:AddToggle("Toggle", {Title = "Increase Attack Distance", true, Callback = function(Value)
+Misc:AddToggle("Toggle", {Title = "Increase Attack Distance", Default = true, Callback = function(Value)
   getgenv().AttackDistance = Value
   task.spawn(AttackDistance)
 end})
 
-Misc:AddToggle("Toggle", {Title = "Auto Click", true, Callback = function(Value)
+Misc:AddToggle("Toggle", {Title = "Auto Click", Default = true, Callback = function(Value)
   getgenv().AutoClick = Value
 end})
 
-Misc:AddToggle("Toggle", {Title = "Bring Mobs", true, Callback = function(Value)
+Misc:AddToggle("Toggle", {Title = "Bring Mobs", Default = true, Callback = function(Value)
   getgenv().BringMobs = Value
 end})
 
-Misc:AddToggle("Toggle", {Title = "Auto Haki", true, Callback = function(Value)
+Misc:AddToggle("Toggle", {Title = "Auto Haki", Default =  true, Callback = function(Value)
   getgenv().AutoHaki = Value
 end})
 
