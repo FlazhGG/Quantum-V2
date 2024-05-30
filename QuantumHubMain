@@ -8,6 +8,11 @@ repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main");
 repeat wait() until game:GetService("Players")
 repeat wait() until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Energy")
 
+
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
 if game.PlaceId == 2753915549 then
     World1 = true
 elseif game.PlaceId == 4442272183 then
@@ -3003,7 +3008,7 @@ end)
             return false
         end
     end
-    
+
     ToggleBringMob:SetValue(true)
 
     local DropdownBringMob = Set:AddDropdown("DropdownBringMob", {
