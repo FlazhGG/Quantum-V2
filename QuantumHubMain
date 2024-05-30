@@ -633,6 +633,32 @@ function intiQuantumHub()
                 end
             end)
         end)
+
+        local DamageModule = require(game:GetService("ReplicatedStorage").Effect.Container.Misc.Damage)
+	local old = DamageModule.Run
+	getgenv().FakeDamage = function(Damage)
+    DamageModule.Run = function(...)
+        args = {...}
+        if Damage then
+            args[1]['Value'] = tostring(Damage)
+        end
+        return old(unpack(args))
+    end
+end
+	function Quantum(text)
+		local Notification = require(game.ReplicatedStorage.Notification)
+		local notification = Notification.new(text)
+		notification.Duration = 4
+		notification:Display()
+	end
+	local function tablefound(ta, object)
+		for i,v in pairs(ta) do
+			if v == object then
+				return true
+			end
+		end
+		return false
+	end
         
         game:GetService("Players").LocalPlayer.Idled:connect(function()
             game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
@@ -649,6 +675,8 @@ function intiQuantumHub()
      hookfunction(error, function()end)
   hookfunction(warn, function()end)
  end)
+
+ FakeDamage("Aray")
 
  spawn(function()
     for i, v in pairs(game:GetDescendants()) do
