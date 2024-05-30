@@ -1,4 +1,4 @@
-repeat wait() until game.Players
+quantumrepeat wait() until game.Players
 repeat wait() until game.Players.LocalPlayer
 repeat wait() until game.ReplicatedStorage
 repeat wait() until game.ReplicatedStorage:FindFirstChild("Remotes");
@@ -14,7 +14,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 local Window = Fluent:CreateWindow({
     Title = "Quantum Hub",
-    SubTitle = "Version Beta 6⁵ | By Nguyen Vu Duy",
+    SubTitle = "Main Version | By Prime Flazhy",
     TabWidth = 160,
     Size = UDim2.fromOffset(500, 480),
     Acrylic = false,
