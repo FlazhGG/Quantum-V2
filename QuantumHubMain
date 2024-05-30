@@ -2966,8 +2966,8 @@ end)
         Description = "",
         Default = true
     })
-    ToggleBringMob:OnChanged(function(Value)
-        _G.BringMonster = Value
+    ToggleBringMob:OnChanged(function(Mag)
+        _G.BringMonster = Mag
     end)
 
     spawn(function()
@@ -3024,7 +3024,7 @@ end)
     local DropdownBringMob = Set:AddDropdown("DropdownBringMob", {
         Title = "Select Bring Mode",
         Description = "",
-        Values = {'Low', 'Normal', 'Super'},
+        Values = {'Low', 'Normal', 'High'},
         Multi = false,
         Default = 'Normal'
     })
@@ -3053,7 +3053,7 @@ end)
 
         PosY = 35
         local SliderPosY = Set:AddSlider("SliderPosY", {
-            Title = "Farm Distnace",
+            Title = "Farm Distance",
             Description = "",
             Default = 35,
             Min = 0,
@@ -3072,7 +3072,7 @@ end)
 
         TweenSpeed = 150
         local SliderTweenSpeed = Set:AddSlider("SliderTweenSpeed", {
-            Title = "PosZ",
+            Title = "Tween Speed",
             Description = "",
             Default = 150,
             Min = 0,
