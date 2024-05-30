@@ -2098,7 +2098,7 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
 end)
 
 
-       local Info = Window:AddTab({ Title = "Info", Icon = "cat" })
+       local Info = Window:AddTab({ Title = "Info", Icon = "" })
 
         local osfunc = Info:AddParagraph({ 
             Title = "[Time Zone]" ,
