@@ -2096,6 +2096,27 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
   game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
 
+spawn(function()
+  for i, v in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
+      if v.Name == "Death" or v.Name == "Spawn" then
+          v:Destroy()
+      end
+  end
+  end)
+
+spawn(function()
+ for i, v in pairs(game:GetDescendants()) do
+     if v:IsA("ParticleEmitter") or v:IsA("Trail") then
+         v.Lifetime = NumberRange.new(0)
+     elseif v:IsA("Explosion") then
+         v.BlastPressure = 1
+         v.BlastRadius = 1
+     elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+         v.Enabled = false
+     end
+ end
+end)
+
 ------//////////////////////////////////////////////////////////////////////////////---
 
 local Info = Window:AddTab({Title = "Info", Icon = "crown"})
@@ -2424,7 +2445,7 @@ local TweenSpeed = Settings:AddSlider("TweenSpeed", {
 local MobMagnet = Settings:AddToggle("MobMagnet", {
   Title = "Bring Mobs",
   Description = "",
-  Default = false,
+  Default = true,
   Callback = function(Mag)
     _G.BringMonster = Mag
   end})
@@ -2621,3 +2642,148 @@ FastAttackDelay:SetValue(_G.FastAttackDelay)
 FastAttackDelay:OnChanged(function(value)
   _G.FastAttackDelay = value
 end)
+
+Settings:AddSection("Mastery Setting")
+
+_G.Kill_At = 25
+local KillatHealth = Settings:AddSlider("KillatHealth", {
+  Title = "Kill At %",
+  Description = "",
+  Default = _G.Kill_At,
+  Min = 1,
+  Max = 100,
+  Rounding = 1,
+  Callback = function(value)
+    _G.Kill_At = value
+  end
+})
+
+local SkillZMas = Settings:AddToggle("SkillZMas", {
+  Title = "Skill Z",
+  Description = "",
+  Default = false,
+  Callback = function(value)
+    _G.SkillZ = value
+  end
+})
+
+local SkillXMas = Settings:AddToggle("SkillXMas", {
+  Title = "Skill X",
+  Description = "",
+  Default = false,
+  Callback = function(value)
+    _G.SkillX = value
+  end
+})
+
+local SkillCMas = Settings:AddToggle("SkillCMas", {
+  Title = "Skill C",
+  Description = "",
+  Default = false,
+  Callback = function(value)
+    _G.SkillC = value
+  end
+})
+
+local SkillVMas = Settings:AddToggle("SkillVMas", {
+  Title = "Skill V",
+  Description = "",
+  Default = false,
+  Callback = function(value)
+    _G.SkillFruitV = value
+  end
+})
+
+local SkillFMas = Settings:AddToggle("SkillFMas", {
+  Title = "Skill F",
+  Description = "",
+  Default = false,
+  Callback = function(value)
+    _G.SkillF = value
+  end
+})
+
+Settings:AddSection("Other Settings")
+
+local BypassTP = Settings:AddToggle("BypassTP", {
+  Title = "Bypass Teleport",
+  Description = "",
+  Default = false,
+  Callback = function(Fast)
+    BypassTP = Fast
+  end
+})
+
+local SetSpawnPoint = Settings:AddToggle("SetSpawnPoint", {
+  Title = "Auto Set Spawn Point",
+  Description = "",
+  Default = true,
+  Callback = function(value)
+    _G.Set = value
+  end
+})
+
+spawn(function()
+  while wait(.1) do
+      if _G.Set then
+          pcall(function()
+              game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+          end)
+      end
+  end
+end)
+
+local AutoHaki = Settings:AddToggle("AutoHaki", {
+  Title = "Auto Haki",
+  Description = "",
+  Default = true,
+  Callback = function(value)
+    _G.AutoHaki = value
+  end
+})
+
+spawn(function()
+  while wait(.1) do
+      if _G.AutoHaki then 
+          if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+              local args = {
+                  [1] = "Buso"
+              }
+              game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+          end
+      end
+  end
+end)
+
+local BypassCheat = Settings:AddToggle("BypassCheat", {
+  Title = "Bypass Anti Cheat",
+  Description = "",
+  Default = true,
+  Callback = function(value)
+    _G.ResetFlags = value
+  end
+})
+
+spawn(function()
+  while wait() do
+      pcall(function()
+if _G.ResetFlags then
+  for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+      if v:IsA("LocalScript") then
+          if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
+              v:Destroy()
+          end
+      end
+   end
+   for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
+      if v:IsA("LocalScript") then
+          if v.Name == "RobloxMotor6DBugFix" or v.Name == "Clans"  or v.Name == "Codes" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
+              v:Destroy()
+          end
+      end
+   end
+  end
+end)
+end
+end)
+
