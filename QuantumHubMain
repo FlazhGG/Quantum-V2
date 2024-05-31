@@ -2246,6 +2246,7 @@ spawn(function()
 
   AutoFarm:OnChanged(function(value)
     _G.AutoFarm = value
+    StopTween(_G.AutoFarm)
   end)
  Options.AutoFarm:SetValue(_G.AutoFarm)
 
@@ -2444,6 +2445,7 @@ Options.MobMag:SetValue(false)
 MobMag:OnChanged(function(Mag)
   _G.BringMonster = Mag
 end)
+
 spawn(function()
 	while task.wait() do
 		pcall(function()
