@@ -2704,7 +2704,8 @@ end)
 
 Main:AddSection("Dough Boss")
 local ListC = {"NoQuest", "AcceptQuest", "MasteryFruit"}
-CakeFMode = "Accept Quest"
+CakeFMode = "NoQuest"
+
 local DoughSelect = Main:AddDropdown("DoughSelect", {
   Title = "Select Dough Farm Mode",
   Description = "",
@@ -2769,7 +2770,8 @@ local CakePos = CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375
                                                     v.Humanoid.WalkSpeed = 0
                                                     v.Head.CanCollide = false 
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                                    PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
+                                                    PosMon = v.HumanoidRootPart.CFrame
+                                                    MonFarm = v.Name
                                                     topos(v.HumanoidRootPart.CFrame * Pos)
                                                     StartBring = true
                                                 AttackNoCD()
@@ -3293,6 +3295,44 @@ local SkillFMas = Settings:AddToggle("SkillFMas", {
     _G.SkillF = value
   end
 })
+
+spawn(function()
+  while wait() do
+      pcall(function()
+          if UseSkill then
+              for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+              if v.Name == MonFarm and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health <= v.Humanoid.MaxHealth * _G.Kill_At / 100 then
+              if _G.SkillZ then
+                  game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                  wait(_G.HoldSKillZ)
+                  game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+              end
+              if _G.SkillX then
+                  game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                  wait(_G.HoldSKillX)
+                  game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+              end
+              if _G.SkillC then
+                  game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                  wait(_G.HoldSKillC)
+                  game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+              end
+              if _G.SkillV then
+                  game:service('VirtualInputManager'):SendKeyEvent(true, "V", false, game)
+                  wait(_G.HoldSKillV)
+                  game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
+              end
+              if _G.SkillF then
+                  game:service('VirtualInputManager'):SendKeyEvent(true, "F", false, game)
+                  wait(_G.HoldSKillF)
+                  game:service('VirtualInputManager'):SendKeyEvent(false, "F", false, game)
+              end
+          end
+          end
+          end
+      end)
+  end
+end)
 
 Settings:AddSection("Other Settings")
 
