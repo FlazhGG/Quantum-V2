@@ -3593,14 +3593,14 @@ MODILEGUISOMEXHUB.MouseButton1Click:Connect(function()
 Fluent.Window:Minimize()
 end)
 
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 local Window = Fluent:CreateWindow({
   Title = "Quantum Hub : Blox Fruits",
   SubTitle = "Free",
   TabWidth = 160,
   Size = UDim2.fromOffset(580, 460),
   Acrylic = false,
-  Theme = "Dark",
+  Theme = "Sakura",
   MinimizeKey = Enum.KeyCode.LeftControl
 })
 
