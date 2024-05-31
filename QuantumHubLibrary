@@ -5824,9 +5824,4 @@ else
 	Fluent = Library
 end
 
-
-AddSignal(MinimizeButton.MouseButton1Click, function()
-	Library.Window:Minimize()
-end)
-
 return Library, SaveManager, InterfaceManager
