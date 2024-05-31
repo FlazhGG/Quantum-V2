@@ -2220,8 +2220,8 @@ FarmMode:OnChanged(function(value)
 end)
 
 
-local MonsterStatus = Main:AddParagraph( Title = "", Content = "")
-local QuestStatus = Main:AddParagraph(Title = "", Content = "")
+local MonsterStatus = Main:AddParagraph({ Title = "", Content = ""})
+local QuestStatus = Main:AddParagraph({Title = "", Content = ""})
 
 spawn(function()
   while task.wait() do
