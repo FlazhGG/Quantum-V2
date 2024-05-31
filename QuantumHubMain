@@ -28,9 +28,7 @@ ImageButton1.Size = UDim2.new(0, 50, 0, 50)
 ImageButton1.Draggable = true
 ImageButton1.Image = "rbxassetid://17542158193"
 ImageButton1.MouseButton1Down:connect(function()
-  script.Parent.MouseButton1Click:Connect(function()
     Fluent.Window:Minimize()
-end)
 end)
 UICorner.Parent = ImageButton1
 UIStroke.Color = Color3.fromRGB(232, 0, 2)
