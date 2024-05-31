@@ -3,13 +3,14 @@ local Window = Fluent:CreateWindow({
   Title = "Quantum Hub : Blox Fruits",
   SubTitle = "Free",
   TabWidth = 160,
-  Size = UDim2.fromOffset(500, 480),
+  Size = UDim2.fromOffset(520, 450),
   Acrylic = false,
   Theme = "Sakura",
   MinimizeKey = Enum.KeyCode.LeftControl
 })
 
-local info = Window:AddTab({Title = "Info", Icon = "crown"})
+local Info = Window:AddTab({Title = "Info", Icon = "crown"})
+
 local osfunc = Info:AddParagraph({ 
   Title = "[Time Zone]" ,
   Content = ""
