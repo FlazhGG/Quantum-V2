@@ -2429,7 +2429,7 @@ TweenSpeed:OnChanged(function(value)
   TweenSpeed = value
 end)
 
-local MobMag = Settings:AddToggle("MobMag", {
+local ToggleMobMag = Settings:AddToggle("ToggleMobMag", {
   Title = "Bring Mobs",
   Description = "",
   Default = false,
@@ -2518,7 +2518,7 @@ spawn(function()
 end)
 
 
-local FastAttack = Settings:AddToggle("FastAttack", {
+local ToggleFastAttack = Settings:AddToggle("FastAttack", {
   Title = "Fast Attack",
   Description = "",
   Default = true,
