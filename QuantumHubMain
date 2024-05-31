@@ -2394,7 +2394,7 @@ spawn(function()
 end)
 
 
-local Settings = Window:AddTab({ Title = "Settings", Icon = "settings"})
+local Settings = Window:AddTab({Title = "Settings", Icon = "settings"})
 
 PosY = 35
 local FarmDistance = Settings:AddSlider("FarmDistance", {
