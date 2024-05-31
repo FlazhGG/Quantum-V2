@@ -2408,12 +2408,6 @@ local FarmDistance = Settings:AddSlider("FarmDistance", {
   end
 })
 
-FarmDistance:OnChanged(function(value)
-    PosY = value
-end)
-
-FarmDistance:SetValue(PosY)
-
 TweenSpeed = 150
 local TweenSpeed = Settings:AddSlider("TweenSpeed", {
   Title = "Tween Speed",
@@ -2426,19 +2420,14 @@ local TweenSpeed = Settings:AddSlider("TweenSpeed", {
     TweenSpeed = value
   end
 })
-TweenSpeed:SetValue(TweenSpeed)
-TweenSpeed:OnChanged(function(value)
-  TweenSpeed = value
-end)
 
-local ToggleMobMag = Settings:AddToggle("ToggleMobMag", {
+local MobMagnet = Settings:AddToggle("MobMagnet", {
   Title = "Bring Mobs",
   Description = "",
   Default = false,
   Callback = function(Mag)
     _G.BringMonster = Mag
-  end
-})
+  end})
 spawn(function()
 	while task.wait() do
 		pcall(function()
