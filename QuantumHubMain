@@ -2244,8 +2244,8 @@ spawn(function()
     Default = _G.AutoFarm,
   })
 
-  AutoFarm:OnChanged(function()
-    _G.AutoFarm
+  AutoFarm:OnChanged(function(value)
+    _G.AutoFarm = value
   end)
  Options.AutoFarm:SetValue(_G.AutoFarm)
 
@@ -2393,3 +2393,102 @@ spawn(function()
 end)
 
 
+local Settings = Window:AddTab({ Title = "Settings", Icon = "settings"})
+
+PosY = 35
+local FarmDistance = Settings:AddSlider("FarmDistance", {
+  Title = "Farm Distance",
+  Description = "",
+  Default = PosY,
+  Min = 0,
+  Max = 50,
+  Rounding = 1,
+  Callback = function(value)
+    PosY = value
+  end
+})
+
+FarmDistance:OnChanged(function(value)
+    PosY = value
+end)
+
+FarmDistance:SetValue(PosY)
+
+TweenSpeed = 150
+local TweenSpeed = Settings:AddSlider("TweenSpeed", {
+  Title = "Tween Speed",
+  Description = "",
+  Default = TweenSpeed,
+  Min = 0,
+  Max = 350,
+  Rounding = 1,
+  Callback = function(value)
+    TweenSpeed = value
+  end
+})
+
+TweenSpeed:OnChanged(function(value)
+  TweenSpeed = value
+end)
+
+TweenSpeed:SetValue(TweenSpeed)
+
+local MobMag = Settings:AddToggle("MobMag", {
+  Title = "Bring Mobs",
+  Description = "",
+  Default = false,
+})
+
+Options.MobMag:SetValue(false)
+
+MobMag:OnChanged(function(Mag)
+  _G.BringMonster = Mag
+end)
+spawn(function()
+	while task.wait() do
+		pcall(function()
+            CheckQuest()
+			for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+				if _G.BringMonster then
+					if StartBring and v.Name == MonFarm or v.Name == Mon and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
+						if v.Name == "Factory Staff" then
+							if (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 5000 then
+								v.Head.CanCollide = false
+								v.HumanoidRootPart.CanCollide = false
+								v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+								v.HumanoidRootPart.CFrame = PosMon
+								if v.Humanoid:FindFirstChild("Animator") then
+									v.Humanoid.Animator:Destroy()
+								end
+								sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+							end
+						elseif v.Name == MonFarm or v.Name == Mon then
+							if (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 4500 then
+                                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                                v.HumanoidRootPart.CFrame = PosMon
+                                v.HumanoidRootPart.CanCollide = false
+                                v.Head.CanCollide = false
+                                if v.Humanoid:FindFirstChild("Animator") then
+                                    v.Humanoid.Animator:Destroy()
+                                end
+                                sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+							end
+						end
+					end
+				end
+			end
+		end)
+	end
+end)
+
+
+function InMyNetWork(object)
+	if isnetworkowner then
+		return isnetworkowner(object)
+	else
+		if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then 
+			return true
+		end
+		return false
+	end
+end
