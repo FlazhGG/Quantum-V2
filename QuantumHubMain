@@ -2435,7 +2435,7 @@ local ListB = {"No Quest", "Quest", "MasteryFruit"}
     })
 
     BoneListMode:SetValue(BoneFMode)
-    BoneListMode:OnChanged(function ()
+    BoneListMode:OnChanged(function (value)
       BoneFMode = value
     end)
 
