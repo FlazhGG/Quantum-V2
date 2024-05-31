@@ -2757,7 +2757,7 @@ end)
 
 local BypassCheat = Settings:AddToggle("BypassCheat", {
   Title = "Bypass Anti Cheat",
-  Description = "",
+  Description = "Don't turn off",
   Default = true,
   Callback = function(value)
     _G.ResetFlags = value
