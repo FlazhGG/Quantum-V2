@@ -2241,7 +2241,7 @@ spawn(function()
   local AutoFarm = Main:AddToggle("AutoFarm", {
     Title = "Auto Farm",
     Description = "Farms selected method",
-    Default = false,
+    Default = false
   })
 
   AutoFarm:OnChanged(function(value)
@@ -2250,6 +2250,7 @@ spawn(function()
   end)
  Options.AutoFarm:SetValue(false)
 
+ 
  spawn(function()
   while wait() do
       if FarmMode == "Normal" and _G.AutoFarm then
