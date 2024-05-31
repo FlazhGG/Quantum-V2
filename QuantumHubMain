@@ -3,14 +3,60 @@ local Window = Fluent:CreateWindow({
   Title = "Quantum Hub : Blox Fruits",
   SubTitle = "Free",
   TabWidth = 160,
-  Size = UDim2.fromOffset(580, 460),
+  Size = UDim2.fromOffset(500, 480),
   Acrylic = false,
   Theme = "Sakura",
   MinimizeKey = Enum.KeyCode.LeftControl
 })
 
-local MainFardsam = Window:AddTab({Title = "Farm", Icon = "home"})
-local MainFardsam = Window:AddTab({Title = "Farm", Icon = "home"})
-local MainFardasm = Window:AddTab({Title = "Farm", Icon = "home"})
-local MainFarda = Window:AddTab({Title = "Farm", Icon = "home"})
+local info = Window:AddTab({Title = "Info", Icon = "crown"})
+local osfunc = Info:AddParagraph({ 
+  Title = "[Time Zone]" ,
+  Content = ""
+  })
+
+local function UpdateOS()
+  local date = os.date("*t")
+  local hour = (date.hour) % 24
+  local ampm = hour < 12 and "AM" or "PM"
+  local timezone = string.format("%02i:%02i:%02i %s", ((hour -1) % 12) + 1, date.min, date.sec, ampm)
+  local datetime = string.format("%02d/%02d/%04d", date.day, date.month, date.year)
+  local LocalizationService = game:GetService("LocalizationService")
+  local Players = game:GetService("Players")
+  local player = Players.LocalPlayer
+  local name = player.Name
+  local result, code = pcall(function()
+      return LocalizationService:GetCountryRegionForPlayerAsync(player)
+  end)
+  osfunc:SetDesc("" .. datetime.." - "..timezone.." [" .. code .. "]")
+end
+spawn(function()
+  while true do
+      UpdateOS()
+      game:GetService("RunService").RenderStepped:Wait()
+  end
+end)
+
+local Time = Info:AddParagraph({ Title = "[Server Time]", Content = ""})
+
+function UpdateTime()
+  local GameTime = math.floor(workspace.DistributedGameTime+0.5)
+  local Hour = math.floor(GameTime/(60^2))%24
+  local Minute = math.floor(GameTime/(60^1))%60
+  local Second = math.floor(GameTime/(60^0))%60
+  Time:SetDesc("Hours : "..Hour.." | Minutes : "..Minute.." | Seconds : "..Second)
+end
+
+spawn(function()
+  while task.wait() do
+      pcall(function()
+          UpdateTime()
+      end)
+  end
+end)
+
 local MainFarm = Window:AddTab({Title = "Farm", Icon = "home"})
+
+
+
+
