@@ -2979,7 +2979,7 @@ local SetSpawnPoint = Settings:AddToggle("SetSpawnPoint", {
 })
 
 spawn(function()
-  while wait(.1) do
+  while wait() do
       if _G.Set then
           pcall(function()
               game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
