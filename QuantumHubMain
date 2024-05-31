@@ -2454,7 +2454,7 @@ local StatusBones = Main:AddParagraph({Title = "Total Bones : ", Content = ""})
 spawn(function()
   pcall(function()
     while wait() do
-      StatusBones:SetDesc("Total Bones : "..tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check").." Bones"))
+      StatusBones:SetTitle("Total Bones : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
     end
   end)
 end)
