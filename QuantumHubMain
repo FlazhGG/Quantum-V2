@@ -2143,7 +2143,7 @@ local osfunc = Info:AddParagraph({
 
 local Main = Window:AddTab({Title = "Farm", Icon = "home"})
 
-Main:AddSection({"Farm Level"})
+Main:AddSection("Farm Level")
 
 local WeaponList = {"Melee","Sword","Fruit","Gun"}
 _G.SelectWeapon = "Melee"
