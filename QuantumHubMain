@@ -2744,8 +2744,8 @@ local CakePos = CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375
                                         v.Humanoid.WalkSpeed = 0
                                         v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                         topos(v.HumanoidRootPart.CFrame * Pos)
-                                        game:GetService("VirtualUser"):CaptureController()
-                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        StartBring = true
+                                                AttackNoCD()
                                         sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
                                     until not _G.AutoDoughtBoss or not v.Parent or v.Humanoid.Health <= 0
                                 end
