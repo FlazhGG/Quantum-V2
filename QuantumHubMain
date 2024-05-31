@@ -2424,12 +2424,10 @@ local TweenSpeed = Settings:AddSlider("TweenSpeed", {
     TweenSpeed = value
   end
 })
-
+TweenSpeed:SetValue(TweenSpeed)
 TweenSpeed:OnChanged(function(value)
   TweenSpeed = value
 end)
-
-TweenSpeed:SetValue(TweenSpeed)
 
 local MobMag = Settings:AddToggle("MobMag", {
   Title = "Bring Mobs",
@@ -2439,7 +2437,6 @@ local MobMag = Settings:AddToggle("MobMag", {
     _G.BringMonster = Mag
   end
 })
-
 spawn(function()
 	while task.wait() do
 		pcall(function()
