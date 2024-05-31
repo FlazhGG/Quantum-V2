@@ -2241,14 +2241,11 @@ spawn(function()
   local AutoFarm = Main:AddToggle("AutoFarm", {
     Title = "Auto Farm",
     Description = "Farms selected method",
-    Default = false
-  })
-
-  AutoFarm:OnChanged(function(value)
-    _G.AutoFarm = value
-    StopTween(_G.AutoFarm)
-  end)
- Options.AutoFarm:SetValue(false)
+    Default = false,
+    Callback = function(value)
+      _G.AutoFarm = value
+        StopTween(_G.AutoFarm)
+    end})
 
  
  spawn(function()
