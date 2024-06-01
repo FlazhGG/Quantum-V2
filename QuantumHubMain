@@ -1352,13 +1352,13 @@ end
                 -- Prop --
                 SliderFrame.Name = slidertitle or "SliderFrame"
                 SliderFrame.Parent = MainFramePage
-                SliderFrame.BackgroundColor3 = Color3.fromRGB(240, 240, 240)                SliderFrame.BackgroundTransparency = 1.000
+                SliderFrame.BackgroundColor3 = Color3.fromRGB(120, 120, 120)                SliderFrame.BackgroundTransparency = 1.000
                 SliderFrame.BorderSizePixel = 0
                 SliderFrame.Size = UDim2.new(0, 379, 0, 60)
             
                 SliderFrame_2.Name = "SliderFrame_2"
                 SliderFrame_2.Parent = SliderFrame
-                SliderFrame_2.BackgroundColor3 = Color3.fromRGB(255, 30, 50)
+                SliderFrame_2.BackgroundColor3 = Color3.fromRGB(120, 120, 120)
                 SliderFrame_2.BackgroundTransparency = .8
                 SliderFrame_2.BorderSizePixel = 0
                 SliderFrame_2.Position = UDim2.new(0, 1, 0, 1)
