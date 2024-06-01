@@ -16,9 +16,16 @@ local ImageButton1 = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 local UIGradient = Instance.new("UIGradient")
 local UIStroke = Instance.new("UIStroke")
+local SoundClick = Instance.new("Sound")
+
 ScreenGui1.Name = "ImageButton"
 ScreenGui1.Parent = game.CoreGui
 ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+SoundClick.Name = "Sound Effect"
+SoundClick.Parent = ScreenGui1
+SoundClick.SoundId = "rbxassetid://130785805"
+SoundClick.Volume = 1
 
 ImageButton1.Parent = ScreenGui1
 ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 239, 5)
@@ -28,6 +35,7 @@ ImageButton1.Size = UDim2.new(0, 50, 0, 50)
 ImageButton1.Draggable = true
 ImageButton1.Image = "rbxassetid://17542158193"
 ImageButton1.MouseButton1Down:connect(function()
+    SoundClick:Play()
     Fluent.Window:Minimize()
 end)
 UICorner.Parent = ImageButton1
