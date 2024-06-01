@@ -1,9 +1,143 @@
 
-
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-_G.Primary = Color3.fromRGB(31, 31, 150)
-_G.Dark = Color3.fromRGB(9, 7, 30)
+_G.Primary = Color3.fromRGB(0, 45, 255)
+_G.Dark = Color3.fromRGB(46, 56, 56)
+----------------------------------------------------------------------------------------------------------------------------------------
+_G.TieuDe = "Quantum Hub"
+_G.Notification = "Quantum Hub"
+_G.ThongBaoChoose = "Blox Fruits"
 
+_G.Discord = "https://discord.gg/rfrt2p8sjp"
+_G.YouTube = ""
+_G.TikTok = ""
+notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
+notis.new("<Color=Yellow>Welcome \n<Color=/>".. _G.Notification):Display()
+_G.SafeFarm = true
+assert(getrawmetatable)
+    grm = getrawmetatable(game)
+    setreadonly(grm, false)
+    old = grm.__namecall
+    grm.__namecall = newcclosure(function(self, ...)
+        local args = {...}
+        if tostring(args[1]) == "TeleportDetect" then
+            return
+        elseif tostring(args[1]) == "CHECKER_1" then
+            return
+        elseif tostring(args[1]) == "CHECKER" then
+            return
+        elseif tostring(args[1]) == "GUI_CHECK" then
+            return
+        elseif tostring(args[1]) == "OneMoreTime" then
+            return
+        elseif tostring(args[1]) == "checkingSPEED" then
+            return
+        elseif tostring(args[1]) == "BANREMOTE" then
+            return
+        elseif tostring(args[1]) == "PERMAIDBAN" then
+            return
+        elseif tostring(args[1]) == "KICKREMOTE" then
+            return
+        elseif tostring(args[1]) == "BR_KICKPC" then
+            return
+        elseif tostring(args[1]) == "BR_KICKMOBILE" then
+            return
+        end
+        return old(self, ...)
+    end)
+function CheckAntiCheatBypass()
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
+                v:Destroy()
+            end
+        end
+     end
+     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "RobloxMotor6DBugFix" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
+                v:Destroy()
+            end
+        end
+    end
+end
+
+local function bypassAntiExploit()
+    for _, instance in ipairs(filtergc()) do
+        if instance:IsA("AntiExploitSystem") then
+            instance:Destroy()
+        end
+    end
+end
+spawn(function()
+    while wait() do
+        if _G.SafeFarm then
+            pcall(function()
+                CheckAntiCheatBypass()
+                bypassAntiExploit()
+            end)
+        end
+    end
+end)
+function intiAppleHub() 
+_G.antiscan = true
+getgenv().A = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).wrapAttackAnimationAsync
+getgenv().B = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle).play
+_G.setfflag = true
+end
+spawn(function()
+    while wait() do
+        if _G.setfflag then
+            setfflag("AbuseReportScreenshot", "False")
+            setfflag("AbuseReportScreenshotPercentage", "0")
+        end
+    end
+end)
+_G.AntiFlagReset = true
+spawn(function()
+    while wait(2000) do
+        if _G.AntiFlagReset then
+            pcall(function()
+            game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+        end)
+    end
+   end
+end)
+
+spawn(function()
+    while _G.AntiFlagReset do task.wait()
+        if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+            local HealthPercent = game.Players.LocalPlayer.Character.Humanoid.Health / game.Players.LocalPlayer.Character.Humanoid.MaxHealth * 100
+            if HealthPercent < 50 then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 100, 0)
+            end
+        end
+        task.wait()
+    end
+end)
+
+local Players = game:GetService("Players")
+
+local function onCharacterAdded(character)
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.Died:Connect(function()
+        humanoid.Health = 0
+    end)
+end
+
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(onCharacterAdded)
+end)
+
+for _, player in ipairs(Players:GetPlayers()) do
+    if player.Character then
+        onCharacterAdded(player.Character)
+    end
+end
+print("Anti Cheat Bypass Active")
+print("Made By: Prime Flazhy")
+warn("")
+warn("")
+print("")
 repeat wait() until game:IsLoaded()
 if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam")  then
 		repeat wait()
@@ -24,7 +158,9 @@ if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseT
 			end
 		until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
 	end
-
+----------------------------------------------------------------------------------------------------------------------------------------
+local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+----------------------------------------------------------------------------------------------------------------------------------------
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 
@@ -101,7 +237,7 @@ Main.Name = "Main"
 Main.Parent = MINHTIEN
 Main.ClipsDescendants = true
 Main.AnchorPoint = Vector2.new(0.5,0.5)
-Main.BackgroundColor3 = Color3.fromRGB(120, 120, 120)
+Main.BackgroundColor3 = Color3.fromRGB(50, 242, 242)
 Main.BackgroundTransparency = .1
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 0, 0, 0)
@@ -116,8 +252,8 @@ local BtnStroke = Instance.new("UIStroke")
  BtnStroke.Name = "BtnStroke"
              BtnStroke.Parent = Main
              BtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-             BtnStroke.Color = Color3.fromRGB(255, 255, 255)           BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
-         BtnStroke.Thickness = 2
+             BtnStroke.Color = Color3.fromRGB(146, 13, 255)           BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
+         BtnStroke.Thickness = 1
          BtnStroke.Transparency = 0
          BtnStroke.Enabled = true
          BtnStroke.Archivable = true
@@ -2162,26 +2298,25 @@ return main
 end
 return uitab
 end
+--------------------------------------------------------------------------------------------------------
+if game.PlaceId == 2753915549 then
+        World1 = true
+    elseif game.PlaceId == 4442272183 then
+        World2 = true
+    elseif game.PlaceId == 7449423635 then
+        World3 = true
+    else
+    Notification.Notify("Notification", "Game Not Support :( | Only Blox Fruits.", "rbxassetid://10709761889", {
+    Duration = 10,       
+    Main = {
+        Rounding = true,
+    }
+    });
+end
+--------------------------------------------------------------------------------------------------------
 
 local Library = Update:Window("Quantum HUB","BLOX FRUIT",Enum.KeyCode.RightControl);
-
-local TienTiny = Library:AddTab("Information","rbxassetid://10723415903")
 local Settings = Library:AddTab("Settings Farming","rbxassetid://10734950309")
-local Main = Library:AddTab("General","rbxassetid://10723407389")
-local M = Library:AddTab("Item & Quest","rbxassetid://10734975692")
-local Ss = Library:AddTab("Stats","rbxassetid://10709791523")
-local RaceV4 = Library:AddTab("Race V4","rbxassetid://10723375250")
-local EventGame = Library:AddTab("Game Event","rbxassetid://10709783577")
-local P = Library:AddTab("Local Player","rbxassetid://10747373176")
-local Status = Library:AddTab("Status Sever","rbxassetid://10723364725")
-local Visual = Library:AddTab("Visual","rbxassetid://10723374981")
-local R = Library:AddTab("Dungeon","rbxassetid://10709761722")
-local T = Library:AddTab("Teleport","rbxassetid://10734964188")
-local S = Library:AddTab("Shop","rbxassetid://10734952479")
-local D = Library:AddTab("Devil Fruit","rbxassetid://10709761889")
-local Misc = Library:AddTab("Miscellaneous","rbxassetid://10709782582")
-
-
 Settings:AddSeperator("Settings Farming")
 
 Settings:AddToggle("Auto SetSpawn Point",true,function(value)
@@ -2575,47 +2710,95 @@ elseif _G.WhiteScreen == false then
 end
 end)
 
-LockPls = 600
-    Misc:AddSlider(" Kick at Mastery",0,600,600,function(value)
-    LockPls = value
+    Settings:AddToggle("Invisible Monsters",_G.inv,function(value)
+    _G.inv = value
+    
+         while wait() do
+             if _G.inv then
+             pcall(function()
+     for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+         if v.ClassName == "MeshPart" then
+             v.Transparency = 1
+     end
+     end
+     for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+         if v.Name == "Head" then
+         v.Transparency = 1
+     end
+     end
+         for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+             if v.ClassName == "Accessory" then
+                 v.Handle.Transparency = 1
+             end
+         end
+         for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+             if v.ClassName == "Decal" then
+             v.Transparency = 1
+              end
+            end
+          end)
+        end
+      end
+    end)
+    
+    Settings:AddSeperator("Setting Farm Mode")
+
+    Settings:AddLabel("Distance X Right Vector")
+    Settings:AddLabel("Distance Y Up Vector")
+    Settings:AddLabel("Distance Z Behind Vector")
+
+    PosY = 35
+    Settings:AddSlider("Pos Y Distance Farm ",0,50,35,function(value)
+    PosY = value
     end)
 
-
-------------------------------------------------------------------
-    local ScreenGui1 = Instance.new("ScreenGui")
+    Settings:AddSeperator("Misc Setting Mastery")
+    
+    _G.Kill_At = 25
+    Settings:AddSlider("Kill At %",1,100,25,function(value)
+        _G.Kill_At = value
+    end)
+    
+ 
+    Settings:AddToggle("Skill Z",true,function(value)
+        _G.SkillZ = value
+    end)
+--------------------------------------------------------------------------------------------------------------------------------------
+local ScreenGui1 = Instance.new("ScreenGui")
 local ImageButton1 = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
-local UIGradient = Instance.new("UIGradient")
 local UIStroke = Instance.new("UIStroke")
-local SoundClick = Instance.new("Sound")
 
 ScreenGui1.Name = "ImageButton"
 ScreenGui1.Parent = game.CoreGui
 ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-SoundClick.Name = "Sound Effect"
-SoundClick.Parent = ScreenGui1
-SoundClick.SoundId = "rbxassetid://130785805"
-SoundClick.Volume = 1
-
 ImageButton1.Parent = ScreenGui1
-ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 239, 5)
+ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton1.BorderSizePixel = 0
 ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
 ImageButton1.Size = UDim2.new(0, 50, 0, 50)
 ImageButton1.Draggable = true
-ImageButton1.Image = "rbxassetid://17542158193"
+ImageButton1.Image = "http://www.roblox.com/asset/?id=15850924286"
 ImageButton1.MouseButton1Down:connect(function()
-    SoundClick:Play()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
-    game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
+  game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+  game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
 end)
 UICorner.Parent = ImageButton1
-UIStroke.Color = Color3.fromRGB(232, 0, 2)
+UIStroke.Color = Color3.fromRGB(252, 3, 161)
 UIStroke.Thickness = 1.5
 UIStroke.Parent = ImageButton1
-UIGradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 132, 255)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
-}
-UIGradient.Parent = UIStroke
+----------------------------------------------------------------------------------------------------------------------------------------
+Notification.Notify("Notification", "Thank You for Using x2N HUB.", "rbxassetid://10709761889", {
+    Duration = 5,       
+    Main = {
+        Rounding = true,
+    }
+    });
+wait(6)
+Notification.Notify("Notification", "If You Use Fluxus, x2N HUB Will Optimize Fluxus Well.", "rbxassetid://10709761889", {
+    Duration = 10,       
+    Main = {
+        Rounding = true,
+    }
+    });
