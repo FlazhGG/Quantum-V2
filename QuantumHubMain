@@ -950,7 +950,7 @@ function main:AddToggle(text,config,callback)
 			config = config or false
 			local toggled = config
 _G.Color = Color3.fromRGB(240, 10, 10)	
-_G.TrueColor = Color3.fromRGB(255, 30, 50)
+_G.TrueColor = Color3.fromRGB(11, 255, 48)
 local UICorner = Instance.new("UICorner")
 local TogglePadding = Instance.new("UIPadding")
             local UIStroke = Instance.new("UIStroke")
@@ -1020,7 +1020,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
 
 			Circle.Name = "Circle"
 			Circle.Parent = ToggleImage
-			Circle.BackgroundColor3 = Color3.fromRGB(255, 30, 50)
+			Circle.BackgroundColor3 = Color3.fromRGB(11, 255, 48)
             Circle.BackgroundTransparency = .7
 			Circle.Position = UDim2.new(0, 2, 0, 2)
 			Circle.Size = UDim2.new(0, 16, 0, 16)
