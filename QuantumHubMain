@@ -994,7 +994,7 @@ local TogglePadding = Instance.new("UIPadding")
 				imgLabelIcon.BackgroundTransparency = 1.000
 				imgLabelIcon.Position = UDim2.new(0, 5, 0, 8)
 				imgLabelIcon.Size = UDim2.new(0, 30, 0, 30)
-				imgLabelIcon.Image = "rbxassetid://10709761889" 
+				imgLabelIcon.Image = "" 
 
 Title.Parent = Button
 Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
@@ -1002,7 +1002,7 @@ Title.BackgroundTransparency = 1.000
 Title.Position = UDim2.new(0, 40, 0, 0)
 Title.Size = UDim2.new(0, 280, 0, 46)
 Title.Font = Enum.Font.SourceSansBold
-Title.Text = "|  "..text
+Title.Text = "  "..text
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 15.000
 Title.TextXAlignment = Enum.TextXAlignment.Left
@@ -1119,7 +1119,7 @@ local imgLabelIcon = Instance.new("ImageLabel")
 				imgLabelIcon.BackgroundTransparency = 1.000
 				imgLabelIcon.Position = UDim2.new(0, 5, 0, 3)
 				imgLabelIcon.Size = UDim2.new(0, 30, 0, 30)
-				imgLabelIcon.Image = "rbxassetid://10709761889" 
+				imgLabelIcon.Image = "" 
 
 DropTitle.Name = "DropTitle"
 DropTitle.Parent = Dropdown
@@ -1384,7 +1384,7 @@ end
                 ImageLabel.BorderSizePixel = 0
                 ImageLabel.Position = UDim2.new(0, 7.5, 0, 7.5)
                 ImageLabel.Size = UDim2.new(0, 30, 0, 30)
-                ImageLabel.Image = "rbxassetid://10709761889"
+                ImageLabel.Image = ""
                 
                 
                 
@@ -1710,7 +1710,7 @@ sliderrcorner.Parent = sliderr
                 ImageLabel.BorderSizePixel = 0
                 ImageLabel.Position = UDim2.new(0, 7.5, 0, 7.5)
                 ImageLabel.Size = UDim2.new(0, 30, 0, 30)
-                ImageLabel.Image = "rbxassetid://10709761889"
+                ImageLabel.Image = ""
                 
                 
                 
@@ -1721,7 +1721,7 @@ Title.BackgroundTransparency = 1.000
 Title.Position = UDim2.new(0, 45, 0, 5)
 Title.Size = UDim2.new(0, 280, 0, 30)
 Title.Font = Enum.Font.SourceSansBold
-Title.Text = "|  "..text
+Title.Text = ""..text
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 15.000
 Title.TextXAlignment = Enum.TextXAlignment.Left
