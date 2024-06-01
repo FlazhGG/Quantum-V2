@@ -2176,7 +2176,7 @@ local Sep3 = Instance.new("Frame")
 Seperator.Name = "Seperator"
 Seperator.Parent = MainFramePage
 Seperator.BackgroundColor3 = _G.Primary
-Seperator.BackgroundTransparency = .8
+Seperator.BackgroundTransparency = 1
 Seperator.Size = UDim2.new(0, 379, 0, 30)
 
 Sep1.Name = "Sep1"
