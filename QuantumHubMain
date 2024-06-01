@@ -3007,6 +3007,84 @@ spawn(function()
         end
     end)
 
+if World3 then
+    local Sea = Window:AddTab({Title = "Sea Event", Icon = "sail-boat"})
+Sea:AddSection("Mirage Hunt")
+
+local Mirragecheck = Sea:AddParagraph({Title = "Mirage Status", Content = ""})
+
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
+                Mirragecheck:SetDesc("🏝️ Mirage Island is Spawning")
+                _G.MirageSpawn = true
+            else
+                Mirragecheck:SetDesc("❌ Mirage Island Not Spawn") 
+                _G.MirageSpawn = false
+             end
+  
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
+                Kitsunecheck:SetDesc("Kitsune Island is Spawning")
+                _G.KitsuneSpawn = true
+            else
+                Kitsunecheck:SetDesc("Kitsune Island Not Spawn") 
+                _G.KitsuneSpawn = false
+            end
+        end
+    end)
+end)
+
+local AutoMirrageTP = Sea:AddToggle("AutoMirrageTP", {
+    Title = "Teleport to Mirage Island",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.AutoMysticIsland = value
+    StopTween(_G.AutoMysticIsland)
+    end
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoMysticIsland then
+                if game:GetService("Workspace").Map:FindFirstChild("MysticIsland") then
+                    topos(CFrame.new(game:GetService("Workspace").Map.MysticIsland.Center.Position.X,500,game:GetService("Workspace").Map.MysticIsland.Center.Position.Z))
+                end
+            end
+        end
+    end)
+end)
+
+local TeleportAdvancedDealer = Sea:AddToggle("TeleportAdvancedDealer", {
+    Title = "Teleport to Advanced Dealer",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.Miragenpc = value
+            StopTween(_G.Miragenpc)
+    end
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.Miragenpc then
+                if game:GetService("Workspace").NPCs:FindFirstChild("Advanced Fruit Dealer") then
+                    topos(CFrame.new(game:GetService("Workspace").NPCs["Advanced Fruit Dealer"].HumanoidRootPart.Position))
+                end
+            end
+        end
+    end)
+end)
+
+Sea:AddSection("Kitsune Island")
+local Kitsunecheck = Sea:AddParagraph({Title = "Kitsune Status", Content = ""})
+
+
+end
+
+    --Settings//////////////////////////////////////////////////////--
+
 local Settings = Window:AddTab({Title = "Settings", Icon = "settings"})
 
 PosY = 35
