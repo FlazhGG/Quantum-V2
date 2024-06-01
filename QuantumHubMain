@@ -1,37 +1,4 @@
-(getgenv()).Key = "Admin-888-999"
 
-local keys = {
-     "SPEED-YUYOIP-UJUM9",
-     "SPEED-HUYHGU-7676",
-     "SPEED-JUOP-UNM0",
-     "SPEED-HJOP-MKOP0",
-     "SPEED-MOKP-89MK",
-     "SPEED-LOVE-KUY",
-     "SPEED-YUYOIP-UJUM9",
-     "SPEED-HUYHGU-7676",
-     "SPEED-UJUKM-898M",
-     "SPEED-87879-NESKJ",
-     "SEED-NHUIL-7890M",
-     "SPEED-NJKOL-78U8U",
-     "SPEED-787-MJMKO",
-     "SPEED-JKOPY-9MLO",
-     "SPEED-MKLL-POI0",
-     "SPEED-HIOPT-MKO9",
-     "Admin-888-999",
-     "OOOOOOOOOOOO",
-}
-
-local counter = 1
-local keyCheck
-for i,v in pairs(keys) do
-    if counter == #keys then
-        keys = ""
-        game.Players.LocalPlayer:Kick("please enter your key")
-    else
-        if v == getgenv().Key then 
-            -- check succes
-            print("Succesfully, enjoy :]")
-            -- your script
             
 shared.LoaderTitle = 'Vector Hub' -- ใส่ชื่อ
 shared.LoaderKeyFrames = {
