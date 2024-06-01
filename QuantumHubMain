@@ -11,7 +11,7 @@ _G.Discord = "https://discord.gg/rfrt2p8sjp"
 _G.YouTube = ""
 _G.TikTok = ""
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
-notis.new("<Color=Yellow>Welcome \n<Color=/>".. _G.Notification):Display()
+notis.new("<Color=Blue>Welcome \n<Color=/>".. _G.Notification):Display()
 _G.SafeFarm = true
 assert(getrawmetatable)
     grm = getrawmetatable(game)
@@ -2804,14 +2804,14 @@ UIGradient.Color = ColorSequence.new{
 }
 UIGradient.Parent = UIStroke
 ----------------------------------------------------------------------------------------------------------------------------------------
-Notification.Notify("Notification", "Thank You for Using x2N HUB.", "rbxassetid://10709761889", {
+Notification.Notify("Notification", "Thank You for Using Quantum HUB.", "rbxassetid://10709761889", {
     Duration = 5,       
     Main = {
         Rounding = true,
     }
     });
 wait(6)
-Notification.Notify("Notification", "If You Use Fluxus, x2N HUB Will Optimize Fluxus Well.", "rbxassetid://10709761889", {
+Notification.Notify("Notification", "If You Use Fluxus, Quantum HUB Will Optimize Fluxus Well.", "rbxassetid://10709761889", {
     Duration = 10,       
     Main = {
         Rounding = true,
