@@ -2738,7 +2738,7 @@ local CakePos = CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if v.Name == "Cake Prince" then
                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait()
+                                    repeat task.wait(_G.FastAttackDelay)
                                         AutoHaki()
                                         EquipWeapon(_G.SelectWeapon)
                                         v.HumanoidRootPart.CanCollide = false
@@ -2763,7 +2763,7 @@ local CakePos = CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375
                                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                         if v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker" then
                                             if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                                repeat task.wait()
+                                                repeat task.wait(_G.FastAttackDelay)
                                                     AutoHaki()
                                                     EquipWeapon(_G.SelectWeapon)
                                                     v.HumanoidRootPart.CanCollide = false
@@ -2834,7 +2834,7 @@ spawn(function()
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if v.Name == "Cake Prince" or v.Name == "Dough King" then
                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait()
+                                    repeat task.wait(_G.FastAttackDelay)
                                         AutoHaki()
                                         EquipWeapon(_G.SelectWeapon)
                                         v.HumanoidRootPart.CanCollide = false
@@ -2887,7 +2887,7 @@ spawn(function()
                                 if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                     if v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker" then
                                         if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Cookie Crafter") then
-                                            repeat task.wait()
+                                            repeat task.wait(_G.FastAttackDelay)
                                                 EquipWeapon(_G.SelectWeapon)
                                                 AutoHaki()                                            
                                                 PosMonCake = v.HumanoidRootPart.CFrame
@@ -2953,7 +2953,7 @@ spawn(function()
                                     if v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker" then
                                         if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Cookie Crafter") then
                                             HealthMs = v.Humanoid.MaxHealth * _G.Kill_At/100
-                                            repeat task.wait()
+                                            repeat task.wait(_G.FastAttackDelay)
                                                 if v.Humanoid.Health <= HealthMs then
                                                     AutoHaki()
                                                     EquipWeapon(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value)
