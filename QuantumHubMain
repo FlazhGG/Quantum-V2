@@ -3121,7 +3121,7 @@ spawn(function()
 end)
 
 _G.SetToTradeAureEmber = 20
-local SetToTradeAureEmber = Sea:AddToggle("SetToTradeAureEmber", {
+local SetToTradeAureEmber = Sea:AddSlider("SetToTradeAureEmber", {
     Title = "Set Azure Ember",
     Description = "",
     Default = _G.SetToTradeAureEmber,
