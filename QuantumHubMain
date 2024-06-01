@@ -101,7 +101,7 @@ Main.Name = "Main"
 Main.Parent = MINHTIEN
 Main.ClipsDescendants = true
 Main.AnchorPoint = Vector2.new(0.5,0.5)
-Main.BackgroundColor3 = Color3.fromRGB(31, 31, 150)
+Main.BackgroundColor3 = Color3.fromRGB(120, 120, 120)
 Main.BackgroundTransparency = .1
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 0, 0, 0)
@@ -117,7 +117,7 @@ local BtnStroke = Instance.new("UIStroke")
              BtnStroke.Parent = Main
              BtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
              BtnStroke.Color = Color3.fromRGB(255, 255, 255)           BtnStroke.LineJoinMode = Enum.LineJoinMode.Round
-         BtnStroke.Thickness = 3
+         BtnStroke.Thickness = 2
          BtnStroke.Transparency = 0
          BtnStroke.Enabled = true
          BtnStroke.Archivable = true
