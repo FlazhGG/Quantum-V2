@@ -23,7 +23,8 @@ ImageButton1.Draggable = true
 ImageButton1.Image = "rbxassetid://17542158193"
 ImageButton1.MouseButton1Down:connect(function()
     SoundClick:Play()
-    Fluent.Window:Minimize()
+    game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+    game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
 end)
 UICorner.Parent = ImageButton1
 UIStroke.Color = Color3.fromRGB(232, 0, 2)
