@@ -1,3 +1,23 @@
+local stopboat = {}
+function TPB(pos, boat)
+	local tween_s = game:service"TweenService"
+	local info = TweenInfo.new((boat.CFrame.Position - pos.Position).Magnitude/BoatSpeed, Enum.EasingStyle.Linear)
+	tween = tween_s:Create(boat, info, {CFrame = pos})
+
+    if (boat.CFrame.Position - pos.Position).Magnitude <= 25 then
+        tween:Cancel()
+    else
+        tween:Play()
+    end
+
+
+	function stopboat:Stop()
+		tween:Cancel()
+	end
+
+	return stopboat
+end
+
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -1930,25 +1950,6 @@ end
 
 -- or (game:GetService("Workspace").Enemies:FindFirstChild("Shark") and _G.AutoKillShark) or (game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") and _G.AutoTerrorshark) or (game:GetService("Workspace").Enemies:FindFirstChild("Piranha") and _G.AutoKillPiranha) or (game:GetService("Workspace").Enemies:FindFirstChild("Fish Crew Member") and _G.AutoKillFishCrew)
 
-local stopboat = {}
-function TPB(pos, boat)
-local tween_s = game:service"TweenService"
-local info = TweenInfo.new((boat.CFrame.Position - pos.Position).Magnitude/BoatSpeed, Enum.EasingStyle.Linear)
-tween = tween_s:Create(boat, info, {CFrame = pos})
-
-if (boat.CFrame.Position - pos.Position).Magnitude <= 25 then
-  tween:Cancel()
-else
-  tween:Play()
-end
-
-
-function stopboat:Stop()
-tween:Cancel()
-end
-
-return stopboat
-end
 
 function TPP(CFgo)
 if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health <= 0 or not game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") then tween:Cancel() repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") and game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 wait(7) return end
