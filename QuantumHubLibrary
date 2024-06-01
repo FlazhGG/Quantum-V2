@@ -1006,6 +1006,16 @@ local GUI = New("ScreenGui", {
 Library.GUI = GUI
 ProtectGui(GUI)
 
+function Library:SafeCallback(Function, ...)
+	if not Function then
+		return
+	end
+
+	local Success, Event = pcall(Function, ...)
+	if not Success then
+		local _, i = Event:find(":%d+: ")
+	end
+end
 
 function Library:Round(Number, Factor)
 	if Factor == 0 then
