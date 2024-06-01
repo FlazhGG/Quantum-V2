@@ -7,7 +7,7 @@ local Window = Fluent:CreateWindow({
   TabWidth = 160,
   Size = UDim2.fromOffset(580, 410),
   Acrylic = false,
-  Theme = "Dark",
+  Theme = "Amethyst",
   MinimizeKey = Enum.KeyCode.LeftControl
 })
 
@@ -3250,7 +3250,18 @@ SeaSelectedBoat:OnChanged(function(x)
     _G.SelectedBoat = x
 end)
 
-
+BoatSpeed = 300
+local BoatSpeed = Sea:AddSlide("BoatSpeed", {
+    Title = "Boat Speed", 
+    Description = "",
+    Default = BoatSpeed,
+    Min = 100,
+    Max = 350,
+    Rounding = 1,
+    Callback = function(value)
+        BoatSpeed = value
+    end
+})
 
 local AutoSailBoat = Sea:AddToggle("AutoSailBoat", {
     Title = "Auto Sail Boat",
@@ -3482,6 +3493,74 @@ end
                         _G.SeaSkill = false
                         UnEquipWeapon(_G.SelectWeapon)
                     end
+                end
+            end)
+        end
+    end)
+
+    local BrightValue = 20
+    local SeaBrightness = Sea:AddSlider("SeaBrightness", {
+        Title = "Brightness",
+        Description = "",
+        Default = BrightValue,
+        Min = 1,
+        Max = 100,
+        Callback = function(value)
+            BrightValue = value
+        end
+    })
+
+    Sea:AddButton({
+        Title = "Set Brightness",
+        Description = "",
+        Callback = function()
+            game:GetService("Lighting").Brightness = BrightValue
+        end
+    })
+
+    local BoatnoClip = Sea:AddToggle("BoatnoClip", {
+        Title = "Boat No Clip Rock",
+        Description = "",
+        Default = false,
+        Callback = function(state)
+            _G.NoClipRock = state
+        end
+    })
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+            for i, boat in pairs(game:GetService("Workspace").Boats:GetChildren()) do
+                for _, v in pairs(game:GetService("Workspace").Boats[boat.Name]:GetDescendants()) do
+                    if v:IsA("BasePart") then
+                        if _G.NoClipRock or _G.SailBoat then
+                            v.CanCollide = false
+                        else
+                            v.CanCollide = true
+                        end
+                    end
+                end
+            end
+            end)
+        end
+    end)
+
+    local AutoClickW = Sea:AddToggle("AutoClipW", {
+        Title = "Auto Hold W",
+        Description = "",
+        Default = false,
+        Callback = function(state)
+            _G.AutoPressW = state
+        end
+    })
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if _G.AutoPressW then
+                    if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit == true then
+                    game:GetService("VirtualInputManager"):SendKeyEvent(true,"W",false,game)
+                end
                 end
             end)
         end
