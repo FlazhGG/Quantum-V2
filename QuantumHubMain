@@ -1094,7 +1094,7 @@ local UIStroke = Instance.new("UIStroke")
 
 Dropdown.Name = "Dropdown"
 Dropdown.Parent = MainFramePage
-Dropdown.BackgroundColor3 = Color3.fromRGB(255, 30, 50)
+Dropdown.BackgroundColor3 = Color3.fromRGB(120, 120, 120)
 Dropdown.BackgroundTransparency = .8
 Dropdown.ClipsDescendants = true
 Dropdown.Size = UDim2.new(0, 379, 0, 38)
