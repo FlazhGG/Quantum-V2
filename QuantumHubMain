@@ -966,7 +966,7 @@ local TogglePadding = Instance.new("UIPadding")
 
 			Button.Name = "Button"
 			Button.Parent = MainFramePage
-			Button.BackgroundColor3 = Color3.fromRGB(255, 30, 50)
+			Button.BackgroundColor3 = Color3.fromRGB(120, 120, 120)
             Button.BackgroundTransparency = .8
 			Button.Size = UDim2.new(0, 379, 0, 46)
 			Button.AutoButtonColor = false
