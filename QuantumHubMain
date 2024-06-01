@@ -1751,7 +1751,7 @@ bar.BackgroundTransparency = .8
 
 bar1.Name = "bar1"
 bar1.Parent = bar
-bar1.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+bar1.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
 bar1.BackgroundTransparency = 0
 bar1.Size = UDim2.new(set/max, 0, 0, 5)
 
@@ -1775,7 +1775,7 @@ barcorner.Parent = bar
 
 circlebar.Name = "circlebar"
 circlebar.Parent = bar1
-circlebar.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+circlebar.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
 circlebar.Position = UDim2.new(1, -2, 0, -3)
 circlebar.Size = UDim2.new(0, 10, 0, 10)
 
