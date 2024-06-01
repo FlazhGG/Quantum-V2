@@ -1784,7 +1784,7 @@ UICorner.Parent = circlebar
 
 slidervalue.Name = "slidervalue"
 slidervalue.Parent = sliderr
-slidervalue.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+slidervalue.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
 slidervalue.BackgroundTransparency = .1
 slidervalue.Position = UDim2.new(0, 319, 0, 10)
 slidervalue.Size = UDim2.new(0, 50, 0, 15)
@@ -1794,7 +1794,7 @@ valuecorner.Name = "valuecorner"
 valuecorner.Parent = slidervalue
 
 TextBox.Parent = slidervalue
-TextBox.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+TextBox.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
 TextBox.BackgroundTransparency = .1
 TextBox.Position = UDim2.new(0, 0, 0, 0)
 TextBox.Size = UDim2.new(0, 50, 0, 16)
