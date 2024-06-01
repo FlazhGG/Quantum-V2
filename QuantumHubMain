@@ -3410,5 +3410,4 @@ end)
 end
 end)
 
-hookfunction(rconsoleerror, function()end)
-  hookfunction(rconsolewarn, function()end)
+rconsolewarn("Arg support", "lets Go", 123, function() end, {}, nil)
