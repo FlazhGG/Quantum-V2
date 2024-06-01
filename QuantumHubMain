@@ -3251,7 +3251,7 @@ SeaSelectedBoat:OnChanged(function(x)
 end)
 
 BoatSpeed = 300
-local BoatSpeed = Sea:AddSlide("BoatSpeed", {
+local BoatSpeed = Sea:AddSlider("BoatSpeed", {
     Title = "Boat Speed", 
     Description = "",
     Default = BoatSpeed,
