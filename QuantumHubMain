@@ -1009,7 +1009,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
 
 			ToggleImage.Name = "ToggleImage"
 			ToggleImage.Parent = Button
-			ToggleImage.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+			ToggleImage.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
             ToggleImage.BackgroundTransparency = .1
 			ToggleImage.Position = UDim2.new(0, 320, 0, 13)
 			ToggleImage.Size = UDim2.new(0, 45, 0, 20)
@@ -1135,7 +1135,7 @@ DropTitle.Position = UDim2.new(0,40,0,0)
 
 SelectItems.Name = "SelectItems"
 SelectItems.Parent = Dropdown
-SelectItems.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+SelectItems.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
 SelectItems.TextColor3 = Color3.fromRGB(255, 255, 255)
 SelectItems.BackgroundTransparency = .1
 SelectItems.Position = UDim2.new(0, 220, 0, 34)
@@ -1167,7 +1167,7 @@ UICorner_3.CornerRadius = UDim.new(0, 5)
 DropScroll.Name = "DropScroll"
 DropScroll.Parent = Dropdown
 DropScroll.Active = true
-DropScroll.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+DropScroll.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
 DropScroll.BackgroundTransparency = .1
 DropScroll.BorderSizePixel = 0
 DropScroll.Position = UDim2.new(0, 2, 0, 40)
@@ -1189,7 +1189,7 @@ local Item = Instance.new("TextButton")
 
 Item.Name = "Item"
 Item.Parent = DropScroll
-Item.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+Item.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
 Item.BackgroundTransparency = 1
 Item.Size = UDim2.new(0, 379, 0, 26)
 Item.Font = Enum.Font.SourceSansBold
@@ -1465,7 +1465,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
             
                 SliderBox.Name = "SliderBox"
                 SliderBox.Parent = BoxFrame
-                SliderBox.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
+                SliderBox.BackgroundColor3 = Color3.fromRGB(162, 162, 162)
                 SliderBox.BackgroundTransparency = .1
                 SliderBox.BorderSizePixel = 0
                 SliderBox.Position = UDim2.new(0, 0, 0, 1.65)
