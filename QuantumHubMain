@@ -1094,7 +1094,7 @@ for i,v in pairs(game.Workspace:GetChildren()) do
                 if string.find(v.Name,"Chest") then
                     if not v:FindFirstChild('NameEsp'..Number) then
                         local bill = Instance.new('BillboardGui',v)
-                        bill.Name = '[ NameEsp ]'..Number
+                        bill.Name = 'NameEsp'..Number
                         bill.ExtentsOffset = Vector3.new(0, 1, 0)
                         bill.Size = UDim2.new(1,200,1,30)
                         bill.Adornee = v
