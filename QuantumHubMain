@@ -177,6 +177,10 @@ Ping.Text = "Ping"
 Ping.TextColor3 = Color3.fromRGB(255, 255, 255)
 Ping.TextSize = 14.000
 Ping.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+function UpdateClient1()
+	local Ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+	Ping.Text = "[PING]: "..Ping
+	end
 
 Line.Name = "Line"
 Line.Parent = Load
