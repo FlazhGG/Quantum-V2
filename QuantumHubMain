@@ -1,3 +1,60 @@
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Window = Fluent:CreateWindow({
+  Title = "Quantum Hub : Blox Fruits",
+  SubTitle = "Free",
+  TabWidth = 160,
+  Size = UDim2.fromOffset(580, 410),
+  Acrylic = false,
+  Theme = "Dark",
+  MinimizeKey = Enum.KeyCode.LeftControl
+})
+local Info = Window:AddTab({Title = "Info", Icon = "crown"})
+local Main = Window:AddTab({Title = "Farm", Icon = "home"})
+local Settings = Window:AddTab({Title = "Settings", Icon = "settings"})
+
+local ScreenGui1 = Instance.new("ScreenGui")
+local ImageButton1 = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local UIStroke = Instance.new("UIStroke")
+local SoundClick = Instance.new("Sound")
+
+ScreenGui1.Name = "ImageButton"
+ScreenGui1.Parent = game.CoreGui
+ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+SoundClick.Name = "Sound Effect"
+SoundClick.Parent = ScreenGui1
+SoundClick.SoundId = "rbxassetid://130785805"
+SoundClick.Volume = 1
+
+ImageButton1.Parent = ScreenGui1
+ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 239, 5)
+ImageButton1.BorderSizePixel = 0
+ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+ImageButton1.Size = UDim2.new(0, 50, 0, 50)
+ImageButton1.Draggable = true
+ImageButton1.Image = "rbxassetid://17542158193"
+ImageButton1.MouseButton1Down:connect(function()
+    SoundClick:Play()
+    Fluent.Window:Minimize()
+end)
+UICorner.Parent = ImageButton1
+UIStroke.Color = Color3.fromRGB(232, 0, 2)
+UIStroke.Thickness = 1.5
+UIStroke.Parent = ImageButton1
+UIGradient.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 132, 255)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
+}
+UIGradient.Parent = UIStroke
+
+if game:GetService("CoreGui"):FindFirstChild("AppleHub") then
+    game:GetService("CoreGui"):FindFirstChild("AppleHub"):Destroy()
+end
+
 if game.PlaceId == 2753915549 then
     World1 = true
 elseif game.PlaceId == 4442272183 then
@@ -2103,69 +2160,8 @@ end)
    end
   end)
 
-
-local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-local Window = Fluent:CreateWindow({
-  Title = "Quantum Hub : Blox Fruits",
-  SubTitle = "Free",
-  TabWidth = 160,
-  Size = UDim2.fromOffset(580, 410),
-  Acrylic = false,
-  Theme = "Dark",
-  MinimizeKey = Enum.KeyCode.LeftControl
-})
-local Info = Window:AddTab({Title = "Info", Icon = "crown"})
-local Main = Window:AddTab({Title = "Farm", Icon = "home"})
-local Settings = Window:AddTab({Title = "Settings", Icon = "settings"})
-
-local ScreenGui1 = Instance.new("ScreenGui")
-local ImageButton1 = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
-local UIGradient = Instance.new("UIGradient")
-local UIStroke = Instance.new("UIStroke")
-local SoundClick = Instance.new("Sound")
-
-ScreenGui1.Name = "ImageButton"
-ScreenGui1.Parent = game.CoreGui
-ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-SoundClick.Name = "Sound Effect"
-SoundClick.Parent = ScreenGui1
-SoundClick.SoundId = "rbxassetid://130785805"
-SoundClick.Volume = 1
-
-ImageButton1.Parent = ScreenGui1
-ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 239, 5)
-ImageButton1.BorderSizePixel = 0
-ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
-ImageButton1.Size = UDim2.new(0, 50, 0, 50)
-ImageButton1.Draggable = true
-ImageButton1.Image = "rbxassetid://17542158193"
-ImageButton1.MouseButton1Down:connect(function()
-    SoundClick:Play()
-    Fluent.Window:Minimize()
-end)
-UICorner.Parent = ImageButton1
-UIStroke.Color = Color3.fromRGB(232, 0, 2)
-UIStroke.Thickness = 1.5
-UIStroke.Parent = ImageButton1
-UIGradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 132, 255)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
-}
-UIGradient.Parent = UIStroke
-
-if game:GetService("CoreGui"):FindFirstChild("AppleHub") then
-    game:GetService("CoreGui"):FindFirstChild("AppleHub"):Destroy()
-end
-
-
-
 ------//////////////////////////////////////////////////////////////////////////////---
 
-local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 local osfunc = Info:AddParagraph({ 
             Title = "[Time Zone]" ,
             Content = ""
