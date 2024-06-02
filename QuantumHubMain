@@ -651,6 +651,8 @@ function CheckQuest()
     end
 end
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/MaterialList"))()
+
 function Hop()
     local PlaceID = game.PlaceId
     local AllIDs = {}
@@ -3922,29 +3924,15 @@ Sub:AddSection("Materials")
 
 if World1 then
     MaterialList = {
-        "Magma Ore",
-        "Angel Wings",
-        "Farm Leather",
-        "Scrap Metal"
+      "Scrap Metal","Leather","Angel Wings","Magma Ore","Fish Tail"
     } elseif World2 then
     MaterialList = {
-        "Radioactive",
-        "Mystic Droplet",
-        "Magma Ore",
-        "Farm Leather",
-        "Scrap Metal"
-
- } elseif World3 then
+      "Scrap Metal","Leather","Radioactive Material","Mystic Droplet","Magma Ore","Vampire Fang"
+    } elseif World3 then
     MaterialList = {
-        "Farm Leather",
-        "Scrap Metal",
-        "Conjured Cocoa",
-        "Dragon Scale",
-        "Gunpowder",
-        "Fish Tail",
-        "Mini Tusk"
+      "Scrap Metal","Leather","Demonic Wisp","Conjured Cocoa","Dragon Scale","Gunpowder","Fish Tail","Mini Tusk"
     }
-end
+    end
 
 
 MaterialL = ""
@@ -3953,12 +3941,12 @@ local MaterialGetList = Sub:AddDropdown("MaterialGetList", {
     Description = "",
     Values = MaterialList,
     Multi = false,
-    Default = MaterialL,
+    Default = SelectMaterial,
 })
 
 MaterialGetList:SetValue("")
 MaterialGetList:OnChanged(function(pogi)
-    MaterialL = pogi
+    SelectMaterial = pogi
 end)
 
 local GetMaterial = Sub:AddToggle("GetMaterial", {
@@ -3966,202 +3954,51 @@ local GetMaterial = Sub:AddToggle("GetMaterial", {
     Description = "",
     Default = false,
     Callback = function(pogi)
-        _G.GetMaterials = pogi
+        _G.GetMaterial = pogi
         StopTween(_G.GetMaterials)
     end
 })
 
-if World2 then
-local MaterialsPos1 = CFrame.new(-507.7895202636719, 72.99479675292969, -126.45632934570312)
-    spawn(function()
-        while wait() do
-            if MaterialL == "Radioactive" and _G.GetMaterials and World2 then
-                pcall(function()
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Factory Staff") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == "Factory Staff" then
-                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait(_G.FastAttackDelay)
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.Head.CanCollide = false 
-                                        StartBring = true
-                                        PosMon = v.HumanoidRootPart.CFrame
-                                        MonFarm = v.Name
-                                        topos(v.HumanoidRootPart.CFrame * Pos)
-                                        AttackNoCD()
-                                    until not _G.GetMaterials or not v.Parent or v.Humanoid.Health <= 0
-                                    StartBring = false
-                                end
-                            end
-                        end
-                    else
-                    if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos1.Position).Magnitude > 1500 then
-			        BTP(MaterialsPos1)
-				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos1.Position).Magnitude < 1500 then
-				    topos(MaterialsPos1)
-					end
-				else
-				    topos(MaterialsPos1)
-				end
-				    UnEquipWeapon(_G.SelectWeapon)
-                    topos(CFrame.new(-507.7895202636719, 72.99479675292969, -126.45632934570312))
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Factory Staff") then
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Factory Staff").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                        end
-                    end
-                end)
-            end
-        end
-    end)
-end
-
-if World2 then
-local MaterialsPos2 = CFrame.new(-3352.9013671875, 285.01556396484375, -10534.841796875)
 spawn(function()
-        while wait() do
-            if MaterialL == "Mystic Droplet" and _G.GetMaterials and World2 then
-                pcall(function()
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Water Fighter") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == "Water Fighter" then
-                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait()
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.Head.CanCollide = false 
-                                        StartBring = true
-                                        PosMon = v.HumanoidRootPart.CFrame
-                                        MonFarm = v.Name
-                                        topos(v.HumanoidRootPart.CFrame * Pos)
-                                        game:GetService("VirtualUser"):CaptureController()
-                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
-                                    until not _G.GetMaterials or not v.Parent or v.Humanoid.Health <= 0
-                                    StartBring = false
-                                end
-                            end
-                        end
-                    else
-                    if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos2.Position).Magnitude > 1500 then
-			        BTP(MaterialsPos2)
-				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos2.Position).Magnitude < 1500 then
-				    topos(MaterialsPos2)
-					end
-				else
-				    topos(MaterialsPos2)
-				end
-				    UnEquipWeapon(_G.SelectWeapon)
-                    topos(CFrame.new(-3352.9013671875, 285.01556396484375, -10534.841796875))
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Water Fighter") then
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Water Fighter").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                        end
-                    end
-                end)
+    while task.wait() do
+    if _G.GetMaterial then
+    pcall(function()
+      MaterialMon(SelectMaterial)
+        getgenv().ToTargets(MPos)
+      if game:GetService("Workspace").Enemies:FindFirstChild(MMon) then
+      for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
+      if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+      if v.Name == MMon then
+        repeat wait(_G.Fast_Delay)
+                            AttackNoCD()
+                            AutoHaki()
+                            StartBring = true
+                            EquipTool(SelectWeapon)
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                            v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                            v.HumanoidRootPart.Transparency = 1
+                            v.Humanoid.JumpPower = 0
+                            v.Humanoid.WalkSpeed = 0
+                            v.HumanoidRootPart.CanCollide = false
+                        FarmPos = v.HumanoidRootPart.CFrame
+                        MonFarm = v.Name
+                        --Click
+                        until not _G.AutoMaterial or not v.Parent or v.Humanoid.Health <= 0
+                    StartBring = false
+                end
             end
         end
-    end)
-end
-
-if World1 or World2 then
-    local MaterialsPos3 = CFrame.new(-5850.2802734375, 77.28675079345703, 8848.6748046875)
-spawn(function()
-        while wait() do
-            if MaterialL == "Magma Ore" and _G.GetMaterials and World1 then
-                pcall(function()
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Military Spy") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == "Military Spy" then
-                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait()
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.Head.CanCollide = false 
-                                        StartBring = true
-                                        PosMon = v.HumanoidRootPart.CFrame
-                                        MonFarm = v.Name
-                                        topos(v.HumanoidRootPart.CFrame * Pos)
-                                        game:GetService("VirtualUser"):CaptureController()
-                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
-                                    until not MaterialList == "Magma Ore" or not v.Parent or v.Humanoid.Health <= 0
-                                    StartBring = false
-                                end
-                            end
-                        end
-                    else
-                    if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos3.Position).Magnitude > 1500 then
-			        BTP(MaterialsPos3)
-				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos3.Position).Magnitude < 1500 then
-				    topos(MaterialsPos3)
-					end
-				else
-				    topos(MaterialsPos3)
-				end
-				    UnEquipWeapon(_G.SelectWeapon)
-                    topos(CFrame.new(-5850.2802734375, 77.28675079345703, 8848.6748046875))
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Military Spy") then
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Military Spy").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                        end
-                    end
-                end)
+                else
+                    for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
+                        if string.find(v.Name, Mon) then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
+                    Tween(v.CFrame * CFrame.new(posX,posY,posZ))
+                end
             end
         end
-    end)
-
-   
-local MaterialsPos4 = CFrame.new(-5234.60595703125, 51.953372955322266, -4732.27880859375)
-spawn(function()
-        while wait() do
-            if MaterialL == "Magma Ore" and _G.GetMaterials and World2 then
-                pcall(function()
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == "Lava Pirate" then
-                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                    repeat task.wait()
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.Head.CanCollide = false 
-                                        StartBring = true
-                                        PosMon = v.HumanoidRootPart.CFrame
-                                        MonFarm = v.Name
-                                        topos(v.HumanoidRootPart.CFrame * Pos)
-                                        game:GetService("VirtualUser"):CaptureController()
-                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
-                                    until not _G.GetMaterials or not v.Parent or v.Humanoid.Health <= 0
-                                    StartBring = false
-                                end
-                            end
-                        end
-                    else
-                    if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos4.Position).Magnitude > 1500 then
-			        BTP(MaterialsPos4)
-				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos4.Position).Magnitude < 1500 then
-				    topos(MaterialsPos4)
-					end
-				else
-				    topos(MaterialsPos4)
-				end
-				    UnEquipWeapon(_G.SelectWeapon)
-                    topos(CFrame.new(-5234.60595703125, 51.953372955322266, -4732.27880859375))
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Lava Pirate") then
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Lava Pirate").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                        end
-                    end
-                end)
-            end
         end
-    end)
-end
+      end)
+    end
+    end
+  end)
 
