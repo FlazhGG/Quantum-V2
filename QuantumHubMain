@@ -3577,33 +3577,58 @@ end)
 
 
 
-local ChestEsp = Visual:AddToggle("ChestEsp", {
-    Title = "Esp Chest",
+local Sub = Window:AddTab({Title = "Sub Farm", Icon = "swords"})
+
+local ListFS = {
+    "Death Step",
+    "Sharkman Karate",
+    "Electric Claw",
+    "Dragon Talon",
+    "Super Human",
+    "God Human"
+}
+FightingStyle = ""
+local ListFightingStyle = Sub:AddDropdown("ListFightingStyle", {
+    Title = "Select Fighting Style",
+    Description = "",
+    Values = ListFS,
+    Multi = false,
+    Default = FightingStyle,
+})
+
+ListFightingStyle:SetValue("")
+ListFightingStyle:OnChanged(function(pogi)
+    FightingStyle = pogi
+end)
+
+local GetFightingStyle = Sub:AddToggle("GetFightingStyle", {
+    Title = "Get Fighting Style",
     Description = "",
     Default = false,
-    Callback = function(v)
-        ChestESP = v
-	UpdateChestChams() 
+    Callback = function(pogi)
+        _G.GetFS = pogi
     end
 })
 
 spawn(function()
-    while wait(2) do
-        if FlowerESP then
-            UpdateFlowerChams() 
-        end
-        if DevilFruitESP then
-            UpdateDevilChams() 
-        end
-        if ChestESP then
-            UpdateChestChams() 
-        end
-        if ESPPlayer then
-            UpdatePlayerChams()
-        end
-        if RealFruitESP then
-            UpdateRealFruitChams()
+    while wait() do wait()
+        if FightingStyle == "Death Step" and _G.GetFS then
+            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Black Leg") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Death Step") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Death Step") then
+                if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg") and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 450 then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
+                    _G.SelectWeapon = "Death Step"
+                end  
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Black Leg") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 450 then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
+                    _G.SelectWeapon = "Death Step"
+                end  
+                if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg") and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value <= 449 then
+                    _G.SelectWeapon = "Black Leg"
+                end 
+            else 
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
+            end
         end
     end
 end)
-----------------------------
+
