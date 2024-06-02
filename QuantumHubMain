@@ -1,28 +1,23 @@
---[[
-
-		Gui2Lua™
-		10zOfficial
-		Version 1.0.0
-
-]]
-
-
--- Instances
+-- Monstrum's Gui to Lua\n-- Version: 3.2
 _G.Start_Farm_Chest = true
 _G.SetupTeam = true
-
+-- Instances:
 
 local QuantumChest = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local Top = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local Title = Instance.new("TextLabel")
+local UIStroke = Instance.new("UIStroke")
 local UICorner_2 = Instance.new("UICorner")
+local UIStroke_2 = Instance.new("UIStroke")
 local Load = Instance.new("Frame")
+local UIStroke_3 = Instance.new("UIStroke")
 local UICorner_3 = Instance.new("UICorner")
 local LogoHolder = Instance.new("Frame")
 local Logo = Instance.new("ImageLabel")
 local UICorner_4 = Instance.new("UICorner")
+local UIStroke_4 = Instance.new("UIStroke")
 local UICorner_5 = Instance.new("UICorner")
 local ServerTime = Instance.new("TextLabel")
 local OSDate = Instance.new("TextLabel")
@@ -34,7 +29,7 @@ local UICorner_6 = Instance.new("UICorner")
 local On = Instance.new("TextButton")
 local UICorner_7 = Instance.new("UICorner")
 
--- Properties
+--Properties:
 
 QuantumChest.Name = "Quantum Chest"
 QuantumChest.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -43,8 +38,8 @@ QuantumChest.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Main.Name = "Main"
 Main.Parent = QuantumChest
 Main.AnchorPoint = Vector2.new(0.5, 0.5)
-Main.BackgroundColor3 = Color3.new(0.121569, 0.121569, 0.121569)
-Main.BorderColor3 = Color3.new(0, 0, 0)
+Main.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Main.BorderSizePixel = 0
 Main.ClipsDescendants = true
 Main.Position = UDim2.new(0.499529511, 0, 0.498737395, 0)
@@ -52,8 +47,8 @@ Main.Size = UDim2.new(0, 297, 0, 226)
 
 Top.Name = "Top"
 Top.Parent = Main
-Top.BackgroundColor3 = Color3.new(0.101961, 0.101961, 0.101961)
-Top.BorderColor3 = Color3.new(0, 0, 0)
+Top.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Top.BorderSizePixel = 0
 Top.Size = UDim2.new(0, 297, 0, 37)
 
@@ -61,35 +56,45 @@ UICorner.Parent = Top
 
 Title.Name = "Title"
 Title.Parent = Top
-Title.BackgroundColor3 = Color3.new(1, 1, 1)
-Title.BackgroundTransparency = 1
-Title.BorderColor3 = Color3.new(0, 0, 0)
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title.BorderSizePixel = 0
 Title.Position = UDim2.new(0.245791242, 0, 0.0540540554, 0)
 Title.Size = UDim2.new(0, 163, 0, 35)
 Title.Font = Enum.Font.Creepster
 Title.Text = "Quantum HUb"
-Title.TextColor3 = Color3.new(1, 1, 1)
-Title.TextSize = 32
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 32.000
+
+UIStroke.Parent = Top
 
 UICorner_2.Parent = Main
 
+UIStroke_2.Parent = Main
+UIStroke_2.Thickness = 3.000
+UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
 Load.Name = "Load"
 Load.Parent = Main
-Load.BackgroundColor3 = Color3.new(1, 1, 1)
-Load.BackgroundTransparency = 1
-Load.BorderColor3 = Color3.new(0, 0, 0)
+Load.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Load.BackgroundTransparency = 1.000
+Load.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Load.BorderSizePixel = 0
 Load.Position = UDim2.new(0.0422774293, 0, 0.235602051, 0)
 Load.Size = UDim2.new(0, 276, 0, 162)
+
+UIStroke_3.Parent = Load
+UIStroke_3.Color = Color3.fromRGB(255, 255, 255)
+UIStroke_3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 UICorner_3.Parent = Load
 
 LogoHolder.Name = "LogoHolder"
 LogoHolder.Parent = Load
-LogoHolder.BackgroundColor3 = Color3.new(1, 1, 1)
-LogoHolder.BackgroundTransparency = 1
-LogoHolder.BorderColor3 = Color3.new(0, 0, 0)
+LogoHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LogoHolder.BackgroundTransparency = 1.000
+LogoHolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
 LogoHolder.BorderSizePixel = 0
 LogoHolder.ClipsDescendants = true
 LogoHolder.Position = UDim2.new(0.0847457647, 0, 0.0933333337, 0)
@@ -97,93 +102,96 @@ LogoHolder.Size = UDim2.new(0, 38, 0, 36)
 
 Logo.Name = "Logo"
 Logo.Parent = LogoHolder
-Logo.BackgroundColor3 = Color3.new(1, 1, 1)
-Logo.BackgroundTransparency = 1
-Logo.BorderColor3 = Color3.new(0, 0, 0)
+Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Logo.BackgroundTransparency = 1.000
+Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Logo.BorderSizePixel = 0
 Logo.Size = UDim2.new(0, 38, 0, 35)
 Logo.Image = "rbxassetid://17542158193"
 
-UICorner_4.Parent = Logo
 UICorner_4.CornerRadius = UDim.new(0, 50)
+UICorner_4.Parent = Logo
 
-UICorner_5.Parent = LogoHolder
+UIStroke_4.Parent = LogoHolder
+UIStroke_4.Color = Color3.fromRGB(255, 255, 255)
+UIStroke_4.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
 UICorner_5.CornerRadius = UDim.new(0, 30)
+UICorner_5.Parent = LogoHolder
 
 ServerTime.Name = "Server Time"
 ServerTime.Parent = Load
-ServerTime.BackgroundColor3 = Color3.new(1, 1, 1)
-ServerTime.BackgroundTransparency = 1
-ServerTime.BorderColor3 = Color3.new(0, 0, 0)
+ServerTime.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ServerTime.BackgroundTransparency = 1.000
+ServerTime.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ServerTime.BorderSizePixel = 0
 ServerTime.Position = UDim2.new(0.457626998, 0, 0.0348148122, 0)
 ServerTime.Size = UDim2.new(0, 119, 0, 22)
 ServerTime.Font = Enum.Font.Ubuntu
 ServerTime.Text = "Server"
-ServerTime.TextColor3 = Color3.new(1, 1, 1)
-ServerTime.TextSize = 14
-ServerTime.TextStrokeColor3 = Color3.new(1, 1, 1)
+ServerTime.TextColor3 = Color3.fromRGB(255, 255, 255)
+ServerTime.TextSize = 14.000
+ServerTime.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 
 OSDate.Name = "OSDate"
 OSDate.Parent = Load
-OSDate.BackgroundColor3 = Color3.new(1, 1, 1)
-OSDate.BackgroundTransparency = 1
-OSDate.BorderColor3 = Color3.new(0, 0, 0)
+OSDate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OSDate.BackgroundTransparency = 1.000
+OSDate.BorderColor3 = Color3.fromRGB(0, 0, 0)
 OSDate.BorderSizePixel = 0
 OSDate.Position = UDim2.new(0.27462548, 0, 0.213333324, 0)
 OSDate.Size = UDim2.new(0, 108, 0, 17)
 OSDate.Font = Enum.Font.Ubuntu
 OSDate.Text = "OS Date"
-OSDate.TextColor3 = Color3.new(1, 1, 1)
-OSDate.TextSize = 14
-OSDate.TextStrokeColor3 = Color3.new(1, 1, 1)
+OSDate.TextColor3 = Color3.fromRGB(255, 255, 255)
+OSDate.TextSize = 14.000
+OSDate.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 
 Ping.Name = "Ping"
 Ping.Parent = Load
-Ping.BackgroundColor3 = Color3.new(1, 1, 1)
-Ping.BackgroundTransparency = 1
-Ping.BorderColor3 = Color3.new(0, 0, 0)
+Ping.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Ping.BackgroundTransparency = 1.000
+Ping.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Ping.BorderSizePixel = 0
 Ping.Position = UDim2.new(0.764308572, 0, 0.213333324, 0)
 Ping.Size = UDim2.new(0, 58, 0, 24)
 Ping.Font = Enum.Font.Ubuntu
 Ping.Text = "Ping"
-Ping.TextColor3 = Color3.new(1, 1, 1)
-Ping.TextSize = 14
-Ping.TextStrokeColor3 = Color3.new(1, 1, 1)
+Ping.TextColor3 = Color3.fromRGB(255, 255, 255)
+Ping.TextSize = 14.000
+Ping.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 
 Line.Name = "Line"
 Line.Parent = Load
-Line.BackgroundColor3 = Color3.new(1, 1, 1)
-Line.BorderColor3 = Color3.new(0, 0, 0)
+Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Line.BorderSizePixel = 0
 Line.Position = UDim2.new(0, 0, 0.406666696, 0)
 Line.Size = UDim2.new(0, 275, 0, 3)
 
 ChestLeft.Name = "Chest Left"
 ChestLeft.Parent = Load
-ChestLeft.BackgroundColor3 = Color3.new(1, 1, 1)
-ChestLeft.BackgroundTransparency = 1
-ChestLeft.BorderColor3 = Color3.new(0, 0, 0)
+ChestLeft.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ChestLeft.BackgroundTransparency = 1.000
+ChestLeft.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ChestLeft.BorderSizePixel = 0
 ChestLeft.Position = UDim2.new(0.250794351, 0, 0.471473962, 0)
 ChestLeft.Size = UDim2.new(0, 138, 0, 20)
 ChestLeft.Font = Enum.Font.Michroma
-ChestLeft.TextColor3 = Color3.new(0.156863, 0.972549, 0.85098)
-ChestLeft.TextSize = 14
+ChestLeft.TextColor3 = Color3.fromRGB(40, 248, 217)
+ChestLeft.TextSize = 14.000
 
 off.Name = "off"
 off.Parent = Load
-off.BackgroundColor3 = Color3.new(1, 0, 0)
-off.BorderColor3 = Color3.new(0, 0, 0)
+off.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+off.BorderColor3 = Color3.fromRGB(0, 0, 0)
 off.BorderSizePixel = 0
 off.Position = UDim2.new(0.219782516, 0, 0.633333206, 0)
 off.Size = UDim2.new(0, 39, 0, 38)
 off.Font = Enum.Font.SourceSans
 off.Text = ""
-off.TextColor3 = Color3.new(0, 0, 0)
-off.TextSize = 14
-
+off.TextColor3 = Color3.fromRGB(0, 0, 0)
+off.TextSize = 14.000
 off.MouseButton1Down:Connect(function()
     _G.Start_Farm_Chest = false
     _G.SetupTeam = false
@@ -191,25 +199,24 @@ end)
 
 UICorner_6.Parent = off
 
+
 On.Name = "On"
 On.Parent = Load
-On.BackgroundColor3 = Color3.new(0.14902, 1, 0)
-On.BorderColor3 = Color3.new(0, 0, 0)
+On.BackgroundColor3 = Color3.fromRGB(38, 255, 0)
+On.BorderColor3 = Color3.fromRGB(0, 0, 0)
 On.BorderSizePixel = 0
 On.Position = UDim2.new(0.620052814, 0, 0.633333206, 0)
 On.Size = UDim2.new(0, 39, 0, 38)
 On.Font = Enum.Font.SourceSans
 On.Text = ""
-On.TextColor3 = Color3.new(0, 0, 0)
-On.TextSize = 14
-
-UICorner_7.Parent = On
-
+On.TextColor3 = Color3.fromRGB(0, 0, 0)
+On.TextSize = 14.000
 On.MouseButton1Down:Connect(function()
     _G.Start_Farm_Chest = true
     _G.SetupTeam = true
 end)
 
+UICorner_7.Parent = On
 
 game:GetService("Players").LocalPlayer.Idled:connect(function()
     game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
