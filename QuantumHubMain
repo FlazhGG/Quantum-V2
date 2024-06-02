@@ -3974,7 +3974,7 @@ local GetMaterial = Sub:AddToggle("GetMaterial", {
 local MaterialsPos1 = CFrame.new(-507.7895202636719, 72.99479675292969, -126.45632934570312)
     spawn(function()
         while wait() do
-            if MaterialList == "Radioactive" and _G.GetMaterials and World2 then
+            if MaterialList == "Radioactive" and _G.GetMaterials then
                 pcall(function()
                     if game:GetService("Workspace").Enemies:FindFirstChild("Factory Staff") then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -3991,7 +3991,7 @@ local MaterialsPos1 = CFrame.new(-507.7895202636719, 72.99479675292969, -126.456
                                         MonFarm = v.Name
                                         topos(v.HumanoidRootPart.CFrame * Pos)
                                         AttackNoCD()
-                                    until not MaterialList == "Radioactive" or not v.Parent or v.Humanoid.Health <= 0
+                                    until not _G.GetMaterials or not v.Parent or v.Humanoid.Health <= 0
                                     StartBring = false
                                 end
                             end
@@ -4020,7 +4020,7 @@ local MaterialsPos1 = CFrame.new(-507.7895202636719, 72.99479675292969, -126.456
 local MaterialsPos2 = CFrame.new(-3352.9013671875, 285.01556396484375, -10534.841796875)
 spawn(function()
         while wait() do
-            if MaterialList == "Mystic Droplet" and _G.GetMaterials and World2 then
+            if MaterialList == "Mystic Droplet" and _G.GetMaterials then
                 pcall(function()
                     if game:GetService("Workspace").Enemies:FindFirstChild("Water Fighter") then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -4038,7 +4038,7 @@ spawn(function()
                                         topos(v.HumanoidRootPart.CFrame * Pos)
                                         game:GetService("VirtualUser"):CaptureController()
                                         game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
-                                    until not MaterialList == "Mystic Droplet" or not v.Parent or v.Humanoid.Health <= 0
+                                    until not _G.GetMaterials or not v.Parent or v.Humanoid.Health <= 0
                                     StartBring = false
                                 end
                             end
@@ -4057,6 +4057,101 @@ spawn(function()
                     topos(CFrame.new(-3352.9013671875, 285.01556396484375, -10534.841796875))
                         if game:GetService("ReplicatedStorage"):FindFirstChild("Water Fighter") then
                             topos(game:GetService("ReplicatedStorage"):FindFirstChild("Water Fighter").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
+    local MaterialsPos3 = CFrame.new(-5850.2802734375, 77.28675079345703, 8848.6748046875)
+spawn(function()
+        while wait() do
+            if MaterialList == "Magma Ore" and _G.GetMaterials and World1 then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Military Spy") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == "Military Spy" then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.Head.CanCollide = false 
+                                        StartBring = true
+                                        PosMon = v.HumanoidRootPart.CFrame
+                                        MonFarm = v.Name
+                                        topos(v.HumanoidRootPart.CFrame * Pos)
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                    until not MaterialList == "Magma Ore" or not v.Parent or v.Humanoid.Health <= 0
+                                    StartBring = false
+                                end
+                            end
+                        end
+                    else
+                    if BypassTP then
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos3.Position).Magnitude > 1500 then
+			        BTP(MaterialsPos3)
+				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos3.Position).Magnitude < 1500 then
+				    topos(MaterialsPos3)
+					end
+				else
+				    topos(MaterialsPos3)
+				end
+				    UnEquipWeapon(_G.SelectWeapon)
+                    topos(CFrame.new(-5850.2802734375, 77.28675079345703, 8848.6748046875))
+                        if game:GetService("ReplicatedStorage"):FindFirstChild("Military Spy") then
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Military Spy").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
+   
+local MaterialsPos4 = CFrame.new(-5234.60595703125, 51.953372955322266, -4732.27880859375)
+spawn(function()
+        while wait() do
+            if MaterialList == "Magma Ore" and _G.GetMaterials and World2 then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == "Lava Pirate" then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.Head.CanCollide = false 
+                                        StartBring = true
+                                        PosMon = v.HumanoidRootPart.CFrame
+                                        MonFarm = v.Name
+                                        topos(v.HumanoidRootPart.CFrame * Pos)
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                    until not _G.GetMaterials or not v.Parent or v.Humanoid.Health <= 0
+                                    StartBring = false
+                                end
+                            end
+                        end
+                    else
+                    if BypassTP then
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos4.Position).Magnitude > 1500 then
+			        BTP(MaterialsPos4)
+				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - MaterialsPos4.Position).Magnitude < 1500 then
+				    topos(MaterialsPos4)
+					end
+				else
+				    topos(MaterialsPos4)
+				end
+				    UnEquipWeapon(_G.SelectWeapon)
+                    topos(CFrame.new(-5234.60595703125, 51.953372955322266, -4732.27880859375))
+                        if game:GetService("ReplicatedStorage"):FindFirstChild("Lava Pirate") then
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Lava Pirate").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         end
                     end
                 end)
