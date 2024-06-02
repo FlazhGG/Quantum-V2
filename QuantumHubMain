@@ -1094,7 +1094,7 @@ for i,v in pairs(game.Workspace:GetChildren()) do
                 if string.find(v.Name,"Chest") then
                     if not v:FindFirstChild('NameEsp'..Number) then
                         local bill = Instance.new('BillboardGui',v)
-                        bill.Name = 'NameEsp'..Number
+                        bill.Name = '[ NameEsp ]'..Number
                         bill.ExtentsOffset = Vector3.new(0, 1, 0)
                         bill.Size = UDim2.new(1,200,1,30)
                         bill.Adornee = v
@@ -1109,7 +1109,7 @@ for i,v in pairs(game.Workspace:GetChildren()) do
                         name.TextStrokeTransparency = 0.5
                         if v.Name == "Chest1" then
                             name.TextColor3 = Color3.fromRGB(109, 109, 109)
-                            name.Text = ("[ Chest 1]" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' Distance')
+                            name.Text = ("[ Chest 1 ]" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' Distance')
                         end
                         if v.Name == "Chest2" then
                             name.TextColor3 = Color3.fromRGB(173, 158, 21)
