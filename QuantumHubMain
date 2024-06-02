@@ -2778,6 +2778,24 @@ spawn(function()
 end)
 
 Main:AddSection("Dough Boss")
+
+local MobKilled = Main:AddParagraph({Title = "Defeat:", Content = ""})
+spawn(function()
+    while wait() do
+        pcall(function()
+            if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
+                MobKilled:SetTitle("Defeat: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41))
+            elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
+                MobKilled:SetTitle("Defeat: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40))
+            elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
+                MobKilled:SetTitle("Defeat: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39))
+            else
+                MobKilled:SetTitle("Boss Is Spawning")
+            end
+        end)
+    end
+end)
+
 local ListC = {"NoQuest", "AcceptQuest", "MasteryFruit"}
 CakeFMode = "NoQuest"
 
