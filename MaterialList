@@ -3980,7 +3980,7 @@ spawn(function()
                             v.Humanoid.JumpPower = 0
                             v.Humanoid.WalkSpeed = 0
                             v.HumanoidRootPart.CanCollide = false
-                            FarmPos = v.HumanoidRootPart.CFrame
+                            PosMon = v.HumanoidRootPart.CFrame
                             MonFarm = v.Name
                         --Click
                         until not _G.GetMaterial or not v.Parent or v.Humanoid.Health <= 0
