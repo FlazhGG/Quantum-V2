@@ -2113,7 +2113,7 @@ local Window = Fluent:CreateWindow({
   TabWidth = 160,
   Size = UDim2.fromOffset(580, 410),
   Acrylic = false,
-  Theme = "Aqua",
+  Theme = "Dark",
   MinimizeKey = Enum.KeyCode.LeftControl
 })
 local Info = Window:AddTab({Title = "Info", Icon = "crown"})
