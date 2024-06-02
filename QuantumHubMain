@@ -2379,6 +2379,358 @@ spawn(function()
         end
     end)
 
+
+    
+    
+    Set:Seperator("Settings")
+
+    Set:Toggle("Spin Position", true, "Spin Position When Farm", function(v)
+        _G.SpinPos = v
+    end)
+    
+    PosY = 35
+    Set:Slider("Farm Distnace",0,50,PosY,function(value)
+    PosY = value
+    end)
+
+    TweenSpeed = 150
+    Set:Slider("Player Tween Speed",0,350,TweenSpeed,function(value)
+        TweenSpeed = value
+    end)
+    
+Set:Toggle("Bring Mob",true,false,function(Mag)
+    _G.BringMonster = Mag
+end)
+    
+local Bring = {"Low", "Normal", "High"}
+_G.BringMode = "Normal"
+Set:Dropdown("BringMob Mode", Bring,_G.BringMode,function(value)
+    _G.BringMode = value
+end)
+spawn(function()
+    while wait(.1) do
+        if _G.BringMode then
+            pcall(function()
+                if _G.BringMode == "Low" then
+                    _G.BringMode = 350
+                elseif _G.BringMode == "Normal" then
+                    _G.BringMode = 500
+                elseif _G.BringMode == "High" then
+                    _G.BringMode = 800
+                end
+            end)
+        end
+    end
+end)
+    
+
+    Set:Toggle("Fast Attack",true,"Fast Attack",function(value)
+        _G.FastAttack = value
+    end)   
+
+    Set:Toggle("Attack Aura",true,"Attack Mob",function(value)
+        _G.AttackMob = value
+    end)
+
+    spawn(function()
+        while wait(_G.FastAttackDelay) do
+            if _G.AttackMob and not _G.AutoFarmFruitMastery and not _G.AutoFarmGunMastery then
+                pcall(function()
+                    AttackNoCD()
+                end)
+            end
+        end
+    end)
+    
+
+local PBlade = game.Players.LocalPlayer
+local QBlade = getupvalues(require(PBlade.PlayerScripts.CombatFramework))
+local RBlade = QBlade[2]
+function GetCurrentBlade()
+    local S = RBlade.activeController
+    local T = S.blades[1]
+    if not T then
+        return
+    end
+    while T.Parent ~= game.Players.LocalPlayer.Character do
+        T = T.Parent
+    end
+    return T
+end
+
+function AttackNoCD()
+    if not _G.AutoFarmFruitMastery or not _G.AutoFarmGunMastery then
+        if _G.FastAttack then
+            local U = RBlade.activeController
+            for h = 1, 1 do
+                local V =
+                    require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
+                    PBlade.Character,
+                    {PBlade.Character.HumanoidRootPart},
+                    60
+                )
+                local W = {}
+                local X = {}
+                for k, i in pairs(V) do
+                    if i.Parent:FindFirstChild("HumanoidRootPart") and not X[i.Parent] then
+                        table.insert(W, i.Parent.HumanoidRootPart)
+                        X[i.Parent] = true
+                    end
+                end
+                V = W
+                if #V > 0 then
+                    local Y = debug.getupvalue(U.attack, 5)
+                    local Z = debug.getupvalue(U.attack, 6)
+                    local _ = debug.getupvalue(U.attack, 4)
+                    local a0 = debug.getupvalue(U.attack, 7)
+                    local a1 = (Y * 798405 + _ * 727595) % Z
+                    local a2 = _ * 798405
+                    (function()
+                        a1 = (a1 * Z + a2) % 1099511627776
+                        Y = math.floor(a1 / Z)
+                        _ = a1 - Y * Z
+                    end)()
+                    a0 = a0 + 1
+                    debug.setupvalue(U.attack, 5, Y)
+                    debug.setupvalue(U.attack, 6, Z)
+                    debug.setupvalue(U.attack, 4, _)
+                    debug.setupvalue(U.attack, 7, a0)
+                    pcall(
+                        function()
+                            if PBlade.Character:FindFirstChildOfClass("Tool") and U.blades and U.blades[1] then
+                                U.animator.anims.basic[1]:Play(0.01, 0.01, 0.01)
+                                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer(
+                                    "weaponChange",
+                                    tostring(GetCurrentBlade())
+                                )
+                                game.ReplicatedStorage.Remotes.Validator:FireServer(
+                                    math.floor(a1 / 1099511627776 * 16777215),
+                                    a0
+                                )
+                                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", V, h, "")
+                            end
+                        end
+                    )
+                end
+            end
+        else
+            game:GetService'VirtualUser':CaptureController()
+            game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+        end
+    end
+end
+
+local AttackList = {0, 0.100, 0.150, 0.165, 0.175, 0.200, 0.250}
+_G.FastAttackDelay = 0.200
+Set:Dropdown("Fast Attack Delay", AttackList,_G.FastAttackDelay,function(v)
+    _G.FastAttackDelay = v
+end)
+
+    
+Set:Seperator("Graphic") 
+
+Set:Toggle("Hide Notifications",false,"Invisible Notification",function(v)
+_G.HideNotification = v
+end)
+
+spawn(function()
+	while wait() do
+		if _G.HideNotification then
+			game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = false
+		else
+			game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = true
+		end
+	end
+end)
+
+
+
+
+Set:Toggle("Hide Damage Text",true, "Invisible Damage Text",function(Remo)
+_G.KobenHeegeen = Remo
+end)
+
+spawn(function()
+	while wait() do
+		if _G.KobenHeegeen then
+			game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
+		else
+			game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
+		end
+	end
+end)
+
+
+Set:Toggle("Black Screen",false,false,function(Umm)
+_G.StartBlackScreen = Umm
+end)
+
+spawn(function()
+	while wait() do
+		if _G.StartBlackScreen then
+			game:GetService("Players").LocalPlayer.PlayerGui.Main.Blackscreen.Size = UDim2.new(500, 0, 500, 500)
+		else
+			game:GetService("Players").LocalPlayer.PlayerGui.Main.Blackscreen.Size = UDim2.new(1, 0, 500, 500)
+		end
+	end
+end)
+   
+    
+ Set:Toggle("White Screen",_G.WhiteScreen,false,function(value)
+    _G.WhiteScreen = value
+if _G.WhiteScreen == true then
+    game:GetService("RunService"):Set3dRenderingEnabled(false)
+elseif _G.WhiteScreen == false then
+    game:GetService("RunService"):Set3dRenderingEnabled(true)
+end
+end)
+
+ spawn(function()
+     for i, v in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
+         if v.Name == "Death" or v.Name == "Spawn" then
+             v:Destroy()
+         end
+     end
+     end)
+
+spawn(function()
+    for i, v in pairs(game:GetDescendants()) do
+        if v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Lifetime = NumberRange.new(0)
+        elseif v:IsA("Explosion") then
+            v.BlastPressure = 1
+            v.BlastRadius = 1
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+            v.Enabled = false
+        end
+    end
+end)
+
+    Set:Toggle("Hide Monsters",_G.inv,"Invisible Monstera",function(value)
+    _G.inv = value
+    
+         while wait() do
+             if _G.inv then
+             pcall(function()
+     for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+         if v.ClassName == "MeshPart" then
+             v.Transparency = 1
+     end
+     end
+     for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+         if v.Name == "Head" then
+         v.Transparency = 1
+     end
+     end
+         for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+             if v.ClassName == "Accessory" then
+                 v.Handle.Transparency = 1
+             end
+         end
+         for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+             if v.ClassName == "Decal" then
+             v.Transparency = 1
+              end
+            end
+          end)
+        end
+      end
+    end)
+    
+
+    Set:Seperator("Mastery Setting")
+    
+    _G.Kill_At = 25
+
+    Set:Slider("Kill At %",1,100,_G.Kill_At,function(value)
+        _G.Kill_At = value
+    end)
+    
+ 
+    Set:Toggle("Skill Z",true,"Auto Skill Z",function(value)
+        _G.SkillZ = value
+    end)
+ 
+    
+    Set:Toggle("Skill X",true,"Auto Skill X",function(value)
+        _G.SkillX = value
+    end)
+    
+    Set:Toggle("Skill C",true,"Auto Skill C",function(value)
+        _G.SkillC = value
+    end)
+    
+     Set:Toggle("Skill V",false,"Auto Skill V",function(value)
+        _G.SkillV = value
+    end)
+    
+    Set:Toggle("Skill F",false,"Auto Skill F",function(value)
+       _G.SkillF = value
+    end)
+   
+    Set:Seperator("Other") 
+   
+    Set:Toggle("Bypass Tp",false,"Safe Teleport",function(Fast)
+    BypassTP = Fast
+    end)
+
+    Set:Toggle("Auto Set Spawn Point",true,"Set Spawn Point",function(value)
+    _G.Set = value
+    end)
+
+spawn(function()
+    while wait(.1) do
+        if _G.Set then
+            pcall(function()
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+            end)
+        end
+    end
+end)
+
+Set:Toggle("Auto Haki",false, "Auto Active Buso",function(value)
+_G.AutoHaki = value
+end)
+spawn(function()
+    while wait(.1) do
+        if _G.AutoHaki then 
+            if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+                local args = {
+                    [1] = "Buso"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
+
+
+Set:Toggle("Bypass Anti Cheat", true, "Reset Flags", function(x)
+_G.ResetFlags = x
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+if _G.ResetFlags then
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
+                v:Destroy()
+            end
+        end
+     end
+     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "RobloxMotor6DBugFix" or v.Name == "Clans"  or v.Name == "Codes" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
+                v:Destroy()
+            end
+        end
+     end
+    end
+end)
+end
+end)
     
     Sea:Seperator("Sea")
 
