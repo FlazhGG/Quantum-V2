@@ -3955,7 +3955,7 @@ local GetMaterial = Sub:AddToggle("GetMaterial", {
     Default = false,
     Callback = function(pogi)
         _G.GetMaterial = pogi
-        StopTween(_G.GetMaterials)
+        StopTween(_G.GetMaterial)
     end
 })
 
@@ -3969,7 +3969,7 @@ spawn(function()
       for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
       if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
       if v.Name == MMon then
-        repeat wait(_G.Fast_Delay)
+        repeat task.wait(_G.FastAttackDelay)
                             AttackNoCD()
                             AutoHaki()
                             StartBring = true
