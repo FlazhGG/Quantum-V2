@@ -3971,11 +3971,11 @@ local GetMaterial = Sub:AddToggle("GetMaterial", {
     end
 })
 
-
+if World2 then
 local MaterialsPos1 = CFrame.new(-507.7895202636719, 72.99479675292969, -126.45632934570312)
     spawn(function()
         while wait() do
-            if MaterialL == "Radioactive" and _G.GetMaterials then
+            if MaterialL == "Radioactive" and _G.GetMaterials and World2 then
                 pcall(function()
                     if game:GetService("Workspace").Enemies:FindFirstChild("Factory Staff") then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -4017,11 +4017,13 @@ local MaterialsPos1 = CFrame.new(-507.7895202636719, 72.99479675292969, -126.456
             end
         end
     end)
+end
 
+if World2 then
 local MaterialsPos2 = CFrame.new(-3352.9013671875, 285.01556396484375, -10534.841796875)
 spawn(function()
         while wait() do
-            if MaterialL == "Mystic Droplet" and _G.GetMaterials then
+            if MaterialL == "Mystic Droplet" and _G.GetMaterials and World2 then
                 pcall(function()
                     if game:GetService("Workspace").Enemies:FindFirstChild("Water Fighter") then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -4064,7 +4066,9 @@ spawn(function()
             end
         end
     end)
+end
 
+if World1 or World2 then
     local MaterialsPos3 = CFrame.new(-5850.2802734375, 77.28675079345703, 8848.6748046875)
 spawn(function()
         while wait() do
@@ -4159,5 +4163,5 @@ spawn(function()
             end
         end
     end)
-
+end
 
