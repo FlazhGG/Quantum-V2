@@ -355,7 +355,7 @@ local Themes = {
 		AcrylicGradient = ColorSequence.new(Color3.fromRGB(40, 40, 40), Color3.fromRGB(40, 40, 40)),
 		AcrylicNoise = 0.9,
 
-		TitleBarLine = Color3.fromRGB(75, 75, 75),
+		TitleBarLine = Color3.fromRGB(85, 6, 255),
 		Tab = Color3.fromRGB(160, 140, 180),
 
 		Element = Color3.fromRGB(120, 120, 120),
@@ -389,7 +389,7 @@ local Themes = {
 		DialogInputLine = Color3.fromRGB(160, 160, 160),
 
 		Text = Color3.fromRGB(240, 240, 240),
-		SubText = Color3.fromRGB(50, 31, 255),
+		SubText = Color3.fromRGB(112, 255, 245),
 		Hover = Color3.fromRGB(120, 120, 120),
 		HoverChange = 0.07,
 	}
