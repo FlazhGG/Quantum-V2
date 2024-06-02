@@ -1120,12 +1120,12 @@ for i,v in pairs(game.Workspace:GetChildren()) do
                             name.Text = ("[ Chest 3 ]" ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' Distance')
                         end
                     else
-                        v['[ NameEsp ]'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' Distance')
+                        v['NameEsp'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Position).Magnitude/3) ..' Distance')
                     end
                 end
             else
-                if v:FindFirstChild('[ NameEsp ]'..Number) then
-                    v:FindFirstChild('[ NameEsp ]'..Number):Destroy()
+                if v:FindFirstChild('NameEsp'..Number) then
+                    v:FindFirstChild('NameEsp'..Number):Destroy()
                 end
             end
         end
@@ -3097,19 +3097,6 @@ local FarmDistance = Settings:AddSlider("FarmDistance", {
   Rounding = 1,
   Callback = function(value)
     PosY = value
-  end
-})
-
-TweenSpeed = 150
-local TweenSpeed = Settings:AddSlider("TweenSpeed", {
-  Title = "Tween Speed",
-  Description = "",
-  Default = TweenSpeed,
-  Min = 0,
-  Max = 350,
-  Rounding = 1,
-  Callback = function(value)
-    TweenSpeed = value
   end
 })
 
