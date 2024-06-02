@@ -3921,23 +3921,21 @@ end)
 Sub:AddSection("Materials")
 
 if World1 then
-    local MaterialList = {
+    MaterialList = {
         "Magma Ore",
         "Angel Wings",
         "Farm Leather",
         "Scrap Metal"
-    }
-elseif World2 then
-    local MaterialList = {
+    } elseif World2 then
+    MaterialList = {
         "Radioactive",
         "Mystic Droplet",
         "Magma Ore",
         "Farm Leather",
         "Scrap Metal"
 
- }
-elseif World3 then
-    local MaterialList = {
+ } elseif World3 then
+    MaterialList = {
         "Farm Leather",
         "Scrap Metal",
         "Conjured Cocoa",
@@ -3945,9 +3943,10 @@ elseif World3 then
         "Gunpowder",
         "Fish Tail",
         "Mini Tusk"
-
     }
 end
+
+
 MaterialL = ""
 local MaterialGetList = Sub:AddDropdown("MaterialGetList", {
     Title = "Select Material",
@@ -4065,4 +4064,4 @@ spawn(function()
         end
     end)
 
-    
+
