@@ -2592,7 +2592,7 @@ local MFarm = Main:AddTab("Main Farm")
 local Farm = MFarm:AddPage("Farm Level")
 local WeaponList = {"Melee","Sword","Fruit"}
 _G.SelectWeapon = "Melee"
-local SelectW = Farm:AddDropdown("DropDown",WeaponList,_G.SelectWeapon,function (v)
+local SelectW = Farm:AddDropdown("Select Weapon",WeaponList,_G.SelectWeapon,function (v)
 	_G.SelectWeapon = v
 end)
 task.spawn(function()
@@ -2637,6 +2637,6 @@ task.spawn(function()
 
 	local ListF = {"Normal", "Auto Quest", "Nearest"}
 FarmMode = "Normal"
-	local SelectFarm = Farm:AddDropdown("DropDown",ListF,FarmMode, function(v)
+	local SelectFarm = Farm:AddDropdown("Select Farm",ListF,FarmMode, function(v)
 		FarmMode = v
 	end)
