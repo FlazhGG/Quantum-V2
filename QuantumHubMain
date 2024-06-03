@@ -23,7 +23,6 @@ local Username = Instance.new("TextLabel")
 local Server = Instance.new("TextLabel")
 local Os = Instance.new("TextLabel")
 local Ping = Instance.new("TextLabel")
-local FPS = Instance.new("TextLabel")
 local Line = Instance.new("Frame")
 local MainScript = Instance.new("Frame")
 local ChestLeft = Instance.new("TextLabel")
@@ -210,19 +209,6 @@ local RunService = game:GetService("RunService")
 RunService.RenderStepped:Connect(function(ping) 
 Ping.Parent.Text = ("[Ping] : " ..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(math.round(2/ping)))
 end)
-
-FPS.Name = "FPS"
-FPS.Parent = Load
-FPS.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-FPS.BackgroundTransparency = 1.000
-FPS.BorderColor3 = Color3.fromRGB(0, 0, 0)
-FPS.BorderSizePixel = 0
-FPS.Position = UDim2.new(0.339412868, 0, 0.327908427, 0)
-FPS.Size = UDim2.new(0, 104, 0, 9)
-FPS.Font = Enum.Font.SourceSans
-FPS.TextColor3 = Color3.fromRGB(255, 255, 255)
-FPS.TextSize = 14.000
-FPS.TextXAlignment = Enum.TextXAlignment.Left
 
 Line.Name = "Line"
 Line.Parent = Load
