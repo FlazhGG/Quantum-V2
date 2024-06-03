@@ -226,6 +226,107 @@ local ListB = {"No Quest", "Quest", "MasteryFruit"}
       end
     })
 
+    local AutoRandomSurprise = Main:AddToggle("AutoRandomSurprise", {
+      Title = "Auto Random Surprise",
+      Description = "",
+      Default = false,
+      Callback = function()
+      
+      end
+    })
+    
+
+  local AutoPray = Main:AddToggle("AutoPray", {
+    Title = "Auto Pray",
+    Description = "",
+    Default = false,
+    Callback = function()
+        
+    end
+  })
+  
+
+
+local AutoTryLuck = Main:AddToggle("AutoTryLuck", {
+    Title = "Auto Try Luck",
+    Description = "",
+    Default = false,
+    Callback = function()
+        
+    end
+})
+
+Main:AddSection("Dough Boss")
+
+local MobKilled = Main:AddParagraph({Title = "Defeat:", Content = ""})
+spawn(function()
+    while wait() do
+        pcall(function()
+            if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
+                MobKilled:SetTitle("Defeat: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41))
+            elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
+                MobKilled:SetTitle("Defeat: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40))
+            elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
+                MobKilled:SetTitle("Defeat: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39))
+            else
+                MobKilled:SetTitle("Boss Is Spawning")
+            end
+        end)
+    end
+end)
+
+local ListC = {"NoQuest", "AcceptQuest", "MasteryFruit"}
+CakeFMode = "NoQuest"
+
+local DoughSelect = Main:AddDropdown("DoughSelect", {
+  Title = "Select Dough Farm Mode",
+  Description = "",
+  Values = ListC,
+  Multi = false,
+  Default = CakeFMode,
+})
+
+DoughSelect:SetValue(CakeFMode)
+DoughSelect:OnChanged(function(value)
+  CakeFMode = value
+end)
+
+local AutoCakePrince = Main:AddToggle("AutoCakePrince", {
+  Title = "Auto Farm Cake",
+  Description = "",
+  Default = false,
+  Callback = function()
+    
+  end
+})
+
+local AutoSpawnCake = Main:AddToggle("AutoSpawnCake", {
+  Title = "Spawn Cake Prince",
+  Description = "",
+  Default = true,
+  Callback = function()
+    
+  end
+})
+
+local AutoDoughtBoss = Main:AddToggle("AutoDoughBoss", {
+  Title = "Auto Dough Boss",
+  Description = "",
+  Default = false,
+  Callback = function()
+      
+  end
+})
+
+local AutoDoughBossHop = Main:AddToggle("AutoDoughBossHop", {
+  Title = "Auto Dough Hop",
+  Description = "",
+  Default = false,
+  Callback = function()
+      
+  end
+})
+
 
 Fluent:Notify({
   Title = "Quantum Hub",
