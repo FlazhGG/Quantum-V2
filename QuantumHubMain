@@ -83,7 +83,108 @@ local discord = Info:AddButton({
   end
 })
 
-local Main = Window:AddTab({Title = "", Icon = "home"})
+local Main = Window:AddTab({Title = "Main", Icon = "home"})
+
+Main:AddSection("Farm Level")
+
+local WeaponList = {"Melee","Sword","Fruit","Gun"}
+_G.SelectWeapon = "Melee"
+local WeaponList = Main:AddDropdown("WeaponList", {
+  Title = "Select Weapon",
+  Description = "",
+  Values = WeaponList,
+  Multi = false,
+  Default = _G.SelectWeapon,
+})
+
+WeaponList:SetValue(_G.SelectWeapon)
+WeaponList:OnChanged(function(value)
+  _G.SelectWeapon = value
+end)
+
+task.spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.SelectWeapon == "Melee" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Sword" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Gun" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Gun" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Fruit" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
+    end)
+
+
+    local ListF = {"Normal", "Auto Quest", "Nearest"}
+FarmMode = "Normal"
+
+local FarmMode = Main:AddDropdown("FarmMode", {
+  Title = "Select Farm Mode",
+  Description = "",
+  Values = ListF,
+  Multi = false,
+  Default = FarmMode,
+})
+
+FarmMode:SetValue(FarmMode)
+FarmMode:OnChanged(function(value)
+  FarmMode = value
+end)
+
+
+local MonsterStatus = Main:AddParagraph({ Title = "", Content = ""})
+local QuestStatus = Main:AddParagraph({Title = "", Content = ""})
+
+spawn(function()
+  while task.wait() do
+  if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+  MonsterStatus:SetTitle("[Monster] : ...")
+  QuestStatus:SetTitle("[Quest] : ...".." | [Level] : ...")
+  elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+  pcall(function()
+    CheckQuest()
+    MonsterStatus:SetTitle("[Monster] : "..Mon)
+    QuestStatus:SetTitle("[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
+    end)
+  end
+  end
+  end)
+
+  local AutoFarm = Main:AddToggle("AutoFarm", {
+    Title = "Auto Farm",
+    Description = "Farms selected method",
+    Default = false,
+    Callback = function(value)
+      
+    end})
 
 Fluent:Notify({
   Title = "Quantum Hub",
