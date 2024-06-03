@@ -63,19 +63,24 @@ local discord = Info:AddButton({
   Description = "Get lastest news about the script",
   Callback = function()
     Window:Dialog({
-      Title = "Title",
-      Content = "This is a dialog",
+      Title = "Quantum Community",
+      Content = "Hello, thank you for using Quantum Hub!",
       Buttons = {
           {
               Title = "Copy",
               Callback = function()
                 setclipboard("https://discord.gg/BXsJyXfJZx")
+                Fluent:Notify({
+                  Title = "Quantum Hub",
+                  Content = "Copied Discord Invite",
+                  Duration = 5
+                })
               end
           },
           {
               Title = "Cancel",
               Callback = function()
-                  print("Cancelled the dialog.")
+                  
               end
           }
       }
@@ -182,9 +187,45 @@ spawn(function()
     Title = "Auto Farm",
     Description = "Farms selected method",
     Default = false,
-    Callback = function(value)
+    Callback = function()
       
     end})
+
+    Main:AddSection("Farm Bones")
+
+local StatusBones = Main:AddParagraph({Title = "Total Bones : ", Content = ""})
+spawn(function()
+  pcall(function()
+    while wait() do
+      StatusBones:SetTitle("Total Bones : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
+    end
+  end)
+end)
+
+local ListB = {"No Quest", "Quest", "MasteryFruit"}
+    BoneFMode = "No Quest"
+    local BoneListMode = Main:AddDropdown("BoneListMode", {
+      Title = "Select Bone Farm Mode",
+      Description = "",
+      Values = ListB,
+      Multi = false,
+      Default = BoneFMode,
+    })
+
+    BoneListMode:SetValue(BoneFMode)
+    BoneListMode:OnChanged(function (value)
+      BoneFMode = value
+    end)
+
+    local AutoFarmBones = Main:AddToggle("AutoFarmBones", {
+      Title = "Auto Farm Bones",
+      Description = "",
+      Default = false,
+      Callback = function()
+        
+      end
+    })
+
 
 Fluent:Notify({
   Title = "Quantum Hub",
