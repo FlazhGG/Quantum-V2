@@ -1,7 +1,7 @@
-local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
+local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-local Window = Fluent:CreateWindow({
+local Window = Quantum:CreateWindow({
   Title = "Quantum Hub : Blox Fruits",
   SubTitle = "Free",
   TabWidth = 160,
@@ -326,6 +326,12 @@ local AutoDoughBossHop = Main:AddToggle("AutoDoughBossHop", {
       
   end
 })
+
+local Sub = Window:AddTab({Title = "Sub Farm", Icon = "swords"})
+local Set = Window:AddTab({Title = "Settings", Icon = "settings"})
+local V4 = Window:AddTab({Title = "Race", Icon = ""})
+local Sea = Window:AddTab({Title = "Sea", Icon = "sailboat"})
+local Tele = Window:AddTab({Title = "Travel", Icon = "map-pin"})
 
 
 Fluent:Notify({
