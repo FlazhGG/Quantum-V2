@@ -202,7 +202,7 @@ Ping.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 local Ping = Instance.new('LocalScript', Ping)
 local RunService = game:GetService("RunService")
 RunService.RenderStepped:Connect(function(ping) 
-Ping.Text = ("[Ping] : " ..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(math.round(2/ping)))
+Ping.Parent.Text = ("[Ping] : " ..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(math.round(2/ping)))
 end)
 
 Line.Name = "Line"
