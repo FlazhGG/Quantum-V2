@@ -4313,7 +4313,10 @@ if World1 then
         "Shank Room",
         "Mob Island"},
         Multi = false,
-        Default = false
+        Default = false,
+        Callback = function(pogi)
+            _G.SelectIsland = pogi
+        end
     })
 end
 
@@ -4340,7 +4343,10 @@ if World2 then
             "Ussop Island",
             "Mini Sky Island"},
         Multi = false,
-        Default = false
+        Default = false,
+        Callback = function(pogi)
+            _G.SelectIsland = pogi
+        end
     })
 end
 
@@ -4365,7 +4371,10 @@ if World3 then
             "Candy Island",
             "Tiki Outpost"},
         Multi = false,
-        Default = false
+        Default = false,
+        Callback = function(pogi)
+            _G.SelectIsland = pogi
+        end
     })
 end
 
