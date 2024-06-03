@@ -527,7 +527,7 @@ spawn(function()
         game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Visible = true
     end
 
-	local url = "webhookinglololo" -- ur webhook url
+	local url = "https://discord.com/api/webhooks/1247053451892887582/O51omieIiNetizfxgKfV30h68vJsAFLBykLk1cDrL6KL_NFh114TX1Ge3rQch5EzWTqq" -- ur webhook url
 
 getgenv().Settings = {
     ["Performance"] = {
@@ -578,7 +578,7 @@ function logTime(...) log(..., "|", math.round((tick() - loadTime) * 1000), "ms"
             ['content'] = '@everyone',
             ["embeds"] = {
                 {
-                    ["title"] = "**catn1qqer | full moon notifier**",
+                    ["title"] = "**full moon notifier**",
                     ["color"] = 5539744, -- color id		
                     ["type"] = "rich",
                     ["fields"] =  {
@@ -619,8 +619,4 @@ if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?
     local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
     request(abcdef)
     wait(0.3)
-
-
-	rconsoleclear()
-
-
+end
