@@ -4116,11 +4116,11 @@ local AutomaticRaid = Raid:AddToggle("AutomaticRaid", {
     Description = "",
     Default = false,
     Callback = function(pogi)
-        _G.Auto_StartRaid = value
-        _G.Kill_Aura = value
-        _G.AutoBuyChip = value
-        _G.Auto_Dungeon = value
-        _G.Awaken = value
+        _G.Auto_StartRaid = pogi
+        _G.Kill_Aura = pogi
+        _G.AutoBuyChip = pogi
+        _G.Auto_Dungeon = pogi
+        _G.Awaken = pogi
         StopTween(_G.Auto_Dungeon)
     end
 })
