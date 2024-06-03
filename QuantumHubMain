@@ -690,7 +690,7 @@ function royxui:royxstart(text,logo)
 
 	local royxtabui = {}
 
-	function royxtabui:royxtab(text,logo)
+	function royxtabui:AddTab(text,logo)
 		if logo == nil then
 			logo = 8543527952
 		end
@@ -843,7 +843,7 @@ function royxui:royxstart(text,logo)
 
 		local royxpageui = {}
 
-		function royxpageui:royxpage(text)
+		function royxpageui:AddPage(text)
 			local Pageframe = Instance.new("Frame")
 
 			Pageframe.Name = "Pageframe"
@@ -936,7 +936,7 @@ function royxui:royxstart(text,logo)
 
 			local royxfunction = {}
 
-			function royxfunction:Button(text,callback)
+			function royxfunction:AddButton(text,callback)
 				local ButtonFrame = Instance.new("Frame")
 				local ButtonMain = Instance.new("TextButton")
 				local ButtonMainUICorner = Instance.new("UICorner")
@@ -1025,7 +1025,7 @@ function royxui:royxstart(text,logo)
 				end)
 			end
 
-			function royxfunction:Toggle(text,logo,config,callback)
+			function royxfunction:AddToggle(text,logo,config,callback)
 				if logo == nil then
 					logo = 8543527952
 				end
@@ -1293,7 +1293,7 @@ function royxui:royxstart(text,logo)
 				return  check.togfunction
 			end
 
-			function royxfunction:Line()
+			function royxfunction:AddLine()
 				local LineFrame = Instance.new("Frame")
 				local LineMain = Instance.new("Frame")
 				local LineUIGradient = Instance.new("UIGradient")
@@ -1317,7 +1317,7 @@ function royxui:royxstart(text,logo)
 				LineUIGradient.Parent = LineMain
 			end
 
-			function royxfunction:Label(text)
+			function royxfunction:AddLabel(text)
 
 				local LabelRefresh = {}
 
@@ -1347,7 +1347,7 @@ function royxui:royxstart(text,logo)
 				return  LabelRefresh
 			end
 
-			function royxfunction:Textbox(text,text2,callback)
+			function royxfunction:AddTextbox(text,text2,callback)
 				local TextFrame = Instance.new("Frame")
 
 				TextFrame.Name = "TextFrame"
@@ -1472,7 +1472,7 @@ function royxui:royxstart(text,logo)
 				end)
 			end
 
-			function royxfunction:Dropdown(text,option,default,callback)
+			function royxfunction:AddDropdown(text,option,default,callback)
 
 				local defaultt = default or ""
 
@@ -1802,7 +1802,7 @@ function royxui:royxstart(text,logo)
 				return dropfunc
 			end
 
-			function royxfunction:Slider(text,floor,min,max,de,lol,callback)
+			function royxfunction:AddSlider(text,floor,min,max,de,lol,callback)
 
 				local sliderfunc = {}
 				local SliderFrame = Instance.new("Frame")
@@ -2206,7 +2206,7 @@ function royxui:royxstart(text,logo)
 				return sliderfunc
 			end
 
-			function royxfunction:MultiDropdown(text,use,option,callback)
+			function royxfunction:AddMultiDropdown(text,use,option,callback)
 
 				local location = option.location or self.flags
 				local flag = not use and option.flag or ""
@@ -2581,82 +2581,14 @@ function royxui:royxstart(text,logo)
 	return royxtabui
 end
 
-local Main = royxui:royxstart("Royx Hub")
-
-local Tab = Main:royxtab("Tab 1")
-
-local Tab2 = Main:royxtab("Tab 2")
-
-local Page = Tab:royxpage("Auto Farm")
-
-Page:Button("Button",function()
-
-end)
-
-Page:Button("Notification",function()
-	royxui:Notification("Notification","Royx",5)
-end)
-
-local Toggle = Page:Toggle("Toggle",8543527952,true,function()
-
-end)
-
-Page:Button("Lock",function()
-	Toggle:lock()
-end)
-
-Page:Button("Unlock",function()
-	Toggle:unlock()
-end)
-
-Page:Line()
-
-Page:Label("Label")
-
-Page:Textbox("TextBox","Write Here . . .",function(v)
-	_G.Textbox = v
-	print(_G.Textbox)
-end)
-
-local dropno = Page:Dropdown("DropDown",{"1","2","3"},"3",function (v)
-	_G.dropno = v
-end)
-
-Page:Button("Clear Dropdown",function()
-	dropno:Clear()
-end)
-
-Page:Button("Add Dropdown",function()
-	dropno:Add("Test")
-end)
-
-Page:Slider("Slider",true,0,100,10,10,function(v)
-	print(v)
-end)
-
-local test ={
-	a = false;
-	b = false;
-	c = false;
-}
-
-Page:MultiDropdown("Multi DropDown",true,{
-	location = test;
-	list = {
-		{
-			Name = "one";
-			flag = "a";
-		};
-		{
-			Name = "two";
-			flag = "b";
-		};
-		{
-			Name = "thee";
-			flag = "c";
-		};
-	};
-	default = "test";
-}, function(v)
-	_G.dropno = v
-end)
+local Main = royxui:royxstart("No Name Hub")
+local Info = Main:AddTab("Info")
+local MFarm = Main:AddTab("Main Farm")
+local SFarm = Main:AddTab("Sub Farm")
+local Set = Main:AddTab("Settings")
+local Sea = Main:AddTab("Sea")
+local TP = Main:AddTab("Travel")
+local Race = Main:AddTab("Race")
+local Shop = Main:AddTab("Shop")
+local Visual = Main:AddTab("Visual")
+local Misc = Main:AddTab("Misc")
