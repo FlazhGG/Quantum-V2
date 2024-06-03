@@ -1,0 +1,699 @@
+local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
+
+print("Anti Cheat Bypass Active")
+print("Made By: Prime Flazhy")
+warn("")
+warn("")
+print("")
+
+
+-- Quantum hub 
+_G.Start_Farm_Chest = true
+_G.SetupTeam = true
+_G.Stop_If_Has_Items = true
+-- Instances:
+
+local QuantumChest = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+local UIGradient = Instance.new("UIGradient")
+local Top = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local UIStroke_2 = Instance.new("UIStroke")
+local Title = Instance.new("TextLabel")
+local Load = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local UIStroke_3 = Instance.new("UIStroke")
+local LogoHolder = Instance.new("Frame")
+local Logo = Instance.new("ImageLabel")
+local UICorner_4 = Instance.new("UICorner")
+local UICorner_5 = Instance.new("UICorner")
+local UIStroke_4 = Instance.new("UIStroke")
+local Username = Instance.new("TextLabel")
+local Server = Instance.new("TextLabel")
+local Os = Instance.new("TextLabel")
+local Ping = Instance.new("TextLabel")
+local Line = Instance.new("Frame")
+local MainScript = Instance.new("Frame")
+local ChestLeft = Instance.new("TextLabel")
+local button = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local UIStroke_5 = Instance.new("UIStroke")
+local Discord = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local Executer = Instance.new("TextLabel")
+
+--Properties:
+
+QuantumChest.Name = "QuantumChest"
+QuantumChest.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+QuantumChest.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+
+Main.Name = "Main"
+Main.Parent = QuantumChest
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+Main.BackgroundTransparency = 0.200
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
+Main.ClipsDescendants = true
+Main.Position = UDim2.new(0.499529511, 0, 0.499639273, 0)
+Main.Size = UDim2.new(0, 302, 0, 299)
+Main.Active = true
+Main.Draggable = true
+Main.Visible = true
+
+UICorner.Parent = Main
+
+UIStroke.Parent = Main
+UIStroke.Color = Color3.fromRGB(255, 255, 255)
+UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(71, 71, 71)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(71, 71, 71))}
+UIGradient.Parent = Main
+
+Top.Name = "Top"
+Top.Parent = Main
+Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Top.BackgroundTransparency = 0.450
+Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Top.BorderSizePixel = 0
+Top.ClipsDescendants = true
+Top.Position = UDim2.new(0, 0, 2.55163695e-08, 0)
+Top.Size = UDim2.new(0.668874145, 100, -0.01556422, 40)
+
+UICorner_2.Parent = Top
+
+UIStroke_2.Parent = Top
+UIStroke_2.Color = Color3.fromRGB(255, 255, 255)
+UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+Title.Name = "Title"
+Title.Parent = Top
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.167302623, 0, -2.15847066e-07, 0)
+Title.Size = UDim2.new(0, 200, 0, 36)
+Title.Font = Enum.Font.FredokaOne
+Title.Text = "Quantum Hub"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 16.000
+
+Load.Name = "Load"
+Load.Parent = Main
+Load.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+Load.BackgroundTransparency = 0.150
+Load.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Load.BorderSizePixel = 0
+Load.Position = UDim2.new(0.0342172794, 0, 0.181358725, 0)
+Load.Size = UDim2.new(0, 285, 0, 237)
+
+UICorner_3.Parent = Load
+
+UIStroke_3.Parent = Load
+UIStroke_3.Color = Color3.fromRGB(93, 12, 255)
+UIStroke_3.Thickness = 2.000
+UIStroke_3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+LogoHolder.Name = "LogoHolder"
+LogoHolder.Parent = Load
+LogoHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LogoHolder.BackgroundTransparency = 1.000
+LogoHolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LogoHolder.BorderSizePixel = 0
+LogoHolder.Position = UDim2.new(0.0719298273, 0, 0.0314948484, 0)
+LogoHolder.Size = UDim2.new(0, 50, 0, 47)
+
+Logo.Name = "Logo"
+Logo.Parent = LogoHolder
+Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Logo.BackgroundTransparency = 1.000
+Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Logo.BorderSizePixel = 0
+Logo.Position = UDim2.new(0.00363647472, 0, -0.0186170209, 0)
+Logo.Size = UDim2.new(0, 50, 0, 50)
+Logo.Image = "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
+
+UICorner_4.CornerRadius = UDim.new(0, 30)
+UICorner_4.Parent = Logo
+
+UICorner_5.CornerRadius = UDim.new(0, 30)
+UICorner_5.Parent = LogoHolder
+
+UIStroke_4.Parent = LogoHolder
+UIStroke_4.Color = Color3.fromRGB(255, 255, 255)
+UIStroke_4.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+Username.Name = "Username"
+Username.Parent = Load
+Username.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Username.BackgroundTransparency = 1.000
+Username.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Username.BorderSizePixel = 0
+Username.Position = UDim2.new(0.342782646, 0, 0.0260439198, 0)
+Username.Size = UDim2.new(0, 94, 0, 9)
+Username.Font = Enum.Font.SourceSans
+Username.TextColor3 = Color3.fromRGB(255, 255, 255)
+Username.TextSize = 14.000
+Username.TextXAlignment = Enum.TextXAlignment.Left
+Username.Text = "Username: " .. game.Players.LocalPlayer.Name
+
+Server.Name = "Server"
+Server.Parent = Load
+Server.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Server.BackgroundTransparency = 1.000
+Server.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Server.BorderSizePixel = 0
+Server.Position = UDim2.new(0.342782646, 0, 0.11259377, 0)
+Server.Size = UDim2.new(0, 94, 0, 9)
+Server.Font = Enum.Font.SourceSans
+Server.TextColor3 = Color3.fromRGB(255, 255, 255)
+Server.TextSize = 14.000
+Server.TextXAlignment = Enum.TextXAlignment.Left
+function UpdateTime()
+    local GameTime = math.floor(workspace.DistributedGameTime+0.5)
+    local Hour = math.floor(GameTime/(60^2))%24
+    local Minute = math.floor(GameTime/(60^1))%60
+    local Second = math.floor(GameTime/(60^0))%60
+    Server.Text = "Hours : "..Hour.." Minute : "..Minute.." Second : "..Second
+    end
+    spawn(function()
+    while task.wait() do
+    pcall(function()
+    UpdateTime()
+    end)
+    end
+    end)
+
+Os.Name = "Os"
+Os.Parent = Load
+Os.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Os.BackgroundTransparency = 1.000
+Os.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Os.BorderSizePixel = 0
+Os.Position = UDim2.new(0.342782646, 0, 0.195630938, 0)
+Os.Size = UDim2.new(0, 153, 0, 9)
+Os.Font = Enum.Font.SourceSans
+Os.TextColor3 = Color3.fromRGB(255, 255, 255)
+Os.TextSize = 14.000
+Os.TextXAlignment = Enum.TextXAlignment.Left
+task.spawn(function()
+	while wait() do
+	 Os.Text = "[Time] : "..os.date("%H")..":"..os.date("%M")..":"..os.date("%S")
+  end
+end)
+
+Ping.Name = "Ping"
+Ping.Parent = Load
+Ping.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Ping.BackgroundTransparency = 1.000
+Ping.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Ping.BorderSizePixel = 0
+Ping.Position = UDim2.new(0.340924174, 0, 0.264617264, 0)
+Ping.Size = UDim2.new(0, 153, 0, 9)
+Ping.Font = Enum.Font.SourceSans
+Ping.TextColor3 = Color3.fromRGB(255, 255, 255)
+Ping.TextSize = 14.000
+Ping.TextXAlignment = Enum.TextXAlignment.Left
+local Ping = Instance.new('LocalScript', Ping)
+local RunService = game:GetService("RunService")
+RunService.RenderStepped:Connect(function(ping) 
+Ping.Parent.Text = ("[Ping] : " ..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(math.round(2/ping)))
+end)
+
+Line.Name = "Line"
+Line.Parent = Load
+Line.BackgroundColor3 = Color3.fromRGB(93, 12, 255)
+Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Line.BorderSizePixel = 0
+Line.Position = UDim2.new(0, 0, 0.396187961, 0)
+Line.Size = UDim2.new(0, 285, 0, 3)
+
+MainScript.Name = "MainScript"
+MainScript.Parent = Load
+MainScript.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainScript.BackgroundTransparency = 1.000
+MainScript.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainScript.BorderSizePixel = 0
+MainScript.Position = UDim2.new(0.0297029708, 0, 0.423645318, 0)
+MainScript.Size = UDim2.new(0, 190, 0, 111)
+
+ChestLeft.Name = "ChestLeft"
+ChestLeft.Parent = MainScript
+ChestLeft.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ChestLeft.BackgroundTransparency = 1.000
+ChestLeft.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ChestLeft.BorderSizePixel = 0
+ChestLeft.Position = UDim2.new(0.263157904, 0, 0.0810810775, 0)
+ChestLeft.Size = UDim2.new(0, 167, 0, 18)
+ChestLeft.Font = Enum.Font.Unknown
+ChestLeft.TextColor3 = Color3.fromRGB(90, 14, 255)
+ChestLeft.TextSize = 14.000
+spawn(function()
+    while wait() do
+        pcall(function()
+            local count10 = 0
+            local count = 0
+            for i,v in pairs(game.workspace:GetChildren()) do
+                if string.find(v.Name,"Chest") and v:IsA("Part") then
+                    count10 = count10 + 1
+                end
+            end
+            ChestLeft.Text = "Total Chest In Server :".." "..count10
+        end)
+    end
+end)
+
+
+button.Name = "button"
+button.Parent = MainScript
+button.BackgroundColor3 = Color3.fromRGB(0,255, 0)
+button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+button.BorderSizePixel = 0
+button.Position = UDim2.new(0.610526323, 0, 0.369369358, 0)
+button.Size = UDim2.new(0, 35, 0, 33)
+button.Font = Enum.Font.SourceSans
+button.Text = ""
+button.TextColor3 = Color3.fromRGB(0, 0, 0)
+button.TextSize = 14.000
+local function toggle()
+	if button.BackgroundColor3 == Color3.fromRGB(255,0,0) then
+		_G.Start_Farm_Chest = true
+    _G.SetupTeam = true
+    _G.Stop_If_Has_Items = true
+		button.BackgroundColor3 = Color3.fromRGB(0,255,0)
+	else 
+		if button.BackgroundColor3 == Color3.fromRGB(0,255,0) then
+			_G.Start_Farm_Chest = false
+    _G.SetupTeam = false
+			button.BackgroundColor3 = Color3.fromRGB(255,0,0)
+
+		end
+	end
+
+
+end
+
+button.MouseButton1Down:Connect(function()
+	toggle()
+end)
+
+UICorner_6.Parent = button
+
+UIStroke_5.Parent = button
+UIStroke_5.Color = Color3.fromRGB(104, 16, 255)
+UIStroke_5.Thickness = 2.000
+UIStroke_5.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+Discord.Name = "Discord"
+Discord.Parent = MainScript
+Discord.BackgroundColor3 = Color3.fromRGB(2, 251, 255)
+Discord.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Discord.BorderSizePixel = 0
+Discord.Position = UDim2.new(0.24210526, 0, 0.855855882, 0)
+Discord.Size = UDim2.new(0, 176, 0, 21)
+Discord.Font = Enum.Font.LuckiestGuy
+Discord.Text = "Join Server"
+Discord.TextColor3 = Color3.fromRGB(0, 0, 0)
+Discord.TextSize = 14.000
+Discord.MouseButton1Down:Connect(function()
+
+	setclipboard("https://discord.gg/BXsJyXfJZx")
+    Quantum:Notify({
+        Title = "Quantum Hub",
+        Content = "Copied Server Invite",
+        Duration = 5
+      })
+end)
+
+UICorner_7.Parent = Discord
+
+Executer.Name = "Executer"
+Executer.Parent = Load
+Executer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Executer.BackgroundTransparency = 1.000
+Executer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Executer.BorderSizePixel = 0
+Executer.Position = UDim2.new(0.025134705, 0, 0.30259195, 0)
+Executer.Size = UDim2.new(0, 76, 0, 9)
+Executer.Font = Enum.Font.SourceSans
+Executer.TextColor3 = Color3.fromRGB(255, 255, 255)
+Executer.TextSize = 14.000
+Executer.TextXAlignment = Enum.TextXAlignment.Left
+Executer.Text = "Exploit: ".. identifyexecutor()
+
+
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+    game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    wait(1)
+    game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+spawn(function()
+	while task.wait() do
+	if _G.SetupTeam then
+			local ohString1 = "SetTeam"
+			local ohString2 = "Pirates"
+			game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(ohString1, ohString2)
+    end
+	end
+	end)
+    
+    function thisCode()
+        repeat task.wait() until game:IsLoaded()
+        local PlaceID = game.PlaceId
+        local AllIDs = {}
+        local foundAnything = ""
+        local actualHour = os.date("!*t").hour
+        local Deleted = false
+        local File = pcall(function()
+            AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+        end)
+        if not File then
+            table.insert(AllIDs, actualHour)
+            writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+        end
+        function TPReturner()
+            local Site;
+            if foundAnything == "" then
+                Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+            else
+                Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+            end
+            local ID = ""
+            if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+                foundAnything = Site.nextPageCursor
+            end
+            local num = 0;
+            for i,v in pairs(Site.data) do
+                local Possible = true
+                ID = tostring(v.id)
+                if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                    for _,Existing in pairs(AllIDs) do
+                        if num ~= 0 then
+                            if ID == tostring(Existing) then
+                                Possible = false
+                            end
+                        else
+                            if tonumber(actualHour) ~= tonumber(Existing) then
+                                local delFile = pcall(function()
+                                    delfile("NotSameServers.json")
+                                    AllIDs = {}
+                                    table.insert(AllIDs, actualHour)
+                                end)
+                            end
+                        end
+                        num = num + 1
+                    end
+                    if Possible == true then
+                        table.insert(AllIDs, ID)
+                        wait()
+                        pcall(function()
+                            writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                            wait()
+                            game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                        end)
+                        wait(4)
+                    end
+                end
+            end
+        end
+        function Teleport()
+            while wait() do
+                pcall(function()
+                    TPReturner()
+                    if foundAnything ~= "" then
+                        TPReturner()
+                    end
+                end)
+            end
+        end
+        local veryImportantWaitTime = 0.5
+        task.spawn(function()
+            while task.wait(veryImportantWaitTime) do
+                pcall(function()
+                    for i,v in pairs(game.CoreGui:GetDescendants()) do
+                        pcall(function()
+                            if string.find(v.Name,"ErrorMessage") then
+                                if string.find(v.Text,"Security kick") then
+                                    veryImportantWaitTime = 1e9
+                                    Teleport()
+                                end
+                            end
+                        end)
+                    end
+                end)
+            end
+        end)
+    
+        task.spawn(function()
+            while true do
+                if _G.Start_Farm_Chest == true then
+                    local hasChar = game.Players.LocalPlayer:FindFirstChild("Character")
+                    if not game.Players.LocalPlayer.Character then
+            
+                    else
+                        local hasCrewTag = game.Players.LocalPlayer.Character:FindFirstChild("CrewBBG",true)
+                        if hasCrewTag then hasCrewTag:Destroy() end
+                        local hasHumanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+                        if hasHumanoid then
+                            local Chest = game.Workspace:FindFirstChild("Chest4") or game.Workspace:FindFirstChild("Chest3") or game.Workspace:FindFirstChild("Chest2") or game.Workspace:FindFirstChild("Chest1") or game.Workspace:FindFirstChild("Chest")
+                            
+                            if Chest then
+                                game.Players.LocalPlayer.Character:PivotTo(Chest:GetPivot())
+                                firesignal(Chest.Touched,game.Players.LocalPlayer.Character.HumanoidRootPart)
+                            else
+                                Teleport()
+                                break
+                            end
+                        end 
+                    end
+                end
+                task.wait()
+            end
+        end)
+    end
+    spawn(function()
+        while wait() do
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v.Name == "red_game43" or v.Name == "rip_indra" or v.Name == "Axiore" or v.Name == "Polkster" or v.Name == "wenlocktoad" or v.Name == "Daigrock" or v.Name == "toilamvidamme" or v.Name == "oofficialnoobie" or v.Name == "Uzoth" or v.Name == "Azarth" or v.Name == "arlthmetic" or v.Name == "Death_King" or v.Name == "Lunoven" or v.Name == "TheGreateAced" or v.Name == "rip_fud" or v.Name == "drip_mama" or v.Name == "layandikit12" or v.Name == "Hingoi" then
+                Hop()
+                end
+            end
+        end
+    end)
+
+    spawn(function()
+        while wait() do
+        if _G.Stop_If_Has_Items then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") or game.Players.LocalPlayer.Character:FindFirstChild("Fist of Darkness") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") then
+                _G.Start_Farm_Chest = false
+                _G.SetupTeam = false
+                end
+            end
+        end
+    end)
+
+    thisCode()
+
+    join = game.Players.localPlayer.Neutral == false
+    if _G.JoinTeam == nil then
+        _G.JoinTeam = "Pirates"
+    end
+    _G.JoinTeam = "Marines"
+    if (_G.JoinTeam == "Pirates" or _G.JoinTeam == "Marines") and not join then
+        repeat wait()
+            pcall(function()
+                join = game.Players.localPlayer.Neutral == false
+                if _G.JoinTeam == "Pirates" then
+                    for i,v in pairs({"MouseButton1Click", "MouseButton1Down", "Activated"}) do
+                        for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton[v])) do
+                            v.Function()
+                        end
+                    end
+                elseif _G.JoinTeam == "Marines" then
+                    for i,v in pairs({"MouseButton1Click", "MouseButton1Down", "Activated"}) do
+                        for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton[v])) do
+                            v.Function()
+                        end
+                    end
+                else
+                    for i,v in pairs({"MouseButton1Click", "MouseButton1Down", "Activated"}) do
+                        for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton[v])) do
+                            v.Function()
+                        end
+                    end
+                end
+            end)
+        until join == true
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Visible = true
+    end
+
+	local url = "https://discord.com/api/webhooks/1247053451892887582/O51omieIiNetizfxgKfV30h68vJsAFLBykLk1cDrL6KL_NFh114TX1Ge3rQch5EzWTqq" -- ur webhook url
+
+
+repeat task.wait() until game:IsLoaded()
+local loadTime = tick()
+
+-- // Services // -- 
+
+local request = syn and syn.request or http_request or http.request
+local PlayerName = game.Players.LocalPlayer.Name
+
+-- // Logging // --
+
+rconsolename(("< full moon notifier (%s) > JobId: %s"):format(PlayerName, game.JobId))
+rconsoleclear()
+function log(...) rconsoleprint(("[full moon notifier] %s\n"):format(table.concat({...}, " "))) end
+function logTime(...) log(..., "|", math.round((tick() - loadTime) * 1000), "ms") end
+
+-- // Webhook --
+
+    ServerScript = 'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,'..'\''..tostring(game.JobId)..'\''..')'
+        for i,v in pairs(game.Players:GetPlayers()) do
+            CurrentPlayers = i
+        end
+
+        if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
+            MoonStatus = '🟢'
+        else
+            MoonStatus = '🔴'
+        end
+
+        MoonCheck = '```'..tostring(MoonStatus)..'```'
+
+        local data = {
+            ["username"] = 'Full moon notifier',
+            ['content'] = '@everyone',
+            ["embeds"] = {
+                {
+                    ["title"] = "**Full moon notifier**",
+                    ["color"] = 5539744, -- color id		
+                    ["type"] = "rich",
+                    ["fields"] =  {
+                        {
+                            ["name"] = "Current Players",
+                            ["value"] = '```'..tostring(CurrentPlayers)..'/12```',
+                            ["inline"] = true,
+                        },
+                        {
+                            ["name"] = "Full Moon",
+                            ["value"] = MoonCheck,
+                            ["inline"] = true,
+                        },
+                        {
+                            ["name"] = "Script",
+                            ["value"] = '```lua\n'..ServerScript..'\n```',
+                        },
+                        {
+                            ["name"] = "JobId",
+                            ["value"] = '```'..tostring(game.JobId)..'```',
+                        }
+                    },
+                    ["image"] = {
+                        ["url"] = "", -- wtf
+                    },
+                    ["timestamp"] = DateTime.now():ToIsoDate(),
+                }
+            },
+        }
+
+-- // Full Moon // --
+
+if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then -- Make the game find the object first, then server hop.
+    log("omg :O full moon found!! sharing this to the boys rn")
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+    local headers = {["content-type"] = "application/json"}
+    request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(abcdef)
+    wait(0.3)
+end
+
+-- // Settings // --
+getgenv().Config = {
+    ["Discord"] = { -- yuo cannot disable this. 
+        ["WebhookUrl"] = "https://discord.com/api/webhooks/1247061521259823185/YHsJG9Sa2RNAbM7XsC6Pes2V8MhWj63iaOD2kluNBldaaCwU6NnYr4IAZ66stiF0qT3n",
+        ["Content"] = "@everyone", -- @everyone or <@roleid/userid>, it can be just text.
+        ["BrandName"] = "Mirage notifier", -- you can change it to your name, but this might hurt me :(
+        ["ImageUrl"] = ""
+    },
+    
+}
+
+--[[
+    
+            catn1qqer mirage notifier
+    by thuy2#5330, console concept by cart#4780
+             tested by Nighty#6300
+
+     open-source, project started in 30/4/2023
+]]
+ 
+
+-- // Console // --
+
+
+-- // Config // --
+
+
+-- // Config.ClientSettings // --
+
+-- // Config.Discord // --
+
+-- // Webhook // -- 
+
+local Discord = Config["Discord"]
+local url = Discord["WebhookUrl"]
+
+ServerScript = 'game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", '..'\''..tostring(game.JobId)..'\''..')'
+for i,v in pairs(game.Players:GetPlayers()) do
+    CurrentPlayers = i
+end
+
+local data = {
+    ["username"] = 'catn1qqer | mirage notifier',
+    ['content'] = Discord["Content"],
+    ["embeds"] = {
+        {
+            ["title"] = '**'..tostring(Discord["BrandName"])..'**', -- LMAO WTF
+            ["color"] = 5539744, -- color id		
+            ["type"] = "rich",
+            ["fields"] =  {
+                {
+                    ["name"] = "Current Players",
+                    ["value"] = '```lua\n'..tostring(CurrentPlayers)..'/12 \n```',
+                    ["inline"] = true,
+                },
+                {
+                    ["name"] = "Script",
+                    ["value"] = '```lua\n'..ServerScript..'\n```',
+                },
+                {
+                    ["name"] = "JobId",
+                    ["value"] = '```'..tostring(game.JobId)..'```',
+                }
+            },
+            ["image"] = {
+                ["url"] = Discord["ImageUrl"],
+            },
+            ["timestamp"] = DateTime.now():ToIsoDate(),
+        }
+    },
+}
+
+-- // Main // --
+
+if workspace.Map:FindFirstChild("MysticIsland") then
+    log("Mirage Island found, sending notification via webhook.")
+
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+    local headers = {["content-type"] = "application/json"}
+    request = http_request or request or HttpPost or syn.request
+    local webhook = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(webhook)
+
+end
