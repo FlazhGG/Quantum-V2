@@ -351,7 +351,7 @@ local Themes = {
 		Accent = Color3.fromRGB(92, 28, 255),
 
 		AcrylicMain = Color3.fromRGB(60, 60, 60),
-		AcrylicBorder = Color3.fromRGB(90, 90, 90),
+		AcrylicBorder = Color3.fromRGB(92, 28, 255),
 		AcrylicGradient = ColorSequence.new(Color3.fromRGB(40, 40, 40), Color3.fromRGB(40, 40, 40)),
 		AcrylicNoise = 0.9,
 
@@ -360,7 +360,7 @@ local Themes = {
 
 		Element = Color3.fromRGB(120, 120, 120),
 		ElementBorder = Color3.fromRGB(35, 35, 35),
-		InElementBorder = Color3.fromRGB(90, 90, 90),
+		InElementBorder = Color3.fromRGB(92, 28, 255),
 		ElementTransparency = 0.87,
 
 		ToggleSlider = Color3.fromRGB(120, 120, 120),
