@@ -70,7 +70,7 @@ local discord = Info:AddButton({
               Title = "Copy",
               Callback = function()
                 setclipboard("https://discord.gg/BXsJyXfJZx")
-                Fluent:Notify({
+                Quantum:Notify({
                   Title = "Quantum Hub",
                   Content = "Copied Discord Invite",
                   Duration = 5
@@ -334,7 +334,7 @@ local Sea = Window:AddTab({Title = "Sea", Icon = "sailboat"})
 local Tele = Window:AddTab({Title = "Travel", Icon = "map-pin"})
 
 
-Fluent:Notify({
+Quantum:Notify({
   Title = "Quantum Hub",
   Content = "The script has been loaded.",
   Duration = 5
