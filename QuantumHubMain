@@ -208,7 +208,7 @@ FPS.Font = Enum.Font.SourceSans
 FPS.TextColor3 = Color3.fromRGB(255, 255, 255)
 FPS.TextSize = 14.000
 FPS.TextXAlignment = Enum.TextXAlignment.Left
-local Fps = Instance.new('LocalScript', Fps)
+local FPS = Instance.new('LocalScript', Fps)
 local RunService = game:GetService("RunService")
 RunService.RenderStepped:Connect(function(frame)
 FPS.Parent.Text = ("[FPS] : "..math.round(1/frame)) 
@@ -324,7 +324,7 @@ Executer.Font = Enum.Font.SourceSans
 Executer.TextColor3 = Color3.fromRGB(255, 255, 255)
 Executer.TextSize = 14.000
 Executer.TextXAlignment = Enum.TextXAlignment.Left
-Executer.Text = "Exploit Using: ".. identifyexecutor()
+Executer.Text = "Exploit: ".. identifyexecutor()
 
 
 game:GetService("Players").LocalPlayer.Idled:connect(function()
