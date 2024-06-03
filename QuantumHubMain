@@ -1,5 +1,3 @@
-local Alert = loadstring(Game:HttpGet"https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/NotifAlert")()
-
 print("Anti Cheat Bypass Active")
 print("Made By: Prime Flazhy")
 warn("")
@@ -322,7 +320,6 @@ Discord.TextColor3 = Color3.fromRGB(0, 0, 0)
 Discord.TextSize = 14.000
 Discord.MouseButton1Down:Connect(function()
 	setclipboard("https://discord.gg/BXsJyXfJZx")
-	Alert:Create("Copied to clipboard")
 end)
 
 UICorner_7.Parent = Discord
@@ -447,7 +444,6 @@ spawn(function()
         task.spawn(function()
             while true do
                 if _G.Start_Farm_Chest == true then
-					wait(1)
                     local hasChar = game.Players.LocalPlayer:FindFirstChild("Character")
                     if not game.Players.LocalPlayer.Character then
             
@@ -693,5 +689,3 @@ if workspace.Map:FindFirstChild("MysticIsland") then
     request(webhook)
 
 end
-
-Alert:create("Done Loaded!")
