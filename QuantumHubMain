@@ -1,5 +1,7 @@
--- Monstrum's Gui to Lua\n-- Version: 3.2
-
+-- Quantum hub 
+_G.Start_Farm_Chest = true
+_G.SetupTeam = true
+_G.Stop_If_Has_Items = true
 -- Instances:
 
 local QuantumChest = Instance.new("ScreenGui")
@@ -305,6 +307,9 @@ Discord.Font = Enum.Font.LuckiestGuy
 Discord.Text = "Join Server"
 Discord.TextColor3 = Color3.fromRGB(0, 0, 0)
 Discord.TextSize = 14.000
+Discord.MouseButton1Down:Connect(function()
+	setclipboard("https://discord.gg/BXsJyXfJZx")
+end)
 
 UICorner_7.Parent = Discord
 
