@@ -526,3 +526,5 @@ spawn(function()
         until join == true
         game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Visible = true
     end
+
+	rconsoleclear()
