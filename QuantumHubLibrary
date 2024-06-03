@@ -5863,9 +5863,9 @@ function Library:Notify(Config)
 end
 
 if getgenv then
-	getgenv().Fluent = Library
+	getgenv().Quantum = Library
 else
-	Fluent = Library
+	Quantum = Library
 end
 
 return Library, SaveManager, InterfaceManager
