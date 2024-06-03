@@ -51,6 +51,9 @@ Main.BorderSizePixel = 0
 Main.ClipsDescendants = true
 Main.Position = UDim2.new(0.499529511, 0, 0.499639273, 0)
 Main.Size = UDim2.new(0, 302, 0, 299)
+Main.Active = true
+Main.Draggable = true
+Main.Visible = true
 
 UICorner.Parent = Main
 
