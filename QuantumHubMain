@@ -171,10 +171,6 @@ QuantumChest.Name = "QuantumChest"
 QuantumChest.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 QuantumChest.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-SoundClick.Name = "Sound Effect"
-SoundClick.Parent = QuantumChest
-SoundClick.SoundId = "rbxassetid://130785805"
-SoundClick.Volume = 1
 
 Main.Name = "Main"
 Main.Parent = QuantumChest
@@ -405,7 +401,6 @@ button.Font = Enum.Font.SourceSans
 button.Text = ""
 button.TextColor3 = Color3.fromRGB(0, 0, 0)
 button.TextSize = 14.000
-SoundClick:Play()
 local function toggle()
 	if button.BackgroundColor3 == Color3.fromRGB(255,0,0) then
 		_G.Start_Farm_Chest = true
@@ -447,7 +442,6 @@ Discord.Text = "Join Server"
 Discord.TextColor3 = Color3.fromRGB(0, 0, 0)
 Discord.TextSize = 14.000
 Discord.MouseButton1Down:Connect(function()
-	SoundClick:Play()
 	setclipboard("https://discord.gg/BXsJyXfJZx")
 	Alert:Create("Copied to clipboard")
 end)
