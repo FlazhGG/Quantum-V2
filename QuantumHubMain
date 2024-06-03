@@ -121,7 +121,7 @@ Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Logo.BorderSizePixel = 0
 Logo.Position = UDim2.new(0.00363647472, 0, -0.0186170209, 0)
 Logo.Size = UDim2.new(0, 50, 0, 50)
-Logo.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+Logo.Image = "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 
 UICorner_4.CornerRadius = UDim.new(0, 30)
 UICorner_4.Parent = Logo
@@ -145,6 +145,7 @@ Username.Font = Enum.Font.SourceSans
 Username.TextColor3 = Color3.fromRGB(255, 255, 255)
 Username.TextSize = 14.000
 Username.TextXAlignment = Enum.TextXAlignment.Left
+Username.Text = "Username: " .. game.Players.LocalPlayer.Name
 
 Server.Name = "Server"
 Server.Parent = Load
@@ -171,6 +172,11 @@ Os.Font = Enum.Font.SourceSans
 Os.TextColor3 = Color3.fromRGB(255, 255, 255)
 Os.TextSize = 14.000
 Os.TextXAlignment = Enum.TextXAlignment.Left
+task.spawn(function()
+	while wait() do
+	 Os.Text = "[Time] : "..os.date("%H")..":"..os.date("%M")..":"..os.date("%S")
+  end
+end)
 
 Ping.Name = "Ping"
 Ping.Parent = Load
@@ -184,6 +190,11 @@ Ping.Font = Enum.Font.SourceSans
 Ping.TextColor3 = Color3.fromRGB(255, 255, 255)
 Ping.TextSize = 14.000
 Ping.TextXAlignment = Enum.TextXAlignment.Left
+local Ping = Instance.new('LocalScript', Ping)
+local RunService = game:GetService("RunService")
+RunService.RenderStepped:Connect(function(ping) 
+Ping.Parent.Text = ("[Ping] : " ..game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(math.round(2/ping)))
+end)
 
 FPS.Name = "FPS"
 FPS.Parent = Load
@@ -197,6 +208,11 @@ FPS.Font = Enum.Font.SourceSans
 FPS.TextColor3 = Color3.fromRGB(255, 255, 255)
 FPS.TextSize = 14.000
 FPS.TextXAlignment = Enum.TextXAlignment.Left
+local Fps = Instance.new('LocalScript', Fps)
+local RunService = game:GetService("RunService")
+RunService.RenderStepped:Connect(function(frame)
+FPS.Parent.Text = ("[FPS] : "..math.round(1/frame)) 
+end)
 
 Line.Name = "Line"
 Line.Parent = Load
@@ -226,6 +242,21 @@ ChestLeft.Size = UDim2.new(0, 167, 0, 18)
 ChestLeft.Font = Enum.Font.Unknown
 ChestLeft.TextColor3 = Color3.fromRGB(90, 14, 255)
 ChestLeft.TextSize = 14.000
+spawn(function()
+    while wait() do
+        pcall(function()
+            local count10 = 0
+            local count = 0
+            for i,v in pairs(game.workspace:GetChildren()) do
+                if string.find(v.Name,"Chest") and v:IsA("Part") then
+                    count10 = count10 + 1
+                end
+            end
+            ChestLeft.Text = "Total Chest In Server :".." "..count10
+        end)
+    end
+end)
+
 
 button.Name = "button"
 button.Parent = MainScript
@@ -293,6 +324,7 @@ Executer.Font = Enum.Font.SourceSans
 Executer.TextColor3 = Color3.fromRGB(255, 255, 255)
 Executer.TextSize = 14.000
 Executer.TextXAlignment = Enum.TextXAlignment.Left
+Executer.Text = "Exploit Using: ".. identifyexecutor()
 
 
 game:GetService("Players").LocalPlayer.Idled:connect(function()
