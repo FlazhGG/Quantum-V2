@@ -117,6 +117,7 @@ LogoHolder.Size = UDim2.new(0, 50, 0, 47)
 Logo.Name = "Logo"
 Logo.Parent = LogoHolder
 Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Logo.BackgroundTransparency = 1.000
 Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Logo.BorderSizePixel = 0
 Logo.Position = UDim2.new(0.00363647472, 0, -0.0186170209, 0)
