@@ -226,7 +226,7 @@ FPS.TextXAlignment = Enum.TextXAlignment.Left
 local FPS = Instance.new('LocalScript', Fps)
 local RunService = game:GetService("RunService")
 RunService.RenderStepped:Connect(function(frame)
-FPS.Parent.Text = ("[FPS] : "..math.round(1/frame)) 
+FPS.Text = ("[FPS] : "..math.round(1/frame)) 
 end)
 
 Line.Name = "Line"
