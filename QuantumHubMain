@@ -238,10 +238,6 @@ button.Font = Enum.Font.SourceSans
 button.Text = ""
 button.TextColor3 = Color3.fromRGB(0, 0, 0)
 button.TextSize = 14.000
-local button = script.Parent
-local label = script.Parent.Parent.button
-local plr = game:GetService("Players").LocalPlayer
-
 local function toggle()
 	if button.BackgroundColor3 == Color3.fromRGB(255,0,0) then
 		_G.Start_Farm_Chest = true
