@@ -2919,7 +2919,7 @@ ElementsTable.Button = (function()
 		local ButtonFrame = Components.Element(Config.Title, Config.Description, self.Container, true, Config)
 
 		local ButtonIco = New("ImageLabel", {
-			Image = "",
+			Image = "http://www.roblox.com/asset/?id=17293879614",
 			Size = UDim2.fromOffset(16, 16),
 			AnchorPoint = Vector2.new(1, 0.5),
 			Position = UDim2.new(1, -10, 0.5, 0),
@@ -2965,7 +2965,7 @@ ElementsTable.Toggle = (function()
 			AnchorPoint = Vector2.new(0, 0.5),
 			Size = UDim2.fromOffset(14, 14),
 			Position = UDim2.new(0, 2, 0.5, 0),
-			Image = "http://www.roblox.com/asset/?id=12266946128",
+			Image = "http://www.roblox.com/asset/?id=12200495094",
 			ImageTransparency = 0.5,
 			ThemeTag = {
 				ImageColor3 = "ToggleSlider",
