@@ -2582,13 +2582,60 @@ function royxui:royxstart(text,logo)
 end
 
 local Main = royxui:royxstart("No Name Hub")
+
+
 local Info = Main:AddTab("Info")
+local Credts = Info:AddPage("Credits")
+
+
 local MFarm = Main:AddTab("Main Farm")
-local SFarm = Main:AddTab("Sub Farm")
-local Set = Main:AddTab("Settings")
-local Sea = Main:AddTab("Sea")
-local TP = Main:AddTab("Travel")
-local Race = Main:AddTab("Race")
-local Shop = Main:AddTab("Shop")
-local Visual = Main:AddTab("Visual")
-local Misc = Main:AddTab("Misc")
+local WeaponList = {"Melee","Sword","Fruit"}
+_G.SelectWeapon = "Melee"
+local SelectW = MFarm:AddDropdown("DropDown",WeaponList,_G.SelectWeapon,function (v)
+	_G.SelectWeapon = v
+end)
+task.spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.SelectWeapon == "Melee" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Sword" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Gun" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Gun" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.SelectWeapon == "Fruit" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectWeapon = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
+    end)
+
+	local ListF = {"Normal", "Auto Quest", "Nearest"}
+FarmMode = "Normal"
+	local SelectFarm = MFarm:AddDropdown("DropDown",ListF,FarmMode, function(v)
+		FarmMode = v
+	end)
