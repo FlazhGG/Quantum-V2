@@ -4291,7 +4291,7 @@ Teleport:AddButton({
 Teleport:AddSection("Island")
 
 if World1 then
-    local World1Island = Teleport:AddDropdown("World1Island", {
+    WorldIsland = Teleport:AddDropdown("WorldIsland", {
         Title = "Select Island",
         Description = "",
         Values = {"WindMill",
@@ -4317,13 +4317,9 @@ if World1 then
     })
 end
 
-World1Island:SetValue(false)
-World1Island:OnChanged(function(pogi)
-    _G.SelectIsland = pogi
-end)
 
 if World2 then
-    local World2Island = Teleport:AddDropdown("World2Island", {
+    WorldIsland = Teleport:AddDropdown("WorldIsland", {
         Title = "Select Island",
         Description = "",
         Values = {"WindMill",
@@ -4348,13 +4344,9 @@ if World2 then
     })
 end
 
-World2Island:SetValue(false)
-World2Island:OnChanged(function(pogi)
-    _G.SelectIsland = pogi
-end)
 
 if World3 then
-    local World3Island = Teleport:AddDropdown("World3Island", {
+    WorldIsland = Teleport:AddDropdown("WorldIsland", {
         Title = "Select Island",
         Description = "",
         Values = {"WindMill",
@@ -4377,10 +4369,6 @@ if World3 then
     })
 end
 
-World3Island:SetValue(false)
-World3Island:OnChanged(function(pogi)
-    _G.SelectIsland = pogi
-end)
 
 local TeleportIsland = Teleport:AddToggle("TeleportIsland", {
     Title = "Teleport to Island",
