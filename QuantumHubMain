@@ -4325,7 +4325,7 @@ if World2 then
     WorldIsland = Teleport:AddDropdown("WorldIsland", {
         Title = "Select Island",
         Description = "",
-        Values = {"WindMill",
+        Values = {
         "The Cafe",
             "Frist Spot",
             "Dark Area",
@@ -4355,7 +4355,7 @@ if World3 then
     WorldIsland = Teleport:AddDropdown("WorldIsland", {
         Title = "Select Island",
         Description = "",
-        Values = {"WindMill",
+        Values = {
         "Mansion",
             "Port Town",
             "Great Tree",
@@ -4479,10 +4479,8 @@ local TeleportIsland = Teleport:AddToggle("TeleportIsland", {
                     topos(CFrame.new(-1884.7747802734375, 19.327526092529297, -11666.8974609375))
                 elseif _G.SelectIsland == "Cocoa Island" then
                     topos(CFrame.new(87.94276428222656, 73.55451202392578, -12319.46484375))
-                elseif _G.SelectIsland == "Candy Island" then
+                elseif _G.SelectIsland == "Candy Island New⛄" then
                     topos(CFrame.new(-1014.4241943359375, 149.11068725585938, -14555.962890625))
-                elseif _G.SelectIsland == "Tiki Outpost" then
-                    topos(CFrame.new(-16218.6826, 9.08636189, 445.618408, -0.0610186495, 1.10512588e-09, -0.99813664, -1.83458475e-08, 1, 2.22871765e-09, 0.99813664, 1.84476558e-08, -0.0610186495))
                 end
             until not _G.TeleportIsland
         end
@@ -4492,7 +4490,7 @@ local TeleportIsland = Teleport:AddToggle("TeleportIsland", {
 Teleport:AddSection("NPC")
 
 if World1 then
-    local TeleportNPC = Teleport:AddDropdown("TeleportNPC", {
+    TeleportNPC = Teleport:AddDropdown({
         Title = "Select NPC",
         Description = "",
         Values = {
@@ -4510,7 +4508,7 @@ if World1 then
 end
 
 if World2 then
-    local TeleportNPC = Teleport:AddDropdown("TeleportNPC", {
+    TeleportNPC = Teleport:AddDropdown({
         Title = "Select NPC",
         Description = "",
         Values = {
@@ -4539,7 +4537,7 @@ if World2 then
 end
 
 if World3 then
-    local TeleportNPC = Teleport:AddDropdown("TeleportNPC", {
+    TeleportNPC = Teleport:AddDropdown({
         Title = "Select NPC",
         Description = "",
         Values = {
