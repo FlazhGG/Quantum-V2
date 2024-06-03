@@ -510,19 +510,6 @@ spawn(function()
 
 	local url = "https://discord.com/api/webhooks/1247053451892887582/O51omieIiNetizfxgKfV30h68vJsAFLBykLk1cDrL6KL_NFh114TX1Ge3rQch5EzWTqq" -- ur webhook url
 
-getgenv().Settings = {
-    ["Performance"] = {
-        ["FPS Cap"] = 60,
-        ["Disable Rendering"] = false
-    },
-}
-
--- 
-
-local PERFSettings = Settings["Performance"]
-
-setfpscap(PERFSettings["FPS Cap"] or 60)
-game.RunService:Set3dRenderingEnabled(not PERFSettings["Disable Rendering"])
 
 repeat task.wait() until game:IsLoaded()
 local loadTime = tick()
