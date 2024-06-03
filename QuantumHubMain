@@ -527,4 +527,100 @@ spawn(function()
         game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Visible = true
     end
 
+	local url = "webhookinglololo" -- ur webhook url
+
+getgenv().Settings = {
+    ["Performance"] = {
+        ["FPS Cap"] = 60,
+        ["Disable Rendering"] = false
+    },
+}
+
+-- 
+
+local PERFSettings = Settings["Performance"]
+
+setfpscap(PERFSettings["FPS Cap"] or 60)
+game.RunService:Set3dRenderingEnabled(not PERFSettings["Disable Rendering"])
+
+repeat task.wait() until game:IsLoaded()
+local loadTime = tick()
+
+-- // Services // -- 
+
+local request = syn and syn.request or http_request or http.request
+local PlayerName = game.Players.LocalPlayer.Name
+
+-- // Logging // --
+
+rconsolename(("< full moon notifier (%s) > JobId: %s"):format(PlayerName, game.JobId))
+rconsoleclear()
+function log(...) rconsoleprint(("[catn1qqer open-sourced full moon notifier] %s\n"):format(table.concat({...}, " "))) end
+function logTime(...) log(..., "|", math.round((tick() - loadTime) * 1000), "ms") end
+
+-- // Webhook --
+
+    ServerScript = 'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,'..'\''..tostring(game.JobId)..'\''..')'
+        for i,v in pairs(game.Players:GetPlayers()) do
+            CurrentPlayers = i
+        end
+
+        if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
+            MoonStatus = '🟢'
+        else
+            MoonStatus = '🔴'
+        end
+
+        MoonCheck = '```'..tostring(MoonStatus)..'```'
+
+        local data = {
+            ["username"] = 'catn1qqer | full moon notifier',
+            ['content'] = '@everyone',
+            ["embeds"] = {
+                {
+                    ["title"] = "**catn1qqer | full moon notifier**",
+                    ["color"] = 5539744, -- color id		
+                    ["type"] = "rich",
+                    ["fields"] =  {
+                        {
+                            ["name"] = "Current Players",
+                            ["value"] = '```'..tostring(CurrentPlayers)..'/12```',
+                            ["inline"] = true,
+                        },
+                        {
+                            ["name"] = "Full Moon",
+                            ["value"] = MoonCheck,
+                            ["inline"] = true,
+                        },
+                        {
+                            ["name"] = "Script",
+                            ["value"] = '```lua\n'..ServerScript..'\n```',
+                        },
+                        {
+                            ["name"] = "JobId",
+                            ["value"] = '```'..tostring(game.JobId)..'```',
+                        }
+                    },
+                    ["image"] = {
+                        ["url"] = "https://media.discordapp.net/attachments/1094257958117974096/1102149775924666449/image.png?width=971&height=405", -- wtf
+                    },
+                    ["timestamp"] = DateTime.now():ToIsoDate(),
+                }
+            },
+        }
+
+-- // Full Moon // --
+
+if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then -- Make the game find the object first, then server hop.
+    log("omg :O full moon found!! sharing this to the boys rn")
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+    local headers = {["content-type"] = "application/json"}
+    request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(abcdef)
+    wait(0.3)
+
+
 	rconsoleclear()
+
+
