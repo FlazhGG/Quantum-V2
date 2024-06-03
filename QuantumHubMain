@@ -568,6 +568,7 @@ spawn(function()
         task.spawn(function()
             while true do
                 if _G.Start_Farm_Chest == true then
+					wait(1)
                     local hasChar = game.Players.LocalPlayer:FindFirstChild("Character")
                     if not game.Players.LocalPlayer.Character then
             
