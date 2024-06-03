@@ -4793,7 +4793,7 @@ FarmMode = "Normal"
 		end
 		end)
 
-		local AutoFarm = Farm:Toggle("AutoFarm",8543527952,false,function(value)
+		local AutoFarm = Farm:AddToggle("AutoFarm",8543527952,false,function(value)
 			_G.AutoFarm = value
 			StopTween(_G.AutoFarm)
 		end)
