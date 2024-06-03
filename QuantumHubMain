@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Window = Quantum:CreateWindow({
   Title = "Quantum Hub : Blox Fruits",
-  SubTitle = "Free",
+  SubTitle = "by Flazhy",
   TabWidth = 160,
   Size = UDim2.fromOffset(580, 410),
   Acrylic = false,
@@ -329,7 +329,7 @@ local AutoDoughBossHop = Main:AddToggle("AutoDoughBossHop", {
 
 local Sub = Window:AddTab({Title = "Sub Farm", Icon = "swords"})
 local Set = Window:AddTab({Title = "Settings", Icon = "settings"})
-local V4 = Window:AddTab({Title = "Race", Icon = ""})
+local V4 = Window:AddTab({Title = "Race", Icon = "globe"})
 local Sea = Window:AddTab({Title = "Sea", Icon = "sailboat"})
 local Tele = Window:AddTab({Title = "Travel", Icon = "map-pin"})
 
