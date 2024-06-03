@@ -223,11 +223,6 @@ FPS.Font = Enum.Font.SourceSans
 FPS.TextColor3 = Color3.fromRGB(255, 255, 255)
 FPS.TextSize = 14.000
 FPS.TextXAlignment = Enum.TextXAlignment.Left
-local FPS = Instance.new('LocalScript', Fps)
-local RunService = game:GetService("RunService")
-RunService.RenderStepped:Connect(function(frame)
-FPS.Text = ("[FPS] : "..math.round(1/frame)) 
-end)
 
 Line.Name = "Line"
 Line.Parent = Load
