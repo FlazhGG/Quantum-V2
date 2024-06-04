@@ -359,7 +359,7 @@ local Themes = {
 		Tab = Color3.fromRGB(160, 140, 180),
 
 		Element = Color3.fromRGB(120, 120, 120),
-		ElementBorder = Color3.fromRGB(35, 35, 35),
+		ElementBorder = Color3.fromRGB(92, 28, 255),
 		InElementBorder = Color3.fromRGB(92, 28, 255),
 		ElementTransparency = 0.87,
 
