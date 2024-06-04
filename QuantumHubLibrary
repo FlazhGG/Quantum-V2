@@ -1414,7 +1414,7 @@ end
 
 local Components = {
 	Assets = {
-		Close = "rbxassetid://9886659671",
+		Close = "rbxassetid://10734896206",
 		Min = "rbxassetid://9886659276",
 		Max = "rbxassetid://9886659406",
 		Restore = "rbxassetid://9886659001",
@@ -2496,21 +2496,7 @@ Components.TitleBar = (function()
 		})
 
 		TitleBar.CloseButton = BarButton(Components.Assets.Close, UDim2.new(1, -4, 0, 4), TitleBar.Frame, function()
-			Library.Window:Dialog({
-				Title = "Close Quantum Hub",
-				Content = "Are you sure you want to unload the Quantum Hub?",
-				Buttons = {
-					{
-						Title = "Yes",
-						Callback = function()
-							Library:Destroy()
-						end,
-					},
-					{
-						Title = "No",
-					},
-				},
-			})
+			Library.Window:Minimized()
 		end)
 		return TitleBar
 	end
