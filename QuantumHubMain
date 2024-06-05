@@ -14,8 +14,6 @@ for i,v in pairs(game.Players:GetPlayers()) do
     CurrentPlayers = i
 end
 
-local playerId = player.UserId
-
 local le = (game:GetService("Players").LocalPlayer.Data.Level.Value)
 local code = LocalizationService:GetCountryRegionForPlayerAsync(player)
 local data = {
@@ -38,11 +36,6 @@ local data = {
                 icon_url = ""
             },
             fields = {
-                {
-                    name = "Player ID",
-                    value = "`" .. playerId .. "`",
-                    inline = true
-                },
                 {
                     name = "Country",
                     value = "```" .. code .. "```",
