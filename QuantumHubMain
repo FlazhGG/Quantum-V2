@@ -1447,7 +1447,7 @@ local Attacklist = Set:AddDropdown("Attacklist", {
     Description = "",
     Values = AttackList,
     Multi = false,
-    Default = __G.FastAttackDelay,
+    Default = _G.FastAttackDelay,
     Callback = function (value)
         
         _G.FastAttackDelay = value
