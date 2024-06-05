@@ -40,7 +40,7 @@ local Themes = {
 		ElementTransparency = 0.87,
 
 		ToggleSlider = Color3.fromRGB(120, 120, 120),
-		ToggleToggled = Color3.fromRGB(255, 255, 255),
+		ToggleToggled = Color3.fromRGB(0, 0, 0),
 
 		SliderRail = Color3.fromRGB(120, 120, 120),
 
@@ -351,7 +351,7 @@ local Themes = {
 		Accent = Color3.fromRGB(92, 28, 255),
 
 		AcrylicMain = Color3.fromRGB(60, 60, 60),
-		AcrylicBorder = Color3.fromRGB(92, 28, 255),
+		AcrylicBorder = Color3.fromRGB(90, 90, 90),
 		AcrylicGradient = ColorSequence.new(Color3.fromRGB(40, 40, 40), Color3.fromRGB(40, 40, 40)),
 		AcrylicNoise = 0.9,
 
@@ -386,10 +386,10 @@ local Themes = {
 		DialogButtonBorder = Color3.fromRGB(80, 80, 80),
 		DialogBorder = Color3.fromRGB(92, 28, 255),
 		DialogInput = Color3.fromRGB(55, 55, 55),
-		DialogInputLine = Color3.fromRGB(92, 28, 255),
+		DialogInputLine = Color3.fromRGB(160, 160, 160),
 
 		Text = Color3.fromRGB(240, 240, 240),
-		SubText = Color3.fromRGB(112, 255, 245),
+		SubText = Color3.fromRGB(170, 170, 170),
 		Hover = Color3.fromRGB(120, 120, 120),
 		HoverChange = 0.07,
 	}
@@ -1065,18 +1065,18 @@ function Library:SafeCallback(Function, ...)
 
 		if not i then
 			return Library:Notify({
-				Title = "Quantum Hub",
-				Content = "Checking",
+				Title = "Interface",
+				Content = "Callback error",
 				SubContent = Event,
-				Duration = 3,
+				Duration = 5,
 			})
 		end
 
 		return Library:Notify({
-			Title = "Quantum Hub",
-			Content = "Checking",
+			Title = "Interface",
+			Content = "Callback error",
 			SubContent = Event:sub(i + 1),
-			Duration = 3,
+			Duration = 5,
 		})
 	end
 end
@@ -1414,7 +1414,7 @@ end
 
 local Components = {
 	Assets = {
-		Close = "rbxassetid://10734896206",
+		Close = "rbxassetid://9886659671",
 		Min = "rbxassetid://9886659276",
 		Max = "rbxassetid://9886659406",
 		Restore = "rbxassetid://9886659001",
@@ -1601,7 +1601,7 @@ Components.Section = (function()
 				TextTransparency = 0,
 				FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal),
 				TextSize = 18,
-				TextXAlignment = "Center",
+				TextXAlignment = "Left",
 				TextYAlignment = "Center",
 				Size = UDim2.new(1, -16, 0, 18),
 				Position = UDim2.fromOffset(0, 2),
@@ -2496,8 +2496,29 @@ Components.TitleBar = (function()
 		})
 
 		TitleBar.CloseButton = BarButton(Components.Assets.Close, UDim2.new(1, -4, 0, 4), TitleBar.Frame, function()
+			Library.Window:Dialog({
+				Title = "Close",
+				Content = "Are you sure you want to unload the interface?",
+				Buttons = {
+					{
+						Title = "Yes",
+						Callback = function()
+							Library:Destroy()
+						end,
+					},
+					{
+						Title = "No",
+					},
+				},
+			})
+		end)
+		TitleBar.MaxButton = BarButton(Components.Assets.Max, UDim2.new(1, -40, 0, 4), TitleBar.Frame, function()
+			Config.Window.Maximize(not Config.Window.Maximized)
+		end)
+		TitleBar.MinButton = BarButton(Components.Assets.Min, UDim2.new(1, -80, 0, 4), TitleBar.Frame, function()
 			Library.Window:Minimize()
 		end)
+
 		return TitleBar
 	end
 end)()
@@ -2811,7 +2832,7 @@ Components.Window = (function()
 				MinimizeNotif = true
 				local Key = Library.MinimizeKeybind and Library.MinimizeKeybind.Value or Library.MinimizeKey.Name
 				Library:Notify({
-					Title = "Quantum Hub",
+					Title = "Interface",
 					Content = "Press " .. Key .. " to toggle the interface.",
 					Duration = 6
 				})
@@ -2902,7 +2923,7 @@ ElementsTable.Button = (function()
 		local ButtonFrame = Components.Element(Config.Title, Config.Description, self.Container, true, Config)
 
 		local ButtonIco = New("ImageLabel", {
-			Image = "http://www.roblox.com/asset/?id=17293879614",
+			Image = "rbxassetid://10709791437",
 			Size = UDim2.fromOffset(16, 16),
 			AnchorPoint = Vector2.new(1, 0.5),
 			Position = UDim2.new(1, -10, 0.5, 0),
@@ -2948,7 +2969,7 @@ ElementsTable.Toggle = (function()
 			AnchorPoint = Vector2.new(0, 0.5),
 			Size = UDim2.fromOffset(14, 14),
 			Position = UDim2.new(0, 2, 0.5, 0),
-			Image = "http://www.roblox.com/asset/?id=10709797837",
+			Image = "http://www.roblox.com/asset/?id=12266946128",
 			ImageTransparency = 0.5,
 			ThemeTag = {
 				ImageColor3 = "ToggleSlider",
@@ -3525,7 +3546,7 @@ ElementsTable.Paragraph = (function()
 		Config.Content = Config.Content or ""
 
 		local Paragraph = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
-		Paragraph.Frame.BackgroundTransparency = 1
+		Paragraph.Frame.BackgroundTransparency = 0.92
 		Paragraph.Border.Transparency = 0.6
 
 		Paragraph.SetTitle = Paragraph.SetTitle
@@ -5528,7 +5549,7 @@ local SaveManager = {} do
 			local success, err = self:Load(name)
 			if not success then
 				return self.Library:Notify({
-					Title = "Quantum Hub",
+					Title = "Interface",
 					Content = "Config loader",
 					SubContent = "Failed to load autoload config: " .. err,
 					Duration = 7
@@ -5536,7 +5557,7 @@ local SaveManager = {} do
 			end
 
 			self.Library:Notify({
-				Title = "Quantum Hub",
+				Title = "Interface",
 				Content = "Config loader",
 				SubContent = string.format("Auto loaded config %q", name),
 				Duration = 7
@@ -5559,7 +5580,7 @@ local SaveManager = {} do
 
 				if name:gsub(" ", "") == "" then 
 					return self.Library:Notify({
-						Title = "Quantum Hub",
+						Title = "Interface",
 						Content = "Config loader",
 						SubContent = "Invalid config name (empty)",
 						Duration = 7
@@ -5569,7 +5590,7 @@ local SaveManager = {} do
 				local success, err = self:Save(name)
 				if not success then
 					return self.Library:Notify({
-						Title = "Quantum Hub",
+						Title = "Interface",
 						Content = "Config loader",
 						SubContent = "Failed to save config: " .. err,
 						Duration = 7
@@ -5577,7 +5598,7 @@ local SaveManager = {} do
 				end
 
 				self.Library:Notify({
-					Title = "Quantum Hub",
+					Title = "Interface",
 					Content = "Config loader",
 					SubContent = string.format("Created config %q", name),
 					Duration = 7
@@ -5594,7 +5615,7 @@ local SaveManager = {} do
 			local success, err = self:Load(name)
 			if not success then
 				return self.Library:Notify({
-					Title = "Quantum Hub",
+					Title = "Interface",
 					Content = "Config loader",
 					SubContent = "Failed to load config: " .. err,
 					Duration = 7
@@ -5602,7 +5623,7 @@ local SaveManager = {} do
 			end
 
 			self.Library:Notify({
-				Title = "Quantum Hub",
+				Title = "Interface",
 				Content = "Config loader",
 				SubContent = string.format("Loaded config %q", name),
 				Duration = 7
@@ -5615,7 +5636,7 @@ local SaveManager = {} do
 			local success, err = self:Save(name)
 			if not success then
 				return self.Library:Notify({
-					Title = "Quantum Hub",
+					Title = "Interface",
 					Content = "Config loader",
 					SubContent = "Failed to overwrite config: " .. err,
 					Duration = 7
@@ -5623,7 +5644,7 @@ local SaveManager = {} do
 			end
 
 			self.Library:Notify({
-				Title = "Quantum Hub",
+				Title = "Interface",
 				Content = "Config loader",
 				SubContent = string.format("Overwrote config %q", name),
 				Duration = 7
@@ -5641,7 +5662,7 @@ local SaveManager = {} do
 			writefile(self.Folder .. "/autoload.txt", name)
 			AutoloadButton:SetDesc("Current autoload config: " .. name)
 			self.Library:Notify({
-				Title = "Quantum Hub",
+				Title = "Interface",
 				Content = "Config loader",
 				SubContent = string.format("Set %q to auto load", name),
 				Duration = 7
@@ -5846,9 +5867,10 @@ function Library:Notify(Config)
 end
 
 if getgenv then
-	getgenv().Quantum = Library
+	getgenv().Fluent = Library
 else
-	Quantum = Library
+	Fluent = Library
 end
+
 
 return Library, SaveManager, InterfaceManager
