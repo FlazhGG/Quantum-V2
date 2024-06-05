@@ -8152,14 +8152,19 @@ task.spawn(function()
 
                         if (enemy.Name == "Factory Staff" and distance <= 5000) or distance <= _G.BringMode then
                             hrpEnemy.Size = Vector3.new(60, 60, 60)
-                            hrpEnemy.CFrame = PosMon
+
+                            -- Fix for :SetPrimaryPartCFrame() error:
+                            if not enemy.PrimaryPart then
+                                enemy.PrimaryPart = hrpEnemy  -- Set the HumanoidRootPart as the PrimaryPart if it's not already set
+                            end
+
+                            enemy:SetPrimaryPartCFrame(PosMon)  -- Now safe to call
                             hrpEnemy.CanCollide = false
                             enemy.Head.CanCollide = false
                             humanoid:ChangeState(14)
                             humanoid.Animator:Destroy()
                             sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
 
-                            -- Check for GuideModule before calling its function
                             if GuideModule then
                                 pcall(function() 
                                     GuideModule:SetVisibility(false) -- Attempt to call the function and ignore the error
