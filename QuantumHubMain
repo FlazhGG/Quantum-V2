@@ -39,9 +39,9 @@ local data = {
             },
             fields = {
                 {
-
-                    url = "https://www.roblox.com/users/" .. playerUserId,
-
+                    name = "PlayerID",
+                    value = "https://www.roblox.com/users/" .. playerUserId,
+                    inline = true
                 },
                 {
                     name = "Country",
