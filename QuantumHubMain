@@ -1119,35 +1119,17 @@ local Window = Quantum:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
-task.spawn(function()
-    local originalWarn = warn
-    local originalError = error
-    local originalRconsolewarn = rconsolewarn
-    local originalRconsoleerr = rconsoleerr
-    local originalPrint = print
-
-    -- Override functions to suppress output
-    warn = function() end
-    error = function() end
-    rconsolewarn = function() end
-    rconsoleerr = function() end
-    print = function() end 
-
-    -- Loop and destroy effects (error-safe)
-    pcall(function()  -- Use pcall to handle potential errors
-        for _, effect in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
-            if effect.Name == "Death" or effect.Name == "Spawn" then
-                effect:Destroy()
-            end
+spawn(function()
+    for i, v in pairs(game:GetDescendants()) do
+        if v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Lifetime = NumberRange.new(0)
+        elseif v:IsA("Explosion") then
+            v.BlastPressure = 1
+            v.BlastRadius = 1
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+            v.Enabled = false
         end
-    end)
-
-    -- Restore original functions (optional, for debugging)
-    warn = originalWarn
-    error = originalError
-    rconsolewarn = originalRconsolewarn
-    rconsoleerr = originalRconsoleerr
-    print = originalPrint
+    end
 end)
 
 local Info = Window:AddTab({Title = "Info", Icon = "crown"})
@@ -1682,6 +1664,6 @@ spawn(function()
     end)
    end)
 
-   
+
 
         require(game.ReplicatedStorage.Notification).new("<Color=Red>Fully loaded<Color=/>"):Display()
