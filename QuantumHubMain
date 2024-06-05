@@ -17,16 +17,16 @@ local data = {
             description = "```" .. player.DisplayName .. " (" .. player.Name .. ") ```",
             color = tonumber(0xffa500),
             author = {
-                name = "Admin: Dio and Ari and Dung cũ",
-                url = "https://cdn.discordapp.com/attachments/1226454597724409936/1233430491953107086/Screenshot_2024-04-20-17-04-30-945_com.zing.zalo-edit.jpg?ex=662d1129&is=662bbfa9&hm=345e588812e5489a8219d6939a7b94487e79f1153c99523094d207a830f2ccee&",
-                icon_url = "https://cdn.discordapp.com/attachments/1226454597724409936/1233430491953107086/Screenshot_2024-04-20-17-04-30-945_com.zing.zalo-edit.jpg?ex=662d1129&is=662bbfa9&hm=345e588812e5489a8219d6939a7b94487e79f1153c99523094d207a830f2ccee&"
+                name = "",
+                url = "",
+                icon_url = ""
             },
             image = {
-            	url = "https://cdn.discordapp.com/attachments/1229077309194113094/1233391929983504394/320688412_5524593467666764_7520827848036533185_n.gif?ex=662ced3f&is=662b9bbf&hm=25bf897861b49dc4d4e1320aa246bb05f9c5ba67d2a745106b9e0ad159981a55&"
+            	url = ""
             },
             footer = {
-                text = "SkyX Hub | Created by: Ari | https://discord.com/invite/E6ffTF57RG | Time: " .. os.date("%Y-%m-%d %H:%M:%S VN"),
-                icon_url = "https://cdn.discordapp.com/attachments/1226454597724409936/1233424140283940924/09b1d39ef857154916c5425b203eddac.jpg?ex=662d0b3e&is=662bb9be&hm=c9a53bdf01f40ef9cd37ea93422e2ed57ae74cdb31fb2cbf7be875214cb4d7ae&"
+                text = " Time: " .. os.date("%Y-%m-%d %H:%M:%S VN"),
+                icon_url = ""
             },
             fields = {
                 {
