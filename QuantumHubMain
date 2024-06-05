@@ -49,7 +49,7 @@ local data = {
                     inline = true
                 },
                 {
-                    name = "Age",
+                    name = "Account Age",
                     value = "```" .. player.AccountAge .. " Days```",
                     inline = true
                 },
