@@ -36,21 +36,23 @@ task.spawn(function()
     error = function() end
     rconsolewarn = function() end
     rconsoleerr = function() end
-    print = function() end  -- Optional: Suppress regular print statements too
+    print = function() end -- Optional, comment out if you need to see print statements
 
-    -- Loop and destroy effects (error-safe)
-    pcall(function()  -- Use pcall to handle potential errors
-        for _, effect in pairs(ReplicatedStorage:WaitForChild("Effect"):WaitForChild("Container"):GetChildren()) do
+    pcall(function()
+        local Effect = ReplicatedStorage:WaitForChild("Effect")  -- Wait for "Effect" folder
+        local Container = Effect:WaitForChild("Container")    -- Wait for "Container" folder
+        
+        for _, effect in ipairs(Container:GetChildren()) do -- Iterate through effects safely
             if effect.Name == "Death" or effect.Name == "Spawn" then
                 effect:Destroy()
             end
         end
     end)
 
-    -- Restore original functions (optional, for debugging)
-    warn = originalWarn
-    error = originalError
-    rconsolewarn = originalRconsolewarn
-    rconsoleerr = originalRconsoleerr
-    print = originalPrint -- Optional: Restore print if suppressed
+    -- Restore original functions (optional, uncomment for debugging)
+    -- warn = originalWarn
+    -- error = originalError
+    -- rconsolewarn = originalRconsolewarn
+    -- rconsoleerr = originalRconsoleerr
+    -- print = originalPrint
 end)
