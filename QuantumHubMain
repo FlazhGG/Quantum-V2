@@ -1,32 +1,4 @@
-repeat
-    wait()
-until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character;
-function format(uwu)
-    return tostring(uwu):reverse():gsub("%d%d%d", "%1,"):reverse():gsub("^,", "")
-end;
-local data = {
-    ["content"] = "Player Information",
-    ["embeds"] = {
-        {
-            ["title"] = "Quantum Hub",
-            ["description"] = "⚙️ Exploit: " .. identifyexecutor() .. "\n👑 Username: " .. game.Players.LocalPlayer.Name .. "\n⚜️ Level: " .. format(game:GetService("Players").LocalPlayer.Data.Level.Value) .. "\n⚜️ Beli: " .. format(game:GetService("Players").LocalPlayer.Data.Beli.Value) .. "\n⚜️ Fragments: " .. format(game:GetService("Players").LocalPlayer.Data.Fragments.Value) .. "\n⚜️ EXP: " .. format(game:GetService("Players").LocalPlayer.Data.Exp.Value) .. "\n⚜️ Spawn Point: " .. game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value .. "\n⚜️ Devil Fruit: " .. game:GetService("Players").LocalPlayer.Data.DevilFruit.Value .. "\n⚜️ Bounty/Honor: " .. format(game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value) .. "\n⚜️ Race : " .. game:GetService("Players").LocalPlayer.Data.Race.Value .. "\n💎 Game Name : " .. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name .. "\n💎 Server Job Id: "  .. tostring(game.JobId)  .. "\n💎 Join Server Script:" .. "\n💎 Game Id: " .. tostring(game.PlaceId) .. "\n🔒 User Hwid:" ,
-            ["type"] = "rich",
-            ["color"] = tonumber(1),
-            ["image"] = {
-                ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" .. tostring(game:GetService("Players").LocalPlayer.Name)
-            }
-        }
-    }
-}
-request = http_request or request or HttpPost or fluxus.request or syn.request or Krnl.request;
-request({
-    Url = "",
-    Body = game:GetService("HttpService"):JSONEncode(data),
-    Method = "POST",
-    Headers = {
-        ["content-type"] = "application/json"
-    }
-})
+
 
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 _G.Primary = Color3.fromRGB(0, 45, 255)
