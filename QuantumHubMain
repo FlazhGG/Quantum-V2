@@ -989,6 +989,50 @@ function TPP(CFgo)
 	return tweenfunc
 end
 
+function toTarget(...)
+    local RealtargetPos = { ... }
+    local targetPos = RealtargetPos[1]
+    local RealTarget
+    if type(targetPos) == "vector" then
+        RealTarget = CFrame.new(targetPos)
+    elseif type(targetPos) == "userdata" then
+        RealTarget = targetPos
+    elseif type(targetPos) == "number" then
+        RealTarget = CFrame.new(unpack(RealtargetPos))
+    end
+    if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health == 0 then
+        if tween then tween:Cancel() end
+        repeat wait() until game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health > 0; wait(0.2)
+    end
+    local tweenfunc = {}
+    local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position)
+        .Magnitude
+    if Distance < 1000 then
+        Speed = 320
+    elseif Distance >= 1000 then
+        Speed = 290
+    end
+
+    local tween_s = game:service "TweenService"
+    local info = TweenInfo.new(
+        (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position)
+        .Magnitude / Speed, Enum.EasingStyle.Linear)
+    local tweenw, err = pcall(function()
+        tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, { CFrame = RealTarget })
+        tween:Play()
+    end)
+
+    function tweenfunc:Stop()
+        tween:Cancel()
+    end
+
+    function tweenfunc:Wait()
+        tween.Completed:Wait()
+    end
+
+    return tweenfunc
+end
+
 getgenv().ToTargets = function(p)
     task.spawn(function()
         pcall(function()
@@ -2475,7 +2519,7 @@ while task.wait() do
                                     AutoHaki()
                                     StartBring = true
                                     EquipWeapon(_G.SelectWeapon)
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
                                          v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                             v.HumanoidRootPart.Transparency = 1
                                             v.Humanoid.JumpPower = 0
@@ -2493,7 +2537,7 @@ while task.wait() do
                                         for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
                                         if string.find(v.Name, Mon) then
                                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
-                                        topos(v.CFrame * CFrame.new(posX,posY,posZ))
+                                        topos(v.CFrame * Pos)
 
                                         end
                                     end
