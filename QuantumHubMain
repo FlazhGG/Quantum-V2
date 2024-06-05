@@ -854,6 +854,19 @@ function AntiBan()
         end
 
         --------------------------------------
+        function CheckMaterial(matname)
+            for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventory")) do
+            if type(v) == "table" then
+            if v.Type == "Material" then
+            if v.Name == matname then
+            return v.Count
+            end
+            end
+            end
+            end
+            return 0
+            end
+
 
     function Click()
         game:GetService'VirtualUser':CaptureController()
@@ -2492,7 +2505,6 @@ while task.wait() do
                                              v.HumanoidRootPart.CanCollide = false
                                             FarmPos = v.HumanoidRootPart.CFrame
                                             MonFarm = v.Name
-      --Click
                                             until not _G.AutoMaterial or not v.Parent or v.Humanoid.Health <= 0
                                             StartBring = false
                                         end
@@ -2501,7 +2513,7 @@ while task.wait() do
                                     else
                                         for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
                                         if string.find(v.Name, Mon) then
-                                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
+                                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 1000 then
                                             topos(v.HumanoidRootPart.CFrame * Pos)
                                         end
                                     end
