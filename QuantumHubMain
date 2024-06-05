@@ -2509,7 +2509,7 @@ while task.wait() do
     if _G.AutoMaterial then
     pcall(function()
             MaterialMon(SelectMaterial)
-                TPP(MPos)
+                toTarget(MPos)
                         if game:GetService("Workspace").Enemies:FindFirstChild(MMon) then
                             for i,v in pairs (game.Workspace.Enemies:GetChildren()) do
                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
