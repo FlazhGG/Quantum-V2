@@ -91,15 +91,61 @@ else
 end
 
 
+local id = game.PlaceId
+if id == 2753915549 then
+World1 = true; 
+else
+if id == 4442272183 then
+World2 = true;
+else
+if id == 7449423635 then 
+World3 = true; 
+else 
+game:Shutdown() 
+end
+end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function AntiBan()
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
+                v:Destroy()
+            end
+        end
+     end
+     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "RobloxMotor6DBugFix" or v.Name == "Clans"  or v.Name == "Codes" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
+                v:Destroy()
+            end
+        end
+     end
+    end
+    AntiBan()
 
-repeat task.wait()until game:IsLoaded()
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local VirtualUser = game:GetService("VirtualUser")
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	wait(1)
+	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 
-local Remotes = ReplicatedStorage:WaitForChild("Remotes", 9e9)
-local CommF = Remotes:WaitForChild("CommF_", 9e9)
+spawn(function() 
+    repeat
+        task.wait()
+    until game:IsLoaded()
+    repeat
+        task.wait()
+    until game.Players
+    repeat
+        task.wait()
+    until game.Players.LocalPlayer and game.Players.LocalPlayer.Team ~= nil 
+    wait(1.5)
+    require(game.ReplicatedStorage.Notification).new("<Color=Red>Welcome Quantum Hub User<Color=/>"):Display()
+end)
+wait(1.5)
+require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading<Color=/>"):Display()
+    
 
 local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 
@@ -219,3 +265,5 @@ local function UpdateOS()
                 })
             end
         })
+
+        require(game.ReplicatedStorage.Notification).new("<Color=Red>Fully loaded<Color=/>"):Display()
