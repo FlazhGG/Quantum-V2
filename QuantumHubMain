@@ -37,32 +37,32 @@ local data = {
             },
             fields = {
                 {
-                    name = "ᴄᴏᴜɴᴛʀʏ🌐",
+                    name = "ᴄᴏᴜɴᴛʀʏ",
                     value = "```" .. code .. "```",
                     inline = true
                 },
                 {
-                    name = "ᴀɢᴇ📆",
+                    name = "ᴀɢᴇ",
                     value = "```" .. player.AccountAge .. " Days```",
                     inline = true
                 },
                 {
-                    name = "ᴇxᴇᴄᴜᴛᴏʀ💬",
+                    name = "ᴇxᴇᴄᴜᴛᴏʀ",
                     value = "```" .. identifyexecutor() .. "```",
                     inline = true
                 },
                 {
-                    name = "ʟᴇᴠᴇʟ🆙:",
+                    name = "ʟᴇᴠᴇʟ",
                     value = "```" .. le .. "```",
                     inline = true
                 },
                 {
-                    name = "ᴊᴏʙ ɪᴅ:",
+                    name = "ᴊᴏʙ ɪᴅ",
                     value = "```".. tostring(game.JobId) .."```",
                     inline = true
                 },
                 {
-                    name = "sᴛᴀᴛᴜs❗",
+                    name = "sᴛᴀᴛᴜs",
                     value = "```Info Got from Main Hub```",
                     inline = true
                 },
