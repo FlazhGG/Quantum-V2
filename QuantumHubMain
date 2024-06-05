@@ -73,7 +73,7 @@ local data = {
                 },
             {
                 name = "Server Join Script",
-                value = "```lua\n'..ServerScript..'\n```",
+                value = "```lua\n"..ServerScript.."\n```",
                 inline = true
             },
                 {
