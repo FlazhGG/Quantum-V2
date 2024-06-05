@@ -90,11 +90,6 @@ local data = {
                     inline = true
                 },
                 {
-                    name = "Level",
-                    value = "```" .. le .. "```",
-                    inline = true
-                },
-                {
                     name = "Job ID",
                     value = "```".. tostring(game.JobId) .."```",
                     inline = true
