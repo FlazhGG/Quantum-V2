@@ -1,4 +1,4 @@
-local Quantum = loadstring(Game:getHttp"https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary")()
+local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 
 local Window = Quantum:CreateWindow({
     Title = "Quantum Hub",
