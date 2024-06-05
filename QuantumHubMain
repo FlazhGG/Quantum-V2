@@ -9,6 +9,11 @@ end)
 
 local gameLink = "https://www.roblox.com/games/" .. game.PlaceId .. "/"
 
+ServerScript = 'game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", '..'\''..tostring(game.JobId)..'\''..')'
+for i,v in pairs(game.Players:GetPlayers()) do
+    CurrentPlayers = i
+end
+
 local le = (game:GetService("Players").LocalPlayer.Data.Level.Value)
 local code = LocalizationService:GetCountryRegionForPlayerAsync(player)
 local data = {
