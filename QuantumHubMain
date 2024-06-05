@@ -23,14 +23,21 @@ local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 
 
 
-spawn(function()
-    local originalWarn = warn -- Store original warn function
-    local originalError = error -- Store original error function
+task.spawn(function()
+    -- Store original functions
+    local originalWarn = warn
+    local originalError = error
+    local originalRconsolewarn = rconsolewarn
+    local originalRconsoleerr = rconsoleerr
+    local originalPrint = print
 
-    -- Override warn and error to do nothing
+    -- Override functions to suppress output
     warn = function() end
     error = function() end
-    
+    rconsolewarn = function() end
+    rconsoleerr = function() end
+    print = function() end  -- Optional: Suppress regular print statements too
+
     -- Loop and destroy effects (error-safe)
     pcall(function()  -- Use pcall to handle potential errors
         for _, effect in pairs(ReplicatedStorage:WaitForChild("Effect"):WaitForChild("Container"):GetChildren()) do
@@ -39,8 +46,11 @@ spawn(function()
             end
         end
     end)
-    
+
     -- Restore original functions (optional, for debugging)
     warn = originalWarn
     error = originalError
+    rconsolewarn = originalRconsolewarn
+    rconsoleerr = originalRconsoleerr
+    print = originalPrint -- Optional: Restore print if suppressed
 end)
