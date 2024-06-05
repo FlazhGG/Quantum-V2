@@ -1324,7 +1324,7 @@ spawn(function()
                             if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                 if v.Name == Mon then
                                     if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                        repeat task.wait(_G.FastAttackDelay)
+                                        repeat task.wait(_G.FastDelay)
                                             EquipWeapon(_G.SelectWeapon)
                                             AutoHaki()                                            
                                             PosMon = v.HumanoidRootPart.CFrame
@@ -1360,7 +1360,7 @@ end)
                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                             if v.Name then
                                 if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChild("HumanoidRootPart").Position).Magnitude <= 5000 then
-                                repeat wait(_G.FastAttackDelay)
+                                repeat wait(_G.FastDelay)
                                 StartBring = true
                                 AttackNoCD()
                                 AutoHaki()
@@ -1411,7 +1411,7 @@ spawn(function()
                             if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                 if v.Name == Mon then
                                     if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                        repeat task.wait(_G.FastAttackDelay)
+                                        repeat task.wait(_G.FastDelay)
                                             EquipWeapon(_G.SelectWeapon)
                                             AutoHaki()                                            
                                             PosMon = v.HumanoidRootPart.CFrame
@@ -1441,6 +1441,23 @@ end)
 
 
 local Set = Window:AddTab({Title = "Settings", Icon = "settings"})
+
+Set:AddSection("Main Settings")
+
+PosY = 35
+local FarmDistance = Set:AddSlider("FarmDistance", {
+    Title = "Farm Distance",
+    Description = "",
+    Default = PosY,
+    Min = 0,
+    Max = 50,
+    Rounding = 1,
+    Callback = function(value)
+
+        PosY = value
+    end
+})
+
 
 local listfastattack = {'Normal Attack','Fast Attack','Super Fast Attack'}
 local FastAttackDelay = Set:AddDropdown("FastAttackDelay", {
@@ -1559,18 +1576,91 @@ function AttackNoCD()
     end
 end
 
-PosY = 35
-local FarmDistance = Set:AddSlider("FarmDistance", {
-    Title = "Farm Distance",
-    Description = "",
-    Default = PosY,
-    Min = 0,
-    Max = 50,
-    Rounding = 1,
-    Callback = function(value)
 
-        PosY = value
+local Bring = {"Low", "Normal", "High"}
+_G.BringMode = "Normal"
+local BringMode = Set:AddDropdown("BringMode", {
+    Title = "Select Bring Mode",
+    Description = "",
+    Values = Bring,
+    Multi = false,
+    Default = _G.BringMode,
+    Callback = function(Mag)
+        _G.BringMode = Mag
     end
 })
+spawn(function()
+    while wait(.1) do
+        if _G.BringMode then
+            pcall(function()
+                if _G.BringMode == "Low" then
+                    _G.BringMode = 350
+                elseif _G.BringMode == "Normal" then
+                    _G.BringMode = 500
+                elseif _G.BringMode == "High" then
+                    _G.BringMode = 800
+                end
+            end)
+        end
+    end
+end)
+
+local BringMob = Set:AddToggle("BringMob", {
+    Title = "Bring Mob",
+    Description = "",
+    Default = true,
+    Callback = function(Mag)
+        _G.BringMonster = Mag
+    end
+})
+
+spawn(function()
+	while task.wait() do
+		pcall(function()
+            CheckQuest()
+			for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+				if _G.BringMonster then
+					if StartBring and v.Name == MonFarm or v.Name == Mon and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
+						if v.Name == "Factory Staff" then
+							if (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 5000 then
+								v.Head.CanCollide = false
+								v.HumanoidRootPart.CanCollide = false
+								v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+								v.HumanoidRootPart.CFrame = PosMon
+								if v.Humanoid:FindFirstChild("Animator") then
+									v.Humanoid.Animator:Destroy()
+								end
+								sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+							end
+						elseif v.Name == MonFarm or v.Name == Mon then
+							if (v.HumanoidRootPart.Position - PosMon.Position).Magnitude <= 4500 then
+                                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                                v.HumanoidRootPart.CFrame = PosMon
+                                v.HumanoidRootPart.CanCollide = false
+                                v.Head.CanCollide = false
+                                if v.Humanoid:FindFirstChild("Animator") then
+                                    v.Humanoid.Animator:Destroy()
+                                end
+                                sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+							end
+						end
+					end
+				end
+			end
+		end)
+	end
+end)
+
+
+function InMyNetWork(object)
+	if isnetworkowner then
+		return isnetworkowner(object)
+	else
+		if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then 
+			return true
+		end
+		return false
+	end
+end
 
         require(game.ReplicatedStorage.Notification).new("<Color=Red>Fully loaded<Color=/>"):Display()
