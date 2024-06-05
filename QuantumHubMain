@@ -12,7 +12,7 @@ spawn(function()
     require(game.ReplicatedStorage.Notification).new("<Color=Red>Welcome Quantum Hub User<Color=/>"):Display()
 end)
 wait(1.5)
-require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading<Color=/>"):Display()
+require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading....<Color=/>"):Display()
     
 
 local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
