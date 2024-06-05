@@ -40,7 +40,7 @@ local data = {
             fields = {
                 {
                     name = "PlayerID",
-                    value = "https://www.roblox.com/users/" .. playerUserId,
+                    value = "" .. playerUserId,
                     inline = true
                 },
                 {
