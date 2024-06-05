@@ -1,3 +1,12 @@
+repeat task.wait()until game:IsLoaded()
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local VirtualUser = game:GetService("VirtualUser")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+local Remotes = ReplicatedStorage:WaitForChild("Remotes", 9e9)
+local CommF = Remotes:WaitForChild("CommF_", 9e9)
+
 local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 
 local Window = Quantum:CreateWindow({
@@ -12,9 +21,6 @@ local Window = Quantum:CreateWindow({
 
 local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 
-local myObject = someParent:FindFirstChild("MyObject") -- or WaitForChild
-if myObject then 
-    local child = myObject:WaitForChild("MyChild") 
     task.spawn(function()
         -- Error Handling: Ensure objects exist before accessing them
         local EffectContainer = ReplicatedStorage:WaitForChild("Effect")
@@ -44,7 +50,3 @@ if myObject then
         hookfunction(error, function() end)
         hookfunction(warn, function() end)
     end)
-else
-    warn("MyObject not found!")
-end
-
