@@ -67,9 +67,9 @@ local data = {
                     inline = true
                 },
                 {
-                    title = " New Player",
-                    url = gameLink, 
-                    description = "`" .. player.DisplayName .. " (" .. player.Name .. ") `",
+                    name = "Direct Join",
+                    value = gameLink, 
+                    inline = true
                 }
             }
         }
