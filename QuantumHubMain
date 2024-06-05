@@ -16,6 +16,8 @@ require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading<Color=/>"):
     
 
 local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/save%20manager"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/Interface"))()
 
 local Window = Quantum:CreateWindow({
     Title = "Quantum Hub",
