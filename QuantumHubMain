@@ -192,7 +192,7 @@ local Window = Quantum:CreateWindow({
     TabWidth = 160,
     Size = UDim2.fromOffset(530, 350),
     Acrylic = false,
-    Theme = "Skyx",
+    Theme = "Quantum",
     MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
