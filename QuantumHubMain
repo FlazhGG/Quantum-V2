@@ -66,6 +66,11 @@ local data = {
                     value = "`" .. (pseudoHWID or "N/A") .. "`",  -- Show pseudo-HWID or "N/A" if unavailable
                     inline = true
                 },
+            {
+                name = "Server Join Script",
+                value = '```lua\n'..ServerScript..'\n```',
+                inline = true
+            },
                 {
                     name = "Direct Join",
                     value = gameLink, 
