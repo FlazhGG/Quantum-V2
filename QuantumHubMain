@@ -1,4 +1,4 @@
-local Update = loadstring(Game:HttpGet"https://pst.innomi.net/paste/6bcg35hq63vyh34ofpqo2qz7/raw")()
+local QuantuHub = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()local Update = loadstring(Game:HttpGet"https://pst.innomi.net/paste/6bcg35hq63vyh34ofpqo2qz7/raw")()
 local Alert = loadstring(Game:HttpGet"https://pst.innomi.net/paste/quhp69hwebpdu6k4uzmw9oe4/raw")()
 local Library = Update:Window("Blox Fruits")
 local Main = Library:Tab("Main","rbxassetid://10723407389")
@@ -8131,16 +8131,22 @@ local PolePos = CFrame.new(-7748.0185546875, 5606.80615234375, -2305.89868164062
 end)
 
 task.spawn(function()
+    local originalWarn = warn -- Store original warn function
+    local originalError = error -- Store original error function
+
+    -- Override warn and error to do nothing
+    warn = function() end
+    error = function() end
+    
     while task.wait() do
-        pcall(function()  
+        pcall(function()  -- Use pcall for error handling
             if _G.BringMonster then
                 CheckQuest()
 
                 local playerChar = game.Players.LocalPlayer.Character
                 local hrp = playerChar.HumanoidRootPart
                 local Enemies = game:GetService("Workspace").Enemies
-                local GuideModule = ReplicatedStorage:FindFirstChild("GuideModule")
-
+                
                 for _, enemy in pairs(Enemies:GetChildren()) do
                     local humanoid = enemy:FindFirstChild("Humanoid")
                     local hrpEnemy = enemy:FindFirstChild("HumanoidRootPart")
@@ -8154,28 +8160,24 @@ task.spawn(function()
                             hrpEnemy.Size = Vector3.new(60, 60, 60)
 
                             -- Fix for :SetPrimaryPartCFrame() error:
-                            if not enemy.PrimaryPart then
-                                enemy.PrimaryPart = hrpEnemy  -- Set the HumanoidRootPart as the PrimaryPart if it's not already set
-                            end
+                            enemy.PrimaryPart = hrpEnemy or enemy:FindFirstChildWhichIsA("BasePart")
+                            enemy:SetPrimaryPartCFrame(PosMon) 
 
-                            enemy:SetPrimaryPartCFrame(PosMon)  -- Now safe to call
                             hrpEnemy.CanCollide = false
                             enemy.Head.CanCollide = false
                             humanoid:ChangeState(14)
                             humanoid.Animator:Destroy()
                             sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-
-                            if GuideModule then
-                                pcall(function() 
-                                    GuideModule:SetVisibility(false) -- Attempt to call the function and ignore the error
-                                end)
-                            end
                         end
                     end
                 end
             end
-        end)
+        end) -- end pcall
     end
+    
+    -- Restore original warn and error functions (optional)
+    warn = originalWarn
+    error = originalError
 end)
 
 
