@@ -201,7 +201,7 @@ local function UpdateOS()
                             Title = "Copy",
                             Callback = function()
                                 setclipboard("https://discord.gg/jVPx7qzt4U")
-                                Fluent:Notify({
+                                Quantum:Notify({
                                     Title = "Quantum Hub",
                                     Content = "Invited",
                                     SubContent = "Enjoy Using Quantum Hub", -- Optional
