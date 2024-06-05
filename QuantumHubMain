@@ -6,38 +6,45 @@ local Window = Quantum:CreateWindow({
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Dark",
+    Theme = "Quantum",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
 local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 
-task.spawn(function()
-    -- Error Handling: Ensure objects exist before accessing them
-    local EffectContainer = ReplicatedStorage:WaitForChild("Effect")
-    if not EffectContainer then
-        warn("Effect folder not found in ReplicatedStorage!")
-        return -- Exit the script
-    end
-
-    EffectContainer = EffectContainer:WaitForChild("Container")
-    if not EffectContainer then
-        warn("Container folder not found within Effect!")
-        return -- Exit the script
-    end
-
-    RunService.RenderStepped:Connect(function()
-        -- Performance Improvement: Cache children instead of repeatedly searching
-        local DeathEffect = EffectContainer:FindFirstChild("Death")
-        local RespawnEffect = EffectContainer:FindFirstChild("Respawn")
-
-        -- Clear effects if they exist
-        if DeathEffect then DeathEffect:Destroy() end
-        if RespawnEffect then RespawnEffect:Destroy() end
+local myObject = someParent:FindFirstChild("MyObject") -- or WaitForChild
+if myObject then 
+    local child = myObject:WaitForChild("MyChild") 
+    task.spawn(function()
+        -- Error Handling: Ensure objects exist before accessing them
+        local EffectContainer = ReplicatedStorage:WaitForChild("Effect")
+        if not EffectContainer then
+            warn("Effect folder not found in ReplicatedStorage!")
+            return -- Exit the script
+        end
+    
+        EffectContainer = EffectContainer:WaitForChild("Container")
+        if not EffectContainer then
+            warn("Container folder not found within Effect!")
+            return -- Exit the script
+        end
+    
+        RunService.RenderStepped:Connect(function()
+            -- Performance Improvement: Cache children instead of repeatedly searching
+            local DeathEffect = EffectContainer:FindFirstChild("Death")
+            local RespawnEffect = EffectContainer:FindFirstChild("Respawn")
+    
+            -- Clear effects if they exist
+            if DeathEffect then DeathEffect:Destroy() end
+            if RespawnEffect then RespawnEffect:Destroy() end
+        end)
+    
+        -- Warning: Hooking error/warn functions can hide important debugging information.
+        -- Use with caution!
+        hookfunction(error, function() end)
+        hookfunction(warn, function() end)
     end)
+else
+    warn("MyObject not found!")
+end
 
-    -- Warning: Hooking error/warn functions can hide important debugging information.
-    -- Use with caution!
-    hookfunction(error, function() end)
-    hookfunction(warn, function() end)
-end)
