@@ -24,7 +24,6 @@ local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 
 
 task.spawn(function()
-    -- Store original functions
     local originalWarn = warn
     local originalError = error
     local originalRconsolewarn = rconsolewarn
@@ -36,23 +35,21 @@ task.spawn(function()
     error = function() end
     rconsolewarn = function() end
     rconsoleerr = function() end
-    print = function() end -- Optional, comment out if you need to see print statements
+    print = function() end 
 
-    pcall(function()
-        local Effect = ReplicatedStorage:WaitForChild("Effect")  -- Wait for "Effect" folder
-        local Container = Effect:WaitForChild("Container")    -- Wait for "Container" folder
-        
-        for _, effect in ipairs(Container:GetChildren()) do -- Iterate through effects safely
+    -- Loop and destroy effects (error-safe)
+    pcall(function()  -- Use pcall to handle potential errors
+        for _, effect in pairs(game:GetService("ReplicatedStorage").Effect.Container:GetChildren()) do
             if effect.Name == "Death" or effect.Name == "Spawn" then
                 effect:Destroy()
             end
         end
     end)
 
-    -- Restore original functions (optional, uncomment for debugging)
-    -- warn = originalWarn
-    -- error = originalError
-    -- rconsolewarn = originalRconsolewarn
-    -- rconsoleerr = originalRconsoleerr
-    -- print = originalPrint
+    -- Restore original functions (optional, for debugging)
+    warn = originalWarn
+    error = originalError
+    rconsolewarn = originalRconsolewarn
+    rconsoleerr = originalRconsoleerr
+    print = originalPrint
 end)
