@@ -1688,6 +1688,14 @@ end)
 
 Main:AddSection("Farm Bones")
 
+local BoneCheck = Main:AddParagraph({Title = "Total Bones :", Content = ""})
+spawn(function()
+    while wait() do
+        pcall(function()
+            BoneCheck:SetTitle("Total Bones : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
+        end)
+    end
+end)
 
 local ListB = {"No Quest", "Quest", "MasteryFruit", "MasteryGun"}
     BoneFMode = "No Quest"
@@ -2020,7 +2028,7 @@ spawn(function()
             elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
                 CakeKilled:SetTitle("Defeat: "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39))
             else
-                CakeKilled:SetDesc("Boss Is Spawning")
+                CakeKilled:SetTitle("Boss Is Spawning")
             end
         end)
     end
@@ -2029,7 +2037,7 @@ end)
 local ListC = {"NoQuest", "AcceptQuest", "MasteryFruit"}
 CakeFMode = "Accept Quest"
 
-local ListCake = Main:AddToggle("ListCake", {
+local ListCake = Main:AddDropdown("ListCake", {
     Title = "Select Farm Mode",
     Description = "",
     Values = ListC,
