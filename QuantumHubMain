@@ -1657,6 +1657,27 @@ spawn(function()
     end)
    end)
 
+   local AutoHaki = Set:AddToggle("AutoHaki", {
+    Title = "Auto Haki",
+    Description = "",
+    Default = true,
+    Callback = function(value)
+        _G.AutoHaki = value
+    end
+   })
+
+   spawn(function()
+    while wait(.1) do
+        if _G.AutoHaki then 
+            if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+                local args = {
+                    [1] = "Buso"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
 
 
         require(game.ReplicatedStorage.Notification).new("<Color=Red>Fully loaded<Color=/>"):Display()
