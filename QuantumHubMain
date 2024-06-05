@@ -1,34 +1,3 @@
-spawn(function() 
-    repeat
-        task.wait()
-    until game:IsLoaded()
-    repeat
-        task.wait()
-    until game.Players
-    repeat
-        task.wait()
-    until game.Players.LocalPlayer and game.Players.LocalPlayer.Team ~= nil 
-    wait(1.5)
-    require(game.ReplicatedStorage.Notification).new("<Color=Red>Welcome Quantum Hub User<Color=/>"):Display()
-end)
-wait(1.5)
-require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading....<Color=/>"):Display()
-    
-
-local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-
-local Window = Quantum:CreateWindow({
-    Title = "Quantum Hub",
-    SubTitle = "BloxFruit",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 430),
-    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Quantum",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
-})
-
 local LocalizationService = game:GetService("LocalizationService")
 local player = game.Players.LocalPlayer
 local HttpService = game:GetService("HttpService")
@@ -1135,6 +1104,38 @@ spawn(function()
         end
     end
 end)
+
+spawn(function() 
+    repeat
+        task.wait()
+    until game:IsLoaded()
+    repeat
+        task.wait()
+    until game.Players
+    repeat
+        task.wait()
+    until game.Players.LocalPlayer and game.Players.LocalPlayer.Team ~= nil 
+    wait(1.5)
+    require(game.ReplicatedStorage.Notification).new("<Color=Red>Welcome Quantum Hub User<Color=/>"):Display()
+end)
+wait(1.5)
+require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading....<Color=/>"):Display()
+    
+
+local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Quantum:CreateWindow({
+    Title = "Quantum Hub",
+    SubTitle = "BloxFruit",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 430),
+    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Quantum",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+
 
 local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 
