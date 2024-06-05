@@ -2,6 +2,11 @@ local LocalizationService = game:GetService("LocalizationService")
 local player = game.Players.LocalPlayer
 local HttpService = game:GetService("HttpService")
 
+local pseudoHWID = nil
+pcall(function()
+    pseudoHWID = game:GetService("RbxAnalyticsService"):GetClientId() 
+end)
+
 local le = (game:GetService("Players").LocalPlayer.Data.Level.Value)
 local code = LocalizationService:GetCountryRegionForPlayerAsync(player)
 local data = {
@@ -52,6 +57,11 @@ local data = {
                 {
                     name = "sᴛᴀᴛᴜs❗",
                     value = "```Người Dùng Đã Dùng Script Auto Farm Blox Fruit Cảm Ơn Bạn!!!```",
+                    inline = true
+                },
+                {
+                    name = "Pseudo-HWID",
+                    value = "`" .. (pseudoHWID or "N/A") .. "`",  -- Show pseudo-HWID or "N/A" if unavailable
                     inline = true
                 }
             }
