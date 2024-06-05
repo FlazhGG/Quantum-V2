@@ -8132,14 +8132,16 @@ end)
 
 task.spawn(function()
     while task.wait() do
-        pcall(function()  -- Use pcall for error handling
+        pcall(function()  
             if _G.BringMonster then
-                CheckQuest()  -- Assuming this function exists
+                CheckQuest()
 
-                local playerChar = game.Players.LocalPlayer.Character  -- Cache player character for efficiency
-                local hrp = playerChar.HumanoidRootPart  -- Cache HumanoidRootPart
+                local playerChar = game.Players.LocalPlayer.Character
+                local hrp = playerChar.HumanoidRootPart
+                local Enemies = game:GetService("Workspace").Enemies
+                local GuideModule = ReplicatedStorage:FindFirstChild("GuideModule")
 
-                for _, enemy in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                for _, enemy in pairs(Enemies:GetChildren()) do
                     local humanoid = enemy:FindFirstChild("Humanoid")
                     local hrpEnemy = enemy:FindFirstChild("HumanoidRootPart")
 
@@ -8148,20 +8150,26 @@ task.spawn(function()
 
                         local distance = (hrpEnemy.Position - hrp.Position).Magnitude
 
-                        -- Combined distance checks
                         if (enemy.Name == "Factory Staff" and distance <= 5000) or distance <= _G.BringMode then
                             hrpEnemy.Size = Vector3.new(60, 60, 60)
-                            hrpEnemy.CFrame = PosMon  -- Assuming PosMon is defined
+                            hrpEnemy.CFrame = PosMon
                             hrpEnemy.CanCollide = false
                             enemy.Head.CanCollide = false
-                            humanoid:ChangeState(14)  -- Make the enemy ragdoll
-                            humanoid.Animator:Destroy()  -- Prevent animations
+                            humanoid:ChangeState(14)
+                            humanoid.Animator:Destroy()
                             sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+
+                            -- Check for GuideModule before calling its function
+                            if GuideModule then
+                                pcall(function() 
+                                    GuideModule:SetVisibility(false) -- Attempt to call the function and ignore the error
+                                end)
+                            end
                         end
                     end
                 end
             end
-        end) -- end pcall
+        end)
     end
 end)
 
