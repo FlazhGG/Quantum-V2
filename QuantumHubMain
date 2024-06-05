@@ -276,4 +276,44 @@ local function UpdateOS()
             end
         })
 
+        local Main = Window:AddTab({Title = "Main Farm", Icon = "home"})
+
+        local WeaponList = {"Melee","Sword","Fruit","Gun"}
+_G.SelectWeapon = "Melee"
+local WeaponList = Main:AddDropdown("WeaponList", {
+    Title = "Select Weapon",
+    Description = "",
+    Values = WeaponList,
+    Multi = false,
+    Default = _G.SelectWeapon,
+    Callback = function(v)
+        _G.SelectWeapon = v
+    end
+})
+
+local ListF = {"Normal", "Auto Quest", "Nearest"}
+FarmMode = "Normal"
+local ListF = Main:AddDropdown("ListF", {
+    Title = "Select Farm Mode",
+    Description = "",
+    Values = ListF,
+    Multi = false,
+    Default = FarmMode,
+    Callback = function(v)
+        FarmMode = v
+    end
+})
+
+local AutoFarm = Main:AddToggle("AutoFarm", {
+    Title = "Auto Farm",
+    Description = "",
+    Default = false,
+    Callback = function(v)
+        _G.AutoFarm = value
+        StopTween(_G.AutoFarm)
+    end
+})
+
+
+
         require(game.ReplicatedStorage.Notification).new("<Color=Red>Fully loaded<Color=/>"):Display()
