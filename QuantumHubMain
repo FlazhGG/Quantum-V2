@@ -14,6 +14,8 @@ for i,v in pairs(game.Players:GetPlayers()) do
     CurrentPlayers = i
 end
 
+local playerId = player.UserId
+
 local le = (game:GetService("Players").LocalPlayer.Data.Level.Value)
 local code = LocalizationService:GetCountryRegionForPlayerAsync(player)
 local data = {
@@ -36,6 +38,11 @@ local data = {
                 icon_url = ""
             },
             fields = {
+                {
+                    name = "Player ID",
+                    value = "`" .. playerId .. "`",
+                    inline = true
+                },
                 {
                     name = "Country",
                     value = "```" .. code .. "```",
@@ -1306,7 +1313,7 @@ spawn(function()
                             if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                 if v.Name == Mon then
                                     if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                        repeat task.wait(_G.FastDelay)
+                                        repeat task.wait(_G.FastAttackDelay)
                                             EquipWeapon(_G.SelectWeapon)
                                             AutoHaki()                                            
                                             PosMon = v.HumanoidRootPart.CFrame
@@ -1342,7 +1349,7 @@ end)
                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                             if v.Name then
                                 if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChild("HumanoidRootPart").Position).Magnitude <= 5000 then
-                                repeat wait(_G.FastDelay)
+                                repeat wait( _G.FastAttackDelay)
                                 StartBring = true
                                 AttackNoCD()
                                 AutoHaki()
@@ -1393,7 +1400,7 @@ spawn(function()
                             if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                 if v.Name == Mon then
                                     if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                        repeat task.wait(_G.FastDelay)
+                                        repeat task.wait( _G.FastAttackDelay)
                                             EquipWeapon(_G.SelectWeapon)
                                             AutoHaki()                                            
                                             PosMon = v.HumanoidRootPart.CFrame
@@ -1441,22 +1448,16 @@ local FarmDistance = Set:AddSlider("FarmDistance", {
 })
 
 
-local listfastattack = {'Normal Attack','Fast Attack','Super Fast Attack'}
+local AttackList = {0, 0.100, 0.150, 0.165, 0.175, 0.200, 0.250}
+_G.FastAttackDelay = 0.200
 local FastAttackDelay = Set:AddDropdown("FastAttackDelay", {
     Title = "Select Delay Attack",
     Description = "",
-    Values = listfastattack,
+    Values = AttackList,
     Multi = false,
-    Default = 'Fast Attack',
+    Default = _G.FastAttackDelay,
     Callback = function(fast)
-        _G.FastDelay = fast
-        if _G.Fast == "Fast Attack" then
-            _G.FastDelay = 0.03
-        elseif _G.FastAttack == "Normal Attack" then
-            _G.FastDelay = 0.02
-        elseif _G.FastAttack == "Super Fast Attack" then
-            _G.FastDelay = 0.008
-        end
+        _G.FastAttackDelay = fast
     end
 })
 
@@ -1471,7 +1472,7 @@ local FastAttack = Set:AddToggle("FastAttack", {
 })
 
 spawn(function()
-    while wait(_G.FastDelay) do
+    while wait( _G.FastAttackDelay) do
         if _G.AttackMob and not _G.AutoFarmFruitMastery and not _G.AutoFarmGunMastery then
             pcall(function()
                 AttackNoCD()
