@@ -3586,6 +3586,53 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
     end)
 
     local Sea = Window:AddTab({Title = "Sea Event", Icon = "sailboat"})
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
+                    Mirragecheck:Set('Mirage Island Spawned')
+                    _G.MirageSpawn = true
+                else
+                    Mirragecheck:Set('Mirage Island Not Spawn') 
+                    _G.MirageSpawn = false
+                 end
+      
+                if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
+                    Kitsunecheck:Set('Kitsune Island Spawned')
+                    _G.KitsuneSpawn = true
+                else
+                    Kitsunecheck:Set('Kitsune Island Not Spawn') 
+                    _G.KitsuneSpawn = false
+                end
+            end
+        end)
+    end)
+
+    Mirragecheck = Sea:AddParagraph("Mirage Island")
+
+    Sea:AddSection("Mirage")
+    local AutoMirage = Sea:AddToggle("Auto Mirage", {
+        Title = ("Teleport to Mirage Island"),
+        Description = "",
+        Default = false,
+        Callback = function (value)
+            _G.AutoMysticIsland = value
+    StopTween(_G.AutoMysticIsland)
+        end
+    })
+
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if _G.AutoMysticIsland then
+                    if game:GetService("Workspace").Map:FindFirstChild("MysticIsland") then
+                        topos(CFrame.new(game:GetService("Workspace").Map.MysticIsland.Center.Position.X,500,game:GetService("Workspace").Map.MysticIsland.Center.Position.Z))
+                    end
+                end
+            end
+        end)
+    end)
+
 
 
         Quantum:Notify({
