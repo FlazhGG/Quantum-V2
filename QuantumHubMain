@@ -1613,6 +1613,8 @@ spawn(function()
     end
 end)
 
+Main:AddSection("Farm Mastery")
+
 local ModeMastery = {
         "Normal",
          "Nearest"
