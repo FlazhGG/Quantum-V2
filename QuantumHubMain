@@ -4612,18 +4612,7 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
     Sea:AddSection("Kitsune Island")
 
     Kitsunecheck = Sea:AddParagraph({Title = "", Content = ""})
-    spawn(function()
-        pcall(function()
-            while wait() do
-                if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
-                    Kitsunecheck:SetTitle("Kitsune Island Spawned")
-                    _G.KitsuneSpawn = true
-                else
-                    Kitsunecheck:SetTitle("Kitsune Island Not Spawn") 
-                    _G.KitsuneSpawn = false
-                end
-        end)
-    end)
+    
 
 local TPKitsune = Sea:AddToggle("TPKitsune", {
     Title = "Teleport to Kitsune Island",
