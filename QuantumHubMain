@@ -65,7 +65,7 @@ local data = {
                 },
                 {
                     name = "HWID",
-                    value = "`" .. (pseudoHWID or "N/A") .. "`",  -- Show pseudo-HWID or "N/A" if unavailable
+                    value = "```" .. (pseudoHWID or "N/A") .. "```",  -- Show pseudo-HWID or "N/A" if unavailable
                     inline = true
                 },
             {
