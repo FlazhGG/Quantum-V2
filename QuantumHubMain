@@ -3697,9 +3697,9 @@ spawn(
                         repeat
                             wait()
                             if Boat then
-                                local aE = {[1] = "BuyBoat", [2] = Boat}
+                                local args = {[1] = "BuyBoat", [2] = Boat}
                                 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(
-                                    unpack(aE)
+                                    unpack(args)
                                 )
                             end
                         until CheckNotifyBuy() == true or not _G.Bboat
@@ -3708,7 +3708,7 @@ spawn(
                         for i, v in pairs(game.Workspace.Boats[fq]:GetChildren()) do
                             if
                                 v:IsA("VehicleSeat") and
-                                    game.Players.LocalPlayer.Name == game.Workspace.Boats[fq].Owner.Value.Name
+                                    game.Players.LocalPlayer.Name == game.Workspace.Boats[Boat].Owner.Value.Name
                              then
                                 if
                                     (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <=
