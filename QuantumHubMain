@@ -971,6 +971,57 @@ function TP1(Pos)
     
     
 --Tween Boats 
+
+function twoboat(aF)
+    if (game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - aF.Position).Magnitude <= 10 then
+        pcall(
+            function()
+                tweenz:Cancel()
+            end
+        )
+    else
+        local ay = game:service "TweenService"
+        local az =
+            TweenInfo.new(
+            (game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - aF.Position).Magnitude /
+                325,
+            Enum.EasingStyle.Linear
+        )
+        l, err =
+            pcall(
+            function()
+                tweenz = ay:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], az, {CFrame = aF})
+                tweenz:Play()
+            end
+        )
+        if not l then
+            return err
+        end
+    end
+    function _TweenCanCle()
+        tweenz:Cancel()
+    end
+end
+local function aI(aJ, aK)
+    local aL = aJ:FindFirstChild("Owner")
+    if aL and aL:IsA("ObjectValue") and aL.Value then
+        local aM = aL.Value.Name
+        if aM == game.Players.LocalPlayer.Name then
+            for H, aN in pairs(aJ:GetDescendants()) do
+                if aN:IsA("BasePart") then
+                    local j = game:GetService("TweenService")
+                    local az = TweenInfo.new((aN.Position - aK.Position).Magnitude / 200, Enum.EasingStyle.Linear)
+                    local l = j:Create(aN, az, {CFrame = aK})
+                    l:Play()
+                    function StopBoatF()
+                        l:Cancel()
+                    end
+                end
+            end
+        end
+    end
+end
+
 function TPB(CFgo)
 	local tween_s = game:service"TweenService"
 	local info = TweenInfo.new((game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame.Position - CFgo.Position).Magnitude/300, Enum.EasingStyle.Linear)
@@ -3565,5 +3616,116 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
             end)
         end
     end)
+
+    local Sea = Window:AddTab({Title = "Sea Event", Icon = "sailboat"})
+
+    local Boat = game:GetService("Players").LocalPlayer.Team
+if Boat ~= "Marines" then
+    AllBoat = {"Dinghy", "MarineSloop", "MarineBrigade", "MarineGrandBrigade"}
+else
+    AllBoat = {"Dinghy", "PirateSloop", "PirateBrigade", "PirateGrandBrigade"}
+end
+local Boat = nil
+
+local BoatList = Sea:AddDropdown("BoatList", {
+    Title = "Select Boat",
+    Description = "",
+    Values = AllBoat,
+    Multi = false,
+    Default = Boat,
+    Callback = function(value)
+        Boat = value
+    end
+})
+function CheckNotifyBuy()
+    for i, v in pairs(game:GetService("Players")["LocalPlayer"].PlayerGui:FindFirstChild("Notifications"):GetChildren()) do
+        if v.Name == "NotificationTemplate" then
+            if string.lower(v.Text):find("bought") then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+local BuyBoat = Sea:AddToggle("BuyBoat", {
+    Title = "Buy Boat",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.Bboat = value
+    end
+})
+
+spawn(
+    function()
+        while _G.Bboat do
+            wait()
+                aw(
+                   CFrame.new(
+                            -16931.9766,
+                                9.08636189,
+                                444.637634,
+                                0.247219667,
+                                3.04388195e-08,
+                                0.968959451,
+                                -2.25711698e-08,
+                            1,
+                                -2.56551314e-08,
+                                -0.968959451,
+                                -1.55280944e-08,
+                                0.247219667
+                        )
+                    )
+                    if
+                        (Vector3.new(
+                            -16931.9766,
+                            9.08636189,
+                            444.637634,
+                            0.247219667,
+                            3.04388195e-08,
+                            0.968959451,
+                            -2.25711698e-08,
+                            1,
+                            -2.56551314e-08,
+                            -0.968959451,
+                            -1.55280944e-08,
+                            0.247219667
+                        ) - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 and
+                            CheckNotifyBuy() == false
+                     then
+                        repeat
+                            wait()
+                            if Boat then
+                                local aE = {[1] = "BuyBoat", [2] = Boat}
+                                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(
+                                    unpack(aE)
+                                )
+                            end
+                        until CheckNotifyBuy() == true or not _G.Bboat
+                    elseif CheckNotifyBuy() == true or not _G.Bboat then
+                        _G.Bboat = false
+                        for i, v in pairs(game.Workspace.Boats[fq]:GetChildren()) do
+                            if
+                                v:IsA("VehicleSeat") and
+                                    game.Players.LocalPlayer.Name == game.Workspace.Boats[fq].Owner.Value.Name
+                             then
+                                if
+                                    (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <=
+                                        1000
+                                 then
+                                    repeat
+                                        task.wait()
+                                        local CFrame = v.CFrame
+                                        twoboat(CFrame)
+                                    until (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <=
+                                        5 or not _G.Bboat
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        )
 
         require(game.ReplicatedStorage.Notification).new("<Color=Red>Fully loaded<Color=/>"):Display()
