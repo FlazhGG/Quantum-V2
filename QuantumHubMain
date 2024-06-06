@@ -5309,7 +5309,54 @@ spawn(function()
     end)
 end)
 
+local Player = Window:AddTab({Title = "Players", Icon = "users" })
 
+local plyserv = Player:AddParagraph({Title = "", Content = ""})
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+                if i == 12 then
+                    plyserv:SetTitle("Players:".." "..i.." ".."/".." ".."12".." ".."(Max)")
+                elseif i == 1 then
+                    plyserv:SetTitle("Player:".." "..i.." ".."/".." ".."12")
+                else
+                    plyserv:SetTitle("Players:".." "..i.." ".."/".." ".."12")
+                end
+            end
+        end)
+    end
+end)
+
+Playerslist = {}
+    
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+        table.insert(Playerslist,v.Name)
+    end
+
+    local SelectedPly = Player:AddDropdown("SelectedPly", {
+        Title = "Select Player",
+        Description = "",
+        Values = Playerslist,
+        Multi = false,
+        Default = false,
+        Callback = function(value)
+            _G.SelectPly = value
+        end
+    })
+
+    Player:AddButton({
+        Title = "Refresh List",
+        Description = "",
+        Callback = function()
+            Playerslist = {}
+            SelectedPly:Clear()
+            for i,v in pairs(game:GetService("Players"):GetChildren()) do  
+                SelectedPly:Add(v.Name)
+            end
+        end
+    })
 
         Quantum:Notify({
             Title = "Quantum Hub",
