@@ -5350,10 +5350,9 @@ Playerslist = {}
         Title = "Refresh List",
         Description = "",
         Callback = function()
-            Playerslist = {}
-            SelectedPly:Clear()
+            SelectedPly:Clear(Playerslist)
             for i,v in pairs(game:GetService("Players"):GetChildren()) do  
-                SelectedPly:Add(v.Name)
+                SelectedPly:insert(Playerslist,v.Name)
             end
         end
     })
