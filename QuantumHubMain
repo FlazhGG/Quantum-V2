@@ -1260,7 +1260,7 @@ u.Size = UDim2.new(0, 65, 0, 65)
 u.Draggable = true
 u.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 u.BackgroundTransparency = 1
-u.Image = "rbxassetid://17466818589"
+u.Image = "rbxassetid://17466928754"
 function LoadFunction()
     u.MouseEnter:Connect(
         function()
