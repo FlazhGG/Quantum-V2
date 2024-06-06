@@ -3834,7 +3834,53 @@ spawn(function()
     end)
 end)
 
+local AutoShark = Sea:AddToggle("AutoShark", {
+    Title = "Auto Kill Shark",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.AutoTerrorshark = value
+        StopTween( _G.AutoTerrorshark)
+    end
+})
 
+spawn(function()
+    while wait() do
+        if  FarmShark and World3 then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Shark") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Shark" then
+                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                    PosMon = v.HumanoidRootPart.CFrame
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    StartBring = true
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                until not  FarmShark or not v.Parent or v.Humanoid.Health <= 0
+                                StartBring = false
+                            end
+                        end
+                    end
+                else
+                    if game:GetService("ReplicatedStorage"):FindFirstChild("Terrorshark") then
+                        topos(game:GetService("ReplicatedStorage"):FindFirstChild("Terrorshark").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                    else
+                        if  _G.AutoTerrorsharkhop then
+                            Hop()
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
 
         Quantum:Notify({
             Title = "Quantum Hub",
