@@ -4622,7 +4622,6 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
                     Kitsunecheck:SetTitle("Kitsune Island Not Spawn") 
                     _G.KitsuneSpawn = false
                 end
-            end
         end)
     end)
 
