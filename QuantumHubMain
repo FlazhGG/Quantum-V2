@@ -1860,46 +1860,6 @@ function AntiBan()
         end
     end
 
-    spawn(function()
-		local gg = getrawmetatable(game)
-		local old = gg.__namecall
-		setreadonly(gg,false)
-		gg.__namecall = newcclosure(function(...)
-		  local method = getnamecallmethod()
-		  local args = {
-			...
-		  }
-		  if tostring(method) == "FireServer" then
-		  if tostring(args[1]) == "RemoteEvent" then
-		  if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
-		  if _G.UseSkill then
-		  if type(args[2]) == "vector" then
-		  args[2] = PositionSkillMasteryDevilFruit
-		  else
-			args[2] = CFrame.new(PositionSkillMasteryDevilFruit)
-		  end
-		  return old(unpack(args))
-		  end
-		  end
-		  end
-		  end
-		  return old(...)
-		  end)
-        end)
-
-spawn(function()
-  pcall(function()
-    while task.wait() do
-    for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-    if v:IsA("Tool") then
-    if v:FindFirstChild("RemoteFunctionShoot") then
-    CurrentEquipGun = v.Name
-    end
-    end
-    end
-    end
-    end)
-  end)
    
     
     function GetDistance(target)
@@ -4655,7 +4615,19 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
     Sea:AddSection("Kitsune Island")
 
     Kitsunecheck = Sea:AddParagraph({Title = "", Content = ""})
-    
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
+                    Kitsunecheck:SetTitle("Kitsune Island Spawned")
+                    _G.KitsuneSpawn = true
+                else
+                    Kitsunecheck:SetTitle("Kitsune Island Not Spawn") 
+                    _G.KitsuneSpawn = false
+                end
+            end
+        end)
+    end)
 
 local TPKitsune = Sea:AddToggle("TPKitsune", {
     Title = "Teleport to Kitsune Island",
