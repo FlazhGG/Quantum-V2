@@ -4710,10 +4710,11 @@ spawn(function()
     end
 end)
 
+if World3 then
 local Race = Window:AddTab({Title = "Race", Icon = "webhook"})
 
 local RaceV2 = Race:AddToggle("RaceV2", {
-    Title = "Auto Race2 Evo",
+    Title = "Auto Race V2 Evo",
     Description = "",
     Default = false,
     Callback = function(value)
@@ -4877,90 +4878,7 @@ Race:AddButton({
         topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
     end
 })
-Race:AddButton({
-    Title = "Unlock Lever",
-    Description = "",
-    Callback = function()
-        venyx:Notify("Unlocked")
-        if game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt") then
-            game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
-        end
-        wait(0.1)
-        local ProximityPrompt = Instance.new("ProximityPrompt")
-        ProximityPrompt.Parent = game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt
-        ProximityPrompt.MaxActivationDistance = 10
-        ProximityPrompt.ActionText = "Secrets Beholds Inside"
-        ProximityPrompt.ObjectText = "An unknown lever of time"
-        
-        function onProximity()
-        local part = game:GetService("Workspace").Map["Temple of Time"].MainDoor1
-        local TweenService = game:GetService("TweenService")
-        
-        local startPosition = part.Position
-        local endPosition = startPosition + Vector3.new(0, -50, 0)
-        
-        local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-        local tween = TweenService:Create(part, tweenInfo, {Position = endPosition})
-        
-        tween:Play()
-        
-        local partnew = game:GetService("Workspace").Map["Temple of Time"].MainDoor2
-        local TweenService = game:GetService("TweenService")
-        
-        local startPosition = partnew.Position
-        local endPosition = startPosition + Vector3.new(0, -50, 0)
-        
-        local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-        local tween = TweenService:Create(partnew, tweenInfo, {Position = endPosition})
-        
-        tween:Play()
-        
-        local SoundSFX = Instance.new("Sound")
-        SoundSFX.Parent = workspace
-        SoundSFX.SoundId = "rbxassetid://1904813041"
-        SoundSFX:Play()
-        SoundSFX.Name = "POwfpxzxzfFfFF"
-        game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
-        wait(5)
-        workspace:FindFirstChild("POwfpxzxzfFfFF"):Remove()
-        game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-        game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-        game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-        end
-        
-        ProximityPrompt.Triggered:Connect(onProximity)
-    end
-})
 
-Race:AddButton({
-    Title = "Clock Access",
-    Description = "",
-    Callback = function()
-        game:GetService("Workspace").Map["Temple of Time"].DoNotEnter:Remove()
-    game:GetService("Workspace").Map["Temple of Time"].ClockRoomExit:Remove()
-    end
-})
-
-local TeleportMirage = Race:AddToggle("TeleportMirage", {
-    Title = "Teleport to Mirage",
-    Description = "",
-    Default = false,
-    Callback = function(value)
-        _G.AutoMysticIsland = value
-        StopTween(_G.AutoMysticIsland)
-    end
-})
-spawn(function()
-    pcall(function()
-        while wait() do
-            if _G.AutoMysticIsland then
-                if game:GetService("Workspace").Map:FindFirstChild("MysticIsland") then
-                    topos(CFrame.new(game:GetService("Workspace").Map.MysticIsland.Center.Position.X,500,game:GetService("Workspace").Map.MysticIsland.Center.Position.Z))
-                end
-            end
-        end
-    end)
-end)
 
 local AutoBuyGear = Race:AddToggle("AutoBuyGear", {
     Title = "Auto Buy Gear",
@@ -5309,6 +5227,8 @@ spawn(function()
     end)
 end)
 
+end
+
 local Player = Window:AddTab({Title = "Players", Icon = "users" })
 
 local plyserv = Player:AddParagraph({Title = "", Content = ""})
@@ -5350,12 +5270,89 @@ Playerslist = {}
         Title = "Refresh List",
         Description = "",
         Callback = function()
-            SelectedPly:Clear(Playerslist)
+            table:clear(Playerslist)
             for i,v in pairs(game:GetService("Players"):GetChildren()) do  
-                SelectedPly:insert(Playerslist,v.Name)
+                table:insert(Playerslist,v.Name)
             end
         end
     })
+
+    local SpecPlayer = Player:AddToggle("SpecPlayer", {
+        Title = "Spectate Player",
+        Description = "",
+        Default = false,
+        Callback = function(value)
+            SpectatePlys = value
+            local plr1 = game:GetService("Players").LocalPlayer.Character.Humanoid
+            local plr2 = game:GetService("Players"):FindFirstChild(_G.SelectPly)
+            repeat wait(.1)
+                game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.SelectPly).Character.Humanoid
+            until SpectatePlys == false 
+            game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
+        end
+
+    })
+
+    local TPtoPlayer = Player:AddToggle("TPtoPlayer", {
+        Title = "Teleport to Player",
+        Description = "",
+        Default = false,
+        Callback = function(value)
+            _G.TeleportPly = value
+            pcall(function()
+                if _G.TeleportPly then
+                    repeat topos(game:GetService("Players")[_G.SelectPly].Character.HumanoidRootPart.CFrame) wait() until _G.TeleportPly == false
+                end
+                StopTween(_G.TeleportPly)
+            end)
+        end
+    })
+
+    local FarmPlayer = Player:AddToggle("FarmPlayer", {
+        Title = "Auto Kill Player",
+        Description = "",
+        Default = false,
+        Callback = function(value)
+            _G.Auto_Kill_Ply = value
+            StopTween(_G.Auto_Kill_Ply)
+        end
+    })
+
+    spawn(function()
+        while wait() do
+            if _G.Auto_Kill_Ply then
+                pcall(function()
+                    if _G.SelectPly ~= nil then 
+                        if game.Players:FindFirstChild(_G.SelectPly) then
+                            if game.Players:FindFirstChild(_G.SelectPly).Character.Humanoid.Health > 0 then
+                                repeat task.wait()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    AutoHaki()
+                                    game.Players:FindFirstChild(_G.SelectPly).Character.HumanoidRootPart.CanCollide = false
+                                    topos(game.Players:FindFirstChild(_G.SelectPly).Character.HumanoidRootPart.CFrame * CFrame.new(0,5,0))
+                                    spawn(function()
+                                        pcall(function()
+                                            if _G.SelectWeapon == SelectWeaponGun then
+                                                local args = {
+                                                    [1] = game.Players:FindFirstChild(_G.SelectPly).Character.HumanoidRootPart.Position,
+                                                    [2] = game.Players:FindFirstChild(_G.SelectPly).Character.HumanoidRootPart
+                                                }
+                                                game:GetService("Players").LocalPlayer.Character[SelectWeaponGun].RemoteFunctionShoot:InvokeServer(unpack(args))
+                                            else
+                                                game:GetService("VirtualUser"):CaptureController()
+                                                game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                            end
+                                        end)
+                                    end)
+                                until game.Players:FindFirstChild(_G.SelectPly).Character.Humanoid.Health <= 0 or not game.Players:FindFirstChild(_G.SelectPly) or not _G.Auto_Kill_Ply
+                            end
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
 
         Quantum:Notify({
             Title = "Quantum Hub",
