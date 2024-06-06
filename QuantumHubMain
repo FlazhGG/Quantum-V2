@@ -1318,9 +1318,9 @@ local Window = Quantum:CreateWindow({
     SubTitle = "BloxFruit <font color='rgb(0, 240, 156)'>New Gen Beta</font>".."- "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name ,
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 430),
-    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = false, 
     Theme = "Quantum",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+    MinimizeKey = Enum.KeyCode.LeftControl
 })
 
 
