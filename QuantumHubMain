@@ -3590,18 +3590,18 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
         pcall(function()
             while wait() do
                 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
-                    Mirragecheck:SetTitle('Mirage Island Spawned')
+                    Mirragecheck:SetTitle("Mirage Island Spawned")
                     _G.MirageSpawn = true
                 else
-                    Mirragecheck:SetTitle('Mirage Island Not Spawn') 
+                    Mirragecheck:SetTitle("Mirage Island Not Spawn") 
                     _G.MirageSpawn = false
                  end
       
                 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
-                    Kitsunecheck:SetTitle('Kitsune Island Spawned')
+                    Kitsunecheck:SetTitle("Kitsune Island Spawned")
                     _G.KitsuneSpawn = true
                 else
-                    Kitsunecheck:SetTitle('Kitsune Island Not Spawn') 
+                    Kitsunecheck:SetTitle("Kitsune Island Not Spawn") 
                     _G.KitsuneSpawn = false
                 end
             end
@@ -3703,7 +3703,7 @@ end)
 
 _G.SetToTradeAureEmber = 20
 local SetTradeAzure = Sea:AddSlider("SetTradeAzure", {
-    Title = "",
+    Title = "Set Amount to Trade",
     Description = "",
     Default = _G.SetToTradeAureEmber,
     Min = 10,
