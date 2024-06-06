@@ -4548,6 +4548,9 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
 
     local Sea = Window:AddTab({Title = "Sea Event", Icon = "sailboat"})
     
+
+    Sea:AddSection("Mirage Island")
+    Mirragecheck = Sea:AddParagraph({Title = "", Content = ""})
     spawn(function()
         pcall(function()
             while wait() do
@@ -4558,21 +4561,9 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
                     Mirragecheck:SetTitle("Mirage Island Not Spawn") 
                     _G.MirageSpawn = false
                  end
-      
-                if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
-                    Kitsunecheck:SetTitle("Kitsune Island Spawned")
-                    _G.KitsuneSpawn = true
-                else
-                    Kitsunecheck:SetTitle("Kitsune Island Not Spawn") 
-                    _G.KitsuneSpawn = false
                 end
-            end
+            end)
         end)
-    end)
-
-    Mirragecheck = Sea:AddParagraph({Title = "", Content = ""})
-
-    Sea:AddSection("Mirage Island")
     local AutoMirage = Sea:AddToggle("Auto Mirage", {
         Title = ("Teleport to Mirage Island"),
         Description = "",
@@ -4621,6 +4612,19 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
     Sea:AddSection("Kitsune Island")
 
     Kitsunecheck = Sea:AddParagraph({Title = "", Content = ""})
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
+                    Kitsunecheck:SetTitle("Kitsune Island Spawned")
+                    _G.KitsuneSpawn = true
+                else
+                    Kitsunecheck:SetTitle("Kitsune Island Not Spawn") 
+                    _G.KitsuneSpawn = false
+                end
+            end
+        end)
+    end)
 
 local TPKitsune = Sea:AddToggle("TPKitsune", {
     Title = "Teleport to Kitsune Island",
