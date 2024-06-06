@@ -1315,7 +1315,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 local Window = Quantum:CreateWindow({
     Title = "<font color='rgb(65, 22, 240)'>Quantum Hub </font>",
-    SubTitle = "<font color='rgb(0, 240, 156)'>New Generation Beta</font>".."- "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name ,
+    SubTitle = "<font color='rgb(0, 240, 156)'>NEW GENERATION BETA</font>".." - "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name ,
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 430),
     Acrylic = false, 
@@ -4082,48 +4082,44 @@ end)
 Race:AddSection("Teleport to Race Doors")
 
 Race:AddButton({
-    Title = "Teleport to Sky Door",
+    Title = "Teleport to Trial Door",
     Description = "",
     Callback = function()
-        topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
+        Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+    wait(.1)
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+    wait(.1)
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+    wait(.1)
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  if game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman" then
+  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  wait(0.6)
+  topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
+  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Human" then
+  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  wait(0.6)
+  topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
+  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg" then
+  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  wait(0.6)
+  topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
+  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea" then
+  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  wait(0.6)
+  topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
+  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul" then
+  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  wait(0.6)
+  topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
+  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink" then
+  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  wait(0.6)
+  topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
+  end
     end
 })
 
-Race:AddButton({
-    Title = "Teleport to Mink Door",
-    Description = "",
-    Callback = function()
-        topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
-    end
-})
-Race:AddButton({
-    Title = "Teleport to Human Door",
-    Description = "",
-    Callback = function()
-        topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
-    end
-})
-Race:AddButton({
-    Title = "Teleport to Fish Door",
-    Description = "",
-    Callback = function()
-        topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
-    end
-})
-Race:AddButton({
-    Title = "Teleport to Ghoul Door",
-    Description = "",
-    Callback = function()
-        topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
-    end
-})
-Race:AddButton({
-    Title = "Teleport to Cyborg Door",
-    Description = "",
-    Callback = function()
-        topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
-    end
-})
 
 Race:AddSection("Complete Trials")
 
@@ -4292,20 +4288,6 @@ spawn(function()
     end)
 end)
 
-Race:AddButton({
-    Title = "Auto Complete Mink",
-    Description = "",
-    Callback = function()
-        topos(game:GetService("Workspace").Map.MinkTrial.Ceiling.CFrame * CFrame.new(0,-5,0))
-    end
-})
-Race:AddButton({
-    Title = "Auto Complete Angel",
-    Description = "",
-    Callback = function()
-        topos(game.Workspace.Map.SkyTrial.Model.FinishPart.CFrame)
-    end
-})
 Race:AddButton({
     Title = "Auto Complete Cyborg",
     Description = "",
