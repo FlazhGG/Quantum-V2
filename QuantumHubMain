@@ -2030,7 +2030,7 @@ local ListBones = Main:AddDropdown("ListBones", {
                                         v.Humanoid.WalkSpeed = 0
                                         v.Head.CanCollide = false 
                                         StartBring = true
-                                        PosMonBone = v.HumanoidRootPart.CFrame
+                                        PosMon = v.HumanoidRootPart.CFrame
                                         topos(v.HumanoidRootPart.CFrame * Pos)
                                         AttackNoCD()
                                     until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
