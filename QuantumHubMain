@@ -2904,6 +2904,8 @@ local Set = Window:AddTab({Title = "Settings", Icon = "settings"})
 
 Set:AddSection("Main Settings")
 
+
+
 PosY = 35
 local FarmDistance = Set:AddSlider("FarmDistance", {
     Title = "Farm Distance",
@@ -3157,8 +3159,97 @@ spawn(function()
     end
 end)
 
+local BypassTP = Set:AddToggle("BypassTP", {
+    Title = "Bypass Teleport",
+    Description = "",
+    Default = false,
+    Callback = function (value)
+        BypassTP = value
+        
+    end
+})
 
+local AutoSetSpawn = Set:AddToggle("AutoSetSpawn", {
+    Title = "Auto Spawn Point",
+    Description = "",
+    Default = true,
+    Callback = function (value)
+        _G.Set = value
+        
+    end
+})
 
+spawn(function()
+    while wait() do
+        if _G.Set then
+            pcall(function()
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+            end)
+        end
+    end
+end)
+
+Set:AddSection("Mastery Settings")
+
+_G.Kill_At = 25
+local KillAtHealth = Set:AddSlider("KillAtHealth", {
+    Title = "Kill at %",
+    Description = "",
+    Default = _G.Kill_At,
+    Min = 1,
+    Max = 100,
+    Rounding = 1,
+    Callback = function(value)
+        _G.Kill_At = value
+
+    end    })
+
+    local AutoSkillZ = Set:AddToggle("AutoSkillZ", {
+        Title = "Auto Skill Z",
+        Description = "",
+        Default = true,
+        Callback = function(value)
+            _G.SkillZ = value
+        end
+    })
+
+    local AutoSkillX = Set:AddToggle("AutoSkillX", {
+        Title = "Auto Skill X",
+        Description = "",
+        Default = true,
+        Callback = function (value)
+            _G.SkillX = value   
+        end
+    })
+
+    local AutoSkillC = Set:AddToggle("AutoSkillC", {
+        Title = "Auto Skill C",
+        Description = "",
+        Default = true,
+        Callback = function (value)
+            _G.SkillC = value
+            
+        end
+    })
+
+    local AutoSkillV = Set:AddToggle("AutoSkillV", {
+        Title = "Auto Skill V",
+        Description = "",
+        Default = false,
+        Callback = function (value)
+            _G.SkillV = value
+            
+        end
+    })
+
+    local AutoSkillF = Set:AddToggle("AutoSkillF", {
+        Title = "Auto Skill F",
+        Description = "",
+        Default = false,
+        Callback = function (value)
+            _G.SkillF = value            
+        end
+    })
 
 
 
