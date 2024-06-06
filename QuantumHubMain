@@ -3748,6 +3748,8 @@ spawn(function()
     end
 end)
 
+Sea:AddSection("Rough Sea")
+
 local AutoSailBoat = Sea:AddToggle("AutoSailBoat", {
     Title = "Auto Sail Boat",
     Description = "",
@@ -3805,6 +3807,26 @@ spawn(function()
             if _G.AppleAutoDriveBoat then
                 if game:GetService("Workspace").Enemies:FindFirstChild("Shark") or game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") or game:GetService("Workspace").Enemies:FindFirstChild("Piranha") or game:GetService("Workspace").Enemies:FindFirstChild("Fish Crew Member") then
                     game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                end
+            end
+        end
+    end)
+end)
+
+local DestroyBoat = Sea:AddToggle("DestroyBoat", {
+    Title = "Auto Destroy Boat", 
+    Description = "Destroy when you die",
+    Default = false,
+    Callback = function (value)
+        _G.AutoDesBoat = value
+    end
+})
+spawn(function()
+    pcall(function()
+        if _G.AutoDesBoat then
+            if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or game:GetService("Workspace").SeaBeasts:FindFirstChild("SeaBeast1") or not game.Players.LocalPlayer then
+                if game.Workspace.Boats:FindFirstChild("PirateBrigade") then
+                    game.Workspace.Boats.PirateBrigade:Destroy()
                 end
             end
         end
