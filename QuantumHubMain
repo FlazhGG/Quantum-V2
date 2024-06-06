@@ -31,7 +31,7 @@ local data = {
                 icon_url = ""
             },
             image = {
-            	url = ""
+            	url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" .. tostring(game:GetService("Players").LocalPlayer.Name)
             },
             footer = {
                 text = " Time: " .. os.date("%Y-%m-%d %H:%M:%S"),
