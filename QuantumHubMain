@@ -1167,6 +1167,7 @@ end)
             _G.StopTween = true
             wait()
             topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            TP1(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
             wait()
             if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
@@ -1686,7 +1687,7 @@ local ListBones = Main:AddDropdown("ListBones", {
             Default = false,
             Callback = function (value)
                 _G.Auto_Bone = value
-            StopTween(_G.Auto_Bone)
+                StopTween(_G.Auto_Bone)
             end
         })
 
