@@ -1231,6 +1231,10 @@ end)
 wait(1.5)
 require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading....<Color=/>"):Display()
     
+local g = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules"):FindFirstChild("dsfwefwfwdfsfasdadaxczcw")
+if g then
+    g:Destroy()
+end
 local h = game:GetService("UserInputService")
 local i = game:GetService("VirtualInputManager")
 local j = game:GetService("TweenService")
