@@ -40,7 +40,7 @@ local data = {
             fields = {
                 {
                     name = "PlayerID",
-                    value = "```" .. playerUserId ..  "```",
+                    value = "```" .. playerUserId .. "```",
                     inline = true
                 },
                 {
@@ -866,8 +866,6 @@ function AntiBan()
             end
             return 0
             end
-
-            
 
 
     function Click()
@@ -3923,55 +3921,53 @@ Race:AddButton({
     Description = "",
     Callback = function()
         venyx:Notify("Unlocked")
-if game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt") then
-    game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
-else
-
-end
-wait(0.1)
-local ProximityPrompt = Instance.new("ProximityPrompt")
-ProximityPrompt.Parent = game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt
-ProximityPrompt.MaxActivationDistance = 10
-ProximityPrompt.ActionText = "Secrets Beholds Inside"
-ProximityPrompt.ObjectText = "An unknown lever of time"
-
-function onProximity()
-local part = game:GetService("Workspace").Map["Temple of Time"].MainDoor1
-local TweenService = game:GetService("TweenService")
-
-local startPosition = part.Position
-local endPosition = startPosition + Vector3.new(0, -50, 0)
-
-local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-local tween = TweenService:Create(part, tweenInfo, {Position = endPosition})
-
-tween:Play()
-
-local partnew = game:GetService("Workspace").Map["Temple of Time"].MainDoor2
-local TweenService = game:GetService("TweenService")
-
-local startPosition = partnew.Position
-local endPosition = startPosition + Vector3.new(0, -50, 0)
-
-local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-local tween = TweenService:Create(partnew, tweenInfo, {Position = endPosition})
-
-tween:Play()
-
-local SoundSFX = Instance.new("Sound")
-SoundSFX.Parent = workspace
-SoundSFX.SoundId = "rbxassetid://1904813041"
-SoundSFX:Play()
-SoundSFX.Name = "POwfpxzxzfFfFF"
-game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
-wait(5)
-workspace:FindFirstChild("POwfpxzxzfFfFF"):Remove()
-game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
-end
-
-ProximityPrompt.Triggered:Connect(onProximity)
+        if game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt") then
+            game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
+        end
+        wait(0.1)
+        local ProximityPrompt = Instance.new("ProximityPrompt")
+        ProximityPrompt.Parent = game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt
+        ProximityPrompt.MaxActivationDistance = 10
+        ProximityPrompt.ActionText = "Secrets Beholds Inside"
+        ProximityPrompt.ObjectText = "An unknown lever of time"
+        
+        function onProximity()
+        local part = game:GetService("Workspace").Map["Temple of Time"].MainDoor1
+        local TweenService = game:GetService("TweenService")
+        
+        local startPosition = part.Position
+        local endPosition = startPosition + Vector3.new(0, -50, 0)
+        
+        local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+        local tween = TweenService:Create(part, tweenInfo, {Position = endPosition})
+        
+        tween:Play()
+        
+        local partnew = game:GetService("Workspace").Map["Temple of Time"].MainDoor2
+        local TweenService = game:GetService("TweenService")
+        
+        local startPosition = partnew.Position
+        local endPosition = startPosition + Vector3.new(0, -50, 0)
+        
+        local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+        local tween = TweenService:Create(partnew, tweenInfo, {Position = endPosition})
+        
+        tween:Play()
+        
+        local SoundSFX = Instance.new("Sound")
+        SoundSFX.Parent = workspace
+        SoundSFX.SoundId = "rbxassetid://1904813041"
+        SoundSFX:Play()
+        SoundSFX.Name = "POwfpxzxzfFfFF"
+        game:GetService("Workspace").Map["Temple of Time"].Lever.Prompt:FindFirstChild("ProximityPrompt"):Remove()
+        wait(5)
+        workspace:FindFirstChild("POwfpxzxzfFfFF"):Remove()
+        game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
+        game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
+        game:GetService("Workspace").Map["Temple of Time"].NoGlitching:Remove()
+        end
+        
+        ProximityPrompt.Triggered:Connect(onProximity)
     end
 })
 
@@ -4086,44 +4082,48 @@ end)
 Race:AddSection("Teleport to Race Doors")
 
 Race:AddButton({
-    Title = "Teleport to Trial Door",
+    Title = "Teleport to Sky Door",
     Description = "",
     Callback = function()
-        Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-    wait(.1)
-    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-    wait(.1)
-    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-    wait(.1)
-    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  if game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman" then
-  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  wait(0.6)
-  topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
-  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Human" then
-  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  wait(0.6)
-  topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
-  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg" then
-  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  wait(0.6)
-  topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
-  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea" then
-  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  wait(0.6)
-  topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
-  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul" then
-  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  wait(0.6)
-  topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
-  elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink" then
-  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  wait(0.6)
-  topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
-  end
+        topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
     end
 })
 
+Race:AddButton({
+    Title = "Teleport to Mink Door",
+    Description = "",
+    Callback = function()
+        topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
+    end
+})
+Race:AddButton({
+    Title = "Teleport to Human Door",
+    Description = "",
+    Callback = function()
+        topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
+    end
+})
+Race:AddButton({
+    Title = "Teleport to Fish Door",
+    Description = "",
+    Callback = function()
+        topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
+    end
+})
+Race:AddButton({
+    Title = "Teleport to Ghoul Door",
+    Description = "",
+    Callback = function()
+        topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
+    end
+})
+Race:AddButton({
+    Title = "Teleport to Cyborg Door",
+    Description = "",
+    Callback = function()
+        topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
+    end
+})
 
 Race:AddSection("Complete Trials")
 
@@ -4292,6 +4292,20 @@ spawn(function()
     end)
 end)
 
+Race:AddButton({
+    Title = "Auto Complete Mink",
+    Description = "",
+    Callback = function()
+        topos(game:GetService("Workspace").Map.MinkTrial.Ceiling.CFrame * CFrame.new(0,-5,0))
+    end
+})
+Race:AddButton({
+    Title = "Auto Complete Angel",
+    Description = "",
+    Callback = function()
+        topos(game.Workspace.Map.SkyTrial.Model.FinishPart.CFrame)
+    end
+})
 Race:AddButton({
     Title = "Auto Complete Cyborg",
     Description = "",
