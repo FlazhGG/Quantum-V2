@@ -4621,8 +4621,7 @@ local TPKitsune = Sea:AddToggle("TPKitsune", {
     Callback = function(value)
         _G.TeleportKitsune = value
             StopTween(_G.TeleportKitsune)
-    end
-})
+    end})
 
 spawn(function()
     while wait() do
