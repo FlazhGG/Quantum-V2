@@ -1408,13 +1408,13 @@ local function UpdateOS()
 spawn(function()
   while task.wait() do
   if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-  MonsterStatus:SetTitle("[Monster] : ...")
-  MonsterStatus:SetDesc("[Quest] : ...".." | [Level] : ...")
+  MonsterStatus:SetDesc("[Monster] : ")
+  MonsterStatus:SetTitle("[Quest] : ".." | [Level] : ")
   elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
   pcall(function()
     CheckQuest()
-    MonsterStatus:SetTitle("[Monster] : "..Mon)
-    MonsterStatus:SetDesc("[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
+    MonsterStatus:SetDesc("[Monster] : "..Mon)
+    MonsterStatus:SetTitle("[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
     end)
   end
   end
