@@ -1409,12 +1409,12 @@ spawn(function()
   while task.wait() do
   if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
   MonsterStatus:SetTitle("[Monster] : ...")
-  MonsterStatus:SetTitle("\n[Quest] : ...".." | [Level] : ...")
+  MonsterStatus:SetDesc("[Quest] : ...".." | [Level] : ...")
   elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
   pcall(function()
     CheckQuest()
     MonsterStatus:SetTitle("[Monster] : "..Mon)
-    MonsterStatus:SetTitle("\n[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
+    MonsterStatus:SetDesc("[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
     end)
   end
   end
