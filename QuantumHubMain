@@ -2504,8 +2504,8 @@ while task.wait() do
                                             v.Humanoid.JumpPower = 0
                                             v.Humanoid.WalkSpeed = 0
                                              v.HumanoidRootPart.CanCollide = false
-                                            FarmPos = v.HumanoidRootPart.CFrame
-                                            MonFarm = v.Name
+                                             PosMon = v.HumanoidRootPart.CFrame
+                                             MonFarm = v.Name
                                             until not _G.AutoMaterial or not v.Parent or v.Humanoid.Health <= 0
                                             StartBring = false
                                         end
@@ -2514,7 +2514,7 @@ while task.wait() do
                                     else
                                         for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
                                         if string.find(v.Name, Mon) then
-                                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 1000 then
+                                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
                                             topos(v.HumanoidRootPart.CFrame * Pos)
                                         end
                                     end
