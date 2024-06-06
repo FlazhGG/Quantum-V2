@@ -954,20 +954,36 @@ function TP1(Pos)
         _G.Clip = false
     end
 
-    function topos(Pos)
-        Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
-        pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/210, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
-        tween:Play()
-        if Distance <= 250 then
-            tween:Cancel()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Pos
-        end
-        if _G.StopTween == true then
-            tween:Cancel()
-            _G.Clip = false
-        end
+    local TweenService = game:GetService("TweenService")
+
+function topos(targetPos)
+    local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local distance = (targetPos - humanoidRootPart.Position).Magnitude
+
+    local tweenInfo = TweenInfo.new(
+        distance / 210,     -- Adjust the speed as needed
+        Enum.EasingStyle.Quad,   -- Use a smoother easing style (Quad, Quint, etc.)
+        Enum.EasingDirection.Out  -- Start fast, end slow
+    )
+
+    -- Stop previous tweens if running
+    if humanoidRootPart:FindFirstChildOfClass("Tween") then 
+        humanoidRootPart:FindFirstChildOfClass("Tween"):Cancel() 
     end
+
+    -- Create and play the tween
+    local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetPos})
+    tween.Completed:Connect(function()
+        humanoidRootPart:FindFirstChildOfClass("Tween"):Destroy()
+    end)
+    tween:Play()
+
+    -- Handle manual cancellation (if needed)
+    if _G.StopTween then
+        tween:Cancel()
+        _G.Clip = false
+    end
+end
     
     
 --Tween Boats 
@@ -1167,6 +1183,7 @@ end)
             _G.StopTween = true
             wait()
             topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
             TP1(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
             wait()
             if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
@@ -1558,13 +1575,13 @@ elseif World2 then
 elseif World3 then
 	tableBoss = {"Stone","Island Empress","Kilo Admiral","Captain Elephant","Beautiful Pirate","rip_indra True Form","Longma","Soul Reaper","Cake Queen"}
 end
-
+_G.SelectBoss = ""
 local BossList = Main:AddDropdown("BossList", {
     Title = "Select Boss",
     Description = "",
     Values = tableBoss,
     Multi = false,
-    Default = 1,
+    Default = _G.SelectBoss,
     Callback = function(value)
         _G.SelectBoss = value
     end
@@ -2462,6 +2479,7 @@ if World1 then
       "Scrap Metal","Leather","Demonic Wisp","Conjured Cocoa","Dragon Scale","Gunpowder","Fish Tail","Mini Tusk"
     }
     end
+
     SelectMaterial = ""
     local SelectMaterial = Sub:AddDropdown("SelectMaterial", {
         Title = "Select Material", 
