@@ -1314,8 +1314,8 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Quantum:CreateWindow({
-    Title = "<font color='rgb(65, 22, 240)'>Quantum Hub </font>".."- "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-    SubTitle = "BloxFruit <font color='rgb(0, 240, 156)'>New Gen Beta</font>".."- "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name ,
+    Title = "<font color='rgb(65, 22, 240)'>Quantum Hub </font>",
+    SubTitle = "<font color='rgb(0, 240, 156)'>New Gen Beta</font>".."- "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name ,
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 430),
     Acrylic = false, 
