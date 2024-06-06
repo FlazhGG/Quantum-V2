@@ -3622,7 +3622,7 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
     local Boat = game:GetService("Players").LocalPlayer.Team
 if Boat ~= "Marines" then
     AllBoat = {"Dinghy", "MarineSloop", "MarineBrigade", "MarineGrandBrigade"}
-else
+elseif Boat ~= "Pirates" then
     AllBoat = {"Dinghy", "PirateSloop", "PirateBrigade", "PirateGrandBrigade"}
 end
 local Boat = nil
