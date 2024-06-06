@@ -3586,6 +3586,7 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
     end)
 
     local Sea = Window:AddTab({Title = "Sea Event", Icon = "sailboat"})
+    
     spawn(function()
         pcall(function()
             while wait() do
@@ -3608,7 +3609,7 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
         end)
     end)
 
-    local Mirragecheck = Sea:AddParagraph({Title = "", Content = ""})
+    Mirragecheck = Sea:AddParagraph({Title = "", Content = ""})
 
     Sea:AddSection("Mirage Island")
     local AutoMirage = Sea:AddToggle("Auto Mirage", {
@@ -3658,7 +3659,7 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
 
     Sea:AddSection("Kitsune Island")
 
-    local Kitsunecheck = Sea:AddParagraph({Title = "", Content = ""})
+    Kitsunecheck = Sea:AddParagraph({Title = "", Content = ""})
 
 local TPKitsune = Sea:AddToggle("TPKitsune", {
     Title = "Teleport to Kitsune Island",
