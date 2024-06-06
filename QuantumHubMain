@@ -956,37 +956,39 @@ function TP1(Pos)
 
     local TweenService = game:GetService("TweenService")
 
-    function topos(targetPos)
-        local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+function topos(targetCFrame)  -- Take target CFrame directly
+    local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
     
-        -- Extract positions from CFrames (using the Position property)
-        local currentPos = humanoidRootPart.Position
-        local targetPos = targetPos.Position -- Extract position from target CFrame
-    
-        -- Calculate distance between Vector3 positions
-        local distance = (targetPos - currentPos).Magnitude
-    
-        local tweenInfo = TweenInfo.new(
-            distance / 210, -- Adjust for speed as needed
-            Enum.EasingStyle.Quad, 
-            Enum.EasingDirection.Out 
-        )
-    
-        if humanoidRootPart:FindFirstChildOfClass("Tween") then
-            humanoidRootPart:FindFirstChildOfClass("Tween"):Cancel()
-        end
-    
-        local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetPos}) -- Use the target CFrame here
-        tween.Completed:Connect(function()
-            humanoidRootPart:FindFirstChildOfClass("Tween"):Destroy()
-        end)
-        tween:Play()
-    
-        if _G.StopTween then
-            tween:Cancel()
-            _G.Clip = false
-        end
+    -- Extract positions from CFrames (using the Position property)
+    local currentPos = humanoidRootPart.CFrame.Position 
+    local targetPos = targetCFrame.Position
+
+    -- Calculate distance between Vector3 positions
+    local distance = (targetPos - currentPos).Magnitude
+
+    local tweenInfo = TweenInfo.new(
+        distance / 210, -- Adjust for speed as needed
+        Enum.EasingStyle.Quad, 
+        Enum.EasingDirection.Out 
+    )
+
+    -- Stop any previous tweens
+    if humanoidRootPart:FindFirstChildOfClass("Tween") then
+        humanoidRootPart:FindFirstChildOfClass("Tween"):Cancel()
     end
+
+    -- Create and play the tween
+    local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})  -- Use the full targetCFrame
+    tween.Completed:Connect(function()
+        humanoidRootPart:FindFirstChildOfClass("Tween"):Destroy()
+    end)
+    tween:Play()
+
+    if _G.StopTween then
+        tween:Cancel()
+        _G.Clip = false
+    end
+end
     
     
 --Tween Boats 
