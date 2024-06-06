@@ -5265,7 +5265,7 @@ end
         Description = "",
         Values = Playerslist,
         Multi = false,
-        Default = false,
+        Default = nil,
         Callback = function(value)
             _G.SelectPly = value
         end
