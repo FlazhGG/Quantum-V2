@@ -1009,12 +1009,12 @@ local function aI(aJ, aK)
         if aM == game.Players.LocalPlayer.Name then
             for H, aN in pairs(aJ:GetDescendants()) do
                 if aN:IsA("BasePart") then
-                    local j = game:GetService("TweenService")
+                    local tween_j = game:GetService("TweenService")
                     local az = TweenInfo.new((aN.Position - aK.Position).Magnitude / 200, Enum.EasingStyle.Linear)
-                    local l = j:Create(aN, az, {CFrame = aK})
-                    l:Play()
+                    local tween = tween_j:Create(aN, az, {CFrame = aK})
+                    tween:Play()
                     function StopBoatF()
-                        l:Cancel()
+                        tween:Cancel()
                     end
                 end
             end
@@ -3705,7 +3705,7 @@ spawn(
                         until CheckNotifyBuy() == true or not _G.Bboat
                     elseif CheckNotifyBuy() == true or not _G.Bboat then
                         _G.Bboat = false
-                        for i, v in pairs(game.Workspace.Boats[fq]:GetChildren()) do
+                        for i, v in pairs(game.Workspace.Boats[Boat]:GetChildren()) do
                             if
                                 v:IsA("VehicleSeat") and
                                     game.Players.LocalPlayer.Name == game.Workspace.Boats[Boat].Owner.Value.Name
