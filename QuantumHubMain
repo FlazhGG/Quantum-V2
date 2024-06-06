@@ -958,27 +958,26 @@ function TP1(Pos)
 
 function topos(targetPos)
     local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
-    local distance = (targetPos - humanoidRootPart.Position).Magnitude
+    
+    -- Calculate distance using Vector3 positions
+    local distance = (targetPos.Position - humanoidRootPart.Position).Magnitude
 
     local tweenInfo = TweenInfo.new(
-        distance / 210,     -- Adjust the speed as needed
-        Enum.EasingStyle.Quad,   -- Use a smoother easing style (Quad, Quint, etc.)
-        Enum.EasingDirection.Out  -- Start fast, end slow
+        distance / 210,    
+        Enum.EasingStyle.Quad, 
+        Enum.EasingDirection.Out 
     )
 
-    -- Stop previous tweens if running
     if humanoidRootPart:FindFirstChildOfClass("Tween") then 
         humanoidRootPart:FindFirstChildOfClass("Tween"):Cancel() 
     end
 
-    -- Create and play the tween
     local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetPos})
     tween.Completed:Connect(function()
         humanoidRootPart:FindFirstChildOfClass("Tween"):Destroy()
     end)
     tween:Play()
 
-    -- Handle manual cancellation (if needed)
     if _G.StopTween then
         tween:Cancel()
         _G.Clip = false
