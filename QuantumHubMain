@@ -972,56 +972,6 @@ function TP1(Pos)
     
 --Tween Boats 
 
-function twoboat(aF)
-    if (game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - aF.Position).Magnitude <= 10 then
-        pcall(
-            function()
-                tweenz:Cancel()
-            end
-        )
-    else
-        local ay = game:service "TweenService"
-        local az =
-            TweenInfo.new(
-            (game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - aF.Position).Magnitude /
-                325,
-            Enum.EasingStyle.Linear
-        )
-        l, err =
-            pcall(
-            function()
-                tweenz = ay:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], az, {CFrame = aF})
-                tweenz:Play()
-            end
-        )
-        if not l then
-            return err
-        end
-    end
-    function _TweenCanCle()
-        tweenz:Cancel()
-    end
-end
-local function aI(aJ, aK)
-    local aL = aJ:FindFirstChild("Owner")
-    if aL and aL:IsA("ObjectValue") and aL.Value then
-        local aM = aL.Value.Name
-        if aM == game.Players.LocalPlayer.Name then
-            for H, aN in pairs(aJ:GetDescendants()) do
-                if aN:IsA("BasePart") then
-                    local tween_j = game:GetService("TweenService")
-                    local az = TweenInfo.new((aN.Position - aK.Position).Magnitude / 200, Enum.EasingStyle.Linear)
-                    local tween = tween_j:Create(aN, az, {CFrame = aK})
-                    tween:Play()
-                    function StopBoatF()
-                        tween:Cancel()
-                    end
-                end
-            end
-        end
-    end
-end
-
 function TPB(CFgo)
 	local tween_s = game:service"TweenService"
 	local info = TweenInfo.new((game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame.Position - CFgo.Position).Magnitude/300, Enum.EasingStyle.Linear)
@@ -1281,83 +1231,80 @@ end)
 wait(1.5)
 require(game.ReplicatedStorage.Notification).new("<Color=Red>Loading....<Color=/>"):Display()
     
-local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
-local UIGradient = Instance.new("UIGradient")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local h = game:GetService("UserInputService")
+local i = game:GetService("VirtualInputManager")
+local j = game:GetService("TweenService")
+local l = game:service "TweenService"
+local m = game:GetService("RunService")
+local n = game:GetService("Players").LocalPlayer
+local o = n:GetMouse()
+local p = game:GetService("GuiService")
+local q = Instance.new("Sound")
+q.Name = "Sound Effect"
+q.SoundId = "rbxassetid://3398620867"
+q.Volume = 1
+q.Parent = game.Workspace
+local r = Instance.new("UIStroke")
+local s = Instance.new("UICorner")
+local t = Instance.new("ScreenGui")
+local u = Instance.new("ImageButton")
+local v = Enum.ButtonStyle.RobloxButton
+t.Parent = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules")
+t.Name = "dsfwefwfwdfsfasdadaxczcw"
+u.Parent = t
+u.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+u.Size = UDim2.new(0, 65, 0, 65)
+u.Draggable = true
+u.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+u.BackgroundTransparency = 1
+u.Image = "rbxassetid://17466818589"
+function LoadFunction()
+    u.MouseEnter:Connect(
+        function()
+            j:Create(
+                u,
+                TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut),
+                {Size = UDim2.new(0, 80, 0, 80)}
+            ):Play()
+        end
+    )
+    u.MouseLeave:Connect(
+        function()
+            j:Create(
+                u,
+                TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut),
+                {Size = UDim2.new(0, 65, 0, 65)}
+            ):Play()
+        end
+    )
+    local w = false
+    u.MouseButton1Down:Connect(
+        function()
+            if w == false then
+                w = false
+                j:Create(u, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Rotation = 180}):Play(
 
+                )
+                q:Play()
+                j:Create(u, TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {ImageTransparency = 0}):Play(
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                )
+                wait(.5)
+                j:Create(u, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Rotation = 0}):Play()
+                j:Create(u, TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {ImageTransparency = 0}):Play(
 
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
-ImageButton.Size = UDim2.new(0.0627121851, 0, 0.107579626, 0)
-ImageButton.Image = "rbxassetid://17466818589"
-
-UICorner.CornerRadius = UDim.new(0, 30)
-UICorner.Parent = ImageButton
-
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(244, 0, 0)), ColorSequenceKeypoint.new(0.32, Color3.fromRGB(146, 255, 251)), ColorSequenceKeypoint.new(0.65, Color3.fromRGB(180, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(96, 255, 231))}
-UIGradient.Parent = ImageButton
-
-UIAspectRatioConstraint.Parent = ImageButton
-UIAspectRatioConstraint.AspectRatio = 0.988
-
-
-local function HCEGY_fake_script()
-	local script = Instance.new('LocalScript', UIGradient)
-
-	local TweenService = game:GetService("TweenService")
-	local tweeninfo = TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
-	local tween = TweenService:Create(script.Parent, tweeninfo, {Rotation = 360})
-	tween:Play()
+                )
+                wait(.5)
+            end
+        end
+    )
 end
-coroutine.wrap(HCEGY_fake_script)()
-local function YTZCAJC_fake_script()
-	local script = Instance.new('LocalScript', ImageButton)
-
-	local UIS = game:GetService('UserInputService')
-	local frame = script.Parent
-	local dragToggle = nil
-	local dragSpeed = 0.25
-	local dragStart = nil
-	local startPos = nil
-	
-	local function updateInput(input)
-		local delta = input.Position - dragStart
-		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
-	end
-	
-	frame.InputBegan:Connect(function(input)
-		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
-			dragStart = input.Position
-			startPos = frame.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragToggle = false
-				end
-			end)
-		end
-	end)
-	
-	UIS.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			if dragToggle then
-				updateInput(input)
-			end
-		end
-	end)
-	script.Parent.MouseButton1Click:Connect(function()
+LoadFunction()
+u.MouseButton1Down:connect(
+    function()
         Quantum.Window:Minimize()
-    end)
-end
-coroutine.wrap(YTZCAJC_fake_script)()
+    end
+)
 
 local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
@@ -3619,114 +3566,6 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
 
     local Sea = Window:AddTab({Title = "Sea Event", Icon = "sailboat"})
 
-    local Boat = game:GetService("Players").LocalPlayer.Team
-if Boat ~= "Marines" then
-    AllBoat = {"Dinghy", "MarineSloop", "MarineBrigade", "MarineGrandBrigade"}
-elseif Boat ~= "Pirates" then
-    AllBoat = {"Dinghy", "PirateSloop", "PirateBrigade", "PirateGrandBrigade"}
-end
-local Boat = nil
-
-local BoatList = Sea:AddDropdown("BoatList", {
-    Title = "Select Boat",
-    Description = "",
-    Values = AllBoat,
-    Multi = false,
-    Default = Boat,
-    Callback = function(value)
-        Boat = value
-    end
-})
-function CheckNotifyBuy()
-    for i, v in pairs(game:GetService("Players")["LocalPlayer"].PlayerGui:FindFirstChild("Notifications"):GetChildren()) do
-        if v.Name == "NotificationTemplate" then
-            if string.lower(v.Text):find("bought") then
-                return true
-            end
-        end
-    end
-    return false
-end
-
-local BuyBoat = Sea:AddToggle("BuyBoat", {
-    Title = "Buy Boat",
-    Description = "",
-    Default = false,
-    Callback = function(value)
-        _G.Bboat = value
-    end
-})
-
-spawn(
-    function()
-        while _G.Bboat do
-            wait()
-                aw(
-                   CFrame.new(
-                            -16931.9766,
-                                9.08636189,
-                                444.637634,
-                                0.247219667,
-                                3.04388195e-08,
-                                0.968959451,
-                                -2.25711698e-08,
-                            1,
-                                -2.56551314e-08,
-                                -0.968959451,
-                                -1.55280944e-08,
-                                0.247219667
-                        )
-                    )
-                    if
-                        (Vector3.new(
-                            -16931.9766,
-                            9.08636189,
-                            444.637634,
-                            0.247219667,
-                            3.04388195e-08,
-                            0.968959451,
-                            -2.25711698e-08,
-                            1,
-                            -2.56551314e-08,
-                            -0.968959451,
-                            -1.55280944e-08,
-                            0.247219667
-                        ) - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 and
-                            CheckNotifyBuy() == false
-                     then
-                        repeat
-                            wait()
-                            if Boat then
-                                local args = {[1] = "BuyBoat", [2] = Boat}
-                                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(
-                                    unpack(args)
-                                )
-                            end
-                        until CheckNotifyBuy() == true or not _G.Bboat
-                    elseif CheckNotifyBuy() == true or not _G.Bboat then
-                        _G.Bboat = false
-                        for i, v in pairs(game.Workspace.Boats[Boat]:GetChildren()) do
-                            if
-                                v:IsA("VehicleSeat") and
-                                    game.Players.LocalPlayer.Name == game.Workspace.Boats[Boat].Owner.Value.Name
-                             then
-                                if
-                                    (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <=
-                                        1000
-                                 then
-                                    repeat
-                                        task.wait()
-                                        local CFrame = v.CFrame
-                                        twoboat(CFrame)
-                                    until (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <=
-                                        5 or not _G.Bboat
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        )
 
         Quantum:Notify({
             Title = "Quantum Hub",
