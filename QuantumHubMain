@@ -3728,4 +3728,9 @@ spawn(
             end
         )
 
-        require(game.ReplicatedStorage.Notification).new("<Color=Red>Fully loaded<Color=/>"):Display()
+        Quantum:Notify({
+            Title = "Quantum Hub",
+            Content = "Loaded Successfuly",
+            SubContent = "Enjoy Using Quantum Hub", 
+            Duration = 3
+        })
