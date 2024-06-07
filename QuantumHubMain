@@ -6087,7 +6087,7 @@ Shop:AddButton({
         elseif _G.GunSelect == "Refined Slingshot" then
             wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Refined Flintlock")
-        elseif _G.GunSelect == "Refined Flintlock" 
+        elseif _G.GunSelect == "Refined Flintlock" then
         wait(0.5)
             local args = {
                 [1] = "BuyItem",
@@ -6109,8 +6109,7 @@ Shop:AddButton({
             local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"]
             Event:InvokeServer(A_1, A_2, A_3) 
         end
-    end
-})
+    end})
 print("Shop Tab [✔]")
 
 
