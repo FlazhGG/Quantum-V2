@@ -5781,7 +5781,7 @@ local SelectNPC = TP:AddDropdown("SelectNPC", {
     Values = {
         'Random Devil Fruit',
             'Blox Fruits Dealer',
-            "Remove Devil Fruit',
+            'Remove Devil Fruit',
             'Ability Teacher',
             'Dark Step', 
             'Electro',
