@@ -5402,7 +5402,7 @@ spawn(function()
 end)
 
 if World2 or World3 then
-Raid:AdddSection("Teleport")
+Raid:AddSection("Teleport")
 end
 if World2 then
 Raid:AddButton({
