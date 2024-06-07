@@ -6540,7 +6540,7 @@ for _, fruitData in pairs(result) do
         Fruit:AddParagraph({Title = tostring(fruitInfo), Content = ""})
     end
 end
-
+print("Fruit Tab [✔]")
 
 
 
