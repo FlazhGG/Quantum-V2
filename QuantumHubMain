@@ -6299,6 +6299,32 @@ spawn(function()
     end
 end)
 
+local FruitNotify = Fruit:AddToggle("FruitNotify", {
+    Title = "Fruit Notifier",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.FruitCheck = value
+    end
+})
+
+spawn(function()
+    while wait(2) do
+        if _G.FruitCheck then
+            for i,v in pairs(game.Workspace:GetChildren()) do
+                if string.find(v.Name, "Fruit") then
+                    Quantum:Notify({
+                        Title = "Quantum Hub",
+                        Content = "Fruit Notification",
+                        SubContent = "Fruit : "..v.Name, 
+                        Duration = 5
+                    })
+                end
+            end
+        end
+    end
+end)
+
 
 
         Quantum:Notify({
