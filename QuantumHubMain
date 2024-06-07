@@ -6157,6 +6157,149 @@ Fruit:AddButton({
     end
 })
 
+local RarityFruits = {
+    ["Common"] = {
+        "Rocket Fruit",
+        "Spin Fruit",
+        "Chop Fruit",
+        "Spring Fruit",
+        "Bomb Fruit",
+        "Smoke Fruit",
+        "Spike Fruit"
+    },
+    ["Uncommon"] = {
+        "Flame Fruit",
+        "Falcon Fruit",
+        "Ice Fruit",
+        "Sand Fruit",
+        "Diamond Fruit",
+        "Dark Fruit"
+    },
+    ["Rare"] = {
+        "Light Fruit",
+        "Rubber Fruit",
+        "Barrier Fruit",
+        "Ghost Fruit",
+        "Magma Fruit"
+    },
+    ["Legendary"] = {
+        "Quake Fruit",
+        "Budha Fruit",
+        "Love Fruit",
+        "Spider Fruit",
+        "Sound Fruit",
+        "Phoenix Fruit",
+        "Portal Fruit",
+        "Rumble Fruit",
+        "Pain Fruit",
+        "Blizzard Fruit",
+    },
+    ["Mythical"] = {
+        "Gravity Fruit",
+        "Mammoth Fruit",
+        "T-Rex Fruit",
+        "Dough Fruit",
+        "Shadow Fruit",
+        "Venom Fruit",
+        "Control Fruit",
+        "Spirit Fruit",
+        "Dragon Fruit",
+        "Leopard Fruit",
+        "Kitsune Fruit",
+    }
+}
+
+local SelectRarityFruits = {
+    "Common - Mythical",
+    "Uncommon - Mythical",
+    "Rare - Mythical",
+    "Legendary - Mythical",
+    "Mythical"
+}
+
+local ResultUnstoreFruits = {}
+SetRarityFruits = "Common - Mythical"
+local SelectRarity = Fruit:AddDropdown("SelectRarity", {
+    Title = "Select Fruit Rarity",
+    Description = "",
+    Values = SelectRarityFruits,
+    Multi = false,
+    Default = SetRarityFruits,
+    Callback = function(value)
+        SetRarityFruits = value
+    end
+})
+
+function CheckFruits()
+    for i, v in pairs(RarityFruits) do
+        if SetRarityFruits == "Common - Mythical" then
+            if i == "Common" or i == "Uncommon" or i == "Rare" or i == "Legendary" or i == "Mythical" then
+                for _, fruit in ipairs(v) do
+                    table.insert(ResultStoreFruits, fruit)
+                end
+            end
+        elseif SetRarityFruits == "Uncommon - Mythical" then
+            if i == "Uncommon" or i == "Rare" or i == "Legendary" or i == "Mythical" then
+                for _, fruit in ipairs(v) do
+                    table.insert(ResultStoreFruits, fruit)
+                end
+            end
+        elseif SetRarityFruits == "Rare - Mythical" then
+            if i == "Rare" or i == "Legendary" or i == "Mythical" then
+                for _, fruit in ipairs(v) do
+                    table.insert(ResultStoreFruits, fruit)
+                end
+            end
+        elseif SetRarityFruits == "Legendary - Mythical" then
+            if i == "Legendary" or i == "Mythical" then
+                for _, fruit in ipairs(v) do
+                    table.insert(ResultStoreFruits, fruit)
+                end
+            end
+        elseif SetRarityFruits == "Mythical" then
+            if i == "Mythical" then
+                for _, fruit in ipairs(v) do
+                    table.insert(ResultStoreFruits, fruit)
+                end
+            end
+        end
+    end  
+end
+
+local AutoStoreFruit = Fruit:AddToggle("AutoStoreFruit", {
+    Title = "Auto Store Fruit",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.AutoStoreFruit = value
+    end
+})
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoStoreFruit then
+                for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                    if string.find(v.Name, "Fruit") then
+                        ResultStoreFruits = {}
+                        CheckFruits()
+                        for z, Res in pairs(ResultStoreFruits) do
+                        if v.Name == Res then
+                            local NameFruit = v.Name
+                            local FirstNameFruit = string.gsub(v.Name, " Fruit", "")
+                            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(NameFruit) then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit",FirstNameFruit.."-"..FirstNameFruit,game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(NameFruit))
+                            end
+                        end
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
+
+
 
         Quantum:Notify({
             Title = "Quantum Hub",
