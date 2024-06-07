@@ -2216,21 +2216,83 @@ local function UpdateOS()
      end
      end)
 
-     function UpdateTime()
-        local GameTime = math.floor(workspace.DistributedGameTime+0.5)
-        local Hour = math.floor(GameTime/(60^2))%24
-        local Minute = math.floor(GameTime/(60^1))%60
-        local Second = math.floor(GameTime/(60^0))%60
-        Time:SetTitle("[Sever Time]: Hours: "..Hour.." Min: "..Minute.." Sec: "..Second)
+     spawn(function()
+        while wait() do
+            Time:SetTitle("Server Time : " .. function8() .. " | ".. CheckMoon() .. " | " .. function7())
+                end
+            end)
+
+     function MoonTextureId()
+        if World1 then
+            return game:GetService("Lighting").FantasySky.MoonTextureId
+        elseif World2 then
+            return game:GetService("Lighting").FantasySky.MoonTextureId
+        elseif World3 then
+            return game:GetService("Lighting").Sky.MoonTextureId
         end
-        
-        spawn(function()
-        while task.wait() do
-        pcall(function()
-        UpdateTime()
-        end)
+    end
+
+    function CheckMoon()
+        moon8 = "http://www.roblox.com/asset/?id=9709150401"
+        moon7 = "http://www.roblox.com/asset/?id=9709150086"
+        moon6 = "http://www.roblox.com/asset/?id=9709149680"
+        moon5 = "http://www.roblox.com/asset/?id=9709149431"
+        moon4 = "http://www.roblox.com/asset/?id=9709149052"
+        moon3 = "http://www.roblox.com/asset/?id=9709143733"
+        moon2 = "http://www.roblox.com/asset/?id=9709139597"
+        moon1 = "http://www.roblox.com/asset/?id=9709135895"
+        moonreal = MoonTextureId()
+        cofullmoonkothangbeo = "Bad Moon"
+        if moonreal == moon5 or moonreal == moon4 then
+            if moonreal == moon5 then
+                cofullmoonkothangbeo = "Full Moon"
+            elseif moonreal == moon4 then
+                cofullmoonkothangbeo = "Next Night"
+            end
         end
-        end)
+        return cofullmoonkothangbeo
+    end
+
+    function function7()
+        GameTime = "Error"
+        local c = game.Lighting
+        local ao = c.ClockTime
+        if ao >= 18 or ao < 5 then
+            GameTime = "Night"
+        else
+            GameTime = "Day"
+        end
+        return GameTime
+    end
+    function function6()
+        return math.floor(game.Lighting.ClockTime)
+    end
+    function getServerTime()
+        RealTime = tostring(math.floor(game.Lighting.ClockTime * 100) / 100)
+        RealTime = tostring(game.Lighting.ClockTime)
+        RealTimeTable = RealTime:split(".")
+        Minute, Second = RealTimeTable[1], tonumber(0 + tonumber(RealTimeTable[2] / 100)) * 60
+        return Minute, Second
+    end
+    function function8()
+        local c = game.Lighting
+        local ao = c.ClockTime
+        if CheckMoon() == "Full Moon" and ao <= 5 then
+            return tostring(function6()) .. " ( Will End Moon In " .. math.floor(5 - ao) .. " Minutes )"
+        elseif CheckMoon() == "Full Moon" and (ao > 5 and ao < 12) then
+            return tostring(function6()) .. " ( Fake Moon )"
+        elseif CheckMoon() == "Full Moon" and (ao > 12 and ao < 18) then
+            return tostring(function6()) .. " ( Will Full Moon In " .. math.floor(18 - ao) .. " Minutes )"
+        elseif CheckMoon() == "Full Moon" and (ao > 18 and ao <= 24) then
+            return tostring(function6()) .. " ( Will End Moon In " .. math.floor(24 + 6 - ao) .. " Minutes )"
+        end
+        if CheckMoon() == "Next Night" and ao < 12 then
+            return tostring(function6()) .. " ( Will Full Moon In " .. math.floor(18 - ao) .. " Minutes )"
+        elseif CheckMoon() == "Next Night" and ao > 12 then
+            return tostring(function6()) .. " ( Will Full Moon In " .. math.floor(18 + 12 - ao) .. " Minutes )"
+        end
+        return tostring(function6())
+    end
 
 
         Info:AddButton({
@@ -6152,8 +6214,19 @@ Fruit:AddButton({
     Title = "Open Fruit Dealer [Advanced]",
     Description = "",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
-        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop2.Visible = true
+        local function StartDialog(DialogName)
+            local ReplicatedStorage = game:GetService("ReplicatedStorage")
+            local DialogueController = require(ReplicatedStorage.DialogueController)
+            local DialoguesList = require(ReplicatedStorage.DialoguesList)
+            
+            for Index,Dialog in pairs(DialoguesList) do
+              if tostring(Index) == DialogName then
+                DialogueController.Start(DialogueController, Dialog)
+              end
+            end
+          end
+          
+          StartDialog("FruitShop2")
     end
 })
 
