@@ -5142,13 +5142,13 @@ end
 
     Raid:AddSection("Dungeon")
 
-local TimeRaid = Raid:AddParagraph({Title = "Wait For Dungeon", Content = ""})
+local TimeRaid = Raid:AddParagraph({Title = "Time Left : ", Content = ""})
 
 spawn(function()
     pcall(function()
         while wait() do
             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Visible == true then
-                TimeRaid:SetTitle("Time :" .. game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Text)
+                TimeRaid:SetTitle("" .. game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Text)
             else
                 TimeRaid:SetTitle("Time : Wait For Dungeon")
             end
@@ -5918,7 +5918,7 @@ local BuyFight = Shop:AddDropdown("BuyFight", {
     Description = "",
     Values = BuyFightSe,
     Multi = false,
-    Default = false,
+    Default = 1,
     Callback = function(value)
  _G.BuyFighting = value
     end
@@ -5964,9 +5964,9 @@ local SwordList = {'Cutlass', 'Katana', 'Iron Mace', 'Dual Katana', 'Triple Kata
 local BuySwordSE = Shop:AddDropdown("BuySwordSE", {
     Title = "Select Sword",
     Description = "",
-    Values = {},
+    Values = SwordList,
     Multi = false,
-    Default = false,
+    Default = 1,
     Callback = function(value)
         _G.BuySwordSE = value
     end
