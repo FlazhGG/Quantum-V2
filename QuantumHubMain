@@ -5775,7 +5775,6 @@ local TPTIsland = TP:AddToggle("TPTIsland", {
 
 TP:AddSection("NPC")
 if World1 then
-
 local SelectNPC = TP:AddDropdown("SelectNPC", {
     Title = "Select NPC",
     Description = "",
