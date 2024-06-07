@@ -5278,7 +5278,7 @@ end
         for i,v in pairs(game:GetService("Players"):GetChildren()) do
             table.insert(NewOptions, v.Name)
           end
-        BossList:Set(NewOptions, true)
+        BossList:insert(NewOptions, true)
       end
       Playerslist()
     Player:AddButton({
