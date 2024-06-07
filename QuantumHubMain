@@ -5926,8 +5926,9 @@ local BuyFight = Shop:AddDropdown("BuyFight", {
 Shop:AddButton({
     Title = "Buy Fighting Style",
     Description = "",
-    Callback = function()
-if _G.BuyFighting == "Black Leg" then
+    Callback = function(value)
+        _G.BuyFighting = value
+        if _G.BuyFighting == "Black Leg" then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
 elseif _G.BuyFighting == "Electro" then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
@@ -5977,24 +5978,34 @@ Shop:AddButton({
     Default = false,
     Callback = function()
         if _G.BuySwordSE == "Cutlass" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cutlass")
         elseif _G.BuySwordSE == "Katana" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Katana")
         elseif _G.BuySwordSE == "Iron Mace" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Iron Mace")
         elseif _G.BuySwordSE == "Dual Katana" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Duel Katana")
         elseif _G.BuySwordSE == "Triple Katana" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Triple Katana")
         elseif _G.BuySwordSE == "Pipe" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Pipe")
         elseif _G.BuySwordSE == "Dual-Headed Blade" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Dual-Headed Blade")
         elseif _G.BuySwordSE == "Bisento" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Bisento")
         elseif _G.BuySwordSE == "Soul Cane" then
+            wait(0.5)
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Soul Cane")
         elseif _G.BuySwordSE == "Pole v.2" then
+            wait(0.5)
             game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ThunderGodTalk")
         end
  
