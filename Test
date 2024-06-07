@@ -5138,7 +5138,7 @@ end)
 end
 
 
-    local Raid = Window:AddTab({Title = "Raid", Icon = ""})
+    local Raid = Window:AddTab({Title = "Raid", Icon = "trophy"})
 
     Raid:AddSection("Dungeon")
 
@@ -5148,9 +5148,9 @@ spawn(function()
     pcall(function()
         while wait() do
             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Visible == true then
-                TimeRaid:SetTitle(game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Text)
+                TimeRaid:SetTitle("Status :" .. game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Text)
             else
-                TimeRaid:SetTitle("Wait For Dungeon")
+                TimeRaid:SetTitle("Status : Wait For Dungeon")
             end
         end
     end)
@@ -5170,7 +5170,7 @@ elseif game.Workspace._WorldOrigin.Locations:FindFirstChild('Island 4') then
   elseif game.Workspace._WorldOrigin.Locations:FindFirstChild('Island 1') then
     TimeRaid:SetDesc('Status : Island 1')
   else
-    TimeRaid:SetDesc("Start Dungeon") 
+    TimeRaid:SetDesc("Status : Start Dungeon") 
   end
         end
     end)
@@ -5197,7 +5197,155 @@ _G.SelectChip = selectraids or ""
         end
     })
 
+Raid:AddSection("Automatic")
 
+local AutomaticRaid = Raid:AddToggle("AutomaticRaid", {
+    Title = "Auto Raid",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.Auto_StartRaid = value
+        _G.Kill_Aura = value
+        _G.AutoBuyChip = value
+        _G.Auto_Dungeon = value
+        _G.Awaken = value
+        StopTween(_G.Auto_Dungeon)
+    end
+})
+
+Raid:AddSection("Manual")
+
+local ManualBuy = Raid:AddToggle("ManualBuy", {
+    Title = "Auto Buy Chip",
+    Description = "",
+    Default = false,
+    Callback = function(v)
+        _G.AutoBuyChip = v
+    end
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoBuyChip then
+                if not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Special Microchip") or not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Special Microchip") then
+                    if not game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc", "Select", _G.SelectChip)
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+local ManualRaid = Raid:AddToggle("ManualRaid", {
+    Title = "Auto Start",
+    Description = "",
+    Default = false,
+    Callback = function(v)
+        _G.Auto_StartRaid = v
+    end
+})
+
+spawn(function()
+    while wait(.1) do
+        pcall(function()
+            if _G.Auto_StartRaid then
+                if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then
+                    if not game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Special Microchip") then
+                        if World2 then
+                            fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
+                        elseif World3 then
+                            fireclickdetector(game:GetService("Workspace").Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
+
+local ManualKill = Raid:AddToggle("ManualKill", {
+    Title = "Auto Kill",
+    Description = "",
+    Default = false,
+    Callback = function(v)
+        _G.Kill_Aura = v
+    end
+})
+
+spawn(function()
+    pcall(function() 
+        while wait() do
+            if _G.Kill_Aura then
+                if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                            pcall(function()
+                                repeat wait()
+                                    sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    v.Humanoid.Health = 0
+                                    v.HumanoidRootPart.CanCollide = false
+                                until not _G.Kill_Aura or not v.Parent or v.Humanoid.Health <= 0
+                            end)
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+local ManualNextIsland = Raid:AddToggle("ManualNextIsland", {
+    Title = "Auto Next Island",
+    Description = "",
+    Default = false,
+    Callback = function(v)
+        _G.Auto_Dungeon = v
+        StopTween(_G.Auto_Dungeon)
+    end
+})
+
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.Auto_Dungeon then
+            local RaidPos = CFrame.new(0,25,0)
+                if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+                    if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
+                        topos(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*RaidPos)
+                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
+                        topos(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*RaidPos)
+                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
+                        topos(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*RaidPos)
+                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
+                        topos(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*RaidPos)
+                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
+                        topos(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*RaidPos)
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+local ManualAwaken = Raid:AddToggle("ManualAwaken", {
+    Title = "Auto Awaken",
+    Description = "",
+    Default = false,
+    Callback = function(v)
+        _G.Awaken = v
+    end
+})
+
+spawn(function()
+    while wait() do
+        if _G.Awaken then
+            pcall(function()
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Awaken")
+            end)
+        end
+    end
+end)
 
 
         Quantum:Notify({
