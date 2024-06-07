@@ -6007,7 +6007,7 @@ local JobAiDee = TP:AddParagraph({Title = "Server Job ID ↓ ", Content = ""})
 spawn(function()
     while wait() do
         pcall(function()
-            JobAiDee:SetDesc("Server Job ID : "..game.JobId)
+            JobAiDee:SetDesc(""..game.JobId)
         end)
     end
 end)
