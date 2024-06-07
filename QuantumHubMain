@@ -2265,6 +2265,7 @@ local function UpdateOS()
         })
 
         local Main = Window:AddTab({Title = "Main Farm", Icon = "home"})
+        
 
         local MonsterStatus = Main:AddParagraph({Title = "", Content = ""})
 
@@ -3550,7 +3551,7 @@ local CakePos = CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375
                     end
                 end
             end)
-    
+            print("Main Farm Tab [✔]")
 
 local Sub = Window:AddTab({Title = "Sub Farm", Icon = "swords"})
 
@@ -4023,7 +4024,7 @@ local PolePos = CFrame.new(-7748.0185546875, 5606.80615234375, -2305.89868164062
         end
     end)
 
-
+    print("SubFarm Tab [✔]")
 
 
 
@@ -4448,9 +4449,10 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
             end)
         end
     end)
+    print("Settings Tab [✔]")
 
     local Sea = Window:AddTab({Title = "Sea Event", Icon = "sailboat"})
-    
+
 
     Sea:AddSection("Mirage Island")
     Mirragecheck = Sea:AddParagraph({Title = "", Content = ""})
@@ -4615,9 +4617,11 @@ spawn(function()
         end
     end
 end)
+print("Sea Event Tab [✔]")
 
 if World3 then
 local Race = Window:AddTab({Title = "Race", Icon = "webhook"})
+
 
 local RaceV2 = Race:AddToggle("RaceV2", {
     Title = "Auto Race V2 Evo",
@@ -4711,6 +4715,31 @@ Race:AddButton({
     end
 })
 
+Race:AddButton({
+    Title = "Teleport to Highest Point",
+    Description = "",
+    Callback = function()
+        TweentoHighestPoint()
+    end
+})
+function TweentoHighestPoint()
+    HighestPoint = getHighestPoint()
+    if HighestPoint then
+        topos(HighestPoint.CFrame * CFrame.new(0, 211.88, 0))
+    end
+end
+function getHighestPoint()
+    if not game.workspace.Map:FindFirstChild("MysticIsland") then
+        return nil
+    end
+    for r, v in pairs(game:GetService("Workspace").Map.MysticIsland:GetDescendants()) do
+        if v:IsA("MeshPart") then
+            if v.MeshId == "rbxassetid://16471178798" then
+                return v
+            end
+        end
+    end
+end
 
 local AutoBuyGear = Race:AddToggle("AutoBuyGear", {
     Title = "Auto Buy Gear",
@@ -5134,11 +5163,12 @@ spawn(function()
         end
     end)
 end)
-
+print("Race Tab [✔]")
 end
 
 
     local Raid = Window:AddTab({Title = "Raid", Icon = "trophy"})
+    
 
     Raid:AddSection("Dungeon")
 
@@ -5512,6 +5542,7 @@ spawn(
     end
 )
 end
+print("Raid Tab [✔]")
 
 local TP = Window:AddTab({Title = "Travel", Icon = "map-pin"})
 
@@ -5744,7 +5775,7 @@ local TPTIsland = TP:AddToggle("TPTIsland", {
 
 TP:AddSection("NPC")
 if World1 then
-local SelectNPC = TP:AddToggle("SelectNPC", {
+local SelectNPC = TP:AddDropdown("SelectNPC", {
     Title = "Select NPC",
     Description = "",
     Values = {
@@ -5908,8 +5939,10 @@ local TPNPC = TP:AddToggle("TPNPC", {
         StopTween(_G.TeleportNPC)
     end
 })
+print("Travel Tab [✔]")
 
 local Shop = Window:AddTab({Title = "Shop", Icon = "shopping-cart"})
+
 Shop:AddSection("Fighting Styles")
 
 local BuyFightSe = {'Black Leg','Electro', 'Water Kung Fu', 'Dragon Claw', 'Death Step', 'Sharkman Karate', 'Electric Claw', 'Dragon Talon', 'Superhuman', 'God Human', 'Sanguine Art'}
@@ -5929,28 +5962,39 @@ Shop:AddButton({
     Description = "",
     Callback = function(value)
         if _G.BuyFighting == "Black Leg" then
+            wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
 elseif _G.BuyFighting == "Electro" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
 elseif _G.BuyFighting == "Water Kung Fu" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
 elseif _G.BuyFighting == "Dragon Claw" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","2")
 elseif _G.BuyFighting == "Death Step" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
 elseif _G.BuyFighting == "Sharkman Karate" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
 elseif _G.BuyFighting == "Electric Claw" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
 elseif _G.BuyFighting == "Dragon Talon" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
 elseif _G.BuyFighting == "Superhuman" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
 elseif _G.BuyFighting == "God Human" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
 elseif _G.BuyFighting == "Sanguine Art" then
+    wait(0.5)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt", true)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
 end
@@ -6012,7 +6056,62 @@ Shop:AddButton({
     end
 })
 
+Shop:AddSection("Guns")
 
+local GunList = {'Slingshot', 'Musket', 'Flintlock', 'Refined Slingshot', 'Refined Flintlock', 'Cannon', 'Kabucha', 'Bizarre Rifle'}
+
+local GunSelect = Shop:AddDropdown("GunSelect", {
+    Title = "Select Gun",
+    Description = "",
+    Values = GunList,
+    Multi = false,
+    Default = 1,
+    Callback = function(value)
+        _G.GunSelect = value
+    end
+})
+
+Shop:AddButton({
+    Title = "Buy Gun",
+    Description = "",
+    Callback = function()
+        if _G.GunSelect == "Slingshot" then
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Slingshot")
+        elseif _G.GunSelect == "Musket" then
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Musket")
+        elseif _G.GunSelect == "Flintlock" then
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Flintlock")
+        elseif _G.GunSelect == "Refined Slingshot" then
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Refined Flintlock")
+        elseif _G.GunSelect == "Refined Flintlock" 
+        wait(0.5)
+            local args = {
+                [1] = "BuyItem",
+                [2] = "Refined Flintlock"
+            }
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        elseif _G.GunSelect == "Cannon" then
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cannon")
+        elseif _G.GunSelect == "Kabucha" then
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","1")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","2")
+        elseif _G.GunSelect == "Bizarre Rifle" then
+            wait(0.5)
+            local A_1 = "Ectoplasm"
+            local A_2 = "Buy"
+            local A_3 = 1
+            local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"]
+            Event:InvokeServer(A_1, A_2, A_3) 
+        end
+    end
+})
+print("Shop Tab [✔]")
 
 
         Quantum:Notify({
