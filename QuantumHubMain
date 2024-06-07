@@ -2218,7 +2218,7 @@ local function UpdateOS()
 
      spawn(function()
         while wait() do
-            Time:SetTitle("Server Time : " .. function8() .. " | ".. CheckMoon() .. " | " .. function7())
+            Time:SetTitle("Server : " .. function8() .. " | ".. CheckMoon() .. "")
                 end
             end)
 
