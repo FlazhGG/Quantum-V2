@@ -16,6 +16,10 @@ for i,v in pairs(game.Players:GetPlayers()) do
     CurrentPlayers = i
 end
 
+local thumbnailSuccess, thumbnailUrl = pcall(function()
+    return Players:GetUserThumbnailAsync(userId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420) 
+end)
+
 local le = (game:GetService("Players").LocalPlayer.Data.Level.Value)
 local code = LocalizationService:GetCountryRegionForPlayerAsync(player)
 local data = {
@@ -31,7 +35,7 @@ local data = {
                 icon_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" .. tostring(game:GetService("Players").LocalPlayer.Name)
             },
             image = {
-            	url = "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
+            	url = thumbnailUrl or "https://www.roblox.com/headshot-thumbnail/image?userId=".. userId .."&width=420&height=420&format=png"
             },
             footer = {
                 text = " Time: " .. os.date("%Y-%m-%d %H:%M:%S"),
