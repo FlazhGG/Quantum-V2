@@ -5257,10 +5257,6 @@ spawn(function()
     end
 end)
 
-local Playerslist = {}
-for i,v in pairs(game:GetService("Players"):GetChildren()) do
-    table.insert(Playerslist,v.Name)
-end
 
     local SelectedPly = Player:AddDropdown("SelectedPly", {
         Title = "Select Player",
