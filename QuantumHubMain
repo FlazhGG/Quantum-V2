@@ -5911,13 +5911,14 @@ local TPNPC = TP:AddToggle("TPNPC", {
 
 local Shop = Window:AddTab({Title = "Shop", Icon = "shopping-cart"})
 Shop:AddSection("Fighting Styles")
+
 local BuyFightSe = {"Black Leg","Electro", "Water Kung Fu", "Dragon Claw", "Death Step", "Sharkman Karate", "Electric Claw", "Dragon Talon", "Superhuman", "God Human", "Sanguine Art"}
 local BuyFight = Shop:AddDropdown("BuyFight", {
     Title = "Select Fighting",
     Description = "",
     Values = BuyFightSe,
     Multi = false,
-    Default = true,
+    Default = 1,
     Callback = function(value)
  _G.BuyFighting = value
     end
