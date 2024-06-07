@@ -5272,7 +5272,7 @@ end)
     function Playerslist()
         local NewOptions = {}
         for i,v in pairs(game:GetService("Players"):GetChildren()) do
-            table.insert(NewOptions, v.Name)
+            table.insert(Playerslist, v.Name)
           end
           Playerslist:insert(NewOptions, true)
       end
