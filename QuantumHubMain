@@ -6001,6 +6001,41 @@ local TPNPC = TP:AddToggle("TPNPC", {
         StopTween(_G.TeleportNPC)
     end
 })
+
+TP:AddSection("Job ID")
+local JobAiDee = TP:AddParagraph({Title = "Server Job ID ↓ ", Content = ""})
+spawn(function()
+    while wait() do
+        pcall(function()
+            JobAiDee:SetDesc("Server Job ID : "..game.JobId)
+        end)
+    end
+end)
+TP:AddButton({
+    Title = "Copy Server Job ID",
+    Description = "",
+    Callback = function()
+        setclipboard(tostring(game.JobId))
+    end
+})
+local JobId = TP:AddInput("JobId", {
+    Title = "Job Id",
+    Default = "",
+    Placeholder = "Paste Job Id",
+    Numeric = false, -- Only allows numbers
+    Finished = false, -- Only calls callback when you press enter
+    Callback = function(value)
+        _G.Job = value
+    end
+})
+TP:AddButton({
+    Title = "Join Server",
+    Description = "",
+    Callback = function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
+    end
+})
+
 print("Travel Tab [✔]")
 
 local Shop = Window:AddTab({Title = "Shop", Icon = "shopping-cart"})
@@ -6505,6 +6540,8 @@ for _, fruitData in pairs(result) do
         Fruit:AddParagraph({Title = tostring(fruitInfo), Content = ""})
     end
 end
+
+
 
 
         Quantum:Notify({
