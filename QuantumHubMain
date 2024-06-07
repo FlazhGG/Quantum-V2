@@ -5918,7 +5918,7 @@ local BuyFight = Shop:AddDropdown("BuyFight", {
     Description = "",
     Values = BuyFightSe,
     Multi = false,
-    Default = 1,
+    Default = false,
     Callback = function(value)
  _G.BuyFighting = value
     end
@@ -5928,7 +5928,6 @@ Shop:AddButton({
     Title = "Buy Fighting Style",
     Description = "",
     Callback = function(value)
-        _G.BuyFighting = value
         if _G.BuyFighting == "Black Leg" then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
 elseif _G.BuyFighting == "Electro" then
@@ -5960,14 +5959,14 @@ end
 
 Shop:AddSection("Swords")
 
-local SwordList = {"Cutlass", "Katana", "Iron Mace", "Dual Katana", "Triple Katana", "Pipe", "Dual-Headed Blade", "Bisento", "Soul Cane", "Pole v.2"}
+local SwordList = {'Cutlass', 'Katana', 'Iron Mace', 'Dual Katana', 'Triple Katana', 'Pipe', 'Dual-Headed Blade', 'Bisento', 'Soul Cane', 'Pole v.2'}
 
 local BuySwordSE = Shop:AddDropdown("BuySwordSE", {
     Title = "Select Sword",
     Description = "",
     Values = {},
     Multi = false,
-    Default = true,
+    Default = false,
     Callback = function(value)
         _G.BuySwordSE = value
     end
