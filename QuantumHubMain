@@ -5273,19 +5273,27 @@ end)
         end
     })
 
-    function Playerslist()
-        local NewOptions = {}
-        for i,v in pairs(game:GetService("Players"):GetChildren()) do
-            table.insert(NewOptions, Playerslist)
-          end
-          Playerslist:clear(NewOptions, true)
-      end
-      Playerslist()
+    local function UpdatePlayersList()
+        local newOptions = {}
+        
+        for _, player in ipairs(Players:GetPlayers()) do
+            newOptions[#newOptions + 1] = {
+                text = player.Name,
+                callback = function()
+                    -- Handle player selection here (e.g., display details)
+                    print("Selected:", player.Name)
+                end
+            }
+        end
+    
+        -- Update the Fluent list with the new player options
+        Quantum.Dropdown:updateOptions(newOptions)
+    end
     Player:AddButton({
         Title = "Refresh List",
         Description = "",
         Callback = function()
-            pcall(function()Playerslist()end)
+            UpdatePlayersList()
         end
     })
 
