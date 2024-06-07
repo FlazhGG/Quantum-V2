@@ -5180,7 +5180,7 @@ spawn(function()
             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Visible == true then
                 TimeRaid:SetTitle("" .. game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Text)
             else
-                TimeRaid:SetTitle("Time : Wait For Dungeon")
+                TimeRaid:SetTitle("Time Left : Wait For Dungeon")
             end
         end
     end)
@@ -5796,7 +5796,7 @@ local SelectNPC = TP:AddDropdown("SelectNPC", {
 end
 
 if World2 then
-    local SelectNPC = TP:AddToggle("SelectNPC", {
+    local SelectNPC = TP:AddDropdown("SelectNPC", {
         Title = "Select NPC",
         Description = "",
         Values = {
@@ -5827,7 +5827,7 @@ if World2 then
     })
 end
 if World3 then
-    local SelectNPC = TP:AddToggle("SelectNPC", {
+    local SelectNPC = TP:AddDropdown("SelectNPC", {
         Title = "Select NPC",
         Description = "",
         Values = {
@@ -6111,6 +6111,51 @@ Shop:AddButton({
         end
     end})
 print("Shop Tab [✔]")
+
+local Fruit = Window:AddTab({Title = "Fruit", Icon = "banana"})
+
+local AutoRandomFruit = Fruit:AddToggle("AutoRandomFruit", {
+    Title = "Auto Random Fruit",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.Random_Auto = value
+    end
+})
+spawn(function()
+    pcall(function()
+        while wait(.1) do
+            if _G.Random_Auto then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+            end 
+        end
+    end)
+end)
+Fruit:AddButton({
+    Title = "Random Fruit",
+    Description = "",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+    end
+})
+
+Fruit:AddButton({
+    Title = "Open Fruit Dealer [Normal]",
+    Description = "",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
+    end
+})
+
+Fruit:AddButton({
+    Title = "Open Fruit Dealer [Advanced]",
+    Description = "",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop2.Visible = true
+    end
+})
 
 
         Quantum:Notify({
