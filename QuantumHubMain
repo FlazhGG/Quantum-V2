@@ -5272,9 +5272,9 @@ end)
     function Playerslist()
         local NewOptions = {}
         for i,v in pairs(game:GetService("Players"):GetChildren()) do
-            table.insert(Playerslist, v.Name)
+            table.insert(NewOptions, Playerslist)
           end
-          Playerslist:insert(NewOptions, true)
+          Playerslist:clear(NewOptions, true)
       end
       Playerslist()
     Player:AddButton({
