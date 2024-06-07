@@ -4558,10 +4558,10 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
         pcall(function()
             while wait() do
                 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
-                    Mirragecheck:SetTitle("Mirage Island Spawned")
+                    Mirragecheck:SetTitle("[Status] Spawned")
                     _G.MirageSpawn = true
                 else
-                    Mirragecheck:SetTitle("Mirage Island Not Spawn") 
+                    Mirragecheck:SetTitle("[Status] Not Spawn") 
                     _G.MirageSpawn = false
                  end
                 end
@@ -4619,10 +4619,10 @@ local KillAtHealth = Set:AddSlider("KillAtHealth", {
         pcall(function()
             while wait() do
                 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsune Island') then
-                    Kitsunecheck:SetTitle("Kitsune Island Spawned")
+                    Kitsunecheck:SetTitle("[Status] Spawned")
                     _G.KitsuneSpawn = true
                 else
-                    Kitsunecheck:SetTitle("Kitsune Island Not Spawn") 
+                    Kitsunecheck:SetTitle("[Status] Not Spawn") 
                     _G.KitsuneSpawn = false
                 end
             end
