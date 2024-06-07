@@ -2961,57 +2961,48 @@ local ListBones = Main:AddDropdown("ListBones", {
         })
 
         local BonePos = CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375)
-    spawn(function()
-        while wait() do 
-            if BoneFMode == "No Quest" and _G.Auto_Bone and World3 then
-                pcall(function()
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
-                               if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                   repeat task.wait(_G.FastAttackDelay)
-                                        AutoHaki()
-                                        EquipWeapon(_G.SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.Head.CanCollide = false 
-                                        StartBring = true
-                                        PosMon = v.HumanoidRootPart.CFrame
-                                        topos(v.HumanoidRootPart.CFrame * Pos)
-                                        AttackNoCD()
-                                    until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
+        spawn(function()
+            while wait() do 
+                if BoneFMode == "No Quest" and _G.Auto_Bone and World3 then
+                    pcall(function()
+                        if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                            StartBring = false
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
+                                   if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                       repeat task.wait(_G.FastAttackDelay)
+                                            AutoHaki()
+                                            EquipWeapon(_G.SelectWeapon)
+                                            v.HumanoidRootPart.CanCollide = false
+                                            v.Humanoid.WalkSpeed = 0
+                                            v.Head.CanCollide = false 
+                                            StartBring = true
+                                            PosMon = v.HumanoidRootPart.CFrame
+                                            MonFarm = v.Name
+                                            topos(v.HumanoidRootPart.CFrame * Pos)
+                                            AttackNoCD()
+                                        until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
+                                        StartBring = false
+                                    end
                                 end
                             end
+                        else
+                        if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude > 1500 then
+                        BTP(BonePos)
+                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude < 1500 then
+                        topos(BonePos)
                         end
-                    else
-                    if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude > 1500 then
-			        BTP(BonePos)
-				    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BonePos.Position).Magnitude < 1500 then
-				    topos(BonePos)
-					end
-				else
-				    topos(BonePos)
-				end
-				        UnEquipWeapon(_G.SelectWeapon)
-                        StartBring = false
-						topos(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
-                        for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
-                            if v.Name == "Reborn Skeleton" then
-                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                            elseif v.Name == "Living Zombie" then
-                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                            elseif v.Name == "Demonic Soul" then
-                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                            elseif v.Name == "Posessed Mummy" then
-                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                            end
+                        else
+                        topos(BonePos)
                         end
-                    end
-                end)
+                            UnEquipWeapon(_G.SelectWeapon)
+                            topos(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
+                        end
+                    end)
+                end
             end
-        end
-    end)      
+        end)      
         
         local BoneQuestPos = CFrame.new(-9516.99316, 172.017181, 6078.46533, 0, 0, -1, 0, 1, 0, 1, 0, 0)
     
@@ -3577,6 +3568,45 @@ local CakePos = CFrame.new(-2091.911865234375, 70.00884246826172, -12142.8359375
             end
             end
             end) 
+
+            local AutoKIllCake = Main:AddToggle("AutoKillCake", {
+                Title = "Auto Kill Cake Prince",
+                Description = "",
+                Default = false,
+                Callback = function(value)
+                    _G.AutoCakePrince = value
+        StopTween( _G.AutoCakePrince)
+                end
+            })
+
+            spawn(function()
+                while wait() do
+                    if  _G.AutoCakePrince and World3 then
+                        pcall(function()
+                            if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
+                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                    if v.Name == "Cake Prince" then
+                                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                            repeat task.wait(_G.FastAttackDelay)
+                                                AutoHaki()
+                                                EquipWeapon(_G.SelectWeapon)
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                                topos(v.HumanoidRootPart.CFrame * Pos)
+                                                AttackNoCD()
+                                                -- sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                                            until not  _G.AutoCakePrince or not v.Parent or v.Humanoid.Health <= 0
+                                        end
+                                    end
+                                end
+                            else
+                            UnEquipWeapon(_G.SelectWeapon)
+                            end
+                        end)
+                    end
+                end
+            end)
         
             local AutoDoughKing = Main:AddToggle("AutoDoughKing", {
                 Title = "Auto Kill Dough King",
