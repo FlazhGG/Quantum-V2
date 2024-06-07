@@ -18,7 +18,7 @@ Text_Intro.Size = UDim2.new(0, 100, 0, 62)
 Text_Intro.Visible = false
 Text_Intro.ZIndex = 0
 Text_Intro.Font = Enum.Font.SourceSansSemibold
-Text_Intro.Text = "Quantum Hub"
+Text_Intro.Text = "GENERATION"
 Text_Intro.TextColor3 = Color3.fromRGB(65, 22, 240)
 Text_Intro.TextScaled = true
 Text_Intro.TextSize = 14.000
@@ -26,7 +26,7 @@ Text_Intro.TextWrapped = true
 
 IntroBackground.Name = "IntroBackground"
 IntroBackground.Parent = Text_Intro
-IntroBackground.BackgroundColor3 = Color3.fromRGB(116, 25, 252)
+IntroBackground.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 IntroBackground.Position = UDim2.new(-0.007081002, 0, -0.314871728, 0)
 IntroBackground.Size = UDim2.new(0, 100, 0, 100)
 
@@ -41,7 +41,7 @@ Title_Intro.Position = UDim2.new(0.109999999, 0, 0.129999995, 0)
 Title_Intro.Size = UDim2.new(0, 80, 0, 76)
 Title_Intro.ZIndex = 2
 Title_Intro.Font = Enum.Font.SourceSansBold
-Title_Intro.Text = "Q"
+Title_Intro.Text = "NEW"
 Title_Intro.TextColor3 = Color3.fromRGB(65, 22, 240)
 Title_Intro.TextScaled = true
 Title_Intro.TextSize = 14.000
