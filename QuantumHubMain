@@ -6349,27 +6349,33 @@ Shop:AddButton({
         Callback = function(value)
         _G.BuyTTK = value
 end   })
+
+
 task.spawn(function()
+    local hasTTKPrint = false 
+
     while true do
         pcall(function()
             if _G.BuyTTK then
                 local Event = game:GetService("ReplicatedStorage").Remotes.CommF_
+                local getTTK = Event:InvokeServer("getInventoryWeapons")
 
                 local hasTTK = false
-                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v:IsA("Tool") and v.Name == "True Triple Katana" then
+                for _, getWeapon in pairs(getTTK) do
+                    if getWeapon == "True Triple Katana" then
                         hasTTK = true
-                        break
+                        break 
                     end
                 end
 
-                if hasTTK then
+                if hasTTK and not hasTTKPrint then 
                     print("Already have True Triple Katana.")
+                    hasTTKPrint = true
                 else
                     if Event then
                         Event:InvokeServer("MysteriousMan", "2")
                     else
-                        warn("CommF_ RemoteEvent not found.")
+                        warn("MysteriousMan not found.")
                     end
                 end
             end
@@ -6392,14 +6398,19 @@ local AutoRandomFruit = Fruit:AddToggle("AutoRandomFruit", {
         _G.Random_Auto = value
     end
 })
-spawn(function()
-    pcall(function()
-        while wait(.1) do
+task.spawn(function()
+    while task.wait(0.1) do
+        pcall(function()
             if _G.Random_Auto then
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-            end 
-        end
-    end)
+                local Event = game:GetService("ReplicatedStorage").Remotes.CommF_
+                if Event then
+                    Event:InvokeServer("Cousin", "Buy")
+                else
+                    warn("CommF_ RemoteEvent not found.")
+                end
+            end
+        end) 
+    end
 end)
 Fruit:AddButton({
     Title = "Random Fruit",
