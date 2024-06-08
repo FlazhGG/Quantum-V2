@@ -6702,7 +6702,7 @@ StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
     end
 })
 
-local HideChat = Misc:AddToggle("HideChat", {
+local HideLeaderBoard = Misc:AddToggle("HideLeaderBoard", {
     Title = "Hide LeaderBoard", 
     Description = "",
     Default = false,
@@ -6718,7 +6718,7 @@ elseif _G.leaderboard == false then
     end
 })
 
-local HideChat = Misc:AddToggle("HideChat", {
+local HightlightMode = Misc:AddToggle("HightlightMode", {
     Title = "Hightlight Mode", 
     Description = "",
     Default = false,
