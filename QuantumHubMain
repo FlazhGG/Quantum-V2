@@ -1977,8 +1977,7 @@ function AntiBan()
             ):Play()
     end
     
-    local stoppos = {}
-    
+  
     function topos(Pos)
         local Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
         local tween = game:GetService("TweenService"):Create(
@@ -1986,12 +1985,6 @@ function AntiBan()
             TweenInfo.new(Distance/TweenSpeed, Enum.EasingStyle.Linear),
             {CFrame = Pos}
         ):Play()
-    
-        function stoppos:Stop()
-            tween:Cancel()
-        end
-    
-        return stoppos
     end
     
         function fastpos(Pos)
@@ -2016,7 +2009,7 @@ function AntiBan()
     
         -- or (game:GetService("Workspace").Enemies:FindFirstChild("Shark") and _G.AutoKillShark) or (game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") and _G.AutoTerrorshark) or (game:GetService("Workspace").Enemies:FindFirstChild("Piranha") and _G.AutoKillPiranha) or (game:GetService("Workspace").Enemies:FindFirstChild("Fish Crew Member") and _G.AutoKillFishCrew)
         
-        local stopboat = {}
+       
     function TPB(pos, boat)
         local tween_s = game:service"TweenService"
         local info = TweenInfo.new((boat.CFrame.Position - pos.Position).Magnitude/BoatSpeed, Enum.EasingStyle.Linear)
@@ -2027,13 +2020,6 @@ function AntiBan()
         else
             tween:Play()
         end
-    
-    
-        function stopboat:Stop()
-            tween:Cancel()
-        end
-    
-        return stopboat
     end
     
     function TPP(CFgo)
