@@ -2837,7 +2837,7 @@ end
      while wait() do
          if SelectedMasteryMode == "Nearest" and _G.AutoFarmFruitMastery then
              pcall(function()
-                 for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                 for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                      if v.Name and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
                          if
                              (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChild("HumanoidRootPart").Position).Magnitude <= 5000
