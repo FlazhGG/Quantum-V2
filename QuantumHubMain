@@ -110,16 +110,6 @@ function AntiBan()
         end
        end
     end)
-
-    Players.PlayerAdded:Connect(function(player)
-        player.CharacterAdded:Connect(onCharacterAdded)
-    end)
-    
-    for _, player in ipairs(Players:GetPlayers()) do
-        if player.Character then
-            onCharacterAdded(player.Character)
-        end
-    end
     print("Anti Cheat Bypass Active")
     print("Made By: Prime Flazhy")
     print("Enjoy")
@@ -2335,9 +2325,9 @@ local function UpdateOS()
 
      function MoonTextureId()
         if World1 then
-            return game:GetService("Lighting").FantasySky.MoonTextureId
+            return game:GetService("Lighting").Sky.MoonTextureId
         elseif World2 then
-            return game:GetService("Lighting").FantasySky.MoonTextureId
+            return game:GetService("Lighting").Sky.MoonTextureId
         elseif World3 then
             return game:GetService("Lighting").Sky.MoonTextureId
         end
@@ -2421,8 +2411,8 @@ local function UpdateOS()
                                 Quantum:Notify({
                                     Title = "Quantum Hub",
                                     Content = "Invited",
-                                    SubContent = "Enjoy Using Quantum Hub", -- Optional
-                                    Duration = 2 -- Set to nil to make the notification not disappear
+                                    SubContent = "Enjoy Using Quantum Hub",
+                                    Duration = 2 
                                 })                            
                             end
                         },
