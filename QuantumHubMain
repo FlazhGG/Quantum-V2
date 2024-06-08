@@ -6686,7 +6686,9 @@ Misc:AddButton({
     Title = "FPS Boost (Fix Lag)",
     Description = "",
     Callback = function()
-        pcall(function()
+        spawn(function()
+            while wait() do
+                pcall(function()
             game:GetService("Lighting").FantasySky:Destroy()
             local g = game
             local w = g.Workspace
@@ -6729,6 +6731,8 @@ Misc:AddButton({
                     v.Transparency = 1
                     v.Material = "Plastic"
                 end
+            end
+                end)
             end
         end)
     end
