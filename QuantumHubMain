@@ -6352,30 +6352,30 @@ end   })
 
 
 task.spawn(function()
-    local hasTTKPrint = false 
+    local hasTTKPrinted = false 
 
     while true do
         pcall(function()
             if _G.BuyTTK then
                 local Event = game:GetService("ReplicatedStorage").Remotes.CommF_
-                local getTTK = Event:InvokeServer("getInventoryWeapons")
+                local inventoryWeapons = Event:InvokeServer("getInventoryWeapons")
 
                 local hasTTK = false
-                for _, getWeapon in pairs(getTTK) do
-                    if getWeapon == "True Triple Katana" then
+                for _, weaponName in pairs(inventoryWeapons) do
+                    if weaponName == "True Triple Katana" then
                         hasTTK = true
                         break 
                     end
                 end
 
-                if hasTTK and not hasTTKPrint then 
+                if hasTTK and not hasTTKPrinted then 
                     print("Already have True Triple Katana.")
-                    hasTTKPrint = true
+                    hasTTKPrinted = true
                 else
                     if Event then
                         Event:InvokeServer("MysteriousMan", "2")
                     else
-                        warn("MysteriousMan not found.")
+                        warn("CommF_ RemoteEvent not found.")
                     end
                 end
             end
