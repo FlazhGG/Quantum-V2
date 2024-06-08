@@ -2960,7 +2960,7 @@ local ListBones = Main:AddDropdown("ListBones", {
             Callback = function (value)
                 _G.Auto_Bone = value
                 StopTween(_G.Auto_Bone)
-                
+
             end
         })
 
@@ -3001,7 +3001,7 @@ local ListBones = Main:AddDropdown("ListBones", {
                         topos(BonePos)
                         end
                             UnEquipWeapon(_G.SelectWeapon)
-                            topos(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
+                            topos(v.HumanoidRootPart.CFrame * Pos)
                         end
                     end)
                 end
