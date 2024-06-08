@@ -6343,14 +6343,14 @@ Shop:AddButton({
     Shop:AddSection("Others")
 
     local BuyTTK = Shop:AddToggle("BuyTTK", {
-    Title = "Buy True Triple Katana",
-    Description = "",
-    Default = false,
-    Callback = function(value)
+        Title = "Buy True Triple Katana",
+        Description = "",
+        Default = false,
+        Callback = function(value)
         _G.BuyTTK = value
-
-end})
-spawn(function()
+end     
+ })
+task.spawn(function()
         while wait() do
             pcall(function()
             if _G.BuyTTK then
