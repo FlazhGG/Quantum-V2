@@ -6686,17 +6686,6 @@ Misc:AddButton({
     Title = "FPS Boost (Fix Lag)",
     Description = "",
     Callback = function()
-	    game.Lighting.FogEnd = 9e9
-        for i,v in pairs(game.Workspace:GetDescendants()) do
-			if v.Name == "Lava" then   
-				v:Destroy()
-			end
-		end
-		for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
-			if v.Name == "Lava" then   
-				v:Destroy()
-			end
-		end
         pcall(function()
             game:GetService("Lighting").FantasySky:Destroy()
             local g = game
