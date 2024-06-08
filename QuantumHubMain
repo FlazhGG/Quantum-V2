@@ -6357,6 +6357,7 @@ task.spawn(function()
             local string_2 = "2";
             local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"];
                     Event:InvokeServer(string_1, string_2);
+                end
             end)
 end)
 
