@@ -6348,21 +6348,18 @@ Shop:AddButton({
         Default = false,
         Callback = function(value)
         _G.BuyTTK = value
-end     
- })
+end     })
 task.spawn(function()
         while wait() do
             pcall(function()
             if _G.BuyTTK then
-        local string_1 = "MysteriousMan";
-        local string_2 = "2";
-        local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"];
+            local string_1 = "MysteriousMan";
+            local string_2 = "2";
+            local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"];
                     Event:InvokeServer(string_1, string_2);
-                end
+            end
             end)
-        end
-    end)
-end)
+        end)
 
 print("Shop Tab [✔]")
 
