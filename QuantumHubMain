@@ -6339,6 +6339,31 @@ Shop:AddButton({
             Event:InvokeServer(A_1, A_2, A_3) 
         end
     end})
+
+    Shop:AddSection("Others")
+
+    local BuyTTK = Shop:AddToggle("BuyTTK", {
+    Title = "Buy True Triple Katana",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        _G.BuyTTK = value
+
+end})
+spawn(function()
+        while wait() do
+            pcall(function()
+            if _G.BuyTTK then
+        local string_1 = "MysteriousMan";
+        local string_2 = "2";
+        local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"];
+                    Event:InvokeServer(string_1, string_2);
+                end
+            end)
+        end
+    end)
+end)
+
 print("Shop Tab [✔]")
 
 local Fruit = Window:AddTab({Title = "Fruit", Icon = "banana"})
@@ -6747,42 +6772,6 @@ elseif _G.leaderboard == false then
     end
 })
 
-local HightlightMode = Misc:AddToggle("HightlightMode", {
-    Title = "Hightlight Mode", 
-    Description = "",
-    Default = false,
-    Callback = function(value)
-        if value == true then
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Beli.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Fragments.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.HP.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Energy.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.StatsButton.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ShopButton.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Skills.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Level.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.MenuButton.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Code.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Settings.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Mute.Visible = false
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.CrewButton.Visible = false
-        else
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Beli.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Fragments.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.HP.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Energy.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.StatsButton.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ShopButton.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Skills.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Level.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.MenuButton.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Code.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Settings.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Mute.Visible = true
-            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.CrewButton.Visible = true
-        end
-    end
-})
 
 Misc:AddSection("Graphics")
 
