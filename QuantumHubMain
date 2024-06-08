@@ -6357,7 +6357,7 @@ task.spawn(function()
 
                 local hasTTK = false
                 for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if tool:IsA("Tool") and v.Name == "True Triple Katana" then
+                    if v:IsA("Tool") and v.Name == "True Triple Katana" then
                         hasTTK = true
                         break
                     end
