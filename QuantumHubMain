@@ -1979,13 +1979,28 @@ end
 
     
   
-    function topos(Pos)
-        local Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-        local tween = game:GetService("TweenService"):Create(
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-            TweenInfo.new(Distance/TweenSpeed, Enum.EasingStyle.Linear),
-            {CFrame = Pos}
-        ):Play()
+function topos(Pos)
+    local Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    if Distance >= 1 then
+    Speed = TweenSpeed
+    end
+    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
+      CFrame = Pos
+    }):Play()
+    if _G.StopTween then
+    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear), {
+      CFrame = Pos
+    }):Cancel()
+    end
+    end
+    function CancelTween(target)
+    if not target then
+    _G.StopTween = true
+    wait()
+    Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+    wait()
+    _G.StopTween = false
+    end
     end
     
         function fastpos(Pos)
