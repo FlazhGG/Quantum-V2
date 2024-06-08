@@ -6623,12 +6623,12 @@ local HideChat = Misc:AddToggle("HideChat", {
     Callback = function(value)
         _G.chat = value
         if _G.chat == true then
-    local StarterGui = game:GetService('StarterGui')
-    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)    
-    elseif _G.chat == false then
-    local StarterGui = game:GetService('StarterGui')
-    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)    
-    end
+        local StarterGui = game:GetService('StarterGui')
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)    
+            elseif _G.chat == false then
+        local StarterGui = game:GetService('StarterGui')
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)    
+        end
     end
 })
 
@@ -6639,12 +6639,12 @@ local HideChat = Misc:AddToggle("HideChat", {
     Callback = function(value)
         _G.leaderboard = value
     if _G.leaderboard == true then
-local StarterGui = game:GetService('StarterGui')
-game:GetService('StarterGui'):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)   
+    local StarterGui = game:GetService('StarterGui')
+        game:GetService('StarterGui'):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)   
 elseif _G.leaderboard == false then
-local StarterGui = game:GetService('StarterGui')
-game:GetService('StarterGui'):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)   
-end
+    local StarterGui = game:GetService('StarterGui')
+        game:GetService('StarterGui'):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)   
+        end
     end
 })
 
@@ -6655,6 +6655,7 @@ local HideChat = Misc:AddToggle("HideChat", {
     Callback = function(value)
         if value == true then
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Beli.Visible = false
+            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Fragments.Visible = false
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.HP.Visible = false
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Energy.Visible = false
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.StatsButton.Visible = false
@@ -6668,6 +6669,7 @@ local HideChat = Misc:AddToggle("HideChat", {
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.CrewButton.Visible = false
         else
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Beli.Visible = true
+            game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Fragments.Visible = true
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.HP.Visible = true
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Energy.Visible = true
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.StatsButton.Visible = true
@@ -6689,7 +6691,7 @@ Misc:AddButton({
     Title = "FPS Boost (Fix Lag)",
     Description = "",
     Callback = function()
-            game:GetService("Lighting").FantasySky:Destroy()
+            game:GetService("Lighting").Sky:Destroy()
             local g = game
             local w = g.Workspace
             local l = g.Lighting
