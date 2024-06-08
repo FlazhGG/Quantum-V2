@@ -6349,16 +6349,21 @@ Shop:AddButton({
         Callback = function(value)
         _G.BuyTTK = value
 end   })
-task.spawn(function()
-    while wait() do
-        pcall(function()
+task.spawn(function() 
+    while true do
+        pcall(function()  
             if _G.BuyTTK then
-            local string_1 = "MysteriousMan";
-            local string_2 = "2";
-            local Event = game:GetService("ReplicatedStorage").Remotes["CommF_"];
-                    Event:InvokeServer(string_1, string_2);
+                local Event = game:GetService("ReplicatedStorage").Remotes.CommF_
+
+                if Event then
+                    Event:InvokeServer("MysteriousMan", "2")
+                else
+                    warn("CommF_ RemoteEvent not found.")
                 end
-            end)
+            end
+        end)
+        task.wait()  
+    end
 end)
 
 print("Shop Tab [✔]")
