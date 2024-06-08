@@ -6349,20 +6349,32 @@ Shop:AddButton({
         Callback = function(value)
         _G.BuyTTK = value
 end   })
-task.spawn(function() 
+task.spawn(function()
     while true do
-        pcall(function()  
+        pcall(function()
             if _G.BuyTTK then
                 local Event = game:GetService("ReplicatedStorage").Remotes.CommF_
 
-                if Event then
-                    Event:InvokeServer("MysteriousMan", "2")
+                local hasTTK = false
+                for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if tool:IsA("Tool") and v.Name == "True Triple Katana" then
+                        hasTTK = true
+                        break
+                    end
+                end
+
+                if hasTTK then
+                    print("Already have True Triple Katana.")
                 else
-                    warn("CommF_ RemoteEvent not found.")
+                    if Event then
+                        Event:InvokeServer("MysteriousMan", "2")
+                    else
+                        warn("CommF_ RemoteEvent not found.")
+                    end
                 end
             end
         end)
-        task.wait()  
+        task.wait()
     end
 end)
 
