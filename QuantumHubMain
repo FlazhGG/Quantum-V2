@@ -2412,7 +2412,7 @@ local ListF = Main:AddDropdown("ListF", {
 local AutoFarm = Main:AddToggle("AutoFarm", {
     Title = "Auto Farm",
     Description = "",
-    Default = false,
+    Default = _G.AutoFarm,
     Callback = function(v)
         _G.AutoFarm = v
         StopTween(_G.AutoFarm)
@@ -2956,7 +2956,7 @@ local ListBones = Main:AddDropdown("ListBones", {
         local FarmBones = Main:AddToggle("FarmBones", {
             Title = "Auto Farm Bones",
             Description = "",
-            Default = false,
+            Default = _G.Auto_Bone,
             Callback = function (value)
                 _G.Auto_Bone = value
                 StopTween(_G.Auto_Bone)
