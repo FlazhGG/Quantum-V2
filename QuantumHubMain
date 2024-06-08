@@ -2278,9 +2278,9 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 local Window = Quantum:CreateWindow({
     Title = "<font color='rgb(65, 22, 240)'>Quantum Hub </font>",
-    SubTitle = "<font color='rgb(0, 240, 156)'>NEW GENERATION BETA</font>".." - "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name ,
+    SubTitle = "<font color='rgb(0, 240, 156)'>NEW GENERATION BETA</font>",
     TabWidth = 160,
-    Size = UDim2.fromOffset(580, 430),
+    Size = UDim2.fromOffset(600, 400),
     Acrylic = false, 
     Theme = "Quantum",
     MinimizeKey = Enum.KeyCode.LeftControl
