@@ -1,6 +1,3 @@
-uttorent pass : FFk<1zDHgv07E=DJ
-
-
 repeat wait(1) until game:IsLoaded()
 local AlchemyNotify = function(Text_i,Duration_i)
     game.StarterGui:SetCore("SendNotification", {
