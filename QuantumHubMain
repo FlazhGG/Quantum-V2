@@ -105,7 +105,7 @@ function AntiBan()
             until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
         end
 
-    function CheckLevelQuest() 
+    function CheckQuest() 
         MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
         if World1 then
             if MyLevel == 1 or MyLevel <= 9 then
@@ -2406,7 +2406,7 @@ spawn(function()
   MonsterStatus:SetTitle("[Quest] : ".." | [Level] : ")
   elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
   pcall(function()
-    CheckLevelQuest()
+    CheckQuest()
     MonsterStatus:SetDesc("[Monster] : "..Mon)
     MonsterStatus:SetTitle("[Quest] : "..NameQuest.." | [Level] : "..LevelQuest)
     end)
@@ -2487,7 +2487,7 @@ spawn(function()
     while wait() do
         if _G.AutoFarm then
             pcall(function()
-                CheckLevelQuest()
+                CheckQuest()
                 local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                 if not string.find(QuestTitle, NameMon) then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
@@ -2576,7 +2576,7 @@ spawn(function()
     while wait() do
         if FarmMode == "Auto Quest" and _G.AutoFarm then
             pcall(function()
-                CheckLevelQuest()
+                CheckQuest()
                 local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                 if not string.find(QuestTitle, NameMon) then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
@@ -2662,7 +2662,7 @@ spawn(function()
     while wait() do
         if  SelectedMasteryMode == "Normal" and _G.AutoFarmFruitMastery then
             pcall(function()
-                CheckLevelQuest()
+                CheckQuest()
                 local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                 if not string.find(QuestTitle, NameMon) then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
@@ -2791,7 +2791,7 @@ spawn(function()
     pcall(function()
         while wait() do
             if _G.AutoFarmGunMastery then
-                CheckLevelQuest()
+                CheckQuest()
                 local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                 if not string.find(QuestTitle, NameMon) then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
@@ -6068,7 +6068,7 @@ local BringMob = Set:AddToggle("BringMob", {
 spawn(function()
 	while task.wait() do
 		pcall(function()
-            CheckLevelQuest()
+            CheckQuest()
 			for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 				if _G.BringMonster then
 					if StartBring and v.Name == MonFarm or v.Name == Mon and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
