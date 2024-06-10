@@ -1,79 +1,93 @@
 local LocalizationService = game:GetService("LocalizationService")
 local player = game.Players.LocalPlayer
+local HttpService = game:GetService("HttpService")
 
-function PostWebhook(Url, message)
-    local request = http_request or request or HttpPost or syn.request
-    local data =
-        request(
-        {
-            Url = Url,
-            Method = "POST",
-            Headers = {["Content-Type"] = "application/json"},
-            Body = game:GetService("HttpService"):JSONEncode(message)
-        }
-    )
-    return ""
-end
 
 local le = (game:GetService("Players").LocalPlayer.Data.Level.Value)
 local code = LocalizationService:GetCountryRegionForPlayerAsync(player)
-function DevLoggerMsg()
-    DevMessage = {
-        ["embeds"] = {
+local data = {
+    embeds = {
+        {
+            title = "Quantum Hub | User log",
+            url = "https://www.roblox.com/users/" .. player.UserId,
+            description = "```" .. player.DisplayName .. " (" .. player.Name .. ") ```",
+            color = tonumber(0xffa500),
+            author = {
+                name = "",
+                url = "",
+                icon_url = ""
+            },
+            image = {
+            	url = ""
+            },
+            footer = {
+                text = " Time: " .. os.date("%Y-%m-%d %H:%M:%S"),
+                icon_url = ""
+            },
+            fields = {
+                {
+                    name = "PlayerID",
+                    value = "```" .. game.Players.LocalPlayer.UserId .. "```",
+                    inline = true
+                },
+                {
+                    name = "Country",
+                    value = "```" .. code .. "```",
+                    inline = false
+                },
+                {
+                    name = "Executer",
+                    value = "```" .. identifyexecutor() .. "```",
+                    inline = true
+                },
+                {
+                    name = "Job ID",
+                    value = "```".. tostring(game.JobId) .."```",
+                    inline = true
+                },
+                {
+                    name = "Status",
+                    value = "```Main Hub```",
+                    inline = false
+                },
+                {
+                    name = "Server Count",
+                    value = "```"..playerCount.."/12```",
+                    inline = true
+                },
+                {
+                    name = "HWID",
+                    value = "```" .. game:GetService("RbxAnalyticsService"):GetClientId() .. "```",
+                    inline = true
+                },
             {
-                ["title"] = "**Quantum Hub**",
-                ["description"] = "```" .. player.DisplayName .. " (" .. player.Name .. ") ```",
-                ["type"] = "rich",
-                ["color"] = tonumber(0xf93dff),
-                ["footer"] = {
-                   ["text"] = " Executor : ".."```" .. identifyexecutor() .. "```",
-                   ["icon_url"] = ""
-                },
-                ["fields"] = {
-                    {
-                        ["name"] = "**Player Count**",
-                        ["value"] = "```"..playerCount.."/12```",
-                        ["inline"] = true
-                    },
-                    {
-                        ["name"] = "**UserID**",
-                        ["value"] = "```" .. game.Players.LocalPlayer.UserId .. "```",
-                        ["inline"] = true
-                    },
-                    {
-                        ["name"] = "**PlaceID**",
-                        ["value"] = "```" .. game.PlaceId .. "```",
-                        ["inline"] = false
-                    },
-                    {
-                        ["name"] = "**Hwid**",
-                        ["value"] = "```" .. game:GetService("RbxAnalyticsService"):GetClientId() .. "```",
-                        ["inline"] = false
-                    },
-                    {
-                        ["name"] = "**JobID**",
-                        ["value"] = "```" .. game.JobId .. "```",
-                        ["inline"] = false
-                    },
-                    {
-                        ["name"] = "**Join Code**",
-                        ["value"] = "```lua" .. "\n" .. "game.ReplicatedStorage['__ServerBrowser']:InvokeServer('teleport','" .. game.JobId .. "')" .. "```",
-                        ["inline"] = false
-                    },
-                    {
-                        ["name"] = "**Join Link**",
-                        ["value"] = "https://www.roblox.com/games/" .. game.PlaceId .. "/",
-                        ["inline"] = false
-                    }
-                },
-                ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%S")
+                name = "Server Join Script",
+                value = "```lua" .. "\n" .. "game.ReplicatedStorage['__ServerBrowser']:InvokeServer('teleport','" .. game.JobId .. "')" .. "```",
+                inline = false
+            },
+                {
+                    name = "Direct Join",
+                    value = "https://www.roblox.com/games/" .. game.PlaceId .. "/", 
+                    inline = false
+                }
             }
         }
     }
-    return DevMessage
-end
+}
 
-PostWebhook("https://discord.com/api/webhooks/1247853090057486397/roi-thQqY2Xj9WKpj9-GX0RrfFE4M3dwIA5esUCODdHC9LKWes1lUSsAwT57kWwdQC8O", DevLoggerMsg())
+local jsonData = HttpService:JSONEncode(data)
+local webhookUrl = "https://discord.com/api/webhooks/1247853090057486397/roi-thQqY2Xj9WKpj9-GX0RrfFE4M3dwIA5esUCODdHC9LKWes1lUSsAwT57kWwdQC8O"
+local headers = {["Content-Type"] = "application/json"}
+request = http_request or request or HttpPost or fluxus.request or syn.request or Krnl.request or delta.request;
+local request = http_request or request or HttpPost or syn.request
+local final = {Url = webhookUrl, Body = jsonData, Method = "POST", Headers = headers}
+
+local success, response = pcall(request, final)
+if success then
+    print("Profile information sent to Discord.")
+else
+    print("Failed to send profile information to Discord: " .. response)
+end
 
 
 local game = game.PlaceId
