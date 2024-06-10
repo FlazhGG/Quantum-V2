@@ -1,4 +1,112 @@
+spawn(function() 
+    repeat
+        task.wait()
+    until game:IsLoaded()
+    repeat
+        task.wait()
+    until game.Players
+    repeat
+        task.wait()
+    until game.Players.LocalPlayer and game.Players.LocalPlayer.Team ~= nil 
+    wait(1.5)
+    require(game.ReplicatedStorage.Notification).new("<Color=Red>Welcome Quantum Hub User<Color=/>"):Display()
+end)
+wait(1.5)
+    
+local g = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules"):FindFirstChild("dsfwefwfwdfsfasdadaxczcw")
+if g then
+    g:Destroy()
+end
+    local h = game:GetService("UserInputService")
+    local i = game:GetService("VirtualInputManager")
+    local j = game:GetService("TweenService")
+    local l = game:service "TweenService"
+    local m = game:GetService("RunService")
+    local n = game:GetService("Players").LocalPlayer
+    local o = n:GetMouse()
+    local p = game:GetService("GuiService")
+    local q = Instance.new("Sound")
+            q.Name = "Sound Effect"
+            q.SoundId = "rbxassetid://3398620867"
+            q.Volume = 1
+            q.Parent = game.Workspace
+    local r = Instance.new("UIStroke")
+    local s = Instance.new("UICorner")
+    local t = Instance.new("ScreenGui")
+    local u = Instance.new("ImageButton")
+    local v = Enum.ButtonStyle.RobloxButton
+        t.Parent = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules")
+        t.Name = "dsfwefwfwdfsfasdadaxczcw"
+        u.Parent = t
+        u.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+        u.Size = UDim2.new(0, 65, 0, 65)
+        u.Draggable = true
+        u.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        u.BackgroundTransparency = 1
+        u.Image = "rbxassetid://17466928754"
+function LoadFunction()
+    u.MouseEnter:Connect(
+        function()
+            j:Create(
+                u,
+                TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut),
+                {Size = UDim2.new(0, 80, 0, 80)}
+            ):Play()
+        end
+    )
+    u.MouseLeave:Connect(
+        function()
+            j:Create(
+                u,
+                TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut),
+                {Size = UDim2.new(0, 65, 0, 65)}
+            ):Play()
+        end
+    )
+    local w = false
+    u.MouseButton1Down:Connect(
+        function()
+            if w == false then
+                w = false
+                j:Create(u, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Rotation = 180}):Play(
 
+                )
+                q:Play()
+                j:Create(u, TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {ImageTransparency = 0}):Play(
+
+                )
+                wait(.5)
+                j:Create(u, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Rotation = 0}):Play()
+                j:Create(u, TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {ImageTransparency = 0}):Play(
+
+                )
+                wait(.5)
+            end
+        end
+    )
+end
+LoadFunction()
+u.MouseButton1Down:connect(
+    function()
+        Quantum.Window:Minimize()
+    end
+)
+
+local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Quantum:CreateWindow({
+    Title = "<font color='rgb(65, 22, 240)'>Quantum Hub </font>",
+    SubTitle = "<font color='rgb(0, 240, 156)'>NEW GENERATION BETA</font>",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(600, 400),
+    Acrylic = false, 
+    Theme = "Quantum",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Options = Quantum.Options
 
 local game = game.PlaceId
         if game == 2753915549 then
@@ -2060,117 +2168,6 @@ spawn(function()
         end
     end
 end)
-
-spawn(function() 
-    repeat
-        task.wait()
-    until game:IsLoaded()
-    repeat
-        task.wait()
-    until game.Players
-    repeat
-        task.wait()
-    until game.Players.LocalPlayer and game.Players.LocalPlayer.Team ~= nil 
-    wait(1.5)
-    require(game.ReplicatedStorage.Notification).new("<Color=Red>Welcome Quantum Hub User<Color=/>"):Display()
-end)
-wait(1.5)
-    
-local g = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules"):FindFirstChild("dsfwefwfwdfsfasdadaxczcw")
-if g then
-    g:Destroy()
-end
-    local h = game:GetService("UserInputService")
-    local i = game:GetService("VirtualInputManager")
-    local j = game:GetService("TweenService")
-    local l = game:service "TweenService"
-    local m = game:GetService("RunService")
-    local n = game:GetService("Players").LocalPlayer
-    local o = n:GetMouse()
-    local p = game:GetService("GuiService")
-    local q = Instance.new("Sound")
-            q.Name = "Sound Effect"
-            q.SoundId = "rbxassetid://3398620867"
-            q.Volume = 1
-            q.Parent = game.Workspace
-    local r = Instance.new("UIStroke")
-    local s = Instance.new("UICorner")
-    local t = Instance.new("ScreenGui")
-    local u = Instance.new("ImageButton")
-    local v = Enum.ButtonStyle.RobloxButton
-        t.Parent = game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules")
-        t.Name = "dsfwefwfwdfsfasdadaxczcw"
-        u.Parent = t
-        u.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
-        u.Size = UDim2.new(0, 65, 0, 65)
-        u.Draggable = true
-        u.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-        u.BackgroundTransparency = 1
-        u.Image = "rbxassetid://17466928754"
-function LoadFunction()
-    u.MouseEnter:Connect(
-        function()
-            j:Create(
-                u,
-                TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut),
-                {Size = UDim2.new(0, 80, 0, 80)}
-            ):Play()
-        end
-    )
-    u.MouseLeave:Connect(
-        function()
-            j:Create(
-                u,
-                TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut),
-                {Size = UDim2.new(0, 65, 0, 65)}
-            ):Play()
-        end
-    )
-    local w = false
-    u.MouseButton1Down:Connect(
-        function()
-            if w == false then
-                w = false
-                j:Create(u, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Rotation = 180}):Play(
-
-                )
-                q:Play()
-                j:Create(u, TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {ImageTransparency = 0}):Play(
-
-                )
-                wait(.5)
-                j:Create(u, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Rotation = 0}):Play()
-                j:Create(u, TweenInfo.new(.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {ImageTransparency = 0}):Play(
-
-                )
-                wait(.5)
-            end
-        end
-    )
-end
-LoadFunction()
-u.MouseButton1Down:connect(
-    function()
-        Quantum.Window:Minimize()
-    end
-)
-
-local Quantum = loadstring(game:HttpGet("https://raw.githubusercontent.com/FlazhGG/Quantum-V2/main/QuantumHubLibrary"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-
-local Window = Quantum:CreateWindow({
-    Title = "<font color='rgb(65, 22, 240)'>Quantum Hub </font>",
-    SubTitle = "<font color='rgb(0, 240, 156)'>NEW GENERATION BETA</font>",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(600, 400),
-    Acrylic = false, 
-    Theme = "Quantum",
-    MinimizeKey = Enum.KeyCode.LeftControl
-})
-
-local Options = Quantum.Options
-
 
 local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 
