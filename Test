@@ -904,7 +904,7 @@ end
 function MaterialMon()
     if World1 then
         if SelectMaterial == "Angel Wings" then
-            MMon = { "God's Guard" }
+            MMon = { "God's Guard", "Shanda", "Royal Squad", "Royal Soldier", "Wysper", "Thunder God" }
             MPos = CFrame.new(-4698, 845, -1912)
             SP = "Default"
             if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(-4607.82275, 872.54248, -1667.55688)).Magnitude >= 10000 then
@@ -912,15 +912,15 @@ function MaterialMon()
                     Vector3.new(-4607.82275, 872.54248, -1667.55688))
             end
         elseif SelectMaterial == "Leather + Scrap Metal" then
-            MMon = { "Brute" }
+            MMon = { "Brute", "Pirate" }
             MPos = CFrame.new(-1145, 15, 4350)
             SP = "Default"
         elseif SelectMaterial == "Magma Ore" then
-            MMon = { "Military Spy" }
+            MMon = { "Military Soldier", "Military Spy", "Magma Admiral" }
             MPos = CFrame.new(-5815, 84, 8820)
             SP = "Default"
         elseif SelectMaterial == "Fish Tail" then
-            MMon = { "Fishman Warrior" }
+            MMon = { "Fishman Warrior", "Fishman Commando", "Fishman Lord" }
             MPos = CFrame.new(61123, 19, 1569)
             SP = "Default"
             if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(61163.8515625, 5.342342376708984, 1819.7841796875)).Magnitude >= 17000 then
@@ -934,7 +934,7 @@ function MaterialMon()
             MPos = CFrame.new(-2010.5059814453125, 73.00115966796875, -3326.620849609375)
             SP = "Default"
         elseif SelectMaterial == "Magma Ore" then
-            MMon = { "Magma Ninja" }
+            MMon = { "Magma Ninja", "Lava Pirate" }
             MPos = CFrame.new(-5428, 78, -5959)
             SP = "Default"
         elseif SelectMaterial == "Ectoplasm" then
@@ -946,7 +946,7 @@ function MaterialMon()
                     Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
             end
         elseif SelectMaterial == "Mystic Droplet" then
-            MMon = { "Water Fighter" }
+            MMon = { "Water Fighter", "Sea Soldier" }
             MPos = CFrame.new(-3385, 239, -10542)
             SP = "Default"
         elseif SelectMaterial == "Radioactive Material" then
@@ -960,19 +960,19 @@ function MaterialMon()
         end
     elseif World3 then
         if SelectMaterial == "Leather + Scrap Metal" then
-            MMon = { "Jungle Pirate" }
+            MMon = { "Jungle Pirate", "Forest Pirate" }
             MPos = CFrame.new(-11975.78515625, 331.7734069824219, -10620.0302734375)
             SP = "Default"
         elseif SelectMaterial == "Fish Tail" then
-            MMon = { "Fishman Raider" }
+            MMon = { "Fishman Raider", "Fishman Captain" }
             MPos = CFrame.new(-10993, 332, -8940)
             SP = "Default"
         elseif SelectMaterial == "Conjured Cocoa" then
-            MMon = { "Chocolate Bar Battler" }
+            MMon = { "Chocolate Bar Battler", "Cocoa Warrior" }
             MPos = CFrame.new(620.6344604492188, 78.93644714355469, -12581.369140625)
             SP = "Default"
         elseif SelectMaterial == "Dragon Scale" then
-            MMon = { "Dragon Crew Archer" }
+            MMon = { "Dragon Crew Warrior", "Dragon Crew Archer" }
             MPos = CFrame.new(6594, 383, 139)
             SP = "Default"
         elseif SelectMaterial == "Gunpowder" then
