@@ -1195,24 +1195,31 @@ function AttackNoCD()
     end
 end
 
-function getAllBladeHits(Sizes, targetType)
+function getAllBladeHitsPlayers(Sizes)
     local Hits = {}
     local Client = game.Players.LocalPlayer
-    local targetFolder
-    if targetType == "Players" then
-        targetFolder = game:GetService("Workspace").Characters:GetChildren()
-    elseif targetType == "Enemies" then
-        targetFolder = game:GetService("Workspace").Enemies:GetChildren()
-    else
-        return Hits
-    end
-    for _, target in ipairs(targetFolder) do
-        local Humanoid = target:FindFirstChildOfClass("Humanoid")
-        if Humanoid and Humanoid.RootPart and Humanoid.Health > 0 then
-            local distance = Client:DistanceFromCharacter(Humanoid.RootPart.Position)
-            if distance < Sizes + 5 and (targetType == "Players" and target.Name ~= Client.Name or targetType == "Enemies") then
-                table.insert(Hits, Humanoid.RootPart)
+    local Characters = game:GetService("Workspace").Characters:GetChildren()
+    for _, v in ipairs(Characters) do
+        local Human = v:FindFirstChildOfClass("Humanoid")
+        if v.Name ~= Client.Name and Human and Human.RootPart and Human.Health > 0 then
+            local distance = Client:DistanceFromCharacter(Human.RootPart.Position)
+            if distance < Sizes + 5 then
+                table.insert(Hits, Human.RootPart)
             end
+        end
+    end
+    return Hits
+end
+
+function getAllBladeHits(Sizes)
+    local Hits = {}
+    local Client = game.Players.LocalPlayer
+    local Enemies = game:GetService("Workspace").Enemies:GetChildren()
+    for i = 1, #Enemies do
+        local v = Enemies[i]
+        local Human = v:FindFirstChildOfClass("Humanoid")
+        if Human and Human.RootPart and Human.Health > 0 and Client:DistanceFromCharacter(Human.RootPart.Position) < Sizes + 5 then
+            table.insert(Hits, Human.RootPart)
         end
     end
     return Hits
@@ -1431,16 +1438,24 @@ local function AutoStats()
     end
 end
 
-local function handleEnemy(enemy, cframe, size, shouldDisableCollide)
-    local hrp = enemy:FindFirstChild("HumanoidRootPart")
+function setPrimaryPartCFrame(enemies, cframe)
+    if enemies and enemies.PrimaryPart then
+        pcall(function()
+            enemies:SetPrimaryPartCFrame(cframe)
+        end)
+    end
+end
+
+function handleEnemy(v, pos, size)
+    local hrp = v:FindFirstChild("HumanoidRootPart")
     if hrp then
-        hrp.Size = size or Vector3.new(1, 1, 1)
-        hrp.CanCollide = not shouldDisableCollide
-        local head = enemy:FindFirstChild("Head")
+        hrp.Size = size
+        hrp.CanCollide = false
+        local head = v:FindFirstChild("Head")
         if head then
-            head.CanCollide = not shouldDisableCollide
+            head.CanCollide = false
         end
-        local humanoid = enemy:FindFirstChild("Humanoid")
+        local humanoid = v:FindFirstChild("Humanoid")
         if humanoid then
             local animator = humanoid:FindFirstChild("Animator")
             if animator then
@@ -1449,59 +1464,78 @@ local function handleEnemy(enemy, cframe, size, shouldDisableCollide)
             humanoid:ChangeState(14)
         end
         pcall(function()
-            hrp.CFrame = cframe
+            hrp.CFrame = pos
         end)
     end
 end
 
-function manageEnemies(condition, cframe, argsSize, cmdDisableCollide)
-    local enemies = game.Workspace.Enemies:GetChildren()
-    for _, enemy in ipairs(enemies) do
-        if condition(enemy) then
-            handleEnemy(enemy, cframe, argsSize, cmdDisableCollide)
+function bringEnemies()
+    for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+        if v.Name == MonFarm and not string.find(v.Name, "Boss") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
+            handleEnemy(v, PosMon, Vector3.new(1, 1, 1))
         end
     end
 end
-function isWithinDistance(target, reference, distance)
-    return (target.Position - reference.Position).Magnitude <= distance
-end
-function bringEnemies(condition, position, size, distance)
-    manageEnemies(function(enemy)
-        local hrp = enemy:FindFirstChild("HumanoidRootPart")
-        return hrp and condition(enemy) and isWithinDistance(hrp, position, distance)
-    end, position.CFrame, size, true)
-end
+
 function autoFarmEnemies()
-    manageEnemies(function(enemy)
-        return _G.AutoFarm and StartBring and enemy.Name == Mon and 
-                (Mon == "Factory Staff" or Mon == "Monkey" or Mon == "Dragon Crew Warrior" or Mon == "Dragon Crew Archer") and 
-                enemy:FindFirstChild("HumanoidRootPart") and enemy.Humanoid.Health > 0
-    end, PosMon, Vector3.new(70, 70, 70), true)
-    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+    for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+        if _G.AutoFarm and StartBring and v.Name == Mon and (Mon == "Factory Staff" or Mon == "Monkey" or Mon == "Dragon Crew Warrior" or Mon == "Dragon Crew Archer") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+            local hrp = v:FindFirstChild("HumanoidRootPart")
+            if hrp then
+                local distance = (hrp.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position)
+                    .Magnitude
+                if distance <= 220 or distance <= _G.BringMode then
+                    handleEnemy(v, PosMon, Vector3.new(70, 70, 70))
+                    sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+                end
+            end
+        end
+    end
 end
+
 function bringMob()
     sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-    local targetPos = (BringMobChoosen and BringMobChoosen.HumanoidRootPart) and 
-                        BringMobChoosen.HumanoidRootPart.CFrame or LockCFrame
-    bringEnemies(function(enemy) return true end, targetPos, Vector3.new(1, 1, 1), _G.BringMode)
+    local targetPos = (BringMobChoosen and BringMobChoosen.HumanoidRootPart) and BringMobChoosen.HumanoidRootPart.CFrame or
+        LockCFrame
+    for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+        if v:FindFirstChild("HumanoidRootPart") then
+            local hrp = v.HumanoidRootPart
+            if (hrp.Position - targetPos.Position).Magnitude < _G.BringMode and (hrp.Position - targetPos.Position).Magnitude > 3 then
+                handleEnemy(v, targetPos, Vector3.new(1, 1, 1))
+            end
+        end
+    end
 end
-function checkMobsInDistance(mobs, distance)
+
+function checkMobsInDistance(Mon, distance)
     local inDistance = false
     local playerPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-    for _, mobName in ipairs(mobs) do
-        if manageEnemies(function(enemy)
-            return enemy.Name == mobName and isWithinDistance(enemy.HumanoidRootPart, playerPosition, distance)
-        end, nil, nil, false) then
-            inDistance = true
-            break
+    local function checkEnemy(v)
+        if table.find(Mon, v.Name) and v:FindFirstChild("HumanoidRootPart") then
+            local enemyPosition = v.HumanoidRootPart.Position
+            if (enemyPosition - playerPosition).Magnitude <= distance then
+                inDistance = true
+                return true
+            end
         end
+        return false
+    end
+    for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+        if checkEnemy(v) then break end
+    end
+    for _, v in pairs(game.ReplicatedStorage:GetChildren()) do
+        if checkEnemy(v) then break end
+    end
+    for _, v in pairs(getnilinstances()) do
+        if checkEnemy(v) then break end
     end
     return inDistance
 end
+
 task.spawn(function()
     while task.wait() do
         if _G.BringMonster then
-            pcall(bringEnemies, function(enemy) return not string.find(enemy.Name, "Boss") end, PosMon, Vector3.new(70, 70, 70), _G.BringMode)
+            pcall(bringEnemies)
         end
     end
 end)
@@ -1516,13 +1550,18 @@ end)
 task.spawn(function()
     while wait() do
         pcall(function()
-            if _G.BringMode and bringmob then
-                bringEnemies(function(enemy) return enemy.Name == MonFarm and enemy.Humanoid.Health > 0 end, FarmPos, Vector3.new(1, 1, 1), _G.BringMode)
+            for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                if _G.BringMode and bringmob and v.Name == MonFarm and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                    local hrp = v:FindFirstChild("HumanoidRootPart")
+                    if hrp and (hrp.Position - FarmPos.Position).Magnitude <= _G.BringMode then
+                        handleEnemy(v, FarmPos, Vector3.new(1, 1, 1))
+                        sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                    end
+                end
             end
         end)
     end
 end)
-
 task.spawn(function()
     while true do
         wait()
@@ -1534,15 +1573,17 @@ task.spawn(function()
         end
     end
 end)
-
 task.spawn(function()
     while task.wait() do
         if QuantumMagnet and _G.BringMonster then
-            bringEnemies(function(enemy) return not string.find(enemy.Name, "Boss") end, PosTum, Vector3.new(70, 70, 70), _G.BringMode)
+            for _, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                if not string.find(v.Name, "Boss") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
+                    handleEnemy(v, PosTum, Vector3.new(70, 70, 70))
+                end
+            end
         end
     end
 end)
-
 task.spawn(function()
     while task.wait() do
         if bringmob then
