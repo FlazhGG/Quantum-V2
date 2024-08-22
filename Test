@@ -1128,66 +1128,67 @@ spawn(function()
     end
 end)
 
-local player = game.Players.LocalPlayer
-local combatFramework = debug.getupvalues(require(player.PlayerScripts.CombatFramework))
-local combatController = combatFramework[2]
+local plr = game.Players.LocalPlayer
+local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
+local CbFw2 = CbFw[2]
+
 function GetCurrentBlade()
-    local activeController = combatController.activeController
-    if not activeController or not activeController.blades then return end
-    local currentBlade = activeController.blades[1]
-    while currentBlade and currentBlade.Parent ~= player.Character do
-        currentBlade = currentBlade.Parent
+    local p13 = CbFw2.activeController
+    if not p13 or not p13.blades then return end
+    local ret = p13.blades[1]
+    while ret and ret.Parent ~= plr.Character do
+        ret = ret.Parent
     end
-    return currentBlade
+    return ret
 end
+
 function AttackNoCD()
     if not _G.AutoRaid then
         local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
         CameraShaker:Stop()
-        local activeController = CbFw2.activeController
-        if not activeController or not activeController.attack then return end
+        local AC = CbFw2.activeController
+        if not AC or not AC.attack then return end
         local bladeHits = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
             plr.Character,
             { plr.Character.HumanoidRootPart },
             60
         )
-        local validHits = {}
-        local hitTracker = {}
-        for _, hit in pairs(bladeHits) do
-            local target = hit.Parent
-            if target and target:FindFirstChild("HumanoidRootPart") and not hitTracker[target] then
-                local distance = plr:DistanceFromCharacter(target.HumanoidRootPart.Position)
+        local filteredHits, hash = {}, {}
+        for _, v in pairs(bladeHits) do
+            if v.Parent and v.Parent:FindFirstChild("HumanoidRootPart") and not hash[v.Parent] then
+                local distance = plr:DistanceFromCharacter(v.Parent.HumanoidRootPart.Position)
                 if distance < 50 then
-                    table.insert(validHits, target.HumanoidRootPart)
-                    hitTracker[target] = true
+                    table.insert(filteredHits, v.Parent.HumanoidRootPart)
+                    hash[v.Parent] = true
                 end
             end
         end
-        if #validHits > 0 then
-            local u8 = debug.getupvalue(activeController.attack, 5)
-            local u9 = debug.getupvalue(activeController.attack, 6)
-            local u7 = debug.getupvalue(activeController.attack, 4)
-            local u10 = debug.getupvalue(activeController.attack, 7)
+        bladeHits = filteredHits
+        if #bladeHits > 0 then
+            local u8, u9, u7, u10 = debug.getupvalue(AC.attack, 5), debug.getupvalue(AC.attack, 6),
+                debug.getupvalue(AC.attack, 4), debug.getupvalue(AC.attack, 7)
             local u12 = (u8 * 798405 + u7 * 727595) % u9
             local u13 = u7 * 798405
-            u12 = (u12 * u9 + u13) % 1099511627776
-            u8 = math.floor(u12 / u9)
-            u7 = u12 - u8 * u9
+            (function()
+                u12 = (u12 * u9 + u13) % 1099511627776
+                u8 = math.floor(u12 / u9)
+                u7 = u12 - u8 * u9
+            end)()
             u10 = u10 + 1
-            debug.setupvalue(activeController.attack, 5, u8)
-            debug.setupvalue(activeController.attack, 6, u9)
-            debug.setupvalue(activeController.attack, 4, u7)
-            debug.setupvalue(activeController.attack, 7, u10)
+            debug.setupvalue(AC.attack, 5, u8)
+            debug.setupvalue(AC.attack, 6, u9)
+            debug.setupvalue(AC.attack, 4, u7)
+            debug.setupvalue(AC.attack, 7, u10)
             pcall(function()
-                local tool = plr.Character:FindFirstChildOfClass("Tool")
-                local blades = activeController.blades
-                if tool and blades and blades[1] then
-                    activeController.animator.anims.basic[1]:Play(0.01, 0.01, _G.FastAttackDelay)
-                    local currentBlade = GetCurrentBlade()
-                    if currentBlade then
-                        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange", tostring(currentBlade))
-                        game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u12 / 1099511627776 * 16777215), u10)
-                        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", validHits, 1, "")
+                if plr.Character:FindFirstChildOfClass("Tool") and AC.blades and AC.blades[1] then
+                    AC.animator.anims.basic[1]:Play(0.01, 0.01, _G.FastAttackDelay)
+                    local blade = GetCurrentBlade()
+                    if blade then
+                        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",
+                            tostring(blade))
+                        game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u12 / 1099511627776 * 16777215),
+                            u10)
+                        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladeHits, 1, "")
                     end
                 end
             end)
