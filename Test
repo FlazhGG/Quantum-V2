@@ -3203,12 +3203,15 @@ spawn(function()
                     wait()
                     if _G.AutoChestSafe and nearestChest and nearestChest.Parent then
                         topos(nearestChest.CFrame)
+                    else
+                        topos(nearestChest.CFrame)
                     end
                 until not _G.AutoChestSafe or not nearestChest.Parent or isNearDestination(nearestChest)
                 if isNearDestination(nearestChest) then
                     wait(0.1)
                     jumpchar()
                     touchChest(nearestChest)
+                    topos(nearestChest.CFrame)
                 end
                 topos(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
                 _G.MagnitudeAdd = _G.MagnitudeAdd + 1500
