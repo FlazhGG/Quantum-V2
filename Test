@@ -2017,7 +2017,7 @@ end
         Multi = false,
         Default = 1,
     })
-    BringMobRadius:SetValue("Low")
+    BringMobRadius:SetValue("Normal")
     BringMobRadius:OnChanged(function(Value)
         _G.BringMode = Value
     end)
