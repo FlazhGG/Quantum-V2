@@ -3172,8 +3172,7 @@ end)
 _G.MagnitudeAdd = 0
 
 function jumpchar()
-    local humanoid = game.Players.LocalPlayer.Character and
-    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+    local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
     if humanoid then
         humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
         wait(0.1)
@@ -3196,14 +3195,14 @@ function touchChest(chest)
         end
     end
 end
+
 spawn(function()
     while wait() do
         if _G.AutoChestSafe then
             local nearestChest, nearestDistance = nil, math.huge
             for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
                 if v:IsA("BasePart") and v.Name:find("Chest") then
-                    local distance = (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
-                    .Magnitude
+                    local distance = (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
                     if distance <= 5000 + _G.MagnitudeAdd and distance < nearestDistance then
                         nearestChest, nearestDistance = v, distance
                     end
