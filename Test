@@ -3155,8 +3155,6 @@ spawn(function()
                     end
                 end
             end)
-        else
-            StopTween(_G.Auto_Bone)
         end
     end
 end)
