@@ -3171,7 +3171,7 @@ end
 
 function isNearDestination(destination)
     local distance = (destination.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    return distance <= 1
+    return distance <= 0
 end
 
 function touchChest(chest)
