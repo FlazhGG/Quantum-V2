@@ -1571,51 +1571,37 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
     game:GetService("VirtualUser"):Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
 end)
 
-local function loadLibrary(url)
-    return loadstring(game:HttpGet(url))()
-end
-local Fluent = loadLibrary("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua")
-local SaveManager = loadLibrary("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua")
-local InterfaceManager = loadLibrary("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua")
-function createWindow(title, subtitle, tabWidth, size, theme, minimizeKey)
-    return Fluent:CreateWindow({
-        Title = title,
-        SubTitle = subtitle,
-        TabWidth = tabWidth,
-        Size = size,
-        Acrylic = true,
-        Theme = theme,
-        MinimizeKey = minimizeKey
-    })
-end
-function createTabs(window, tabs)
-    local tabObjects = {}
-    for key, tab in pairs(tabs) do
-        tabObjects[key] = window:AddTab({
-            Title = tab.title,
-            Icon = tab.icon or ""
-        })
-    end
-    return tabObjects
-end
-function CmdSetupTabs()
-    local window = createWindow("Quantum Hub", "by Prime Andy", 160, UDim2.fromOffset(530, 350), "Darker", Enum.KeyCode.LeftControl)
-    local Tabs = {
-        Main = { title = "Main" },
-        Sub = { title = "Sub Farm" },
-        SeaE = { title = "Sea Event" },
-        Settings = { title = "Settings" },
-        Player = { title = "Player" },
-        Raid = { title = "Raids" },
-        Travel = { title = "Travel" },
-        Fun = { title = "Fun-Visual" },
-        Fruit = { title = "Fruit" },
-        LIBSettings = { title = "Library Settings" }
-    }
-    createdTabs = createTabs(window, tabs)
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet(
+    "https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet(
+    "https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
-end
-    local options = Fluent.Options
+local Window = Fluent:CreateWindow({
+    Title = "Quantum Hub",
+    SubTitle = "by Prime Andy",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(530, 350),
+    Acrylic = true,
+    Theme = "Darker",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Sub = Window:AddTab({ Title = "Sub Farm", Icon = "" }),
+    SeaE = Window:AddTab({ Title = "Sea Event", Icon = "" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "" }),
+    Raid = Window:AddTab({ Title = "Raids", Icon = "" }),
+    Travel = Window:AddTab({ Title = "Travel", Icon = "" }),
+    Fun = Window:AddTab({ Title = "Fun-Visual", Icon = "" }),
+    Fruit = Window:AddTab({ Title = "Fruit", Icon = "" }),
+    LIBSettings = Window:AddTab({ Title = "Library Settings", Icon = "" })
+}
+
+local Options = Fluent.Options
+
 do
     local CurrentMon = ""
     local Status = "Waiting..."
