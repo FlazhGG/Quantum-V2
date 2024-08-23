@@ -1557,7 +1557,7 @@ end)
 local FlurioreGui = FlurioreLib:MakeGui({
 	["NameHub"] = "Quantum Hub",
 	["Description"] = "Free BloxFruit",
-	["Color"] = Color3.fromRGB(255, 0, 255),
+	["Color"] = Color3.fromRGB(152, 251, 152),
 	["Logo Player"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..game:GetService("Players").LocalPlayer.UserId .."&width=420&height=420&format=png",
 	["Name Player"] = tostring(game:GetService("Players").LocalPlayer.Name),
 	["Tab Width"] = 120
