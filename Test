@@ -1573,13 +1573,14 @@ local SelectWeapon = FarmSection:AddDropdown({
 	["Title"] = "Select Weapon",
 	["Content"] = "",
 	["Multi"] = false,
-	["Options"] = {"Melee", "Sword"},
-	["Default"] = "",
+	["Options"] = { "Melee" , "Sword" },
+	["Default"] = { "Melee" },
 	["Callback"] = function (Value)
         _G.SelectWeapon = Value
     end
 })
 SelectWeapon:Set({"Melee"})
+SelectWeapon:Refresh({"Melee", "Sword"}, {"Melee"}) 
 
 task.spawn(function()
     while wait() do
@@ -1609,13 +1610,14 @@ local SelectFarmMethod = FarmSection:AddDropdown({
 	["Title"] = "Select Farm Method",
 	["Content"] = "",
 	["Multi"] = false,
-	["Options"] = {"Level Quest", "No Quest", "Nearest"},
-	["Default"] = "",
+	["Options"] = { "Level Quest" , "No Quest" , "Nearest" },
+	["Default"] = { "Level Quest" },
 	["Callback"] = function (Value)
         FarmMode = Value
     end
 })
 SelectFarmMethod:Set({"Level Quest"})
+SelectWeapon:Refresh({"Level Quest" , "No Quest" , "Nearest"}, {"Level Quest"}) 
 
 local AutoFarm = FarmSection:AddToggle({
 	["Title"]= "Auto Farm",
