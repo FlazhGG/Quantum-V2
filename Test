@@ -87,8 +87,8 @@ function CheckQuest()
                 NameQuest = "MarineQuest"
                 NameMon = "Trainee"
                 InfoFarm = "Trainee Lv. 0 - 10"
-                CFrameQuest = CFrame.new(1059.37, 15.45, 1550.42, 0.94, 0, -0.34, 0, 1, 0, 0.34, 0, 0.94)
-                CFrameMon = CFrame.new(1045.962646484375, 27.00250816345215, 1560.8203125)
+                CFrameQuest = CFrame.new(-2708, 25, 2103)
+                CFrameMon = CFrame.new(-2708, 25, 2103)
             end
         elseif MyLevel == 10 or MyLevel <= 14 then
             Mon = "Monkey"
