@@ -3854,15 +3854,6 @@ spawn(function()
     end)
 end)
 
-SaveManager:SetLibrary(Fluent)
-
-SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({})
-
-SaveManager:SetFolder("QuantumHub/Bloxfruit")
-
-SaveManager:BuildConfigSection(Tabs.LIBSettings)
-
 Window:SelectTab(1)
 
 Fluent:Notify({
@@ -3870,5 +3861,3 @@ Fluent:Notify({
     Content = "The script has been loaded.",
     Duration = 8
 })
-
-SaveManager:LoadAutoloadConfig()
